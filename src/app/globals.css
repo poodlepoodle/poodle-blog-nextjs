@@ -1,0 +1,37 @@
+* {
+  /* box-sizing: border-box; */
+  padding: 0;
+  margin: 0;
+
+  font-family: 'Pretendard', 'Noto Sans', sans-serif;
+}
+
+html {
+  padding: 0;
+  margin: 0;
+
+  /* rem 기반 레이아웃을 위한 */
+  font-size: 14px;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+
+  max-width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.content__wrapper {
+  padding-top: 5rem;
+
+  min-height: calc(100vh - 10rem);
+  background-color: #fafafa;
+}

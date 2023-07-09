@@ -1,0 +1,40 @@
+.layout {
+  position: relative;
+
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+
+  background-color: #fafafa;
+}
+
+.container {
+  width: 60rem;
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 3rem 0;
+}
+
+.banner__container {
+  position: relative;
+
+  width: 60rem;
+  height: 6.25rem;
+}
+
+.post__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.centered__row {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,22 @@
+.layout {
+  height: 1.75rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 1rem;
+
+  border: 1px solid black;
+  border-radius: 1rem;
+
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.layout:hover {
+  background-color: black;
+  color: white;
+}
