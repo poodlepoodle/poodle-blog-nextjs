@@ -9,11 +9,13 @@ export default function TopNav() {
       <div className={styles.container}>
         <section>
           <div className={styles.profile__container}>
-            <Image
-              src="/components/header/profile.png"
-              fill
-              alt="profile pic in top navigation"
-            />
+            <Link href="/">
+              <Image
+                src="/components/header/profile.png"
+                fill
+                alt="profile pic in top navigation"
+              />
+            </Link>
           </div>
         </section>
 
