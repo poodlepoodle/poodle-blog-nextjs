@@ -1,6 +1,7 @@
 import styles from './bottomnav.module.css';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function BottomNav() {
   return (
@@ -12,23 +13,33 @@ export default function BottomNav() {
 
         <nav className={styles.nav}>
           <div className={styles.icon__container}>
-            <Image src="/components/footer/mail.png" fill alt="link to mail" />
+            <Link href="mailto: chammal97@naver.com" target="_blank">
+              <Image
+                src="/components/footer/mail.png"
+                fill
+                alt="link to mail"
+              />
+            </Link>
           </div>
 
           <div className={styles.icon__container}>
-            <Image
-              src="/components/footer/github.png"
-              fill
-              alt="link to github"
-            />
+            <Link href="https://github.com/poodlepoodle" target="_blank">
+              <Image
+                src="/components/footer/github.png"
+                fill
+                alt="link to github"
+              />
+            </Link>
           </div>
 
           <div className={styles.icon__container}>
-            <Image
-              src="/components/footer/instagram.png"
-              fill
-              alt="link to instagram"
-            />
+            <Link href="https://instagram.com/enfp._.oodle" target="_blank">
+              <Image
+                src="/components/footer/instagram.png"
+                fill
+                alt="link to instagram"
+              />
+            </Link>
           </div>
         </nav>
       </div>
