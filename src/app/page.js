@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <section className={styles.layout}>
       <div className={styles.container}>
-        <h3>메인입니당</h3>
+        <h3>공사중...</h3>
       </div>
     </section>
   );
