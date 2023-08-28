@@ -20,7 +20,7 @@ export default function TopNav() {
         </section>
 
         <nav className={styles.nav}>
-          <span>포트폴리오</span>
+          {/* <span>포트폴리오</span> */}
           <Link href="/blog">블로그</Link>
           <span>CV</span>
         </nav>
