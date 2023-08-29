@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 import Image from 'next/image';
 
-import Like from '@components/like/Like';
+import Like from '@components/like';
 
 export default function Page() {
   const [isScrolled, setIsScrolled] = useState(false);

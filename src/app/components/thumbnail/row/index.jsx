@@ -3,7 +3,7 @@ import styles from './row.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Tag from '@components/tag/Tag';
+import Tag from '@components/tag';
 
 export default function Row(props) {
   return (

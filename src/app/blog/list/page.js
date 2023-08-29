@@ -1,7 +1,7 @@
 import styles from './styles.module.css';
 
-import Search from '@components/search/Search';
-import ThumbnailRow from '@components/thumbnail/row/Row';
+import Search from '@components/search';
+import ThumbnailRow from '@components/thumbnail/row';
 
 export default function Page() {
   return (

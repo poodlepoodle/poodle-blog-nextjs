@@ -2,9 +2,9 @@ import styles from './styles.module.css';
 
 import Image from 'next/image';
 
-import ThumbnailNormal from '@components/thumbnail/normal/Normal';
-import ThumbnailLarge from '@components/thumbnail/large/Large';
-import More from '@components/more/More';
+import ThumbnailNormal from '@components/thumbnail/normal';
+import ThumbnailLarge from '@components/thumbnail/large';
+import More from '@components/more';
 
 export default function Page() {
   return (

@@ -1,7 +1,7 @@
 import './globals.css';
 
-import Header from '@components/header/Header';
-import Footer from '@components/footer/Footer';
+import Header from '@components/header';
+import Footer from '@components/footer';
 
 export const metadata = {
   title: '루트 레이아웃',
