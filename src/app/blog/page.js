@@ -2,9 +2,9 @@ import styles from './styles.module.css';
 
 import Image from 'next/image';
 
-import PostThumbnail from '../components/blog/PostThumbnail';
-import PostThumbnailLarge from '../components/blog/PostThumbnailLarge';
-import More from '../components/common/More';
+import ThumbnailNormal from '@components/thumbnail/normal/Normal';
+import ThumbnailLarge from '@components/thumbnail/large/Large';
+import More from '@components/more/More';
 
 export default function Page() {
   return (
@@ -19,14 +19,14 @@ export default function Page() {
         </div>
 
         <div className={styles.post__row}>
-          <PostThumbnailLarge src="/blog/1_large.png" />
-          <PostThumbnail src="/blog/1.png" />
+          <ThumbnailLarge src="/blog/1_large.png" />
+          <ThumbnailNormal src="/blog/1.png" />
         </div>
 
         <div className={styles.post__row}>
-          <PostThumbnail src="/blog/2.png" />
-          <PostThumbnail src="/blog/2.png" />
-          <PostThumbnail src="/blog/2.png" />
+          <ThumbnailNormal src="/blog/2.png" />
+          <ThumbnailNormal src="/blog/2.png" />
+          <ThumbnailNormal src="/blog/2.png" />
         </div>
 
         <div className={styles.centered__row}>

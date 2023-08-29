@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import styles from './searchbar.module.css';
+import styles from './search.module.css';
 
 export default function Search() {
   return (
     <div className={styles.layout}>
       <div className={styles.icon__container}>
-        <Image src="/components/searchbar/icon.png" fill alt="magnifier icon" />
+        <Image src="/components/search/icon.png" fill alt="magnifier icon" />
       </div>
 
       <input

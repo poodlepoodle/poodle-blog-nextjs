@@ -1,7 +1,7 @@
 import './globals.css';
 
-import TopNav from './components/common/TopNav';
-import BottomNav from './components/common/BottomNav';
+import Header from '@components/header/Header';
+import Footer from '@components/footer/Footer';
 
 export const metadata = {
   title: '루트 레이아웃',
@@ -12,11 +12,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <body>
-        <TopNav />
-
+        <Header />
         <div className="content__wrapper">{children}</div>
-
-        <BottomNav />
+        <Footer />
       </body>
     </html>
   );

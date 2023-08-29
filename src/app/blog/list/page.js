@@ -1,7 +1,7 @@
 import styles from './styles.module.css';
 
-import Search from '@/app/components/common/SearchBar';
-import PostThumbnailListItem from '@/app/components/blog/PostThumbnailListItem';
+import Search from '@components/search/Search';
+import ThumbnailRow from '@components/thumbnail/row/Row';
 
 export default function Page() {
   return (
@@ -12,11 +12,11 @@ export default function Page() {
         </div>
 
         <div className={styles.content}>
-          <PostThumbnailListItem src="/blog/1.png" />
-          <PostThumbnailListItem src="/blog/2.png" />
-          <PostThumbnailListItem src="/blog/1.png" />
-          <PostThumbnailListItem src="/blog/2.png" />
-          <PostThumbnailListItem src="/blog/1.png" />
+          <ThumbnailRow src="/blog/1.png" />
+          <ThumbnailRow src="/blog/2.png" />
+          <ThumbnailRow src="/blog/1.png" />
+          <ThumbnailRow src="/blog/2.png" />
+          <ThumbnailRow src="/blog/1.png" />
         </div>
       </div>
     </section>

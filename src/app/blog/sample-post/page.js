@@ -4,8 +4,9 @@ import styles from './styles.module.css';
 
 import { useState, useEffect } from 'react';
 
-import Like from '@/app/components/common/Like';
 import Image from 'next/image';
+
+import Like from '@components/like/Like';
 
 export default function Page() {
   const [isScrolled, setIsScrolled] = useState(false);
