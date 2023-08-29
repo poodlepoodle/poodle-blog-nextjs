@@ -3,6 +3,8 @@ import styles from './header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import profile_img from '@resources/components/header/profile.png';
+
 export default function Header() {
   return (
     <header className={styles.layout}>
@@ -11,7 +13,7 @@ export default function Header() {
           <div className={styles.profile__container}>
             <Link href="/">
               <Image
-                src="/components/header/profile.png"
+                src={profile_img}
                 fill
                 alt="profile pic in top navigation"
               />
