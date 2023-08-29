@@ -1,9 +1,9 @@
-import styles from './topnav.module.css';
+import styles from './header.module.css';
 
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function TopNav() {
+export default function Header() {
   return (
     <header className={styles.layout}>
       <div className={styles.container}>

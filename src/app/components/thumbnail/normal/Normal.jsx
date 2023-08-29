@@ -1,15 +1,15 @@
-import styles from './postthumbnaillarge.module.css';
+import styles from './normal.module.css';
 
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 
-export default function PostThumbnailLarge(props) {
+export default function Normal({ src }) {
   return (
     <Link href="/blog/sample-post">
       <div className={styles.layout}>
         <div className={styles.container}>
           <div className={styles.thumbnail__container}>
-            <Image src={props.src} fill alt="post thumbnail large" />
+            <Image src={src} fill alt="post thumbnail" />
           </div>
 
           <span className={styles.date}>2000.00.00</span>

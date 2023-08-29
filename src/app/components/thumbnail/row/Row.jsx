@@ -1,11 +1,11 @@
-import styles from './postthumbnaillistitem.module.css';
+import styles from './row.module.css';
 
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Tag from '../common/Tag';
+import Tag from '@components/tag/Tag';
 
-export default function PostThumbnailListItem(props) {
+export default function Row(props) {
   return (
     <Link href="/blog/sample-post">
       <div className={styles.layout}>

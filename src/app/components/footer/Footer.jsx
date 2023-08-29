@@ -1,4 +1,4 @@
-import styles from './bottomnav.module.css';
+import styles from './footer.module.css';
 
 import Image from 'next/image';
 import Link from 'next/link';

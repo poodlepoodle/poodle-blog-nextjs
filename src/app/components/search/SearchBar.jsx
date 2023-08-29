@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styles from './searchbar.module.css';
 
-export default function SearchBar() {
+export default function Search() {
   return (
     <div className={styles.layout}>
       <div className={styles.icon__container}>
