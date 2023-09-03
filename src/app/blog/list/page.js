@@ -1,9 +1,13 @@
 import styles from './styles.module.css';
 
+import { getPosts } from '@/lib/get-posts';
 import Search from '@components/search';
-import ThumbnailRow from '@components/thumbnail/row';
+// import ThumbnailRow from '@components/thumbnail/row';
+import ThumbnailBox from '@components/thumbnail/box';
 
-export default function Page() {
+export default async function Page() {
+  const posts = await getPosts();
+
   return (
     <section className={styles.layout}>
       <div className={styles.container}>
@@ -11,13 +15,7 @@ export default function Page() {
           <Search />
         </div>
 
-        <div className={styles.content}>
-          <ThumbnailRow src="/blog/1.png" />
-          <ThumbnailRow src="/blog/2.png" />
-          <ThumbnailRow src="/blog/1.png" />
-          <ThumbnailRow src="/blog/2.png" />
-          <ThumbnailRow src="/blog/1.png" />
-        </div>
+        <ThumbnailBox posts={posts} />
       </div>
     </section>
   );
