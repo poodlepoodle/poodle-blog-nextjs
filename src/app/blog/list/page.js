@@ -7,6 +7,7 @@ import ThumbnailBox from '@components/thumbnail/box';
 
 export default async function Page() {
   const posts = await getPosts();
+  const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
     <section className={styles.layout}>
@@ -15,7 +16,7 @@ export default async function Page() {
           <Search />
         </div>
 
-        <ThumbnailBox posts={posts} />
+        <ThumbnailBox posts={sortedPosts} />
       </div>
     </section>
   );
