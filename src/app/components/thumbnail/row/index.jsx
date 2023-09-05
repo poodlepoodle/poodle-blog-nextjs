@@ -7,7 +7,7 @@ import Tag from '@components/tag';
 
 export default function Row({ title, slug, tags, thumbnail, date }) {
   return (
-    <Link href="/blog/sample-post">
+    <Link href={`/blog/${slug}`}>
       <div className={styles.layout}>
         <div className={styles.content__container}>
           <div className={styles.top__area}>
