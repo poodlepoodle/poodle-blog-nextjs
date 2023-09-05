@@ -17,7 +17,7 @@ export default function Row({ title, slug, tags, thumbnail, date }) {
           </div>
 
           <div className={styles.bottom__area}>
-            <span className={styles.date}>{date.toString()}</span>
+            <span className={styles.date}>{date}</span>
 
             <span className={styles.title}>{title}</span>
           </div>

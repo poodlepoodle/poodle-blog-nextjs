@@ -7,21 +7,11 @@ import { getPost } from '@lib/get-posts';
 import Like from '@components/like';
 
 export default async function Page({ params }) {
-  const slug = params.slug;
+  const { slug } = params;
   const post = await getPost(slug);
   if (!post) return notFound();
 
   // console.log(post);
-
-  const dateParam = new Date(post.date);
-  const formattedDate =
-    dateParam.getFullYear() +
-    '-' +
-    (dateParam.getMonth() < 9
-      ? '0' + dateParam.getMonth()
-      : dateParam.getMonth()) +
-    '-' +
-    (dateParam.getDate() < 9 ? '0' + dateParam.getDate() : dateParam.getDate());
 
   //  title: 'The First Sample Post',
   // description: "It shouldn't take this much work to publish a small library",
@@ -36,7 +26,7 @@ export default async function Page({ params }) {
       <div className={styles.container}>
         <header className={styles.content__header}>
           <span className={styles.title}>{post.title}</span>
-          <span className={styles.date}>{formattedDate}</span>
+          <span className={styles.date}>{post.date}</span>
         </header>
 
         <main className={styles.content__container}>
