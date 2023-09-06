@@ -14,7 +14,7 @@
   font-weight: 600;
   line-height: normal;
 
-  /* transition: 0.2s all ease; */
+  transition: 0.2s all ease-in-out;
 }
 
 .layout:hover {
