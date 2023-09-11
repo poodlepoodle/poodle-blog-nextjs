@@ -1,24 +1,9 @@
-import styles from './styles.module.css';
+import { getPosts } from '@/lib/get-posts';
+import SearchPage from '@/app/components/search/page';
 
-import Search from '@/app/components/common/SearchBar';
-import PostThumbnailListItem from '@/app/components/blog/PostThumbnailListItem';
+export default async function Page() {
+  const posts = await getPosts();
+  const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-export default function Page() {
-  return (
-    <section className={styles.layout}>
-      <div className={styles.container}>
-        <div className={styles.centered__row}>
-          <Search />
-        </div>
-
-        <div className={styles.content}>
-          <PostThumbnailListItem src="/blog/1.png" />
-          <PostThumbnailListItem src="/blog/2.png" />
-          <PostThumbnailListItem src="/blog/1.png" />
-          <PostThumbnailListItem src="/blog/2.png" />
-          <PostThumbnailListItem src="/blog/1.png" />
-        </div>
-      </div>
-    </section>
-  );
+  return <SearchPage posts={sortedPosts} />;
 }

@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding: 3rem 0;
+  padding: 3rem 0 6rem;
 }
 
 .banner__container {
@@ -29,9 +29,17 @@
   height: 6.25rem;
 }
 
-.post__row {
+.postrow__upper {
   display: flex;
   justify-content: space-between;
+}
+
+.postrow__lower {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 3rem;
 }
 
 .centered__row {
