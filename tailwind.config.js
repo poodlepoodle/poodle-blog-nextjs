@@ -5,6 +5,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       prtd: ['Pretendard'],
+      roboto: ['Roboto', 'ui-monospace', 'sans-serif'],
     },
   },
   plugins: [require('@tailwindcss/typography')],
