@@ -3,10 +3,15 @@ import styles from './styles.module.css';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-import { getPost } from '@lib/get-posts';
+import { getPost, getPosts } from '@lib/get-posts';
 import Like from '@components/like';
 import { PostBody } from '@/mdx/post-body';
 import Tag from '@components/tag';
+
+export const generateStaticParams = () => {
+  const posts = getPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+};
 
 export default async function Page({ params }) {
   const { slug } = params;
