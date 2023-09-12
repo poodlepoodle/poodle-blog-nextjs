@@ -38,3 +38,18 @@
   display: flex;
   justify-content: center;
 }
+
+.video__container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; /* 비디오 넘치는 부분 숨기기 */
+}
+
+.video__background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 비디오 비율 유지 및 화면 꽉 채우기 */
+}

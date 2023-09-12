@@ -1,5 +1,8 @@
+'use client';
+
 import styles from './footer.module.css';
 
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,8 +11,12 @@ import icon_github from '@resources/components/footer/github.png';
 import icon_instagram from '@resources/components/footer/instagram.png';
 
 export default function BottomNav() {
+  const pathname = usePathname();
+
   return (
-    <footer className={styles.layout}>
+    <footer
+      className={pathname === '/' ? styles.layout__focused : styles.layout}
+    >
       <div className={styles.container}>
         <section className={styles.copyright}>
           Copyright 2023. Eojin Choi. All rights reserved.
