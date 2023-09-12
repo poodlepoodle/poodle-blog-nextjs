@@ -8,8 +8,8 @@ import Like from '@components/like';
 import { PostBody } from '@/mdx/post-body';
 import Tag from '@components/tag';
 
-export const generateStaticParams = () => {
-  const posts = getPosts();
+export const generateStaticParams = async () => {
+  const posts = await getPosts();
   return posts.map((post) => ({ slug: post.slug }));
 };
 
