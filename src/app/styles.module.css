@@ -31,7 +31,18 @@
 }
 
 .container strong {
+  position: relative;
+  top: -0.25rem;
+
+  border-radius: 0.7rem;
+  padding: 0.4rem 0.85rem;
+  margin: 0.25rem;
+
+  font-size: 0.75rem;
   font-weight: 600;
+
+  color: #0075ab;
+  background-color: #f1faff;
 }
 
 .banner__container {
