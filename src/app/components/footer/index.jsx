@@ -18,8 +18,12 @@ export default function BottomNav() {
       className={pathname === '/' ? styles.layout__focused : styles.layout}
     >
       <div className={styles.container}>
-        <section className={styles.copyright}>
-          Copyright 2023. Eojin Choi. All rights reserved.
+        <section
+          className={
+            pathname === '/' ? styles.copyright__focused : styles.copyright
+          }
+        >
+          ⓒ Eojin Choi 2023
         </section>
 
         <nav className={styles.nav}>

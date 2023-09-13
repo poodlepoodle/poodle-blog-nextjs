@@ -41,6 +41,13 @@
   align-items: center;
 }
 
+.copyright__focused {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
 .copyright {
   font-size: 0.875rem;
   font-style: normal;
