@@ -72,7 +72,7 @@
   font-weight: 600;
   line-height: normal;
 
-  color: white;
+  color: #f1faff;
 }
 
 .nav {
@@ -84,6 +84,8 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  color: #131926;
 }
 
 .nav > span {

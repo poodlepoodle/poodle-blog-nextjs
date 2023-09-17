@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
 
-  border: 1px solid black;
+  border: 1px solid #131926;
   border-radius: 0.75rem;
 
   font-size: 0.875rem;
@@ -14,10 +14,12 @@
   font-weight: 600;
   line-height: normal;
 
+  color: #131926;
+
   transition: 0.2s all ease-in-out;
 }
 
 .layout:hover {
-  background-color: black;
+  background-color: #131926;
   color: white;
 }

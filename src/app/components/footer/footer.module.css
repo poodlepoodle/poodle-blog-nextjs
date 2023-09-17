@@ -59,6 +59,8 @@
   display: flex;
 
   column-gap: 3.625rem;
+
+  color: #131926;
 }
 
 .icon__container {
