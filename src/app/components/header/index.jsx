@@ -35,9 +35,10 @@ export default function Header() {
         </section>
 
         <nav className={pathname === '/' ? styles.nav__focused : styles.nav}>
-          {/* <span>포트폴리오</span> */}
           <Link href="/blog">블로그</Link>
-          <span>CV</span>
+          <Link href="https://read.cv/poodlepoodle" target="_blank">
+            CV
+          </Link>
         </nav>
       </div>
     </header>
