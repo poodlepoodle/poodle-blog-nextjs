@@ -1,24 +1,19 @@
 .layout {
-  z-index: 2000;
   position: relative;
-
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  height: 100%;
+  z-index: 10;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
-
-  background-color: transparent;
+  overflow: hidden;
 }
 
 .container {
-  width: 60rem;
-  min-height: 100%;
-
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  max-width: 64rem;
+  padding: 0 2rem;
 }
 
 .container > h1 {
@@ -30,9 +25,9 @@
 
 .container strong {
   position: relative;
-  top: -0.25rem;
+  top: -0.3rem;
 
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   padding: 0.4rem 0.8rem;
   margin: 0.25rem;
 
@@ -43,29 +38,13 @@
   background-color: #f1faff;
 }
 
-.banner__container {
-  position: relative;
-
-  width: 60rem;
-  height: 6.25rem;
-}
-
-.post__row {
-  display: flex;
-  justify-content: space-between;
-}
-
-.centered__row {
-  display: flex;
-  justify-content: center;
-}
-
 .video__container {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+
   overflow: hidden;
 }
 

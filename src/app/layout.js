@@ -4,8 +4,9 @@ import Header from '@components/header';
 import Footer from '@components/footer';
 
 export const metadata = {
-  title: '루트 레이아웃',
-  description: '루트 레이아웃입니당',
+  title: 'Poodle Blog',
+  description:
+    '새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을 남깁니다.',
 };
 
 export default function RootLayout({ children }) {
@@ -13,7 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="ko">
       <body>
         <Header />
-        <div className="content__wrapper">{children}</div>
+        <main className="content__wrapper">{children}</main>
         <Footer />
       </body>
     </html>

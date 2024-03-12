@@ -16,10 +16,12 @@ export default function Page() {
       <div className={styles.video__container}>
         <video
           src={`/blog/video_1.mp4`}
-          autoPlay
-          muted
-          loop
           className={styles.video__background}
+          muted="true"
+          playsinline="true"
+          webkit-playsinline="true"
+          loop="true"
+          autoPlay="true"
         >
           비디오 재생 불가...
         </video>
