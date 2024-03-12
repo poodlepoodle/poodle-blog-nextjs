@@ -18,10 +18,15 @@ export default async function Page() {
       <div className={styles.container}>
         <div className={styles.banner__container}>
           <Image
-            src="/blog/banner.png"
+            src="/blog/banner.jpg"
             fill
-            alt="Profile picture in top navigation"
+            style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
+            alt="banner image in blog home"
           />
+          <span className={styles.banner__text}>
+            🌊 새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을
+            남깁니다.
+          </span>
         </div>
 
         <div className={styles.postrow__upper}>
