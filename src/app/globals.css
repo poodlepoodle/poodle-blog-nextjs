@@ -23,6 +23,8 @@ body {
   height: 100svh;
   overflow-y: auto;
   overflow-x: hidden;
+
+  background-color: #fafafa;
 }
 
 a {
