@@ -5,7 +5,7 @@ import styles from './page.module.css';
 import { useState } from 'react';
 
 import Search from '@components/search';
-import ThumbnailBox from '@components/thumbnail/box';
+import ThumbnailRow from '@components/thumbnail/row';
 
 export default function SearchPage({ posts }) {
   const [keyword, setKeyword] = useState('');
@@ -41,7 +41,22 @@ export default function SearchPage({ posts }) {
           <Search keyword={keyword} setKeyword={setKeyword} />
         </div>
 
-        <ThumbnailBox posts={filterPosts(keyword, posts)} />
+        <div className={styles.thumbnail__container}>
+          {filterPosts(keyword, posts).map(
+            ({ title, slug, tags, thumbnail, date }) => {
+              return (
+                <ThumbnailRow
+                  key={slug}
+                  title={title}
+                  slug={slug}
+                  tags={tags}
+                  thumbnail={thumbnail}
+                  date={date}
+                />
+              );
+            }
+          )}
+        </div>
       </div>
     </section>
   );

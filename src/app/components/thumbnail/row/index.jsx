@@ -7,25 +7,28 @@ import Tag from '@components/tag';
 
 export default function Row({ title, slug, tags, thumbnail, date }) {
   return (
-    <Link href={`/blog/${slug}`}>
-      <div className={styles.layout}>
-        <div className={styles.content__container}>
-          <div className={styles.top__area}>
-            {tags.map((tag) => (
-              <Tag key={tag} text={tag} />
-            ))}
-          </div>
-
-          <div className={styles.bottom__area}>
-            <span className={styles.date}>{date}</span>
-
-            <span className={styles.title}>{title}</span>
-          </div>
+    <Link className={styles.layout} href={`/blog/${slug}`}>
+      <div className={styles.content__container}>
+        <div className={styles.top__area}>
+          {tags.map((tag) => (
+            <Tag key={tag} text={tag} />
+          ))}
         </div>
 
-        <div className={styles.thumbnail__container}>
-          <Image src={thumbnail} fill alt="post thumbnail" />
+        <div className={styles.bottom__area}>
+          <span className={styles.date}>{date}</span>
+
+          <span className={styles.title}>{title}</span>
         </div>
+      </div>
+
+      <div className={styles.thumbnail__container}>
+        <Image
+          src={thumbnail}
+          alt="post thumbnail"
+          fill
+          style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
+        />
       </div>
     </Link>
   );

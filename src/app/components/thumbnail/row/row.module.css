@@ -1,5 +1,7 @@
 .layout {
-  width: 60rem;
+  position: relative;
+  width: 100%;
+  max-width: 60rem;
   height: 13.875rem;
 
   display: flex;
@@ -59,7 +61,7 @@
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 600;
-  line-height: normal;
+  line-height: 1.75rem;
 
   color: #131926;
 }

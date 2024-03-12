@@ -16,17 +16,8 @@ export const generateStaticParams = async () => {
 export default async function Page({ params }) {
   const { slug } = params;
   const post = await getPost(slug);
+  console.log(post);
   if (!post) return notFound();
-
-  // console.log(post);
-
-  //  title: 'The First Sample Post',
-  // description: "It shouldn't take this much work to publish a small library",
-  // slug: 'sample-post-one',
-  // tags: [ 'Next.js', 'SSR', '최적화' ],
-  // thumbnail: '/blog/1.png',
-  // date: 2023-09-01T17:53:59.000Z,
-  // body: '\n' +
 
   return (
     <section className={styles.layout}>
@@ -41,26 +32,24 @@ export default async function Page({ params }) {
           </span>
         </header>
 
-        <main className={styles.content__container}>
+        <section className={styles.content__container}>
           <div className={styles.content__type__image}>
-            <div>
-              <Image
-                src="/blog/sample.png"
-                alt="sample image"
-                width={960}
-                height={540}
-              />
-            </div>
-            <span>
-              https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/
-            </span>
+            <Image
+              src={post.thumbnail}
+              alt="post thumbnail"
+              fill
+              style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
+            />
+            {/* <span>
+              이미지-출처
+            </span> */}
           </div>
-        </main>
+        </section>
 
         <PostBody>{post.body}</PostBody>
 
         <footer className={styles.content__footer}>
-          <Like likeCount={123} />
+          {/* <Like likeCount={123} /> */}
         </footer>
       </div>
     </section>

@@ -13,6 +13,9 @@ const withMDX = createMDX({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ['prod-files-secure.s3.us-west-2.amazonaws.com'],
+  }, 
   reactStrictMode: true,
   webpack: (config) => {
     config.resolve.fallback = {
@@ -21,9 +24,6 @@ const nextConfig = {
 
     return config;
   },
-  images: {
-      domains: ['prod-files-secure.s3.us-west-2.amazonaws.com']
-    },
 };
 
 export default withMDX(nextConfig);
