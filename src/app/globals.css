@@ -60,3 +60,8 @@ a {
 .prose pre {
   /* @apply ; */
 }
+
+.prose aside {
+  color: #999;
+  font-size: 1rem;
+}
