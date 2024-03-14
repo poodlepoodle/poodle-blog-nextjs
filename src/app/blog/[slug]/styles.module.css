@@ -128,8 +128,14 @@
 
   display: flex;
   justify-content: right;
-  align-items: center;
+  align-items: flex-end;
   column-gap: 0.75rem;
+
+  transition: opacity 0.3s ease-in-out;
+
+  &:hover {
+    opacity: 0.4;
+  }
 }
 
 .content__footer__profile {
