@@ -6,8 +6,6 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import profile_img from '@resources/components/header/profile.png';
-
 export default function Header() {
   const pathname = usePathname();
 
@@ -26,9 +24,10 @@ export default function Header() {
           >
             <Link href="/">
               <Image
-                src={profile_img}
-                fill
+                src={`/blog/article-profile.png`}
                 alt="profile pic in top navigation"
+                fill
+                style={{ objectFit: 'cover', borderRadius: '30%' }}
               />
             </Link>
           </div>
