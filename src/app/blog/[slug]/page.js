@@ -49,6 +49,21 @@ export default async function Page({ params }) {
 
         <footer className={styles.content__footer}>
           {/* <Like likeCount={123} /> */}
+
+          <div className={styles.profile__container}>
+            <div className={styles.content__footer__profile}>
+              <span>published by</span>
+              <h6>Eojin Choi</h6>
+            </div>
+            <div className={styles.content__footer__image}>
+              <Image
+                src={`/blog/article-profile.png`}
+                alt="article profile"
+                fill
+                style={{ objectFit: 'cover', borderRadius: '50%' }}
+              />
+            </div>
+          </div>
         </footer>
       </div>
     </section>

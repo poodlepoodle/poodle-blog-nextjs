@@ -116,8 +116,51 @@
 }
 
 .content__footer {
-  display: flex;
-  justify-content: center;
+  position: relative;
 
-  padding: 3rem 0;
+  display: flex;
+  justify-content: right;
+  padding: 4rem;
+}
+
+.profile__container {
+  position: relative;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  column-gap: 0.75rem;
+}
+
+.content__footer__profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 0.1rem;
+}
+
+.content__footer__profile > h6 {
+  color: #131926;
+  text-align: right;
+  leading-trim: both;
+  text-edge: cap;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.content__footer__profile > span {
+  color: #aaa;
+  text-align: right;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.content__footer__image {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
 }
