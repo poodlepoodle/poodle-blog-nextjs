@@ -24,10 +24,12 @@ export default function Header() {
           >
             <Link href="/">
               <Image
-                src={`/blog/article-profile.png`}
+                src={`/blog/wave.png`}
                 alt="profile pic in top navigation"
                 fill
-                style={{ objectFit: 'cover', borderRadius: '30%' }}
+                style={{
+                  objectFit: 'cover',
+                }}
               />
             </Link>
           </div>
