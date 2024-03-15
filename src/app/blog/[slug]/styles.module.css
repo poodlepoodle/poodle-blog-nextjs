@@ -131,6 +131,8 @@
 .content__footer__profile > span {
   color: #aaa;
   text-align: right;
+  leading-trim: both;
+  text-edge: cap;
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;

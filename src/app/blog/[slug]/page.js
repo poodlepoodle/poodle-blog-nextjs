@@ -21,7 +21,6 @@ export default async function Page({ params }) {
 
   return (
     <ArticleBackground>
-      {/* <section className={styles.layout}> */}
       <div className={styles.container}>
         <header className={styles.content__header}>
           <span className={styles.title}>{post.title}</span>
@@ -68,7 +67,6 @@ export default async function Page({ params }) {
           </div>
         </footer>
       </div>
-      {/* </section> */}
     </ArticleBackground>
   );
 }
