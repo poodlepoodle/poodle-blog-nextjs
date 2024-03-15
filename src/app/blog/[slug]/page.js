@@ -3,10 +3,11 @@ import styles from './styles.module.css';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-import { getPost, getPosts } from '@lib/get-posts';
 import Like from '@components/like';
-import { PostBody } from '@/mdx/post-body';
+import ArticleBackground from '@components/article-background';
 import Tag from '@components/tag';
+import { getPost, getPosts } from '@lib/get-posts';
+import { PostBody } from '@/mdx/post-body';
 
 export const generateStaticParams = async () => {
   const posts = await getPosts();
@@ -19,7 +20,8 @@ export default async function Page({ params }) {
   if (!post) return notFound();
 
   return (
-    <section className={styles.layout}>
+    <ArticleBackground>
+      {/* <section className={styles.layout}> */}
       <div className={styles.container}>
         <header className={styles.content__header}>
           <span className={styles.title}>{post.title}</span>
@@ -66,6 +68,7 @@ export default async function Page({ params }) {
           </div>
         </footer>
       </div>
-    </section>
+      {/* </section> */}
+    </ArticleBackground>
   );
 }
