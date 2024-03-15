@@ -12,7 +12,7 @@ export default function ArticleBackground({ children }) {
     const rootFontSize = parseFloat(
       getComputedStyle(document.documentElement).fontSize
     );
-    const scrollThreshold = rootFontSize * 50; // 18.875 -> 50
+    const scrollThreshold = rootFontSize * 25; // 18.875 -> 25
 
     const onScroll = () => {
       const scrolled =
