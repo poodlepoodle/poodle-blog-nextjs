@@ -9,6 +9,23 @@ import Tag from '@components/tag';
 import { getPost, getPosts } from '@lib/get-posts';
 import { PostBody } from '@/mdx/post-body';
 
+export async function generateMetadata({ params }, parent) {
+  const { slug } = params;
+  const post = await getPost(slug);
+  if (!post) return notFound();
+
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: `${post.title} ••• poodlepoodle`,
+    description:
+      '새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을 남깁니다.',
+    openGraph: {
+      images: [...previousImages],
+    },
+  };
+}
+
 export const generateStaticParams = async () => {
   const posts = await getPosts();
   return posts.map((post) => ({ slug: post.slug }));
