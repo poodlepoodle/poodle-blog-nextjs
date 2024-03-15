@@ -27,7 +27,7 @@ const options = {
 
 export function PostBody({ children }) {
   return (
-    <article className="prose max-w-none px-14 text-lg space-y-12">
+    <article className="prose max-w-none pt-6 px-14 text-lg space-y-12">
       <MDXRemote
         source={children}
         options={options}
