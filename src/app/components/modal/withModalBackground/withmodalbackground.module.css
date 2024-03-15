@@ -1,0 +1,12 @@
+.background__layout {
+  position: fixed;
+  width: 100svw;
+  height: 100svh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 21;
+}
