@@ -24,7 +24,7 @@ export default function Header() {
           >
             <Link href="/">
               <Image
-                src={`/blog/wave.png`}
+                src={`/blog/new-wave.png`}
                 alt="profile pic in top navigation"
                 fill
                 style={{
