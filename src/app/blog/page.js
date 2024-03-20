@@ -36,43 +36,29 @@ export default async function Page() {
         </div>
 
         <div className={styles.postrow__upper}>
-          {upperPosts.map(({ title, slug, thumbnail, date }, idx) => {
-            if (idx === 0) {
-              return (
-                <ThumbnailLarge
-                  key={slug}
-                  title={title}
-                  slug={slug}
-                  thumbnail={thumbnail}
-                  date={date}
-                />
-              );
-            } else {
-              return (
-                <ThumbnailNormal
-                  key={slug}
-                  title={title}
-                  slug={slug}
-                  thumbnail={thumbnail}
-                  date={date}
-                />
-              );
-            }
-          })}
-        </div>
-
-        <div className={styles.postrow__lower}>
-          {lowerPosts.map(({ title, slug, thumbnail, date }) => {
-            return (
+          {upperPosts.map(({ title, slug, date }, idx) =>
+            idx === 0 ? (
+              <ThumbnailLarge
+                key={slug}
+                title={title}
+                slug={slug}
+                date={date}
+              />
+            ) : (
               <ThumbnailNormal
                 key={slug}
                 title={title}
                 slug={slug}
-                thumbnail={thumbnail}
                 date={date}
               />
-            );
-          })}
+            )
+          )}
+        </div>
+
+        <div className={styles.postrow__lower}>
+          {lowerPosts.map(({ title, slug, date }) => (
+            <ThumbnailNormal key={slug} title={title} slug={slug} date={date} />
+          ))}
         </div>
 
         <div className={styles.centered__row}>

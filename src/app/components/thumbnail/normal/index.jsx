@@ -9,7 +9,11 @@ export default function Normal({ title, slug, thumbnail, date }) {
       <div className={styles.layout}>
         <div className={styles.container}>
           <div className={styles.thumbnail__container}>
-            <Image src={thumbnail} fill alt="post thumbnail" />
+            <Image
+              src={`/blog/posts/${slug}/thumbnail.jpg`}
+              alt="post thumbnail"
+              fill
+            />
           </div>
 
           <span className={styles.date}>{date}</span>

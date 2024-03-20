@@ -52,7 +52,7 @@ export default async function Page({ params }) {
         <section className={styles.content__container}>
           <div className={styles.content__type__image}>
             <Image
-              src={post.thumbnail}
+              src={`/blog/posts/${slug}/thumbnail-large.jpg`}
               alt="post thumbnail"
               fill
               style={{ objectFit: 'cover', borderRadius: '0.5rem' }}

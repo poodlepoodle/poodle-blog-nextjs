@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import Tag from '@components/tag';
 
-export default function Row({ title, slug, tags, thumbnail, date }) {
+export default function Row({ title, slug, tags, date }) {
   return (
     <Link className={styles.layout} href={`/blog/${slug}`}>
       <div className={styles.content__container}>
@@ -24,7 +24,7 @@ export default function Row({ title, slug, tags, thumbnail, date }) {
 
       <div className={styles.thumbnail__container}>
         <Image
-          src={thumbnail}
+          src={`/blog/posts/${slug}/thumbnail.jpg`}
           alt="post thumbnail"
           fill
           style={{ objectFit: 'cover', borderRadius: '0.5rem' }}

@@ -42,20 +42,17 @@ export default function SearchPage({ posts }) {
         </div>
 
         <div className={styles.thumbnail__container}>
-          {filterPosts(keyword, posts).map(
-            ({ title, slug, tags, thumbnail, date }) => {
-              return (
-                <ThumbnailRow
-                  key={slug}
-                  title={title}
-                  slug={slug}
-                  tags={tags}
-                  thumbnail={thumbnail}
-                  date={date}
-                />
-              );
-            }
-          )}
+          {filterPosts(keyword, posts).map(({ title, slug, tags, date }) => {
+            return (
+              <ThumbnailRow
+                key={slug}
+                title={title}
+                slug={slug}
+                tags={tags}
+                date={date}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
