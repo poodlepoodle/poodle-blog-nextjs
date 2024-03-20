@@ -24,7 +24,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 
-  background-color: #fafafa;
+  background-color: #f9fbfc;
 }
 
 a {
@@ -43,7 +43,7 @@ a {
   flex-direction: column;
   align-items: center;
 
-  background-color: #fafafa;
+  background-color: #f9fbfc;
 }
 
 .prose img {
