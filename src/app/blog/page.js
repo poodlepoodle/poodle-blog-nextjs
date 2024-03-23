@@ -3,9 +3,8 @@ import styles from './styles.module.css';
 import Image from 'next/image';
 
 import { getPosts } from '@/lib/get-posts';
+import ArticleList from '@components/article-list';
 import More from '@components/more';
-import ThumbnailNormal from '@components/thumbnail/normal';
-import ThumbnailLarge from '@components/thumbnail/large';
 
 export const metadata = {
   title: 'Blog ••• poodlepoodle',
@@ -15,9 +14,6 @@ export const metadata = {
 
 export default async function Page() {
   const posts = await getPosts();
-  const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-  const upperPosts = sortedPosts.slice(0, 2);
-  const lowerPosts = sortedPosts.slice(2, 5);
 
   return (
     <section className={styles.layout}>
@@ -35,31 +31,7 @@ export default async function Page() {
           </span>
         </div>
 
-        <div className={styles.postrow__upper}>
-          {upperPosts.map(({ title, slug, date }, idx) =>
-            idx === 0 ? (
-              <ThumbnailLarge
-                key={slug}
-                title={title}
-                slug={slug}
-                date={date}
-              />
-            ) : (
-              <ThumbnailNormal
-                key={slug}
-                title={title}
-                slug={slug}
-                date={date}
-              />
-            )
-          )}
-        </div>
-
-        <div className={styles.postrow__lower}>
-          {lowerPosts.map(({ title, slug, date }) => (
-            <ThumbnailNormal key={slug} title={title} slug={slug} date={date} />
-          ))}
-        </div>
+        <ArticleList posts={posts} />
 
         <div className={styles.centered__row}>
           <More />
