@@ -13,13 +13,13 @@
 }
 
 .content__container {
+  min-width: 25rem;
   flex: 1;
+  padding: 2rem;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  padding: 2rem;
 }
 
 .top__area {
@@ -36,7 +36,6 @@
 
 .thumbnail__container {
   position: relative;
-
   width: 13.875rem;
   height: 13.875rem;
 
