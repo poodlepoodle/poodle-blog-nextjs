@@ -89,14 +89,17 @@
 
 .content__footer {
   position: relative;
+  width: 100%;
 
   display: flex;
-  justify-content: right;
-  padding: 4rem;
+  flex-direction: column;
+  row-gap: 4rem;
+  padding: 2rem 3.8rem 4rem;
 }
 
 .profile__container {
   position: relative;
+  width: 100%;
 
   display: flex;
   justify-content: right;
