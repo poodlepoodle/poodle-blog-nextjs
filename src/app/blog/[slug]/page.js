@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-import Like from '@components/like';
+import Giscus from '@components/giscus';
 import ArticleBackground from '@components/article-background';
 import Tag from '@components/tag';
 import { getPost, getPosts } from '@lib/get-posts';
@@ -39,7 +39,7 @@ export default async function Page({ params }) {
   return (
     <ArticleBackground>
       <div className={styles.container}>
-        <header className={styles.content__header}>
+        <section className={styles.content__header}>
           <span className={styles.title}>{post.title}</span>
           <span className={styles.date}>{post.date}</span>
           <span className={styles.tags}>
@@ -47,7 +47,7 @@ export default async function Page({ params }) {
               <Tag key={tag} text={tag} />
             ))}
           </span>
-        </header>
+        </section>
 
         <section className={styles.content__container}>
           <div className={styles.content__type__image}>
@@ -65,9 +65,7 @@ export default async function Page({ params }) {
 
         <PostBody>{post.body}</PostBody>
 
-        <footer className={styles.content__footer}>
-          {/* <Like likeCount={123} /> */}
-
+        <section className={styles.content__footer}>
           <div className={styles.profile__container}>
             <div className={styles.content__footer__profile}>
               <span>published by</span>
@@ -82,7 +80,9 @@ export default async function Page({ params }) {
               />
             </div>
           </div>
-        </footer>
+
+          <Giscus />
+        </section>
       </div>
     </ArticleBackground>
   );
