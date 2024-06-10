@@ -43,6 +43,14 @@
 
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  transition: all 0.6s ease;
+
+  &:hover {
+    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+  }
 }
 
 .date {
