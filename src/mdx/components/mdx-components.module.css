@@ -10,10 +10,6 @@
 }
 
 .mdx__code {
-  border: 1px solid blue;
-  border-radius: 0.75rem;
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; */
-
-  font-size: 1.25rem;
+  border: 0.1rem solid #efefef;
+  border-radius: 1.5rem;
 }
