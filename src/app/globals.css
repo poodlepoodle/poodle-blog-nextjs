@@ -55,19 +55,8 @@ img {
   background-color: #f9fbfc;
 }
 
-.prose img {
-  border-radius: 0.5rem;
-
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-}
-
 .prose p {
   @apply leading-9;
-}
-
-.prose pre {
-  /* @apply ; */
 }
 
 .prose aside > p {
@@ -78,6 +67,4 @@ img {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.75rem;
-
-  transition: opacity 0.4s ease-in-out;
 }
