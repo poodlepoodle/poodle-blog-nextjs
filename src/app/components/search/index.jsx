@@ -20,7 +20,7 @@ export default function Search({ keyword, setKeyword }) {
 
       <input
         className={styles.input}
-        placeholder="검색어를 입력하세요."
+        placeholder="키워드를 입력해 주세요."
         type="text"
         value={keyword}
         onChange={handleChange}
