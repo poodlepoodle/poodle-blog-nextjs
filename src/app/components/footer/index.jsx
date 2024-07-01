@@ -18,7 +18,7 @@ export default function BottomNav() {
       className={pathname === '/' ? styles.layout__focused : styles.layout}
     >
       <div className={styles.container}>
-        <section className={styles.copyright}>ⓒ Eojin Choi 2023</section>
+        <section className={styles.copyright}>ⓒ Eojin Choi 2024</section>
 
         <nav className={styles.nav}>
           <div className={styles.icon__container}>
