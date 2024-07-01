@@ -5,7 +5,7 @@ import styles from './articlebackground.module.css';
 import { useState, useEffect } from 'react';
 
 export default function ArticleBackground({ children }) {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isFocused, setIsScrolled] = useState(false);
 
   useEffect(() => {
     // Root font size
@@ -30,9 +30,13 @@ export default function ArticleBackground({ children }) {
     };
   }, []);
 
-  return (
-    <section className={isScrolled ? styles.layout__focused : styles.layout}>
-      {children}
-    </section>
-  );
+  useEffect(() => {
+    document.body.style.backgroundColor = isFocused ? '#131926' : '#f9fbfc';
+
+    return () => {
+      document.body.style.backgroundColor = '#f9fbfc';
+    };
+  }, [isFocused]);
+
+  return <section className={styles.layout}>{children}</section>;
 }
