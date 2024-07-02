@@ -14,6 +14,7 @@ export const metadata = {
 
 export default async function Page() {
   const posts = await getPosts();
+  const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
     <section className={styles.layout}>
@@ -31,7 +32,7 @@ export default async function Page() {
           </span>
         </div>
 
-        <ArticleList posts={posts} />
+        <ArticleList posts={sortedPosts} />
 
         <div className={styles.centered__row}>
           <More />
