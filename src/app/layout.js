@@ -1,5 +1,7 @@
 import './globals.css';
 
+import { Analytics } from '@vercel/analytics/react';
+
 import Header from '@components/header';
 import Footer from '@components/footer';
 
@@ -16,6 +18,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main className="content__wrapper">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
