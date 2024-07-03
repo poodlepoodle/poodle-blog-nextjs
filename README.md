@@ -28,6 +28,8 @@
 ## quick start
 
 ```bash
+git clone https://github.com/poodlepoodle/poodle-blog-nextjs.git my-blog-name
+cd my-blog-name
 yarn install
 next dev
 ```
