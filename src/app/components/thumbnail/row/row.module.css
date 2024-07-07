@@ -75,4 +75,6 @@
   line-height: 1.75rem;
 
   color: #131926;
+
+  @apply break-keep;
 }
