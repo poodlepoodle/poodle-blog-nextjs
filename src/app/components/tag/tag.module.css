@@ -1,5 +1,7 @@
 .layout {
+  min-width: fit-content;
   height: 1.75rem;
+  white-space: nowrap;
 
   display: flex;
   justify-content: center;
