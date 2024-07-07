@@ -37,22 +37,24 @@
 .thumbnail__container {
   position: relative;
   width: 4.5rem;
+  min-width: 4.5rem;
   height: 4.5rem;
+  min-height: 4.5rem;
   margin: 1.5rem;
 
-  border-radius: 50%;
+  border-radius: 35% 65% 69% 31% / 58% 49% 51% 42%;
   overflow: hidden;
 
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 25px -5px,
     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
   filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
   transition: all 0.6s ease;
+}
 
-  &:hover {
-    filter: grayscale(0%);
-    -webkit-filter: grayscale(0%);
-  }
+.layout:hover .thumbnail__container {
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
 }
 
 .date {
