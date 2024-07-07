@@ -36,10 +36,12 @@
 
 .thumbnail__container {
   position: relative;
-  width: 13.875rem;
-  height: 13.875rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin: 1.5rem;
 
-  border-radius: 0.5rem;
+  border-radius: 50%;
+  overflow: hidden;
 
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
