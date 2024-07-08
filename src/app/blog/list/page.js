@@ -8,7 +8,7 @@ export default async function Page() {
 
   return (
     <Suspense>
-      <SearchPage posts={sortedPosts} />;
+      <SearchPage posts={sortedPosts} />
     </Suspense>
   );
 }
