@@ -17,11 +17,12 @@ export async function generateMetadata({ params }, parent) {
   const previousImages = (await parent).openGraph?.images || [];
 
   return {
+    metadataBase: new URL('https://poodlepoodle.me'),
     title: `${post.title} ••• poodlepoodle`,
     description:
       '새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을 남깁니다.',
     openGraph: {
-      images: [...previousImages],
+      images: [`/blog/posts/${slug}/thumbnail-large.jpg`, ...previousImages],
     },
   };
 }
@@ -57,9 +58,6 @@ export default async function Page({ params }) {
               fill
               style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
             />
-            {/* <span>
-              이미지-출처
-            </span> */}
           </div>
         </section>
 
