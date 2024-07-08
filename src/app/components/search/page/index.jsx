@@ -3,12 +3,14 @@
 import styles from './page.module.css';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 import Search from '@components/search';
 import ThumbnailRow from '@components/thumbnail/row';
 
 export default function SearchPage({ posts }) {
-  const [keyword, setKeyword] = useState('');
+  const searchParams = useSearchParams();
+  const [keyword, setKeyword] = useState(searchParams.get('search') || '');
 
   const filterPosts = (keyword, posts) => {
     const word = keyword.toLowerCase().trim();
