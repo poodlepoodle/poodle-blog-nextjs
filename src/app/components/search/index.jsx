@@ -1,7 +1,5 @@
 import styles from './search.module.css';
 
-import Image from 'next/image';
-
 export default function Search({ keyword, setKeyword }) {
   const handleChange = (e) => {
     setKeyword(e.target.value);
@@ -21,7 +19,7 @@ export default function Search({ keyword, setKeyword }) {
       <input
         className={styles.input}
         placeholder="키워드를 입력해 주세요."
-        type="text"
+        type="search"
         value={keyword}
         onChange={handleChange}
       />
