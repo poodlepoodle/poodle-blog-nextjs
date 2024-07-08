@@ -4,6 +4,7 @@ import styles from './page.module.css';
 
 import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useDebouncedState } from '@hooks/useDebouncedState';
 
 import Search from '@components/search';
 import ThumbnailRow from '@components/thumbnail/row';
@@ -11,6 +12,7 @@ import ThumbnailRow from '@components/thumbnail/row';
 export default function SearchPage({ posts }) {
   const searchParams = useSearchParams();
   const [keyword, setKeyword] = useState(searchParams.get('search') || '');
+  const debouncedKeyword = useDebouncedState(keyword, 400);
 
   const filterPosts = (keyword, posts) => {
     const word = keyword.toLowerCase().trim();
@@ -44,17 +46,19 @@ export default function SearchPage({ posts }) {
         </div>
 
         <div className={styles.thumbnail__container}>
-          {filterPosts(keyword, posts).map(({ title, slug, tags, date }) => {
-            return (
-              <ThumbnailRow
-                key={slug}
-                title={title}
-                slug={slug}
-                tags={tags}
-                date={date}
-              />
-            );
-          })}
+          {filterPosts(debouncedKeyword, posts).map(
+            ({ title, slug, tags, date }) => {
+              return (
+                <ThumbnailRow
+                  key={slug}
+                  title={title}
+                  slug={slug}
+                  tags={tags}
+                  date={date}
+                />
+              );
+            }
+          )}
         </div>
       </div>
     </section>
