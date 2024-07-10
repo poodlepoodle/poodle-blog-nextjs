@@ -9,16 +9,15 @@
 
   padding: 0 1rem;
 
-  border: 1px solid transparent;
   border-radius: 0.75rem;
   background-color: #fff;
 
-  transition: 0.3s all ease-in-out;
+  transition: 0.3s box-shadow ease-in-out;
 
   &:focus-within {
-    border: 1px solid #cacaca;
-
-    transition: 0.6s all ease;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    transition: 0.6s box-shadow ease;
   }
 }
 
