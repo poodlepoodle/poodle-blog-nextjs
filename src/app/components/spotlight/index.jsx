@@ -1,11 +1,9 @@
 'use client';
 
-import styles from './articlebackground.module.css';
-
 import { useEffect } from 'react';
 import useSpotlight from '@hooks/useSpotlight';
 
-export default function ArticleBackground({ children }) {
+export default function Spotlight() {
   const spotlight = useSpotlight();
 
   const addSpotlight = () => document.body.classList.add('spotlighted');
@@ -23,5 +21,5 @@ export default function ArticleBackground({ children }) {
     };
   }, [spotlight]);
 
-  return <section className={styles.layout}>{children}</section>;
+  return <></>;
 }
