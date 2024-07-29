@@ -23,9 +23,14 @@ body {
   overflow-x: hidden;
 
   font-family: 'Pretendard', 'Noto Sans', sans-serif;
-  background-color: #f9fbfc;
 
-  transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.45s ease-in;
+  background-color: #f9fbfc;
+}
+
+.spotlighted {
+  transition: background-color 0.5s ease-out;
+  background-color: #131926;
 }
 
 a {
