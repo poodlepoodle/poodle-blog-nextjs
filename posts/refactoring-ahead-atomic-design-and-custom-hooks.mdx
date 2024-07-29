@@ -9,7 +9,7 @@ date: 2024.06.17
 2023년 11월부터 구름톤 유니브 1기 해커톤에서 만난 5명의 팀원과 사이드 프로젝트로 **24절기로 쓰는 일기장: 시즈닝(Seasoning)** 개발을 시작했어요.
 프론트엔드 개발 파트로 참여해 약 3개월 동안의 시간 동안 MVP 기능 구현을 마쳤고 3월 초에 서비스를 런칭했습니다.
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/seasoning-thumbnail.webp?width=450)
+![Seasoning thumbnail](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/seasoning-thumbnail.webp?width=450)
 
 <aside>
   🌸 24개의 절기를 나의 입맛에 맞게,
@@ -64,7 +64,7 @@ src
 
 **1. 재사용되지 않는 컴포넌트와 기능 추가에 따르는 리소스 낭비**
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/need-more-things.webp?width=320)
+![Need more things](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/need-more-things.webp?width=320)
 
 <aside>
   🥲 하지만 사실 수정해야 하는 페이지는 저게 전부가 아니었습니다…
@@ -76,13 +76,13 @@ src
 이에 따라 프로필 이미지가 사용되는 마이페이지와 친구 피드 페이지 등에서 수정된 프로필 이미지 로직을 일괄적으로 반영해야 했습니다.
 하지만 기존의 구조로는 동일한 기능 수정을 컴포넌트가 적용된 페이지 각각에 여러 번 반영해야 했어요.
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/content-editor-component-1.webp)
+![ContentEditor component 1](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/content-editor-component-1.webp)
 
 기존 구조에서도 여러 화면에서 동일하게 사용되는 부분을 컴포넌트로 분리해 개발한 부분이 있었습니다.
 위 예시의 절기 게시글 작성 페이지와 절기 게시글 수정 페이지에서는 기존의 게시글 정보 _(텍스트 컨텐츠, 첨부 이미지, …)_ 를 우선 로딩해
 초기 데이터로 제공하는지의 여부를 제외하면, 나머지 폼 데이터 처리와 작성 중인 게시글 컨텐츠를 편집하는 로직은 두 페이지가 거의 같은 코드를 공유하고 있었어요.
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/content-editor-component-2.webp)
+![ContentEditor component 2](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/content-editor-component-2.webp)
 
 따라서 공통으로 묶을 수 있는 기능을 `@components/write/ContentEditor` 컴포넌트로 분리했습니다.
 하지만 `ContentEditor` 컴포넌트가 수행하는 기능 중 어느 부분까지 재사용하도록 분리해야 할지 애매하다고 느꼈어요.
@@ -265,7 +265,7 @@ const IconWrapper = styled.div`
 
 ## 2. 아토믹 디자인에 기반한 재사용 가능한 컴포넌트 구조
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/atomic-design-brad-frost.webp?width=550)
+![Atomic design concept by Brad Frost](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/atomic-design-brad-frost.webp?width=550)
 
 <aside>
   출처: https://atomicdesign.bradfrost.com/chapter-2/#the-part-and-the-whole
@@ -320,7 +320,7 @@ const IconWrapper = styled.div`
 
 ### Atom
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/atom-example.webp?width=500)
+![Atom examples](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/atom-example.webp?width=500)
 
 - 컴포넌트를 구성하는 가장 작은 단위
 - 혼자서는 기능을 수행하기 어려움
@@ -464,7 +464,7 @@ JSX 상에서 다른 컴포넌트와 `S` prefix가 붙은 스타일 요소를 �
 
 ### Molecule
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/molecule-example.webp?width=700)
+![Molecule examples](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/molecule-example.webp?width=700)
 
 - 고유한 특성을 가지기 시작하는 단위
 - _(고유한 실행 컨텍스트 내에서)_ 하나의 기능을 수행하는 컴포넌트
@@ -507,13 +507,13 @@ Semantic tag는 SEO _(검색 엔진 최적화)_ 를 위해 활용할 수 있는 
 시즈닝을 구성하는 각 기존 페이지 대부분은 molecule의 조합으로도 구성할 수 있었고,
 굳이 재사용되는 부분이 아니라면 organism까지 나누지 않고 molecule만으로 컴포넌트의 기능을 모두 구현하는 게 효율적이라고 생각했기 때문이에요.
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/differences-between-molecule-and-organism-example-1-tabbar.webp?width=700)
+![Organism example by TabBar](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/differences-between-molecule-and-organism-example-1-tabbar.webp?width=700)
 
 예시로 위의 `TabBar`는 각 페이지로 전환하는 4개의 `TabBarItem`을 갖고 있지만,
 각 `TabBarItem`을 molecule로 만들어 `TabBar`에 포함되도록 하는 대신 스타일 요소로 취급하도록 했습니다.
 `TabBarItem`이 단순히 Link 역할만 수행할뿐더러 다른 컴포넌트에서 재사용될 가능성이 작다고 생각했기 때문이에요.
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/differences-between-molecule-and-organism-example-2-feeditem.webp)
+![Organism example by FeedItem](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/differences-between-molecule-and-organism-example-2-feeditem.webp)
 
 `MyFeedItem`과 `FriendsFeedItem`은 절기 등의 상태 정보를 나타내는 상단 부분만 다르고 이미지를 포함한 콘텐츠 영역은 동일하게 공유하는데요,
 따라서 해당 부분을 molecule인 `FeedItem`으로 분리하고 이를 포함한 두 컴포넌트에서 활용했습니다.
@@ -521,7 +521,7 @@ Semantic tag는 SEO _(검색 엔진 최적화)_ 를 위해 활용할 수 있는 
 organism으로 분류하기보다는 세 컴포넌트 모두를 molecule로 분류했습니다.
 `FeedItem`을 내부에 가지고 있지만 반복적으로 가지고 있지 않기 때문에 List와 같은 복잡한 컴포넌트와는 구분되어야 한다고 생각했어요.
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/differences-between-molecule-and-organism-example-3-menulist.webp)
+![Organism example by MenuList](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/differences-between-molecule-and-organism-example-3-menulist.webp)
 
 앞선 상황과 다르게 마이페이지와 계정 설정 페이지 등에서 사용되는 `MenuList`는 `MenuListItem`을 내부에 반복적으로 포함하고 있는 형태인데요,
 `MenuListItem`은 클릭 시 다른 페이지로 넘어가거나 특정 액션을 수행하는 등 기능을 `type` props에 따라 다르게 수행하도록 할 필요가 있었고
@@ -538,7 +538,7 @@ organism으로 분류하기보다는 세 컴포넌트 모두를 molecule로 분�
 최대한 혼동하는 경우를 줄이고자 보편적으로 사용되는 용어 위주로 정리했습니다.
 어떤 컴포넌트에 대해 약속된 이름이 있다면 그 이름을 사용하는 게 컴포넌트의 기능을 명확히 나타내는 방법이라고 생각했기 때문이에요.
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/component-naming-example-carousel.webp)
+![Component naming example by Carousel](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/component-naming-example-carousel.webp)
 
 예를 들면 위의 화면에서 이미지를 가로로 스와이프할 수 있도록 하고 현재 표시되는 이미지의 순서를 인디케이터로 나타내는 컴포넌트는
 기존에 `ImageSlider`라는 이름으로 불렀지만, 아토믹 디자인을 적용하며 `Carousel`이라는 이름을 사용하도록 변경했어요.
@@ -546,7 +546,7 @@ organism으로 분류하기보다는 세 컴포넌트 모두를 molecule로 분�
 
 ### Template
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/template-page-example.webp)
+![Template examples](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/template-page-example.webp)
 
 - 레이아웃 배치만을 위한 단위
   - 하나의 page는 중첩 라우팅을 기준으로 최소 하나의 template에 1대1 대응
@@ -562,7 +562,7 @@ Template과 page는 특정 페이지에 해당하는 내용만을 표현하기 �
 
 ### 추가: HoC 패턴으로 공통 바깥 레이아웃을 분리
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/template-using-hoc-pattern.webp)
+![Higher order components pattern examples](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/template-using-hoc-pattern.webp)
 
 친구 목록 페이지나 계정 설정 페이지처럼 하나의 뎁스를 추가해서 진입하는 경우 위처럼 Navigation Layout을 사용하는데요,
 1대 1로 대응되는 template의 특성을 유지하면서도 겹치는 코드를 줄일 필요가 있었습니다.
@@ -684,7 +684,7 @@ React 16.8 버전과 함께 Hooks가 등장하며 React에서 컴포넌트를 �
 왜 로직을 분리하는 것이 좋을까요?
 이는 컴퓨터 과학의 소프트웨어 설계 원칙 중 하나인 **관심사의 분리** _(SoC: Separation of Concerns)_ 에 기반합니다.
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/separation-of-concerns-example-hoc.webp?width=600)
+![Separation of concerns example by higher order components](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/separation-of-concerns-example-hoc.webp?width=600)
 
 위의 회원 가입 폼을 예시로 들어 보면 유저가 입력하는 정보는 닉네임, 이메일, 비밀번호가 있으며
 React에서는 각 값에 대응하는 input 필드의 이벤트를 핸들링하는 함수가 필요합니다.
@@ -807,7 +807,7 @@ export default SignUpForm;
 따라서 커스텀 훅 안에 커스텀 훅을 포함하는 것도 가능했습니다.
 추가적인 React 컴포넌트 계층을 구성하지 않고도 로직의 관심사 분리를 더 잘 수행할 수 있는 방법이 생긴 것입니다.
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/separation-of-concerns-example-custom-hooks.webp)
+![Separation of concerns example by custom hooks](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/separation-of-concerns-example-custom-hooks.webp)
 
 [React Documentation의 번역본](https://ko.legacy.reactjs.org/docs/hooks-custom.html)을 인용하면,
 커스텀 훅은 “<u>복잡한 로직을 단순한 인터페이스 속에 숨길 수 있도록 하거나 복잡하게 뒤엉킨 컴포넌트를 풀어내도록</u>” 하는 과정을 돕습니다.
@@ -907,7 +907,7 @@ template으로 내려 주는 props로 fetch한 공지사항 데이터를 전달�
 여러 상태를 포함하는 페이지일수록 많은 비즈니스 로직에 의존하며 context 파일의 코드가 길어지는 경향이 있었어요.
 프로필 수정 페이지나 게시글 작성 및 수정 페이지처럼 폼 데이터를 활용하는 페이지가 가장 대표적인 예시였습니다.
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/use-article-and-profile-form-custom-hook.webp?width=650)
+![Examples for pages handling FormData](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/use-article-and-profile-form-custom-hook.webp?width=650)
 
 해당 페이지들의 로직을 살펴보면 `useState()`로 입력 필드의 값을 상태로 관리하거나
 `useEffect()`로 전체 폼의 유효성을 검사하는 등 기본 훅을 활용하고 있었기 때문에, 커스텀 훅으로 분리하기에 적절했습니다.
@@ -1088,7 +1088,7 @@ export default function useProfileForm(initialUserData) {
 앞서 작성한 `useProfileForm()`과 `useArticleForm()` 훅에서 이를 포함하도록 했습니다.
 현재 입력된 이미지 배열을 가리키는 상태와 이미지 교체 및 삭제 등을 수행할 수 있는 핸들러 함수들을 선언해 인터페이스로 제공했어요.
 
-![](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/use-image-form-custom-hook.webp)
+![useArticleForm and useImageForm custom hooks](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/use-image-form-custom-hook.webp)
 
 관심사가 비슷한 코드를 커스텀 훅으로 분리하며 느낀 또 하나의 장점은 실행 컨텍스트 내에서 서로를 의존하는 로직을 함께 두면서,
 외부에는 꼭 필요한 인터페이스만을 제공하도록 숨길 수 있었다는 점입니다.
