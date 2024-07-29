@@ -2,41 +2,26 @@
 
 import styles from './articlebackground.module.css';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import useSpotlight from '@hooks/useSpotlight';
 
 export default function ArticleBackground({ children }) {
-  const [isFocused, setIsScrolled] = useState(false);
+  const spotlight = useSpotlight();
+
+  const addSpotlight = () => document.body.classList.add('spotlighted');
+  const removeSpotlight = () => document.body.classList.remove('spotlighted');
 
   useEffect(() => {
-    // Root font size
-    const rootFontSize = parseFloat(
-      getComputedStyle(document.documentElement).fontSize
-    );
-    const scrollThreshold = rootFontSize * 25; // 18.875 -> 25
-
-    const onScroll = () => {
-      const scrolled =
-        window.scrollY > scrollThreshold &&
-        document.documentElement.scrollHeight -
-          window.innerHeight -
-          window.scrollY >=
-          scrollThreshold;
-      setIsScrolled(scrolled);
-    };
-
-    window.addEventListener('scroll', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    document.body.style.backgroundColor = isFocused ? '#131926' : '#f9fbfc';
+    if (spotlight) {
+      addSpotlight();
+    } else {
+      removeSpotlight();
+    }
 
     return () => {
-      document.body.style.backgroundColor = '#f9fbfc';
+      removeSpotlight();
     };
-  }, [isFocused]);
+  }, [spotlight]);
 
   return <section className={styles.layout}>{children}</section>;
 }
