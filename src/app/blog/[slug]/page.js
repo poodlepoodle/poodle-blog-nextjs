@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 import Giscus from '@components/giscus';
-import Spotlight from '@components/spotlight';
+import ArticleBackground from '@components/article-background';
 import Tag from '@components/tag';
 import { getPost, getPosts } from '@lib/get-posts';
 import { PostBody } from '@/mdx/post-body';
@@ -38,7 +38,7 @@ export default async function Page({ params }) {
   if (!post) return notFound();
 
   return (
-    <div className={styles.layout}>
+    <ArticleBackground>
       <div className={styles.container}>
         <section className={styles.content__header}>
           <span className={styles.title}>{post.title}</span>
@@ -82,8 +82,6 @@ export default async function Page({ params }) {
           <Giscus />
         </section>
       </div>
-
-      <Spotlight />
-    </div>
+    </ArticleBackground>
   );
 }
