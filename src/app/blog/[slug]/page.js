@@ -1,13 +1,8 @@
-import styles from './styles.module.css';
-
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
-
-import Giscus from '@components/giscus';
-import ArticleBackground from '@components/article-background';
-import Tag from '@components/tag';
 import { getPost, getPosts } from '@lib/get-posts';
 import { PostBody } from '@/mdx/post-body';
+
+import Article from '@components/article';
 
 export async function generateMetadata({ params }, parent) {
   const { slug } = params;
@@ -38,50 +33,8 @@ export default async function Page({ params }) {
   if (!post) return notFound();
 
   return (
-    <ArticleBackground>
-      <div className={styles.container}>
-        <section className={styles.content__header}>
-          <span className={styles.title}>{post.title}</span>
-          <span className={styles.date}>{post.date}</span>
-          <span className={styles.tags}>
-            {post.tags.map((tag) => (
-              <Tag key={tag} text={tag} />
-            ))}
-          </span>
-        </section>
-
-        <section className={styles.content__container}>
-          <div className={styles.content__type__image}>
-            <Image
-              src={`/blog/posts/${slug}/thumbnail-large.jpg`}
-              alt="post thumbnail"
-              fill
-              style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
-            />
-          </div>
-        </section>
-
-        <PostBody>{post.body}</PostBody>
-
-        <section className={styles.content__footer}>
-          <div className={styles.profile__container}>
-            <div className={styles.content__footer__profile}>
-              <span>published by</span>
-              <h6>Eojin Choi</h6>
-            </div>
-            <div className={styles.content__footer__image}>
-              <Image
-                src={`/blog/article-profile.png`}
-                alt="article profile"
-                fill
-                style={{ objectFit: 'cover', borderRadius: '50%' }}
-              />
-            </div>
-          </div>
-
-          <Giscus />
-        </section>
-      </div>
-    </ArticleBackground>
+    <Article slug={slug} post={post}>
+      <PostBody>{post.body}</PostBody>
+    </Article>
   );
 }
