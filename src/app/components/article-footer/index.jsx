@@ -2,9 +2,9 @@ import styles from './article-footer.module.css';
 
 import Image from 'next/image';
 
-export default function ArticleFooter({ children }) {
+export default function ArticleFooter({ observerRef, children }) {
   return (
-    <section className={styles.layout}>
+    <section ref={observerRef} className={styles.layout}>
       <div className={styles.profile__container}>
         <div className={styles.profile__info}>
           <span>published by</span>

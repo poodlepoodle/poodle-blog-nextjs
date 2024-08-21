@@ -3,9 +3,15 @@ import styles from './article-header.module.css';
 import Image from 'next/image';
 import Tag from '@components/tag';
 
-export default function ArticleHeader({ title, date, tags, slug }) {
+export default function ArticleHeader({
+  observerRef,
+  title,
+  date,
+  tags,
+  slug,
+}) {
   return (
-    <>
+    <div ref={observerRef}>
       <section className={styles.info__container}>
         <span className={styles.title}>{title}</span>
         <span className={styles.date}>{date}</span>
@@ -24,6 +30,6 @@ export default function ArticleHeader({ title, date, tags, slug }) {
           style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
         />
       </section>
-    </>
+    </div>
   );
 }
