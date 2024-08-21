@@ -1,30 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export default function useSpotlight() {
-  const [spotlight, setSpotlight] = useState(false);
+  const headerRef = useRef(null);
+  const footerRef = useRef(null);
+  const [spotlighted, setSpotlighted] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight;
-      const viewportHeight =
-        window.innerHeight || document.documentElement.clientHeight;
-      const scrollStart = 0;
-      const scrollEnd = totalHeight - viewportHeight;
-      const scrollThreshold = viewportHeight;
-
-      const scroll = window.scrollY || document.documentElement.scrollTop;
-      const isContentScrolled =
-        scroll > scrollStart + scrollThreshold &&
-        scroll < scrollEnd - scrollThreshold;
-
-      setSpotlight(isContentScrolled);
+    const handleIntersection = (entries) => {
+      const isIntersectingContent = entries.every(
+        (entry) => !entry.isIntersecting
+      );
+      setSpotlighted(isIntersectingContent);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0,
+    });
+
+    if (headerRef.current) {
+      observer.observe(headerRef.current);
+    }
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      if (headerRef.current) observer.unobserve(headerRef.current);
+      if (footerRef.current) observer.unobserve(footerRef.current);
     };
   }, []);
 
-  return spotlight;
+  return { headerRef, footerRef, spotlighted };
 }

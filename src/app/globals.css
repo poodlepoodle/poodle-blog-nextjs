@@ -22,15 +22,9 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 
-  font-family: 'Pretendard', 'Noto Sans', sans-serif;
-
-  transition: background-color 0.45s ease-in;
   background-color: #f9fbfc;
-}
 
-.spotlighted {
-  transition: background-color 0.5s ease-out;
-  background-color: #131926;
+  font-family: 'Pretendard', 'Noto Sans', sans-serif;
 }
 
 a {
