@@ -27,8 +27,7 @@ export default async function Page() {
             style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
           />
           <span className={styles.banner__text}>
-            🌊 새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을
-            남깁니다.
+            새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을 남깁니다.
           </span>
         </div>
 
