@@ -14,8 +14,7 @@ export async function generateMetadata({ params }, parent) {
   return {
     metadataBase: new URL('https://poodlepoodle.me'),
     title: `${post.title} ••• poodlepoodle`,
-    description:
-      '새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을 남깁니다.',
+    description: `${post.description}`,
     openGraph: {
       images: [`/blog/posts/${slug}/thumbnail-large.jpg`, ...previousImages],
     },
