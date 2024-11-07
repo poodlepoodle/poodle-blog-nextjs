@@ -26,12 +26,13 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.75rem;
+  column-gap: 0.75rem;
 }
 
 .bottom__area {
   display: flex;
   flex-direction: column;
+  row-gap: 0.5rem;
 }
 
 .thumbnail__container {
@@ -67,14 +68,23 @@
 }
 
 .title {
-  margin-top: 0.5rem;
-
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 600;
   line-height: 1.75rem;
 
   color: #131926;
+
+  @apply break-keep;
+}
+
+.description {
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  color: #adadad;
 
   @apply break-keep;
 }

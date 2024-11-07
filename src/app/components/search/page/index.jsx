@@ -39,28 +39,27 @@ export default function SearchPage({ posts }) {
   };
 
   return (
-    <section className={styles.layout}>
-      <div className={styles.container}>
-        <div className={styles.centered__row}>
-          <Search keyword={keyword} setKeyword={setKeyword} />
-        </div>
-
-        <div className={styles.thumbnail__container}>
-          {filterPosts(debouncedKeyword, posts).map(
-            ({ title, slug, tags, date }) => {
-              return (
-                <ThumbnailRow
-                  key={slug}
-                  title={title}
-                  slug={slug}
-                  tags={tags}
-                  date={date}
-                />
-              );
-            }
-          )}
-        </div>
+    <div className={styles.container}>
+      <div className={styles.centered__row}>
+        <Search keyword={keyword} setKeyword={setKeyword} />
       </div>
-    </section>
+
+      <div className={styles.thumbnail__container}>
+        {filterPosts(debouncedKeyword, posts).map(
+          ({ title, description, slug, tags, date }) => {
+            return (
+              <ThumbnailRow
+                key={slug}
+                title={title}
+                description={description}
+                slug={slug}
+                tags={tags}
+                date={date}
+              />
+            );
+          }
+        )}
+      </div>
+    </div>
   );
 }

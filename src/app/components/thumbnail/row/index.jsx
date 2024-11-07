@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import Tag from '@components/tag';
 
-export default function Row({ title, slug, tags, date }) {
+export default function Row({ title, description, slug, tags, date }) {
   return (
     <Link className={styles.layout} href={`/blog/${slug}`}>
       <div className={styles.content__container}>
@@ -19,6 +19,8 @@ export default function Row({ title, slug, tags, date }) {
           <span className={styles.date}>{date}</span>
 
           <span className={styles.title}>{title}</span>
+
+          <span className={styles.description}>{description}</span>
         </div>
       </div>
 
