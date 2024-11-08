@@ -37,6 +37,7 @@ export default function SearchPage({ posts }) {
       return posts;
     }
   };
+  const filteredPosts = filterPosts(debouncedKeyword, posts);
 
   return (
     <div className={styles.container}>
@@ -44,21 +45,23 @@ export default function SearchPage({ posts }) {
         <Search keyword={keyword} setKeyword={setKeyword} />
       </div>
 
-      <div className={styles.thumbnail__container}>
-        {filterPosts(debouncedKeyword, posts).map(
-          ({ title, description, slug, tags, date }) => {
-            return (
-              <ThumbnailRow
-                key={slug}
-                title={title}
-                description={description}
-                slug={slug}
-                tags={tags}
-                date={date}
-              />
-            );
-          }
-        )}
+      <div className={styles.search__result__container}>
+        {filteredPosts.map(({ title, description, slug, tags, date }) => {
+          return (
+            <ThumbnailRow
+              key={slug}
+              title={title}
+              description={description}
+              slug={slug}
+              tags={tags}
+              date={date}
+            />
+          );
+        })}
+        <description>
+          전체 <strong>{posts.length}</strong>개 포스트 중{' '}
+          <strong>{filteredPosts.length}</strong>개 검색됨.
+        </description>
       </div>
     </div>
   );

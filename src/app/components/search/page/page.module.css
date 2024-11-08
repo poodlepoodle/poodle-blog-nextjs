@@ -19,7 +19,7 @@
   justify-content: center;
 }
 
-.thumbnail__container {
+.search__result__container {
   position: relative;
   width: 100%;
 
@@ -27,4 +27,17 @@
   flex-direction: column;
   align-items: center;
   row-gap: 1.5rem;
+}
+
+.search__result__container > description {
+  color: #adadad;
+  text-align: center;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.search__result__container > description > strong {
+  font-weight: 600;
 }
