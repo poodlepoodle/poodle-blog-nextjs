@@ -29,9 +29,10 @@ export default function ArticleList({ posts }) {
     <>
       {isMobile ? (
         <div className={styles.postrow}>
-          {sortedPosts.map(({ title, slug, tags, date }) => (
+          {sortedPosts.map(({ title, description, slug, tags, date }) => (
             <ThumbnailRow
               key={slug}
+              description={description}
               title={title}
               slug={slug}
               tags={tags}
