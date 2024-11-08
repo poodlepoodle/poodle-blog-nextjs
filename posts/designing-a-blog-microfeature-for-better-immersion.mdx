@@ -12,6 +12,8 @@ date: 2024.08.30
 
 이 포스트에서는 독자의 ‘**몰입**’을 돕기 위한 간단한 마이크로 기능을 설계하고 기능을 구현한 내용을 공유해 보려고 합니다.
 
+<br />
+<br />
 ## 필요성
 
 [현재의 블로그를 디자인해 본 과정](https://poodlepoodle.me/blog/my-blog-design-journey)을 앞서 소개해 드린 적이 있었는데요,
@@ -54,6 +56,8 @@ iOS의 모바일 사파리에서는 읽는 컨텐츠를 감지하면 ‘읽기 �
 이에 영감을 받아 읽는 순간 레이아웃의 배경 색을 낮은 밝기로 바꾼다면
 대비를 통해 가운데 컨테이너 영역에 시선을 더욱 집중시킬 수 있겠다는 아이디어가 떠올랐습니다.
 
+<br />
+<br />
 ## 설계
 
 ![Theater lights](/blog/posts/designing-a-blog-microfeature-for-better-immersion/theater-lights.webp?width=550)
@@ -82,6 +86,8 @@ iOS의 모바일 사파리에서는 읽는 컨텐츠를 감지하면 ‘읽기 �
 
 결과적으로, 효과가 적용되는 세부 타이밍을 위와 같이 정리했습니다.
 
+<br />
+<br />
 ## 구현
 
 효과를 적용하는 조건은 **사용자가 스크롤한 높이가 헤더 영역 높이보다는 크고 푸터 영역의 높이보다는 작은 경우**입니다.
@@ -360,6 +366,8 @@ export default function Spotlight() {
 기능 구현을 마친 결과입니다. 의도한 대로 컨텐츠 영역에 스크롤이 진입하면 효과가 적용되고 이를 벗어나면 해제되는 것을 확인했습니다.
 _하지만…_
 
+<br />
+<br />
 ## 개선
 
 효과가 적용되고 해제되는 순간 트랜지션의 중간 연결 부분이 끊기듯이 표시되었어요.
@@ -687,6 +695,8 @@ Intersection Observer API를 이용하는 방식으로 `useSpotlight()` 훅을 �
 스크롤을 내림에 따라 여러 번 호출되었던 개선 전에 비해
 헤더와 푸터가 화면에 등장하고 사라지는 순간에만 호출되도록 변경되었으므로 호출 횟수가 확연히 줄어들었습니다.
 
+<br />
+<br />
 ## 마치며
 
 [Gatsby](https://www.gatsbyjs.com/), [Next.js](https://nextjs.org/) 등의 도구를 이용해
@@ -705,8 +715,11 @@ Intersection Observer API를 이용하는 방식으로 `useSpotlight()` 훅을 �
   🔦 스포트라이트 효과의 성능 개선 작업을 진행한 PR은 [여기](https://github.com/poodlepoodle/poodle-blog-nextjs/pull/12)서 확인하실 수 있습니다!
 </aside>
 
+<br />
+<br />
 ## 참고
 
 - [F-Shaped Pattern of Reading on the Web: Misunderstood, But Still Relevant | Kara Pernice](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/)
 - [브라우저 창 사이즈와 스크롤 | ko.javascript.info](https://ko.javascript.info/size-and-scroll-window)
 - [Our journey to understand scrolling across different browsers | Omer Doron](https://engineering.monday.com/our-journey-to-understand-scrolling-across-different-browsers/)
+- [Intersection Observer API | MDN Web Docs](https://developer.mozilla.org/ko/docs/Web/API/Intersection_Observer_API)
