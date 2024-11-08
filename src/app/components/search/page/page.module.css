@@ -29,7 +29,7 @@
   row-gap: 1.5rem;
 }
 
-.search__result__container > description {
+.search__result__container > span {
   color: #adadad;
   text-align: center;
   font-size: 0.75rem;
@@ -38,6 +38,6 @@
   line-height: normal;
 }
 
-.search__result__container > description > strong {
+.search__result__container > span > strong {
   font-weight: 600;
 }

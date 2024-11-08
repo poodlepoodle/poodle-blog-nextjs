@@ -58,10 +58,10 @@ export default function SearchPage({ posts }) {
             />
           );
         })}
-        <description>
+        <span>
           전체 <strong>{posts.length}</strong>개 포스트 중{' '}
           <strong>{filteredPosts.length}</strong>개 검색됨.
-        </description>
+        </span>
       </div>
     </div>
   );
