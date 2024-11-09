@@ -29,27 +29,31 @@ export default function ArticleList({ posts }) {
     <>
       {isMobile ? (
         <div className={styles.postrow}>
-          {sortedPosts.map(({ title, description, slug, tags, date }) => (
-            <ThumbnailRow
-              key={slug}
-              description={description}
-              title={title}
-              slug={slug}
-              tags={tags}
-              date={date}
-            />
-          ))}
+          {sortedPosts.map(
+            ({ title, description, slug, tags, date, updated }) => (
+              <ThumbnailRow
+                key={slug}
+                description={description}
+                title={title}
+                slug={slug}
+                tags={tags}
+                date={date}
+                updated={updated}
+              />
+            )
+          )}
         </div>
       ) : (
         <>
           <div className={styles.postrow__upper}>
-            {upperPosts.map(({ title, slug, date }, idx) =>
+            {upperPosts.map(({ title, slug, date, updated }, idx) =>
               idx === 0 ? (
                 <ThumbnailLarge
                   key={slug}
                   title={title}
                   slug={slug}
                   date={date}
+                  updated={updated}
                 />
               ) : (
                 <ThumbnailNormal
@@ -57,18 +61,20 @@ export default function ArticleList({ posts }) {
                   title={title}
                   slug={slug}
                   date={date}
+                  updated={updated}
                 />
               )
             )}
           </div>
 
           <div className={styles.postrow__lower}>
-            {lowerPosts.map(({ title, slug, date }) => (
+            {lowerPosts.map(({ title, slug, date, updated }) => (
               <ThumbnailNormal
                 key={slug}
                 title={title}
                 slug={slug}
                 date={date}
+                updated={updated}
               />
             ))}
           </div>

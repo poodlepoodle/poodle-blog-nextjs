@@ -46,18 +46,21 @@ export default function SearchPage({ posts }) {
       </div>
 
       <div className={styles.search__result__container}>
-        {filteredPosts.map(({ title, description, slug, tags, date }) => {
-          return (
-            <ThumbnailRow
-              key={slug}
-              title={title}
-              description={description}
-              slug={slug}
-              tags={tags}
-              date={date}
-            />
-          );
-        })}
+        {filteredPosts.map(
+          ({ title, description, slug, tags, date, updated }) => {
+            return (
+              <ThumbnailRow
+                key={slug}
+                title={title}
+                description={description}
+                slug={slug}
+                tags={tags}
+                date={date}
+                updated={updated}
+              />
+            );
+          }
+        )}
         <span>
           전체 <strong>{posts.length}</strong>개 포스트 중 해당하는{' '}
           <strong>{filteredPosts.length}</strong>개 검색 결과 표시됨.
