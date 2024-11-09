@@ -46,6 +46,17 @@
 .title {
   margin-top: 0.5rem;
 
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.title > svg {
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+.title > span {
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 600;
