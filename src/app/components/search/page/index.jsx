@@ -59,8 +59,8 @@ export default function SearchPage({ posts }) {
           );
         })}
         <span>
-          전체 <strong>{posts.length}</strong>개 포스트 중{' '}
-          <strong>{filteredPosts.length}</strong>개 검색됨.
+          전체 <strong>{posts.length}</strong>개 포스트 중 해당하는{' '}
+          <strong>{filteredPosts.length}</strong>개 검색 결과 표시됨.
         </span>
       </div>
     </div>
