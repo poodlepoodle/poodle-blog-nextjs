@@ -21,7 +21,6 @@ export default function Article({ slug, post, children }) {
           slug={slug}
           tags={post.tags}
           date={post.date}
-          updated={post.updated}
         />
         {children}
         <ArticleFooter observerRef={footerRef}>
