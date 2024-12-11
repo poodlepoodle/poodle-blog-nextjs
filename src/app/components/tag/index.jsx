@@ -8,7 +8,7 @@ export default function Tag({ text }) {
   const router = useRouter();
 
   const handleClickTag = () => {
-    router.push(`/blog/list?search=${text}`);
+    router.push(`/blog?search=${text}`);
   };
 
   return (
