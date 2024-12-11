@@ -5,11 +5,13 @@ import Link from 'next/link';
 
 import { getPosts } from '@/lib/get-posts';
 import ArticleList from '@components/article-list';
-import More from '@components/more';
+import Button from '@components/button';
 
 export default async function Page() {
   const posts = await getPosts();
   const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  const someAction = () => alert('테스트');
 
   return (
     <section className={styles.layout}>
@@ -29,7 +31,7 @@ export default async function Page() {
         <ArticleList posts={sortedPosts} />
 
         <div className={styles.centered__row}>
-          <More />
+          <Button href={`/blog`} label="더 보기" />
         </div>
       </div>
     </section>
