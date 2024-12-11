@@ -1,5 +1,7 @@
 import styles from './styles.module.css';
 
+import PDFViewer from '@components/pdf-viewer';
+
 export const metadata = {
   title: 'About ••• poodlepoodle',
   description:
@@ -7,5 +9,11 @@ export const metadata = {
 };
 
 export default async function Page() {
-  return <section className={styles.layout}></section>;
+  return (
+    <section className={styles.layout}>
+      <div className={styles.container}>
+        <PDFViewer />
+      </div>
+    </section>
+  );
 }
