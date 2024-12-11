@@ -11,8 +11,6 @@ export default async function Page() {
   const posts = await getPosts();
   const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  const someAction = () => alert('테스트');
-
   return (
     <section className={styles.layout}>
       <div className={styles.container}>
