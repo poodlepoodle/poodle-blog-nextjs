@@ -23,9 +23,7 @@ export default function Header() {
         </section>
 
         <nav className={styles.nav}>
-          <Link href="https://read.cv/poodlepoodle" target="_blank">
-            소개
-          </Link>
+          <Link href="/about">소개</Link>
           <Link href="/blog">블로그</Link>
         </nav>
       </div>
