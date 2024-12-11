@@ -1,17 +1,10 @@
-'use client';
-
 import styles from './footer.module.css';
 
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 export default function BottomNav() {
-  const pathname = usePathname();
-
   return (
-    <footer
-      className={pathname === '/' ? styles.layout__focused : styles.layout}
-    >
+    <footer className={styles.layout}>
       <div className={styles.container}>
         <section className={styles.copyright}>ⓒ Eojin Choi 2024</section>
 
