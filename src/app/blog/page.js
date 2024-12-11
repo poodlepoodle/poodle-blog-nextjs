@@ -1,10 +1,9 @@
 import styles from './styles.module.css';
 
-import Image from 'next/image';
-
 import { getPosts } from '@/lib/get-posts';
-import ArticleList from '@components/article-list';
-import More from '@components/more';
+import { Suspense } from 'react';
+
+import SearchPage from '@components/search/page';
 
 export const metadata = {
   title: 'Blog ••• poodlepoodle',
@@ -18,25 +17,9 @@ export default async function Page() {
 
   return (
     <section className={styles.layout}>
-      <div className={styles.container}>
-        <div className={styles.banner__container}>
-          <Image
-            src="/blog/banner.jpg"
-            alt="banner image in blog home"
-            fill
-            style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
-          />
-          <span className={styles.banner__text}>
-            새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을 남깁니다.
-          </span>
-        </div>
-
-        <ArticleList posts={sortedPosts} />
-
-        <div className={styles.centered__row}>
-          <More />
-        </div>
-      </div>
+      <Suspense>
+        <SearchPage posts={sortedPosts} />
+      </Suspense>
     </section>
   );
 }
