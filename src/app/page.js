@@ -1,37 +1,36 @@
 import styles from './styles.module.css';
 
-export const metadata = {
-  title: 'Home ••• poodlepoodle',
-  description:
-    '새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을 남깁니다.',
-};
+import Image from 'next/image';
 
-export default function Page() {
+import { getPosts } from '@/lib/get-posts';
+import ArticleList from '@components/article-list';
+import More from '@components/more';
+
+export default async function Page() {
+  const posts = await getPosts();
+  const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
   return (
-    <>
-      <section className={styles.layout}>
-        <div className={styles.container}>
-          <h1>
-            새로운 기술이 파도처럼 몰려와도
-            <br />
-            지워지지 않을 (<strong>개발자국</strong>) 을 남깁니다.
-          </h1>
+    <section className={styles.layout}>
+      <div className={styles.container}>
+        <div className={styles.banner__container}>
+          <Image
+            src="/blog/banner.jpg"
+            alt="banner image in blog home"
+            fill
+            style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
+          />
+          <span className={styles.banner__text}>
+            새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을 남깁니다.
+          </span>
         </div>
-      </section>
 
-      <div className={styles.video__container}>
-        <video
-          src={`/blog/video_1.mp4`}
-          className={styles.video__background}
-          muted="true"
-          playsinline="true"
-          webkit-playsinline="true"
-          loop="true"
-          autoPlay="true"
-        >
-          비디오 재생 불가...
-        </video>
+        <ArticleList posts={sortedPosts} />
+
+        <div className={styles.centered__row}>
+          <More />
+        </div>
       </div>
-    </>
+    </section>
   );
 }
