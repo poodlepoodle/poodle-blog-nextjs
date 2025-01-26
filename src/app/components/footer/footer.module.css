@@ -36,6 +36,7 @@
 .nav {
   display: flex;
   column-gap: 3.65rem;
+  column-gap: 2rem;
 
   color: #131926;
 }
