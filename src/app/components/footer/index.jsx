@@ -6,7 +6,7 @@ export default function BottomNav() {
   return (
     <footer className={styles.layout}>
       <div className={styles.container}>
-        <section className={styles.copyright}>ⓒ Eojin Choi 2024</section>
+        <section className={styles.copyright}>ⓒ Eojin Choi 2025</section>
 
         <nav className={styles.nav}>
           <div className={styles.icon__container}>
