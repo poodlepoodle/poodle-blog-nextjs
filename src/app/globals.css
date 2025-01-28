@@ -2,29 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 html {
-  padding: 0;
-  margin: 0;
-
   font-size: 14px;
 }
 
 body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
   position: relative;
   width: 100svw;
   height: 100svh;
   overflow-y: auto;
   overflow-x: hidden;
 
-  background-color: #f9fbfc;
-
   font-family: 'Pretendard', 'Noto Sans', sans-serif;
+  background-color: #f9fbfc;
 }
 
 a {
@@ -41,7 +35,7 @@ img {
   -ms-user-select: none;
 }
 
-.content__wrapper {
+main.content__wrapper {
   position: relative;
   width: 100%;
   min-height: calc(100% - 5rem);
@@ -50,7 +44,6 @@ img {
 
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .prose p {
