@@ -20,6 +20,7 @@ export const getPosts = cache(async () => {
 
         return { ...data, body: content };
       })
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
   );
 });
 
