@@ -15,7 +15,7 @@
 .content__container {
   min-width: 25rem;
   flex: 1;
-  padding: 2rem;
+  padding: 2.25rem;
 
   display: flex;
   flex-direction: column;
