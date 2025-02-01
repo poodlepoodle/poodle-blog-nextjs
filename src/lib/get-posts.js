@@ -20,9 +20,19 @@ export const getPosts = cache(async () => {
 
         return { ...data, body: content };
       })
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
   );
 });
+
+export async function getSortedPosts() {
+  const posts = await getPosts();
+  console.log(posts.map(({ slug }) => slug));
+  console.log(
+    posts
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .map(({ slug }) => slug)
+  );
+  return posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+}
 
 export async function getPost(slug) {
   const posts = await getPosts();

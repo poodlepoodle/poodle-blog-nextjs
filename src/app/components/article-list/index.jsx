@@ -1,47 +1,34 @@
 'use client';
 
-import styles from './articlelist.module.css';
+import styles from './article-list.module.css';
 
-import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-import ThumbnailRow from '@components/thumbnail/row';
+import ThumbnailMobileRow from '@components/thumbnail/mobile-row';
 import ThumbnailNormal from '@components/thumbnail/normal';
 import ThumbnailLarge from '@components/thumbnail/large';
 
 export default function ArticleList({ posts }) {
-  const [isMobile, setIsMobile] = useState(false);
   const mobile = useMediaQuery({ maxWidth: 840 });
 
-  useEffect(() => {
-    if (mobile) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  }, [mobile]);
-
-  const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-  const upperPosts = sortedPosts.slice(0, 2);
-  const lowerPosts = sortedPosts.slice(2, 5);
+  const upperPosts = posts.slice(0, 2);
+  const lowerPosts = posts.slice(2, 5);
 
   return (
     <>
-      {isMobile ? (
+      {mobile ? (
         <div className={styles.postrow}>
-          {sortedPosts.map(
-            ({ title, description, slug, tags, date, updated }) => (
-              <ThumbnailRow
-                key={slug}
-                description={description}
-                title={title}
-                slug={slug}
-                tags={tags}
-                date={date}
-                updated={updated}
-              />
-            )
-          )}
+          {posts.map(({ title, description, slug, tags, date, updated }) => (
+            <ThumbnailMobileRow
+              key={slug}
+              description={description}
+              title={title}
+              slug={slug}
+              tags={tags}
+              date={date}
+              updated={updated}
+            />
+          ))}
         </div>
       ) : (
         <>
@@ -66,7 +53,6 @@ export default function ArticleList({ posts }) {
               )
             )}
           </div>
-
           <div className={styles.postrow__lower}>
             {lowerPosts.map(({ title, slug, date, updated }) => (
               <ThumbnailNormal
