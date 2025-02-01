@@ -9,19 +9,18 @@ import ThumbnailNormal from '@components/thumbnail/normal';
 import ThumbnailLarge from '@components/thumbnail/large';
 
 export default function ArticleList({ posts }) {
-  const mobile = useMediaQuery({ maxWidth: 840 });
+  const isMobile = useMediaQuery({ maxWidth: 840 });
 
   const upperPosts = posts.slice(0, 2);
   const lowerPosts = posts.slice(2, 5);
 
   return (
     <>
-      {mobile ? (
+      {isMobile ? (
         <div className={styles.postrow}>
-          {posts.map(({ title, description, slug, tags, date, updated }) => (
+          {posts.map(({ title, slug, tags, date, updated }) => (
             <ThumbnailMobileRow
               key={slug}
-              description={description}
               title={title}
               slug={slug}
               tags={tags}
