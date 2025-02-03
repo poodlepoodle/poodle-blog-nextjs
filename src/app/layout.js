@@ -1,7 +1,9 @@
 import './globals.css';
 
 import { Analytics } from '@vercel/analytics/react';
+import { BlogContextProvider } from '@/contexts/BlogContext';
 
+import HeaderAnchor from '@components/header/anchor';
 import Header from '@components/header';
 import Footer from '@components/footer';
 
@@ -15,8 +17,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <body>
-        <Header />
-        <main className="content__wrapper">{children}</main>
+        <BlogContextProvider>
+          <HeaderAnchor />
+          <Header />
+          <main className="content__wrapper">{children}</main>
+        </BlogContextProvider>
         <Footer />
         <Analytics />
       </body>
