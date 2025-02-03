@@ -1,16 +1,17 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useBlogContext } from '@contexts/BlogContext';
 
 export default function useSpotlight() {
   const headerRef = useRef(null);
   const footerRef = useRef(null);
-  const [spotlighted, setSpotlighted] = useState(false);
+  const { setIsSpotlighted } = useBlogContext();
 
   useEffect(() => {
     const handleIntersection = (entries) => {
       const isIntersectingContent = entries.every(
         (entry) => !entry.isIntersecting
       );
-      setSpotlighted(isIntersectingContent);
+      setIsSpotlighted(isIntersectingContent);
     };
 
     const observer = new IntersectionObserver(handleIntersection, {
@@ -30,5 +31,5 @@ export default function useSpotlight() {
     };
   }, []);
 
-  return { headerRef, footerRef, spotlighted };
+  return { headerRef, footerRef };
 }
