@@ -6,21 +6,20 @@
   justify-content: center;
   align-items: center;
 
-  border: 1px solid #cacaca;
+  border: 0.5px solid #cacaca;
   border-radius: 0.75rem;
 
   font-size: 0.875rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
 
   color: #131926;
-
   transition: 0.2s all ease-in-out;
 }
 
 .layout:hover {
-  border: 1px solid transparent;
+  border: 0.5px solid transparent;
   background-color: #131926;
   color: white;
 }

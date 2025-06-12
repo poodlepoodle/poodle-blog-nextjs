@@ -1,5 +1,4 @@
 import styles from './button.module.css';
-
 import Link from 'next/link';
 
 export default function Button({ href, label }) {
