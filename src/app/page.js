@@ -16,7 +16,7 @@ export default async function Page() {
         <Banner
           href={`/about`}
           src={`/blog/banner.jpg`}
-          text={`새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을 남깁니다.`}
+          text={`애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.`}
         />
 
         <ArticleList posts={posts} />
