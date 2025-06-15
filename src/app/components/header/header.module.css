@@ -10,14 +10,15 @@
   justify-content: center;
   align-items: center;
 
-  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: saturate(180%) blur(0.5rem);
+  backdrop-filter: saturate(180%) blur(0.5rem);
+
+  transition: border-bottom, height 0.3s ease;
 }
 
 .floating {
   border-bottom: 0.5px solid #cacaca;
-  background-color: rgba(255, 255, 255, 0.2);
-  -webkit-backdrop-filter: saturate(180%) blur(0.5rem);
-  backdrop-filter: saturate(180%) blur(0.5rem);
 }
 
 .spotlighted {
