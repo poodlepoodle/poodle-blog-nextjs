@@ -21,6 +21,10 @@ export const getPosts = cache(async () => {
           return null;
         }
 
+        if (data.tags && Array.isArray(data.tags)) {
+          data.tags.sort();
+        }
+
         return { ...(data as Metadata), content: content } as Post;
       })
     )
