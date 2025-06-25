@@ -1,14 +1,28 @@
 'use client';
+
 import styles from './header.module.css';
-
-import { useBlogContext } from '@contexts/BlogContext';
-
 import Image from 'next/image';
 import Link from 'next/link';
+import { useBlogContext } from '@contexts/BlogContext';
+
+const NAV_ITEMS = [
+  {
+    label: '소개',
+    href: '/about',
+  },
+  {
+    label: '포스트',
+    href: '/posts',
+  },
+  {
+    label: '플레이그라운드',
+    href: '/playgrounds',
+    disabled: true,
+  },
+];
 
 export default function Header() {
   const { isFloating, isSpotlighted, headerText } = useBlogContext();
-
   return (
     <header
       className={`${styles.layout} ${isFloating ? styles.floating : ''} ${
@@ -48,8 +62,14 @@ export default function Header() {
         )}
 
         <nav className={styles.nav}>
-          <Link href="/about">소개</Link>
-          <Link href="/blog">블로그</Link>
+          {NAV_ITEMS.map(
+            ({ label, href, disabled }) =>
+              !disabled && (
+                <Link key={href} href={href}>
+                  {label}
+                </Link>
+              )
+          )}
         </nav>
       </div>
     </header>
