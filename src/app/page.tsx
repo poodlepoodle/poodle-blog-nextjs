@@ -13,7 +13,7 @@ export default async function Page() {
         <Banner />
         <PostGrid posts={posts} />
         <div className={styles.row}>
-          <Button href={`/blog`} label="더 보기" />
+          <Button href={`/posts`} label="더 보기" />
         </div>
       </div>
     </div>
