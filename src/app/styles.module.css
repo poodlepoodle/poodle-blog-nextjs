@@ -18,3 +18,12 @@
   gap: 3rem;
   padding: 3rem 0 6rem;
 }
+
+.row {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: center;
+}
