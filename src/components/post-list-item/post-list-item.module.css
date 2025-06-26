@@ -2,7 +2,6 @@
   position: relative;
   width: 100%;
   max-width: 60rem;
-  height: 13.875rem;
 
   display: flex;
   justify-content: space-between;
@@ -13,26 +12,26 @@
 }
 
 .content__container {
-  min-width: 25rem;
-  flex: 1;
-  padding: 2.25rem;
+  width: 100%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 3.75rem;
+  padding: 2.25rem;
 }
 
-.top__area {
+.top_container {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   column-gap: 0.75rem;
 }
 
-.bottom__area {
+.bottom_container {
   display: flex;
   flex-direction: column;
-  row-gap: 0.5rem;
 }
 
 .thumbnail__container {
@@ -46,7 +45,8 @@
   border-radius: 35% 65% 69% 31% / 58% 49% 51% 42%;
   overflow: hidden;
 
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 25px -5px,
+  box-shadow:
+    rgba(0, 0, 0, 0.2) 0px 20px 25px -5px,
     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
   filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
@@ -68,6 +68,7 @@
 }
 
 .title {
+  margin-top: 0.5rem;
   display: flex;
   align-items: center;
   column-gap: 0.5rem;
@@ -79,7 +80,6 @@
 }
 
 .title > span {
-  font-size: 1.25rem;
   font-style: normal;
   font-weight: 600;
   line-height: 1.75rem;
@@ -89,7 +89,31 @@
   @apply break-keep;
 }
 
+@media (min-width: 840px) {
+  .title > span {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: calc(840px - 1px)) {
+  .title > span {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: calc(552px + 70px)) {
+  .title > span {
+    font-size: 1.125rem;
+  }
+
+  .thumbnail__container {
+    display: none;
+  }
+}
+
 .description {
+  margin-top: 0.5rem;
+
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;

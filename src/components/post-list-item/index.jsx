@@ -8,13 +8,13 @@ export default function PostListItem({ post }) {
   return (
     <Link className={styles.layout} href={`/posts/${slug}`}>
       <div className={styles.content__container}>
-        <div className={styles.top__area}>
+        <div className={styles.top_container}>
           {tags.map(name => (
             <Chip key={name} name={name} />
           ))}
         </div>
 
-        <div className={styles.bottom__area}>
+        <div className={styles.bottom_container}>
           <span className={styles.date}>{publishedAt}</span>
 
           <div className={styles.title}>
