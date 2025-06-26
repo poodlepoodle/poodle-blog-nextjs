@@ -64,7 +64,7 @@ export default function PostGridItem({ post, className }) {
 
   return (
     <Link
-      href={`/blog/${slug}`}
+      href={`/posts/${slug}`}
       className={`${styles.layout} ${className || ''}`}
     >
       <div className={styles.container}>
@@ -87,7 +87,7 @@ export default function PostGridItem({ post, className }) {
               <circle cx="3" cy="3" r="3" fill="#5FD0FF" />
             </svg>
           )}
-          <span>{title}</span>
+          <span className={styles.title_text}>{title}</span>
         </div>
       </div>
     </Link>

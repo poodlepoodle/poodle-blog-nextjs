@@ -96,8 +96,7 @@
   height: 0.375rem;
 }
 
-.title > span {
-  font-size: 1.25rem;
+.title_text {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -108,4 +107,22 @@
   overflow: hidden;
 
   color: #131926;
+}
+
+@media (min-width: 840px) {
+  .title_text {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: calc(840px - 1px)) {
+  .title_text {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: calc(552px + 70px)) {
+  .title_text {
+    font-size: 1.125rem;
+  }
 }
