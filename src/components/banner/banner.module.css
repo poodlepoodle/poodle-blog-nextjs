@@ -60,7 +60,7 @@
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 1.25rem;
+  line-height: 1.4rem;
   mix-blend-mode: luminosity;
 
   @apply break-keep;

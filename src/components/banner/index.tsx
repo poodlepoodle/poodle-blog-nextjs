@@ -5,12 +5,28 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 
-export default function Banner({ href, src, text }) {
-  const containerRef = useRef(null);
-  const isHovered = useRef(false);
-  const frameRef = useRef(null);
+interface BannerData {
+  id: number;
+  href: string;
+  imageSrc: string;
+  text: string;
+}
 
-  const handleMouseMove = (e) => {
+const BANNER_DATA: BannerData[] = [
+  {
+    id: 1,
+    href: '/about',
+    imageSrc: '/blog/banner.jpg',
+    text: '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+  },
+];
+
+export default function Banner() {
+  const containerRef = useRef<HTMLAnchorElement>(null);
+  const isHovered = useRef<boolean>(false);
+  const frameRef = useRef<number | null>(null);
+
+  const handleMouseMove = (e: MouseEvent) => {
     if (!isHovered.current) return;
 
     if (frameRef.current) {
@@ -60,15 +76,21 @@ export default function Banner({ href, src, text }) {
     };
   }, []);
 
+  const bannerItem = BANNER_DATA[0]!;
+
   return (
-    <Link href={href} className={styles.container} ref={containerRef}>
+    <Link
+      href={bannerItem.href}
+      className={styles.container}
+      ref={containerRef}
+    >
       <Image
-        src={src}
+        src={bannerItem.imageSrc}
         alt="blog home banner image"
         fill
         style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
       />
-      <span className={styles.banner__text}>{text}</span>
+      <span className={styles.banner__text}>{bannerItem.text}</span>
     </Link>
   );
 }
