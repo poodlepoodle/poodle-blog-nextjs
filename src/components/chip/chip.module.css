@@ -7,11 +7,11 @@
   justify-content: center;
   align-items: center;
   padding: 0 0.8rem;
-  column-gap: 0.38rem;
+  column-gap: 0.5rem;
 
   border-radius: 1rem;
   cursor: pointer;
-  transition: 0.2s all ease-in-out;
+  transition: 0.3s all ease;
 }
 
 .layout_default {
@@ -25,6 +25,12 @@
   border: 0.5px solid #131926;
   background-color: #131926;
   color: white;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
 }
 
 .name {
