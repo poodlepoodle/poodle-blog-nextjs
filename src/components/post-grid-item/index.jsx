@@ -70,9 +70,10 @@ export default function PostGridItem({ post, className }) {
       <div className={styles.container}>
         <div className={styles.thumbnail__container} ref={containerRef}>
           <Image
-            src={`/blog/posts/${slug}/thumbnail.jpg`}
+            src={`/blog/posts/${slug}/thumbnail-large.jpg`}
             alt="post thumbnail"
             fill
+            style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
           />
         </div>
 
