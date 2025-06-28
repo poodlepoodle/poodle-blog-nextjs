@@ -86,7 +86,7 @@
 
   color: #131926;
 
-  @apply break-keep;
+  word-break: keep-all;
 }
 
 @media (min-width: 840px) {
@@ -121,5 +121,5 @@
 
   color: #adadad;
 
-  @apply break-keep;
+  word-break: keep-all;
 }

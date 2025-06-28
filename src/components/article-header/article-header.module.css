@@ -24,7 +24,7 @@
 
   color: #131926;
 
-  @apply break-keep;
+  word-break: keep-all;
 }
 
 .date {
@@ -46,7 +46,7 @@
   font-weight: 400;
   line-height: 150%;
 
-  @apply break-keep;
+  word-break: keep-all;
 }
 
 .tags__container {

@@ -63,7 +63,7 @@
   line-height: 1.4rem;
   mix-blend-mode: luminosity;
 
-  @apply break-keep;
+  word-break: keep-all;
 }
 
 .container:hover .banner__text {
