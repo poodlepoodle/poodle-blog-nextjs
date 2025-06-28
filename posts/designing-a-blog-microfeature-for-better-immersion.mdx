@@ -63,9 +63,7 @@ iOS의 모바일 사파리에서는 읽는 컨텐츠를 감지하면 ‘읽기 �
 
 ![Theater lights](/blog/posts/designing-a-blog-microfeature-for-better-immersion/theater-lights.webp?width=550)
 
-<aside>
-🔗 출처: https://ovationlights.com/knowledge-base/how-to-choose-the-right-theatrical-lighting-fixture/
-</aside>
+> 🔗 출처: https://ovationlights.com/knowledge-base/how-to-choose-the-right-theatrical-lighting-fixture/
 
 블로그 포스트를 소비하는 방식이 스크롤을 아래로 내리는 행동으로 전개된다는 것을 고려한다면,
 처음부터 시작해 끝까지 스크롤을 내리는 일련의 과정을 하나의 컨텐츠에 몰입하고 빠져나오는 경험으로 연출할 수 있겠다고 생각했습니다.
@@ -298,10 +296,8 @@ export default function Spotlight() {
 
 ![Transitions when exits and closing](/blog/posts/designing-a-blog-microfeature-for-better-immersion/transitions-when-exits-and-closing.gif?width=550)
 
-<aside>
-  🫣 하나의 예시로, 사이드에서 나타나는 네비게이션은 사라질 때 애니메이션 타이밍을 `ease-in`으로 적용해
-  사용자로 하여금 언제든 클릭하면 다시 나타날 것이라고 믿게 만드는 데 도움을 줄 수 있다고 해요.
-</aside>
+> 🫣 하나의 예시로, 사이드에서 나타나는 네비게이션은 사라질 때 애니메이션 타이밍을 `ease-in`으로 적용해
+사용자로 하여금 언제든 클릭하면 다시 나타날 것이라고 믿게 만드는 데 도움을 줄 수 있다고 해요.
 
 스포트라이트 효과 또한 사용자에게 몰입감을 주기 위해 설치한 요소이므로
 애니메이션 타이밍을 효과적으로 적용할 필요가 있다고 생각했어요.
@@ -469,20 +465,16 @@ export default function ArticleBackground({ children }) {
 
 ![Scroll events behaviors](/blog/posts/designing-a-blog-microfeature-for-better-immersion/scroll-event-behaviors.webp?width=550)
 
-<aside>
-  🔗 출처: https://engineering.monday.com/our-journey-to-understand-scrolling-across-different-browsers/
-</aside>
+> 🔗 출처: https://engineering.monday.com/our-journey-to-understand-scrolling-across-different-browsers/
 
 스크롤 이벤트는 사용자가 페이지를 스크롤하는 매 순간마다 트리거되어 핸들러 함수를 실행합니다.
 페이지를 스크롤하는 속도가 빠를수록 동시에 실행되는 핸들러 함수가 많아지고,
 핸들러 함수는 이벤트 루프에 의해 등록되어 메인 스레드에서 동기적으로 실행되므로 성능에 부담을 줄 수 있습니다.
 
-<aside>
-  ✨ 위 일러스트는 `wheel`과 `scroll` 이벤트에 대한 핸들링 과정을 재정의하는 내용을 기술한
-  [Omer Doron의 포스트](https://engineering.monday.com/our-journey-to-understand-scrolling-across-different-browsers/)에서 발췌했습니다.
-  포스트의 전체적인 흐름과 직접적으로 관련은 없지만,
-  `scroll` 이벤트의 핸들러가 메인 스레드에서 동기적으로 수행되는 점에 주목해 주세요!
-</aside>
+> ✨ 위 일러스트는 `wheel`과 `scroll` 이벤트에 대한 핸들링 과정을 재정의하는 내용을 기술한
+[Omer Doron의 포스트](https://engineering.monday.com/our-journey-to-understand-scrolling-across-different-browsers/)에서 발췌했습니다.
+포스트의 전체적인 흐름과 직접적으로 관련은 없지만,
+`scroll` 이벤트의 핸들러가 메인 스레드에서 동기적으로 수행되는 점에 주목해 주세요!
 
 스포트라이트 효과에서 사용한 스크롤 이벤트의 핸들러 함수는 바로 배경 색상을 변경하는 대신 ‘상태’를 변경합니다.
 따라서 매 스크롤 동작마다 repaint가 발생하지는 않습니다.
@@ -542,9 +534,7 @@ reflow를 발생시키는 `window.scrollY` 속성값을 이용한다는 점에 �
 
 ![Intersection Observer behaviors](/blog/posts/designing-a-blog-microfeature-for-better-immersion/intersection-observer-behaviors.webp?width=500)
 
-<aside>
-  🔗 출처: https://www.bram.us/2017/08/03/using-intersection-observers/
-</aside>
+> 🔗 출처: https://www.bram.us/2017/08/03/using-intersection-observers/
 
 [Intersection Observer API](https://developer.mozilla.org/ko/docs/Web/API/Intersection_Observer_API)는
 주어진 화면 상의 요소들 간의 교차 여부를 관찰합니다.
@@ -712,9 +702,7 @@ Intersection Observer API를 이용하는 방식으로 `useSpotlight()` 훅을 �
 
 글에서 소개한 내용이 블로그를 만들어 가는 개발자들에게 작게나마 영감을 줄 수 있었으면 좋겠습니다. 😉
 
-<aside>
-  🔦 스포트라이트 효과의 성능 개선 작업을 진행한 PR은 [여기](https://github.com/poodlepoodle/poodle-blog-nextjs/pull/12)서 확인하실 수 있습니다!
-</aside>
+> 🔦 스포트라이트 효과의 성능 개선 작업을 진행한 PR은 [여기](https://github.com/poodlepoodle/poodle-blog-nextjs/pull/12)서 확인하실 수 있습니다!
 
 <br />
 <br />

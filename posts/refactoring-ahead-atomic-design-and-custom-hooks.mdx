@@ -12,10 +12,7 @@ updated: false
 
 ![Seasoning thumbnail](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/seasoning-thumbnail.webp?width=450)
 
-<aside>
-  🌸 24개의 절기를 나의 입맛에 맞게,
-  [시즈닝(Seasoning)](https://seasoning.today)
-</aside>
+> 🌸 24개의 절기를 나의 입맛에 맞게, [시즈닝(Seasoning)](https://seasoning.today)
 
 3월 한 달 동안 감사하게도 100명이 넘는 사용자가 서비스를 찾아 주었고, 이에 따라 팀에서는 기존의 기능을 수정하거나 새로운 화면을 추가하는 작업이 빈번했어요.
 인스타그램 홍보와 외부 홍보 부스를 마련할 기회가 몇 번 더 있었기 때문에, 추가 유입을 위해서는 사용성 피드백에 즉각 대응해 최대한 빠르게 수정 사항을 적용해야 했습니다.
@@ -69,9 +66,7 @@ src
 
 ![Need more things](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/need-more-things.webp?width=320)
 
-<aside>
-  🥲 하지만 사실 수정해야 하는 페이지는 저게 전부가 아니었습니다…
-</aside>
+> 🥲 하지만 사실 수정해야 하는 페이지는 저게 전부가 아니었습니다…
 
 백엔드 팀에서 업로드된 이미지를 자체적으로 리사이징해 최적화하는 파이프라인을 구축한 후, 프로필 이미지에 대해서만 먼저 테스트 배포를 올리기로 했습니다.
 그리고 프론트엔드 팀에서 이에 대응해 최적화된 이미지 로딩 시도가 실패하면 원본 이미지를 대체 로딩해야 하는 기능 추가 작업이 주어졌어요.
@@ -154,9 +149,7 @@ const ImageSlider = ({
 export default ImageSlider;
 ```
 
-<aside>
-  😧 예시로, 간단한 캐러셀 기능을 제공하는 `ImageSlider` 컴포넌트의 경우 185줄의 코드 중 절반에 이르는 75줄이 스타일링에 관한 부분이었습니다.
-</aside>
+> 😧 예시로, 간단한 캐러셀 기능을 제공하는 `ImageSlider` 컴포넌트의 경우 185줄의 코드 중 절반에 이르는 75줄이 스타일링에 관한 부분이었습니다.
 
 더욱 문제를 느꼈던 부분은 어떤 컴포넌트의 스타일과 기능을 두 명의 프론트엔드 개발자가 다른 작업에서 동시에 접근해야 하는 경우였습니다.
 기능과 뷰를 부분적으로 나누어 관리할 수 있다면 충돌에 대한 염려를 줄일 수 있는 부분이라고 생각했어요.
@@ -272,14 +265,10 @@ const IconWrapper = styled.div`
 
 ![Atomic design concept by Brad Frost](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/atomic-design-brad-frost.webp?width=550)
 
-<aside>
-  출처: https://atomicdesign.bradfrost.com/chapter-2/#the-part-and-the-whole
-</aside>
+> 출처: https://atomicdesign.bradfrost.com/chapter-2/#the-part-and-the-whole
 
-<aside>
-  🦠 “(번역) 아토믹 디자인이 제공하는 큰 이점 중 하나는 추상적인 것과 구체적인
-  것 사이를 빠르게 전환할 수 있는 능력입니다.” *- Brad Frost의 원문 중*
-</aside>
+>  🦠 “(번역) 아토믹 디자인이 제공하는 큰 이점 중 하나는 추상적인 것과
+구체적인 것 사이를 빠르게 전환할 수 있는 능력입니다.” *- Brad Frost의 원문 중*
 
 아토믹 디자인은 컴포넌트의 결합을 `atom` → `molecule` → `organism` → `template` → `page` 단위로 나누며,
 작은 단위의 결합을 통해 큰 단위를 만드는 계층적 모델을 표현하는 방식입니다.
