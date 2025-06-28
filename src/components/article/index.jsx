@@ -1,13 +1,13 @@
 'use client';
-import styles from './article.module.css';
 
+import styles from './article.module.css';
 import ArticleHeader from '@components/article-header';
 import ArticleFooter from '@components/article-footer';
-import Giscus from '@components/giscus';
+import GiscusComments from '@components/giscus-comments';
 
+import useSpotlight from '@hooks/useSpotlight';
 import { useBlogContext } from '@contexts/BlogContext';
 import { useEffect } from 'react';
-import useSpotlight from '@hooks/useSpotlight';
 
 export default function Article({ slug, post, children }) {
   const { headerRef, footerRef } = useSpotlight();
@@ -32,13 +32,14 @@ export default function Article({ slug, post, children }) {
         <ArticleHeader
           observerRef={headerRef}
           title={post.title}
+          description={post.description}
           slug={slug}
           tags={post.tags}
-          date={post.date}
+          publishedAt={post.publishedAt}
         />
         {children}
         <ArticleFooter observerRef={footerRef}>
-          <Giscus />
+          <GiscusComments />
         </ArticleFooter>
       </div>
     </div>

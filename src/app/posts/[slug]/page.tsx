@@ -1,11 +1,17 @@
-import { notFound } from 'next/navigation';
-import { getPost, getPosts } from '@lib/get-posts';
-import { PostBody } from '@/mdx/post-body';
-
 import Article from '@components/article';
+import { notFound } from 'next/navigation';
+import { getPost } from '@utils/get-post';
+import { getPosts } from '@utils/get-posts';
+import { PostBody } from '@/mdx/post-body';
+import { Suspense } from 'react';
 
-export async function generateMetadata({ params }, parent) {
-  const { slug } = params;
+type Params = Promise<{ slug: string }>;
+
+export async function generateMetadata(
+  { params }: { params: Params },
+  parent: any
+) {
+  const { slug } = await params;
   const post = await getPost(slug);
   if (!post) return notFound();
 
@@ -23,17 +29,19 @@ export async function generateMetadata({ params }, parent) {
 
 export const generateStaticParams = async () => {
   const posts = await getPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts.map(post => ({ slug: post.slug }));
 };
 
-export default async function Page({ params }) {
-  const { slug } = params;
+export default async function Page({ params }: { params: Params }) {
+  const { slug } = await params;
   const post = await getPost(slug);
   if (!post) return notFound();
 
   return (
     <Article slug={slug} post={post}>
-      <PostBody>{post.body}</PostBody>
+      <Suspense fallback={<div>Loading...</div>}>
+        <PostBody source={post.content} />
+      </Suspense>
     </Article>
   );
 }
