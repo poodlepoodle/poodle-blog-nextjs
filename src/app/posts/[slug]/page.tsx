@@ -2,7 +2,7 @@ import Article from '@components/article';
 import { notFound } from 'next/navigation';
 import { getPost } from '@utils/get-post';
 import { getPosts } from '@utils/get-posts';
-import { PostBody } from '@/mdx/post-body';
+import { MDXContent } from '@components/mdx/mdx-content';
 import { Suspense } from 'react';
 
 type Params = Promise<{ slug: string }>;
@@ -39,8 +39,8 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <Article slug={slug} post={post}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <PostBody source={post.content} />
+      <Suspense>
+        <MDXContent source={post.content} />
       </Suspense>
     </Article>
   );

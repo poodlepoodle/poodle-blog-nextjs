@@ -19,7 +19,7 @@ export default async function Page() {
 
   return (
     <section className={styles.layout}>
-      <Suspense fallback={<div>로딩 중...</div>}>
+      <Suspense>
         <PostList posts={posts} tags={tags} />
       </Suspense>
     </section>
