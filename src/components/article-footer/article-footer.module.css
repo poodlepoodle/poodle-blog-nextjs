@@ -16,6 +16,9 @@
   justify-content: right;
   align-items: flex-end;
   column-gap: 0.75rem;
+  padding-right: 1.25rem;
+
+  border-right: 0.2rem solid #f0f0f0;
 }
 
 .profile__info {
