@@ -3,6 +3,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import remarkA11yEmoji from '@fec/remark-a11y-emoji';
 import { mdxComponents } from './components';
+import styles from './post-body.module.css';
 
 const options = {
   mdxOptions: {
@@ -24,7 +25,7 @@ const options = {
 
 export function PostBody({ children }) {
   return (
-    <article className="prose max-w-none pt-24 pb-4 px-14 text-lg space-y-12 break-keep">
+    <article className={styles.article}>
       <MDXRemote
         source={children}
         options={options}

@@ -1,0 +1,11 @@
+.article {
+  @apply prose max-w-none space-y-12 px-14 text-lg break-keep;
+}
+
+.article p {
+  @apply leading-9;
+}
+
+.article aside > p {
+  @apply border-l-2 border-[#f0f0f0] pl-5 text-base leading-7 font-normal text-[#acacac];
+}
