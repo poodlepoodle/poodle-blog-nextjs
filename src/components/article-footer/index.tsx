@@ -1,8 +1,13 @@
 import styles from './article-footer.module.css';
-
 import Image from 'next/image';
 
-export default function ArticleFooter({ observerRef, children }) {
+export default function ArticleFooter({
+  observerRef,
+  children,
+}: {
+  observerRef: React.RefObject<HTMLDivElement>;
+  children: React.ReactNode;
+}) {
   return (
     <section ref={observerRef} className={styles.layout}>
       <div className={styles.profile__container}>
