@@ -13,11 +13,9 @@ updated: false
 
 이 포스트에서는 독자의 ‘**몰입**’을 돕기 위한 간단한 마이크로 기능을 설계하고 기능을 구현한 내용을 공유해 보려고 합니다.
 
-<br />
-<br />
 ## 필요성
 
-[현재의 블로그를 디자인해 본 과정](https://poodlepoodle.me/blog/my-blog-design-journey)을 앞서 소개해 드린 적이 있었는데요,
+[현재의 블로그를 디자인해 본 과정](/posts/my-blog-design-journey)을 앞서 소개해 드린 적이 있었는데요,
 블로그를 백지부터 설계하며 카테고리 · 댓글 · 프로그레스 바 등의 마이크로 기능들을 필요하지 않은 것과 필요한 것으로 구분하는 것은 새로운 경험이었습니다.
 
 그중 ‘필요한 것’으로 분류하는 기준은 블로그 포스트를 읽는 도중 **집중을 방해하지 않는 요소**에 기반했습니다.
@@ -57,8 +55,6 @@ iOS의 모바일 사파리에서는 읽는 컨텐츠를 감지하면 ‘읽기 �
 이에 영감을 받아 읽는 순간 레이아웃의 배경 색을 낮은 밝기로 바꾼다면
 대비를 통해 가운데 컨테이너 영역에 시선을 더욱 집중시킬 수 있겠다는 아이디어가 떠올랐습니다.
 
-<br />
-<br />
 ## 설계
 
 ![Theater lights](/blog/posts/designing-a-blog-microfeature-for-better-immersion/theater-lights.webp?width=550)
@@ -85,8 +81,6 @@ iOS의 모바일 사파리에서는 읽는 컨텐츠를 감지하면 ‘읽기 �
 2. 푸터 부분이 등장하는 순간 배경 영역의 밝기를 원래대로 되돌린다.
 3. 스크롤이 다시 올라가는 경우에도 1, 2에 기반해 효과가 적용될 타이밍을 판정한다.
 
-<br />
-<br />
 ## 구현
 
 효과를 적용하는 조건은 **사용자가 스크롤한 높이가 헤더 영역 높이보다는 크고 푸터 영역의 높이보다는 작은 경우**입니다.
@@ -135,7 +129,6 @@ const scrollEnd = totalHeight - viewportHeight; // 스크롤 범위 종료
 현재 스크롤 높이는 **뷰포트 영역의 상단**을 기준으로 결정됩니다.
 따라서 화면 맨 아래까지 스크롤을 내렸을 때의 최대 스크롤 높이 값은
 브라우저의 전체 높이에서 뷰포트 높이를 뺀 값과 동일합니다.
-<br />
 
 ```jsx
 const totalHeight = document.documentElement.scrollHeight;
@@ -159,7 +152,6 @@ const isContentScrolled = // 컨텐츠 영역을 스크롤 중인지의 여부
 `scroll` 변수에 현재 스크롤 높이 값을 받아왔습니다.
 앞서 정의한 값들을 이용해 사용자가 스크롤한 높이가 헤더 영역 높이보다는 크고
 푸터 영역의 높이보다는 작은 경우를 `isContentScrolled`라는 조건으로 분리했어요.
-<br />
 
 ```jsx
 // @components/spotlight/index.jsx
@@ -213,7 +205,6 @@ export default function Spotlight() {
 
 ### 커스텀 훅으로 분리
 
-<br />
 
 ```jsx
 // @hooks/useSpotlight.js
@@ -303,7 +294,6 @@ export default function Spotlight() {
 애니메이션 타이밍을 효과적으로 적용할 필요가 있다고 생각했어요.
 사용자가 포스트에 진입한 후 스포트라이트 효과를 적용할 때는 빨려 들어가는 것처럼 애니메이션을 보여주고,
 빠져나올 때는 주의를 서서히 해소하도록 유도하고 싶었습니다.
-<br />
 
 ```css
 /* globals.css */
@@ -363,8 +353,6 @@ export default function Spotlight() {
 기능 구현을 마친 결과입니다. 의도한 대로 컨텐츠 영역에 스크롤이 진입하면 효과가 적용되고 이를 벗어나면 해제되는 것을 확인했습니다.
 _하지만…_
 
-<br />
-<br />
 ## 개선
 
 효과가 적용되고 해제되는 순간 트랜지션의 중간 연결 부분이 끊기듯이 표시되었어요.
@@ -390,7 +378,6 @@ _하지만…_
 몰입을 돕는 과정에 보탬이 될 것으로 생각했지만 지연 시간을 해결하지 못한다면
 굳이 `body`의 배경 색상을 상속해 표시할 필요가 없었어요.
 또 브라우저 테마 지원 기능이 읽는 데 결정적으로 도움을 주는 부분은 아니기도 했고요.
-<br />
 
 ```css
 /* article-background.module.css */
@@ -479,7 +466,6 @@ export default function ArticleBackground({ children }) {
 스포트라이트 효과에서 사용한 스크롤 이벤트의 핸들러 함수는 바로 배경 색상을 변경하는 대신 ‘상태’를 변경합니다.
 따라서 매 스크롤 동작마다 repaint가 발생하지는 않습니다.
 그럼에도 불구하고, 스크롤 높이를 매번 계산하는 핸들러의 동작 또한 매 스크롤 이벤트마다 실행하기에는 충분히 과부하가 될 수 있다고 느꼈습니다.
-<br />
 
 ```jsx
 // @hooks/useSpotlight.js
@@ -561,7 +547,6 @@ Intersection Observer API를 이용할 경우 헤더와 푸터가 화면에서 �
 다양한 뷰포트 크기에서의 적용 타이밍도 더욱 일관적으로 제공될 수 있겠다고 생각했어요.
 이처럼 성능과 디바이스 환경을 고려할 때 여러모로
 Intersection Observer API를 이용해 `useSpotlight()` 훅의 기능을 리팩토링해야겠다고 결정했습니다.
-<br />
 
 ```jsx
 // @hooks/useSpotlight.js
@@ -608,7 +593,6 @@ export default function useSpotlight() {
 헤더와 푸터 영역을 선택하기 위해 두 개의 `ref`를 정의했고 이를 `observer`의 대상으로 등록했어요.
 각 관찰 대상이 뷰포트에 등장하는지의 여부는 `entry.isIntersecting` 속성을 통해 접근했으며,
 모든 요소가 화면 밖으로 벗어나는 경우에 스포트라이트 효과의 적용 여부를 나타내는 `spotlighted` 상태를 `true`로 설정했습니다.
-<br />
 
 ```jsx
 // @components/article/index.jsx
@@ -686,8 +670,6 @@ Intersection Observer API를 이용하는 방식으로 `useSpotlight()` 훅을 �
 스크롤을 내림에 따라 여러 번 호출되었던 개선 전에 비해
 헤더와 푸터가 화면에 등장하고 사라지는 순간에만 호출되도록 변경되었으므로 호출 횟수가 확연히 줄어들었습니다.
 
-<br />
-<br />
 ## 마치며
 
 [Gatsby](https://www.gatsbyjs.com/), [Next.js](https://nextjs.org/) 등의 도구를 이용해
@@ -704,8 +686,6 @@ Intersection Observer API를 이용하는 방식으로 `useSpotlight()` 훅을 �
 
 > 🔦 스포트라이트 효과의 성능 개선 작업을 진행한 PR은 [여기](https://github.com/poodlepoodle/poodle-blog-nextjs/pull/12)서 확인하실 수 있습니다!
 
-<br />
-<br />
 ## 참고
 
 - [F-Shaped Pattern of Reading on the Web: Misunderstood, But Still Relevant | Kara Pernice](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/)

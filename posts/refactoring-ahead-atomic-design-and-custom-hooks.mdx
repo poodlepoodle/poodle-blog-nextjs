@@ -17,8 +17,6 @@ updated: false
 3월 한 달 동안 감사하게도 100명이 넘는 사용자가 서비스를 찾아 주었고, 이에 따라 팀에서는 기존의 기능을 수정하거나 새로운 화면을 추가하는 작업이 빈번했어요.
 인스타그램 홍보와 외부 홍보 부스를 마련할 기회가 몇 번 더 있었기 때문에, 추가 유입을 위해서는 사용성 피드백에 즉각 대응해 최대한 빠르게 수정 사항을 적용해야 했습니다.
 
-<br />
-<br />
 ## 1. 리팩토링을 결정하기까지
 
 작은 단위의 기능을 여러 화면에 걸쳐 빠르게 추가하는 일이 잦아지자, 기존 프로젝트 구조에서 불편한 점이 다수 느껴졌습니다.
@@ -91,7 +89,6 @@ src
 시즈닝은 Styled-components를 사용해 스타일링을 한 덕분에 각 컴포넌트에 대해서 스타일 오염에 대한 걱정 없이 관리할 수 있었고
 JSX 코드상으로도 DOM을 구성하는 각 부분의 역할이 명확하게 드러나 편리했습니다.
 대신 하나의 컴포넌트나 페이지 파일의 코드가 너무 길어진다는 단점이 있었어요.
-<br />
 
 ```jsx
 // @components/write/ImageSlider.jsx
@@ -155,7 +152,6 @@ export default ImageSlider;
 기능과 뷰를 부분적으로 나누어 관리할 수 있다면 충돌에 대한 염려를 줄일 수 있는 부분이라고 생각했어요.
 
 그뿐만 아니라 여러 컴포넌트에서 동일한 로직을 공유하는 부분들도 있었습니다.
-<br />
 
 ```jsx
 // @pages/feed/FeedPage.jsx
@@ -213,7 +209,6 @@ export default FeedPage;
 하지만 컴포넌트가 의존하는 뷰와 로직을 분리할 수 있다면 공유되는 로직에 관한 부분들 또한 효율적으로 재사용하도록 개선할 수 있겠다고 생각했어요.
 
 **3. 혼란스러운 스타일링 규칙들**
-<br />
 
 ```jsx
 // @components/.../SomeComponent.jsx
@@ -259,8 +254,6 @@ const IconWrapper = styled.div`
 또한 서비스를 구성하는 컴포넌트와 비즈니스 로직을 리팩토링하려면 프로젝트의 세세한 부분까지 수정할 필요가 있으므로,
 그 과정에서 일관된 컨벤션을 확립하고 이를 적용해 나가는 것 또한 부차적으로 신경 쓸 수 있겠다고 생각했습니다.
 
-<br />
-<br />
 ## 2. 아토믹 디자인에 기반한 재사용 가능한 컴포넌트 구조
 
 ![Atomic design concept by Brad Frost](/blog/posts/refactoring-ahead-atomic-design-and-custom-hooks/atomic-design-brad-frost.webp?width=550)
@@ -337,7 +330,6 @@ Atom을 적용한 여러 사례를 참고하며 컴포넌트에 필요한 기본
 컴포넌트를 사용하는 시점에 필요한 스타일을 추가로 주입하도록 하는 패턴을 봤는데요,
 이는 납득할 수 있는 좋은 방법이라고 느꼈으나 어디까지 주입하게 할 지에 대해서는 시즈닝의 상황에 집중해 고민할 필요가 있다고 생각했습니다.
 따라서 시즈닝의 디자인 시스템에 기반해 각 atom 컴포넌트가 사용될 수 있는 여러 상황을 충분히 고려하고, 자주 변경되는 속성만을 기본 props로 정의했습니다.
-<br />
 
 ```jsx
 // atoms/Text/index.jsx
@@ -414,7 +406,6 @@ props로 주입하는 방식이 효과적이라고 느꼈습니다.
 기존에 Styled-components를 사용해 각 컴포넌트에 독립적인 스타일링을 적용하는 방식은 분명 편리한 점이 있었습니다.
 문제는 각 컴포넌트 파일의 길이가 너무 길어지고 뷰(스타일)와 로직을 구분하기 어려웠다는 부분이었어요.
 그리고 이를 해결할 만한 좋은 방법을 정리한 포스트를 찾았습니다.
-<br />
 
 ```jsx
 // SomeComponent/style.js
@@ -563,7 +554,6 @@ Template과 page는 특정 페이지에 해당하는 내용만을 표현하기 �
 
 하지만 동일한 원리로 모달의 공통 배경 영역을 분리하는 레이아웃을 활용하는 경우에는 공통 바깥 레이아웃 영역을 template으로 분리하도록 하면
 molecule에 해당하는 컴포넌트에서 상위 template을 포함하는 코드가 되고, 이는 자연스럽지 않다고 생각했어요.
-<br />
 
 ```jsx
 // hoc/withNavigation/index.jsx
@@ -622,7 +612,6 @@ template 내에서 함께 export해서 사용했습니다. 모달의 경우도 �
 *(Context에 대해서는 아래에서 한 번 더 말씀드리려고 합니다.)*
 
 ### 아토믹 디자인 적용 후 개선된 프로젝트 구조
-<br />
 
 ```js
 src
@@ -662,8 +651,6 @@ src
 새로 추가해야 하는 페이지와 기능이 간단한 이유도 있었겠지만,
 적어도 이전에 비해 이미 디자인 시스템 안에 있는 컴포넌트를 활용하는 작업이 놀라울 정도로 직관적이라는 사실을 체감했습니다.
 
-<br />
-<br />
 ## 3. 커스텀 훅을 이용한 재사용 가능한 비즈니스 로직의 분리
 
 - 참고: [Hook의 개요 | React Documentation (legacy)](https://ko.legacy.reactjs.org/docs/hooks-intro.html)
@@ -698,7 +685,6 @@ React에서는 각 값에 대응하는 `<input />` 필드의 이벤트를 핸들
 
 16.8 버전 이전 React에서 주로 사용했던 클래스형 컴포넌트는 로직을 재사용하기에는 적절치 않은 구조였습니다.
 컴포넌트 사이에서 공유하는 로직을 사용하기 위해서는 컴포넌트를 입력받아 다른 컴포넌트를 반환하는 HoC 패턴 등을 강제적으로 사용해야 했습니다.
-<br />
 
 ```jsx
 // withFormHandler.js
@@ -759,7 +745,6 @@ export default withFormHandler(SignUpForm);
 즉 **Wrapper Hell**를 자연스레 유발하게 됩니다. 이는 보기에도 좋지 않지만 props를 다루는 방식에서 더욱 복잡했습니다.
 
 ### Custom Hooks
-<br />
 
 ```jsx
 // useForm.js
@@ -820,7 +805,6 @@ export default SignUpForm;
 
 하지만 page가 데이터와 비즈니스 로직을 관리하고 또 제공하는 두 가지 역할을 맡게 되면서 page 내 코드가 너무 길어질 수 있다는 문제를 발견했습니다.
 Context를 provide하는 부분은 문맥상 page 안에 위치하는 게 적절했지만, context에 포함될 비즈니스 로직까지 전부 page에 위치시킬 필요는 없다고 느꼈어요.
-<br />
 
 ```jsx
 // pages/NotificationPage.jsx
@@ -879,7 +863,6 @@ export function createNotificationContext(loaderData) {
 또한 context의 provider와 consumer를 위한 인터페이스를 `create*PageContext()`, `use*PageContext()`로 제공해
 page와 template에서 사용하도록 했습니다.
 그 결과, context 영역을 page에서 분리함으로써 page가 전역 context의 provider 역할만을 수행하도록 할 수 있었습니다.
-<br />
 
 ```jsx
 // pages/NoticePage.jsx
@@ -909,7 +892,6 @@ template으로 내려 주는 props로 fetch한 공지사항 데이터를 전달�
 해당 페이지들의 로직을 살펴보면 `useState()`로 입력 필드의 값을 상태로 관리하거나
 `useEffect()`로 전체 폼의 유효성을 검사하는 등 기본 훅을 활용하고 있었기 때문에, 커스텀 훅으로 분리하기에 적절했습니다.
 특히 게시글 작성 페이지와 수정 페이지의 경우는 초깃값을 전달하는 부분을 제외하면 같은 로직만으로 구성되었다고 봐도 무방했어요.
-<br />
 
 ```jsx
 // hooks/useProfileForm.jsx
@@ -1009,7 +991,6 @@ export function createEditProfileContext(loaderData) {
 예시로 프로필 수정 페이지와 게시글 작성 및 수정 페이지에서는 공통으로 이미지 형식의 파일 입력 기능을 제공합니다.
 프로필 수정 페이지는 단일 이미지 첨부, 게시글 작성 페이지에서는 최대 2개의 이미지를 첨부한다는 차이는 있었지만
 이미지 업로드 및 교체 등 제공하는 기능이 거의 동일했기에 커스텀 훅으로 분리해 볼 수 있는 부분이라고 생각했습니다.
-<br />
 
 ```jsx
 // hooks/useImageForm.jsx
@@ -1091,12 +1072,9 @@ export default function useProfileForm(initialUserData) {
 외부에는 꼭 필요한 인터페이스만을 제공하도록 숨길 수 있었다는 점입니다.
 덕분에 꼭 전달해야 할 데이터만을 전달함으로써 **props drilling** 문제를 부분적으로 개선했습니다.
 
-<br />
-<br />
 ## 4. 리팩토링을 마치며
 
 ### 커스텀 훅 적용 후 개선된 프로젝트 구조
-<br />
 
 ```js
 src
@@ -1247,8 +1225,6 @@ context의 provider와 consumer 사이에 인터페이스가 정의되면 좋겠
 끝으로, 이 포스트에서 진행한 리팩토링 작업은 크게 두 Issue로 나누어 작업했으며 위 PR 링크를 통해 더 자세히 확인할 수 있습니다.
 긴 글 읽어 주셔서 감사드려요. 😙
 
-<br />
-<br />
 ## References
 
 - 아토믹 디자인에 관해
