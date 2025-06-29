@@ -20,8 +20,15 @@ export default function MDXImage({ src, alt, width, height }: MDXImageProps) {
   } as const;
 
   if (imageWidth) {
-    return <Image {...baseProps} width={imageWidth} height={height || 100} />;
+    return (
+      <Image
+        {...baseProps}
+        width={imageWidth}
+        height={height || 100}
+        alt={alt}
+      />
+    );
   }
 
-  return <Image {...baseProps} fill />;
+  return <Image {...baseProps} fill alt={alt} />;
 }

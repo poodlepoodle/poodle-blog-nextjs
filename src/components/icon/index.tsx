@@ -36,7 +36,10 @@ export default function Icon({
             height,
             fill: color,
           };
-          return React.cloneElement(child as React.ReactElement<any>, svgProps);
+          return React.cloneElement(
+            child as React.ReactElement<React.SVGProps<SVGSVGElement>>,
+            svgProps
+          );
         }
         return child;
       })}

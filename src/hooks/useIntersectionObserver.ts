@@ -9,11 +9,21 @@ export default function useIntersectionObserver({
   numRefs,
   setState,
 }: UseIntersectionObserverProps) {
-  const refs = Array.from({ length: numRefs }, () => useRef(null));
+  const refsArray = useRef<Array<React.RefObject<HTMLElement | null>>>([]);
   const intersectionStatesRef = useRef(new Map());
   const isInitialMountRef = useRef(true);
 
+  // Initialize refs array only once
+  if (!refsArray.current || refsArray.current.length !== numRefs) {
+    refsArray.current = Array.from({ length: numRefs }, () => ({
+      current: null,
+    }));
+  }
+
   useEffect(() => {
+    const refs = refsArray.current;
+    if (!refs) return;
+
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       // 각 요소의 intersection 상태를 개별적으로 업데이트
       entries.forEach(entry => {
@@ -62,7 +72,7 @@ export default function useIntersectionObserver({
         if (ref.current) observer.unobserve(ref.current);
       });
     };
-  }, []);
+  }, [numRefs, setState]);
 
-  return refs;
+  return refsArray.current || [];
 }
