@@ -31,12 +31,12 @@ export default function Icon({
         if (!React.isValidElement(child)) return child;
 
         if (child.type === 'svg') {
-          return React.cloneElement(child, {
+          const svgProps = {
             width,
             height,
             fill: color,
-            ...child.props,
-          });
+          };
+          return React.cloneElement(child as React.ReactElement<any>, svgProps);
         }
         return child;
       })}
