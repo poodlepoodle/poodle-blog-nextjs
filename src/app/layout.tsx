@@ -1,10 +1,11 @@
+import type { Metadata } from 'next';
+
 import './globals.css';
-import HeaderAnchor from '@components/header/anchor';
+import HeaderAnchor from '@components/header-anchor';
 import Header from '@components/header';
 import Footer from '@components/footer';
 import { Analytics } from '@vercel/analytics/react';
 import { BlogContextProvider } from '@contexts/BlogContext';
-import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Home ••• poodlepoodle',

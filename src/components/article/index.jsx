@@ -14,10 +14,12 @@ export default function Article({ slug, post, children }) {
   const { isSpotlighted, setIsSpotlighted, setHeaderText } = useBlogContext();
 
   useEffect(() => {
+    // 초기 마운트 시 명시적으로 false로 설정
+    setIsSpotlighted(false);
     setHeaderText(post.title);
 
     return () => {
-      setTimeout(() => setIsSpotlighted(false), 0);
+      setIsSpotlighted(false);
       setHeaderText('');
     };
   }, []);
