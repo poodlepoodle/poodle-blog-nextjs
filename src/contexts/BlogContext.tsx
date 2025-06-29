@@ -1,9 +1,22 @@
 'use client';
 import { createContext, useState, useContext } from 'react';
 
-const BlogContext = createContext(null);
+export type BlogContextType = {
+  isFloating: boolean;
+  setIsFloating: (isFloating: boolean) => void;
+  isSpotlighted: boolean;
+  setIsSpotlighted: (isSpotlighted: boolean) => void;
+  headerText: string;
+  setHeaderText: (headerText: string) => void;
+};
 
-export function BlogContextProvider({ children }) {
+type BlogContextProviderProps = {
+  children: React.ReactNode;
+};
+
+const BlogContext = createContext<BlogContextType | null>(null);
+
+export function BlogContextProvider({ children }: BlogContextProviderProps) {
   const [isFloating, setIsFloating] = useState(false);
   const [isSpotlighted, setIsSpotlighted] = useState(false);
   const [headerText, setHeaderText] = useState('');
