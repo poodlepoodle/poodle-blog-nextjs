@@ -1,8 +1,8 @@
 'use client';
 
 import styles from './banner.module.css';
-import Image from 'next/image';
 import Link from 'next/link';
+import ResponsiveImage from '@components/responsive-image';
 import { useEffect, useRef } from 'react';
 
 interface BannerData {
@@ -84,12 +84,7 @@ export default function Banner() {
       className={styles.container}
       ref={containerRef}
     >
-      <Image
-        src={bannerItem.imageSrc}
-        alt="blog home banner image"
-        fill
-        style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
-      />
+      <ResponsiveImage src={bannerItem.imageSrc} alt="blog home banner image" />
       <span className={styles.banner__text}>{bannerItem.text}</span>
     </Link>
   );

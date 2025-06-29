@@ -1,8 +1,8 @@
 'use client';
 
 import styles from './post-grid-item.module.css';
-import Image from 'next/image';
 import Link from 'next/link';
+import ResponsiveImage from '@components/responsive-image';
 import { useEffect, useRef } from 'react';
 
 export default function PostGridItem({ post, className }) {
@@ -69,11 +69,9 @@ export default function PostGridItem({ post, className }) {
     >
       <div className={styles.container}>
         <div className={styles.thumbnail__container} ref={containerRef}>
-          <Image
+          <ResponsiveImage
             src={`/blog/posts/${slug}/thumbnail-large.jpg`}
             alt="post thumbnail"
-            fill
-            style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
           />
         </div>
 

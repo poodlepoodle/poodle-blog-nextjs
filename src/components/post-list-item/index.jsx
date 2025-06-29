@@ -1,5 +1,5 @@
 import styles from './post-list-item.module.css';
-import Image from 'next/image';
+import ResponsiveImage from '@components/responsive-image';
 import Link from 'next/link';
 import Chip from '@components/chip';
 
@@ -35,11 +35,9 @@ export default function PostListItem({ post }) {
       </div>
 
       <div className={styles.thumbnail__container}>
-        <Image
+        <ResponsiveImage
           src={`/blog/posts/${slug}/thumbnail.jpg`}
           alt="post thumbnail"
-          fill
-          style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
         />
       </div>
     </Link>

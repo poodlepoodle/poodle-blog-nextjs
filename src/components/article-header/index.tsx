@@ -1,6 +1,6 @@
 import styles from './article-header.module.css';
-import Image from 'next/image';
 import Chip from '@components/chip';
+import ResponsiveImage from '@components/responsive-image';
 
 export default function ArticleHeader({
   observerRef,
@@ -31,11 +31,10 @@ export default function ArticleHeader({
       </section>
 
       <section className={styles.thumbnail__container}>
-        <Image
+        <ResponsiveImage
           src={`/blog/posts/${slug}/thumbnail-large.jpg`}
           alt="post thumbnail"
-          fill
-          style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
+          style={{ overflow: 'hidden', borderRadius: '1rem' }}
         />
       </section>
     </div>
