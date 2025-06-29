@@ -61,16 +61,18 @@ export default function Header() {
           </div>
         )}
 
-        <nav className={styles.nav}>
-          {NAV_ITEMS.map(
-            ({ label, href, disabled }) =>
-              !disabled && (
-                <Link key={href} href={href}>
-                  {label}
-                </Link>
-              )
-          )}
-        </nav>
+        {!(isSpotlighted && !!headerText) && (
+          <nav className={styles.nav}>
+            {NAV_ITEMS.map(
+              ({ label, href, disabled }) =>
+                !disabled && (
+                  <Link key={href} href={href}>
+                    {label}
+                  </Link>
+                )
+            )}
+          </nav>
+        )}
       </div>
     </header>
   );
