@@ -21,7 +21,7 @@
 }
 
 .floating {
-  border-bottom: 0.5px solid #cacaca;
+  border-bottom: 0.5px solid var(--color-gray-2);
 }
 
 .spotlighted {
@@ -73,7 +73,7 @@
   -webkit-line-clamp: 1;
   overflow: hidden;
 
-  color: #131926;
+  color: var(--color-black);
   leading-trim: both;
   text-edge: cap;
 
@@ -95,7 +95,7 @@
   font-weight: 400;
   line-height: normal;
 
-  color: #131926;
+  color: var(--color-black);
 }
 
 .nav > a {

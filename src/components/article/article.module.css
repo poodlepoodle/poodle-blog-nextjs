@@ -11,12 +11,12 @@
 
 .light {
   transition: background-color 0.45s ease-in;
-  background-color: #f9fbfc;
+  background-color: var(--color-background);
 }
 
 .dark {
   transition: background-color 0.5s ease-out;
-  background-color: #131926;
+  background-color: var(--color-black);
 }
 
 .container {
@@ -32,5 +32,5 @@
   row-gap: 4rem;
 
   border-radius: 1rem;
-  background-color: white;
+  background-color: var(--color-white);
 }

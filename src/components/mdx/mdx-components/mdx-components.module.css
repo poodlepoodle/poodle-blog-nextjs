@@ -19,15 +19,15 @@
 }
 
 .mdx__code {
-  border: 0.1rem solid #efefef;
-  border-radius: 1.5rem;
+  border: 0.5px solid var(--color-gray-2);
+  border-radius: 2rem;
   font-size: 1rem;
 }
 
 .mdx__blockquote {
   padding-left: 1.25rem;
-  border-left: 0.2rem solid #f0f0f0;
-  color: #acacac;
+  border-left: 0.2rem solid var(--color-gray-1);
+  color: var(--color-gray-3);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.75rem;
@@ -45,5 +45,5 @@
 }
 
 .mdx__list li::marker {
-  color: #c0c0c0;
+  color: var(--color-gray-3);
 }

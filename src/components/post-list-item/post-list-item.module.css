@@ -5,10 +5,9 @@
 
   display: flex;
   justify-content: space-between;
-
   border-radius: 0.75rem;
 
-  background-color: white;
+  background-color: var(--color-white);
 }
 
 .content__container {
@@ -64,7 +63,7 @@
   font-weight: 400;
   line-height: normal;
 
-  color: #131926;
+  color: var(--color-black);
 }
 
 .title {
@@ -83,10 +82,9 @@
   font-style: normal;
   font-weight: 600;
   line-height: 1.75rem;
-
-  color: #131926;
-
   word-break: keep-all;
+
+  color: var(--color-black);
 }
 
 @media (min-width: 840px) {
@@ -118,8 +116,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
-  color: #adadad;
-
   word-break: keep-all;
+
+  color: var(--color-gray-3);
 }

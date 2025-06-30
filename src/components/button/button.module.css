@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
 
-  border: 0.5px solid #cacaca;
+  border: 0.5px solid var(--color-gray-2);
   border-radius: 0.75rem;
 
   font-size: 0.875rem;
@@ -14,12 +14,12 @@
   font-weight: 500;
   line-height: normal;
 
-  color: #131926;
+  color: var(--color-black);
   transition: 0.2s all ease-in-out;
 }
 
 .layout:hover {
   border: 0.5px solid transparent;
-  background-color: #131926;
-  color: white;
+  background-color: var(--color-black);
+  color: var(--color-white);
 }

@@ -84,7 +84,7 @@
   font-weight: 400;
   line-height: normal;
 
-  color: #131926;
+  color: var(--color-black);
 }
 
 .title {
@@ -110,7 +110,7 @@
   -webkit-line-clamp: 1;
   overflow: hidden;
 
-  color: #131926;
+  color: var(--color-black);
 }
 
 @media (min-width: 840px) {

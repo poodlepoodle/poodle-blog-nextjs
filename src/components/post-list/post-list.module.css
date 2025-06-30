@@ -35,19 +35,6 @@
   row-gap: 1.5rem;
 }
 
-.result_container > span {
-  color: #adadad;
-  text-align: center;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.result_container > span > strong {
-  font-weight: 600;
-}
-
 @media (min-width: 840px) {
   .grid_item_large {
     grid-column: span 2;

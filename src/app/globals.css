@@ -2,6 +2,17 @@
 @plugin "@tailwindcss/typography";
 @config "../../tailwind.config.mjs";
 
+:root {
+  --color-white: #ffffff;
+  --color-background: #f9fbfc;
+  --color-gray-1: #f1f4f7;
+  --color-gray-2: #cacaca;
+  --color-gray-3: #adadad;
+  --color-black: #131926;
+  --color-skyblue: #5fd0ff;
+  --color-blue: #1b2bb2;
+}
+
 html {
   font-size: 14px;
 }
@@ -18,8 +29,7 @@ body {
   overflow-x: hidden;
 
   font-family: 'Pretendard', 'Noto Sans', sans-serif;
-
-  background-color: #f9fbfc;
+  background-color: var(--color-background);
 }
 
 a {

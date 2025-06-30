@@ -16,9 +16,9 @@
   justify-content: right;
   align-items: flex-end;
   column-gap: 0.75rem;
-  padding-right: 1.25rem;
 
-  border-right: 0.2rem solid #f0f0f0;
+  padding-right: 1.25rem;
+  border-right: 0.2rem solid var(--color-gray-1);
 }
 
 .profile__info {
@@ -30,7 +30,7 @@
 }
 
 .profile__info > span {
-  color: #bbb;
+  color: var(--color-gray-2);
   text-align: right;
   leading-trim: both;
   text-edge: cap;
@@ -41,7 +41,7 @@
 }
 
 .profile__info > h6 {
-  color: #131926;
+  color: var(--color-black);
   text-align: right;
   leading-trim: both;
   text-edge: cap;

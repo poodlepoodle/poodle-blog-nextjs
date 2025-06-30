@@ -7,8 +7,8 @@
   display: flex;
   justify-content: center;
 
-  border-top: 0.5px solid #cacaca;
-  background-color: #f1f4f7;
+  border-top: 0.5px solid var(--color-gray-2);
+  background-color: var(--color-gray-1);
 }
 
 .container {
@@ -23,7 +23,7 @@
 }
 
 .copyright {
-  color: #adadad;
+  color: var(--color-gray-3);
 
   font-size: 0.875rem;
   font-style: normal;
@@ -35,7 +35,7 @@
   display: flex;
   column-gap: 3rem;
 
-  color: #131926;
+  color: var(--color-black);
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
