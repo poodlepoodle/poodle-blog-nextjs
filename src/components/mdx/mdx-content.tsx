@@ -30,7 +30,7 @@ interface MDXContentProps {
 
 export function MDXContent({ source }: MDXContentProps) {
   return (
-    <article className="prose max-w-none px-14 text-base leading-8 break-keep md:text-lg md:leading-9 [&>*]:my-10 [&>h2]:pt-20 [&>h3]:pt-10">
+    <article className="prose max-w-none px-20 text-base leading-8 break-keep md:text-lg md:leading-9 [&>*]:my-10 [&>h2]:pt-20 [&>h3]:pt-10">
       <MDXRemote source={source} options={options} components={mdxComponents} />
     </article>
   );
