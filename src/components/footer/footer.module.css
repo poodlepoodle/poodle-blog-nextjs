@@ -51,8 +51,4 @@
   &:hover {
     opacity: 0.5;
   }
-
-  svg {
-    margin-bottom: 0.125rem;
-  }
 }

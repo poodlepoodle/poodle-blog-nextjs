@@ -5,11 +5,11 @@ import Icon from '@components/icon';
 const navItems = [
   {
     href: 'mailto: chammal97@naver.com',
-    label: 'Email',
+    label: 'email',
   },
   {
     href: 'https://github.com/poodlepoodle',
-    label: 'Github',
+    label: 'github',
   },
 ];
 
