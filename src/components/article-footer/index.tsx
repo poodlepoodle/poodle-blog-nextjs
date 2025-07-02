@@ -17,7 +17,7 @@ export default function ArticleFooter({
         </div>
         <div className={styles.profile__image}>
           <Image
-            src={`/blog/article-profile.png`}
+            src={`/components/article-footer/profile.png`}
             alt="article profile"
             fill
             style={{ objectFit: 'cover', borderRadius: '50%' }}

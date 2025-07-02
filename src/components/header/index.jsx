@@ -50,7 +50,7 @@ export default function Header() {
           <div className={styles.profile__container}>
             <Link href="/">
               <Image
-                src={`/blog/new-wave.png`}
+                src={`/components/header/wave.png`}
                 alt="profile pic in top navigation"
                 fill
                 style={{

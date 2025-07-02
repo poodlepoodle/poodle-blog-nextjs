@@ -16,7 +16,7 @@ const BANNER_DATA: BannerData[] = [
   {
     id: 1,
     href: '/about',
-    imageSrc: '/blog/banner.jpg',
+    imageSrc: '/components/banner/banner-background.jpg',
     text: '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
   },
 ];
