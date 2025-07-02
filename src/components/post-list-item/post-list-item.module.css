@@ -73,11 +73,6 @@
   column-gap: 0.5rem;
 }
 
-.title > svg {
-  width: 0.375rem;
-  height: 0.375rem;
-}
-
 .title > span {
   font-style: normal;
   font-weight: 600;
