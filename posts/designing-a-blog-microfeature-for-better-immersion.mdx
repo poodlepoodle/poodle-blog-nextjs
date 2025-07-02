@@ -1,9 +1,9 @@
 ---
 title: '독자를 포스트에 몰입시키는 마이크로 기능 추가하기'
 publishedAt: 2024. 08. 30
-description: '블로그 포스트에 더욱 자연스럽게 집중할 수 있도록 돕는 ‘스포트라이트 효과’를 직접 설계하고 구현했어요.'
+description: '블로그 포스트에 더욱 자연스럽게 집중할 수 있도록 돕는 ‘스포트라이트 효과’를 직접 설계하고 구현한 과정을 소개합니다.'
 slug: 'designing-a-blog-microfeature-for-better-immersion'
-tags: ['blog', 'interaction', 'ux']
+tags: ['blog', 'interaction', 'performance', 'ux']
 updated: false
 ---
 
@@ -20,7 +20,7 @@ updated: false
 
 그중 ‘필요한 것’으로 분류하는 기준은 블로그 포스트를 읽는 도중 **집중을 방해하지 않는 요소**에 기반했습니다.
 
-![F reading pattern](/blog/posts/designing-a-blog-microfeature-for-better-immersion/f-reading-pattern.webp)
+![F reading pattern](/posts/designing-a-blog-microfeature-for-better-immersion/f-reading-pattern.webp)
 
 - 참고: [F-Shaped Pattern of Reading on the Web: Misunderstood, But Still Relevant | Kara Pernice](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/)
 
@@ -32,21 +32,21 @@ updated: false
 
 모든 경우에 ‘F’ 패턴이 적용되는 것은 아닙니다.
 원문에서도 텍스트의 특성이나 제공하는 서식에 따라서 ‘레이어 케이크 패턴’,
-‘마킹 패턴’ 등 다양한 읽는 패턴이 적용될 수 있다고 소개하고 있어요.
+‘마킹 패턴’ 등 다양한 읽는 패턴이 적용될 수 있다고 소개하고 있습니다.
 이는 웹 페이지를 설계하는 사람이 방문자에게 읽는 경로에 대한 단서를 어떻게 제공하는지에 따라 달라지는 부분입니다.
 
-블로그 포스트의 레이아웃을 설계하면서, 위의 내용을 참고해 ‘F’ 패턴을 방지하고
+블로그 포스트의 레이아웃을 설계하며, 위의 내용을 참고해 ‘F’ 패턴을 방지하고
 독자들이 집중력을 최대한 잃지 않는 방법을 고민했습니다.
-블로그에 게시하려는 대부분의 포스트가 읽는 데 최소 5분 이상이 소요되는 컨텐츠로 예상했기 때문에
+블로그에 게시하려는 대부분의 포스트가 읽는 데 최소 5분 이상이 소요되는 컨텐츠로 예상했기 때문에,
 독자가 집중하는 데 방해가 되는 요소를 배제하고 가이드라인을 제시하는 것이 중요하다고 판단했습니다.
 
-![Centered content container layout](/blog/posts/designing-a-blog-microfeature-for-better-immersion/placed-center-content-container.webp)
+![Centered content container layout](/posts/designing-a-blog-microfeature-for-better-immersion/placed-center-content-container.webp)
 
 따라서 뷰포트의 가로를 전부 활용하는 대신, 가운데에 컨테이너 영역을 배치하고
 컨텐츠가 표시되는 범위를 컨테이너 영역에 한정하는 것이 적절하다고 느꼈습니다.
-컨텐츠를 가운데 영역에만 표시함으로써 가로로 이동하는 시선의 피로감을 줄이고 스크롤 아래쪽으로 이어지는 집중에 도움을 줄 수 있겠다고 생각했어요.
+컨텐츠를 가운데 영역에만 표시함으로써 수평으로 이동하는 시선의 피로감을 줄이고 스크롤 아래쪽으로 이어지는 집중에 도움을 줄 수 있겠다고 생각했어요.
 
-![A spotlight effect idea](/blog/posts/designing-a-blog-microfeature-for-better-immersion/spotlight-effect-idea.webp)
+![A spotlight effect idea](/posts/designing-a-blog-microfeature-for-better-immersion/spotlight-effect-idea.webp)
 
 가운데 컨테이너 영역을 나누기로 결정한 순간부터 이와 더불어 꼭 넣고 싶었던 인터랙션이 있었습니다.
 스크롤을 내림에 따라 작동하는 ‘**스포트라이트<sub>spotlight</sub> 효과**’입니다.
@@ -57,7 +57,7 @@ iOS의 모바일 사파리에서는 읽는 컨텐츠를 감지하면 ‘읽기 �
 
 ## 설계
 
-![Theater lights](/blog/posts/designing-a-blog-microfeature-for-better-immersion/theater-lights.webp?width=550)
+![Theater lights](/posts/designing-a-blog-microfeature-for-better-immersion/theater-lights.webp?width=550)
 
 > 🔗 출처: https://ovationlights.com/knowledge-base/how-to-choose-the-right-theatrical-lighting-fixture/
 
@@ -68,12 +68,12 @@ iOS의 모바일 사파리에서는 읽는 컨텐츠를 감지하면 ‘읽기 �
 따라서, ‘스포트라이트 효과’는 처음부터 적용하기보다 **사용자가 컨텐츠 영역에 진입하는 순간**에 적용되는 것이 가장 좋다고 판단했습니다.
 해당하는 시점에 변화하는 애니메이션을 보여 주는 것이 핵심이었어요.
 
-![Post structure and animation timing](/blog/posts/designing-a-blog-microfeature-for-better-immersion/post-structure-and-animation-timing.webp)
+![Post structure and animation timing](/posts/designing-a-blog-microfeature-for-better-immersion/post-structure-and-animation-timing.webp)
 
 블로그 포스트 페이지의 레이아웃 영역은 크게 **헤더**, **컨텐츠**, **푸터**로 나뉩니다.
-헤더에서는 포스트의 제목이나 연관 태그, 작성일과 같은 정보를 표시하고 푸터에서는 `giscus`를 이용한 댓글 기능을 제공했어요.
+헤더에서는 포스트의 제목이나 연관 태그, 작성일과 같은 정보를 표시하고 푸터에서는 `giscus`를 이용한 댓글 기능을 제공했습니다.
 포스트의 핵심 컨텐츠는 헤더와 푸터 중간 영역에 위치했기 때문에
-독자가 스크롤을 내려 중간의 컨텐츠 부분을 보게 되는 순간에 효과를 적용하는 게 적절하다고 생각했습니다.
+독자가 스크롤을 내려 중간 컨텐츠 부분을 보게 되는 순간에 효과를 적용하는 게 적절하다고 생각했습니다.
 
 결과적으로, 효과가 적용되는 세부 타이밍을 아래와 같이 정리했습니다.
 
@@ -89,9 +89,9 @@ iOS의 모바일 사파리에서는 읽는 컨텐츠를 감지하면 ‘읽기 �
 
 ### 화면의 높이와 스크롤 속성에 접근하기
 
-이에 따라서 페이지 전체의 높이와 현재 스크롤한 높이를 알아낼 방법이 필요했어요.
-자바스크립트에서 이 값에 접근할 방법이 `document`와 `window` 등 여러 가지가 있다고 알고 있었는데,
-각 객체가 제공하는 값에 어떤 차이가 있는지 확실하게 알지 못했기 때문에 MDN 문서를 참고했습니다.
+이에 따라서 페이지 전체의 높이와 현재 스크롤한 높이를 알아낼 방법이 필요했습니다.
+자바스크립트에서 이 값에 접근할 수 있는 방법이 `document`와 `window` 등 여러 가지가 있다고 알고 있었는데,
+각 객체가 제공하는 값에 어떤 차이가 있는지 확실하게 알지는 못했기 때문에 MDN 문서를 참고했습니다.
 
 - `document.documentElement` : 현재 표시되는 DOM에 관한 속성을 제공
     - `document.documentElement.scrollHeight` : 페이지 내 문서의 전체 높이 <sup>(1)</sup>
@@ -115,7 +115,7 @@ iOS의 모바일 사파리에서는 읽는 컨텐츠를 감지하면 ‘읽기 �
 모바일 브라우저의 경우 툴바 등 변경 사항이 있을 때마다
 `window` 객체가 실시간으로 업데이트된 속성값을 제공한다는 점도 고려했어요.
 
-![Javascript-accessible document height values](/blog/posts/designing-a-blog-microfeature-for-better-immersion/document-height-values.webp)
+![Javascript-accessible document height values](/posts/designing-a-blog-microfeature-for-better-immersion/document-height-values.webp)
 
 ```jsx
 const totalHeight = document.documentElement.scrollHeight; // 화면 전체 높이
@@ -146,12 +146,12 @@ const isContentScrolled = // 컨텐츠 영역을 스크롤 중인지의 여부
 
 스포트라이트 효과를 적용하기에 적절한 스크롤 높이 변화를 실험적으로 알아본 결과,
 페이지가 로딩된 후 뷰포트 높이에 해당하는 정도를 스크롤했을 때 효과가 적용되면 자연스럽다고 느꼈습니다.
-이 스크롤 변화 값을 `scrollThreshold`로 정의했어요.
+이 스크롤 변화 값을 `scrollThreshold`로 정의했습니다.
 
 페이지의 맨 윗부분에 스크롤이 있는 경우와 맨 아래에서의 스크롤 높이 값을 `scrollStart`와 `scrollEnd`로 두고
 `scroll` 변수에 현재 스크롤 높이 값을 받아왔습니다.
 앞서 정의한 값들을 이용해 사용자가 스크롤한 높이가 헤더 영역 높이보다는 크고
-푸터 영역의 높이보다는 작은 경우를 `isContentScrolled`라는 조건으로 분리했어요.
+푸터 영역의 높이보다는 작은 경우를 `isContentScrolled`라는 조건으로 분리했습니다.
 
 ```jsx
 // @components/spotlight/index.jsx
@@ -199,7 +199,7 @@ export default function Spotlight() {
 따라서 훅을 사용해 하나의 ‘**상태**’로 관리했습니다.
 
 또 현재 스크롤한 높이 값은 스크롤할 때마다 변경되므로 스크롤 이벤트에 이벤트 리스너를 등록해
-매번 업데이트된 스크롤 값을 이용해 조건을 계산하도록 했어요.
+매번 업데이트된 스크롤 값을 이용해 조건을 계산하도록 했습니다.
 리액트에서 스크롤 이벤트를 이용해 스크롤에 따라 변경되는 정보를 처리한 후
 화면을 다시 렌더링하는 사례가 많이 있었기에 참고하는데 어렵지 않았습니다.
 
@@ -262,7 +262,7 @@ export default function Spotlight() {
 }
 ```
 
-스포트라이트 효과를 적용하기 위해 이벤트 리스너에 핸들러를 등록하며 페이지 내의 코드가 길어졌어요.
+스포트라이트 효과를 적용하기 위해 이벤트 리스너에 핸들러를 등록하며 페이지 내의 코드가 길어졌습니다.
 따라서 코드를 더 작은 역할로 분리하기 위해
 스포트라이트 효과를 처리하는 로직을 `useSpotlight()` 커스텀 훅으로 분리했습니다.
 
@@ -277,7 +277,7 @@ export default function Spotlight() {
 
 ### 자연스러운 몰입을 유도하는 애니메이션 타이밍
 
-![Easing transition examples](/blog/posts/designing-a-blog-microfeature-for-better-immersion/transitions-easing-examples.gif?width=550)
+![Easing transition examples](/posts/designing-a-blog-microfeature-for-better-immersion/transitions-easing-examples.gif?width=550)
 
 - 참고: [Understanding motion | Google Material Design](https://m2.material.io/design/motion/speed.html#easing)
 
@@ -285,7 +285,7 @@ export default function Spotlight() {
 어떻게 보여주느냐에 따라 사용자에게 다른 경험을 줄 수 있습니다.
 이러한 요소를 의도적으로 활용할 수 있도록 잘 소개된 대표적인 예시가 Google의 **Material Design** 가이드입니다.
 
-![Transitions when exits and closing](/blog/posts/designing-a-blog-microfeature-for-better-immersion/transitions-when-exits-and-closing.gif?width=550)
+![Transitions when exits and closing](/posts/designing-a-blog-microfeature-for-better-immersion/transitions-when-exits-and-closing.gif?width=550)
 
 > 🫣 하나의 예시로, 사이드에서 나타나는 네비게이션은 사라질 때 애니메이션 타이밍을 `ease-in`으로 적용해
 사용자로 하여금 언제든 클릭하면 다시 나타날 것이라고 믿게 만드는 데 도움을 줄 수 있다고 해요.
@@ -339,27 +339,27 @@ export default function Spotlight() {
 
 따라서 애니메이션의 타이밍을 효과가 적용될 때는 `ease-in`으로 적용하고,
 효과가 해제될 때는 `ease-out`으로 다르게 적용했습니다.
-애니메이션의 지속 시간도 효과 진입 시에 **0.05초** 더 빠르게 수행하도록 했어요.
+애니메이션의 지속 시간도 효과 진입 시에 **0.05초** 더 빠르게 수행하도록 했습니다.
 
 진입과 해제 시 애니메이션 타이밍을 묶어서 명시하기 위해
 `body`에 적용되는 트랜지션 스타일을 전역 스타일 파일에 미리 정의했습니다.
-이를 이용해 `Spotlight` 컴포넌트에서 직접 `document.body.style` 속성을 조작하는 대신
-클래스 스타일 속성을 추가 및 제거하도록 적용 방식을 수정했어요.
+이를 이용해 `Spotlight` 컴포넌트에서 직접 `document.body.style` 속성을 조작하는 대신,
+클래스 스타일 속성을 추가 및 제거하도록 적용 방식을 수정했습니다.
 
 ### 결과
 
-![Demo running spotlight effect](/blog/posts/designing-a-blog-microfeature-for-better-immersion/spotlight-effect-demo.gif)
+![Demo running spotlight effect](/posts/designing-a-blog-microfeature-for-better-immersion/spotlight-effect-demo.gif)
 
 기능 구현을 마친 결과입니다. 의도한 대로 컨텐츠 영역에 스크롤이 진입하면 효과가 적용되고 이를 벗어나면 해제되는 것을 확인했습니다.
 _하지만…_
 
 ## 개선
 
-효과가 적용되고 해제되는 순간 트랜지션의 중간 연결 부분이 끊기듯이 표시되었어요.
+효과가 적용되고 해제되는 순간 트랜지션의 중간 연결 부분이 끊기듯이 표시되었습니다.
 크롬과 사파리 두 종류의 브라우저에서 테스트하며 로컬 작업을 진행했는데 특히 사파리에서 이런 현상이 심하게 느껴졌습니다.
 
 마이크로 기능을 제공하려는 목적이 읽는 경험을 향상하기 위함이었음을 고려한다면
-애니메이션이 재생되는 순간이 반드시 매끄러워야 한다고 생각했어요.
+애니메이션이 재생되는 순간이 반드시 매끄러워야 한다고 판단했습니다.
 
 ### Repaint 범위 개선하기
 
@@ -372,12 +372,12 @@ _하지만…_
 특히 사파리의 데스크탑과 모바일 브라우저에서 툴바 테마를 콘텐츠의 배경 색상과 일치시켜
 웹 페이지와 연결된 느낌을 주는 기능을 활용하려고 했어요.
 
-![Safari toolbar animation before refactoring](/blog/posts/designing-a-blog-microfeature-for-better-immersion/safari-toolbar-animation-before-refactoring.gif)
+![Safari toolbar animation before refactoring](/posts/designing-a-blog-microfeature-for-better-immersion/safari-toolbar-animation-before-refactoring.gif)
 
 하지만 사파리에서 툴바 테마를 변경하는 브라우저 내부 동작이 오히려 매끄럽지 않은 동작을 발생시켰습니다.
 몰입을 돕는 과정에 보탬이 될 것으로 생각했지만 지연 시간을 해결하지 못한다면
-굳이 `body`의 배경 색상을 상속해 표시할 필요가 없었어요.
-또 브라우저 테마 지원 기능이 읽는 데 결정적으로 도움을 주는 부분은 아니기도 했고요.
+굳이 `body`의 배경 색상을 상속해 표시할 필요가 없었습니다.
+브라우저 테마 지원 기능이 읽는 데 결정적으로 도움을 주는 부분은 아니기도 했고요.
 
 ```css
 /* article-background.module.css */
@@ -422,7 +422,7 @@ export default function ArticleBackground({ children }) {
 브라우저 테마 기능을 활용하지 않는다면, 기존의 `body`에서부터 `background-color` 값의 변화에
 영향을 받는 요소들의 repaint 범위를 최소화할 수 있겠다고 생각했습니다.
 
-![Safari toolbar animation after refactoring](/blog/posts/designing-a-blog-microfeature-for-better-immersion/safari-toolbar-animation-after-refactoring.gif)
+![Safari toolbar animation after refactoring](/posts/designing-a-blog-microfeature-for-better-immersion/safari-toolbar-animation-after-refactoring.gif)
 
 이제 더 이상 사파리 브라우저가 `body`의 변화하는 `background-color` 값을 감지해 불필요한 툴바 애니메이션을 적용하지 않으며,
 트랜지션 동작도 끊기지 않는 것을 확인할 수 있습니다.
@@ -430,19 +430,19 @@ export default function ArticleBackground({ children }) {
 ### 스크롤 높이에 기반한 적용 조건 판단 로직 개선하기
 
 사실 `background-color` 속성보다 스포트라이트 효과의 성능에 영향을 미치는 부분은
-적용 여부를 판단하기 위한 **스크롤 이벤트** 부분입니다.
+적용 조건을 계산하기 위한 **스크롤 이벤트** 부분입니다.
 
 성능 지연을 발생시키는 부분을 자세히 살펴보고자 크롬 개발자 도구의 성능(Performance) 탭을 이용했습니다.
-위에서의 시연과 동일하게 스크롤을 내려 효과를 적용하고 다시 올려 해제하는 시나리오에서 성능을 측정했어요.
+위에서의 시연과 동일하게 스크롤을 내려 효과를 적용하고 다시 올려 해제하는 시나리오에서 성능을 측정했습니다.
 
-![Measuring performances via chrome devtools](/blog/posts/designing-a-blog-microfeature-for-better-immersion/measuring-performances-via-chrome-devtools.webp)
+![Measuring performances via chrome devtools](/posts/designing-a-blog-microfeature-for-better-immersion/measuring-performances-via-chrome-devtools.webp)
 
 요약 탭을 확인하면 포스트 페이지에서 많은 부가 기능을 제공하지 않았기에
 전체적으로 개선이 시급하다고 판단할 부분은 없었습니다.
 눈여겨 볼 부분은 스포트라이트 효과가 적용되고 해제되는 두 번의 순간인데요,
 이 구간에서 일반적인 상태와 다르게 집중적으로 연산이 발생하는 것을 볼 수 있습니다.
 
-![Specific performance results in scroll events](/blog/posts/designing-a-blog-microfeature-for-better-immersion/specific-performance-results-in-scroll-events.webp?width=450)
+![Specific performance results in scroll events](/posts/designing-a-blog-microfeature-for-better-immersion/specific-performance-results-in-scroll-events.webp?width=450)
 
 효과가 적용되는 구간에서의 호출 내역을 더 자세히 살펴보면
 `scroll` 이벤트의 핸들러가 가장 큰 비중을 차지하는 것을 확인할 수 있습니다.
@@ -450,7 +450,7 @@ export default function ArticleBackground({ children }) {
 전체적으로 스크롤 높이를 구하고 스포트라이트 효과의 조건을 계산하는
 스크롤 이벤트의 핸들러 수행 내용이 많은 처리 시간을 차지하고 있음을 알 수 있었습니다.
 
-![Scroll events behaviors](/blog/posts/designing-a-blog-microfeature-for-better-immersion/scroll-event-behaviors.webp?width=550)
+![Scroll events behaviors](/posts/designing-a-blog-microfeature-for-better-immersion/scroll-event-behaviors.webp?width=550)
 
 > 🔗 출처: https://engineering.monday.com/our-journey-to-understand-scrolling-across-different-browsers/
 
@@ -463,8 +463,8 @@ export default function ArticleBackground({ children }) {
 포스트의 전체적인 흐름과 직접적으로 관련은 없지만,
 `scroll` 이벤트의 핸들러가 메인 스레드에서 동기적으로 수행되는 점에 주목해 주세요!
 
-스포트라이트 효과에서 사용한 스크롤 이벤트의 핸들러 함수는 바로 배경 색상을 변경하는 대신 ‘상태’를 변경합니다.
-따라서 매 스크롤 동작마다 repaint가 발생하지는 않습니다.
+스포트라이트 효과에서 사용한 스크롤 이벤트의 핸들러 함수는 바로 배경 색상을 변경하는 대신 ‘상태’를 변경하므로,
+매 스크롤 동작마다 repaint가 발생하지는 않습니다.
 그럼에도 불구하고, 스크롤 높이를 매번 계산하는 핸들러의 동작 또한 매 스크롤 이벤트마다 실행하기에는 충분히 과부하가 될 수 있다고 느꼈습니다.
 
 ```jsx
@@ -508,17 +508,17 @@ export default function useSpotlight() {
 **Debouncing**이나 **Throttling**을 활용해 스크롤 이벤트의 핸들러가
 지나치는 한 번의 스크롤에 대해 빈번하게 실행되는 것을 방지할 수 있습니다.
 모든 스크롤 이벤트에 대해서 조건을 계산하는 것에 비해 효과가 재생되는 타이밍이 약간 어긋날 수는 있지만,
-스포트라이트 효과는 아주 정밀한 타이밍으로 적용될 필요는 없었기에 좋은 방법이라고 생각했어요.
+스포트라이트 효과는 아주 정밀한 타이밍으로 적용될 필요는 없었기에 좋은 방법이라고 생각했습니다.
 
 하지만 이는 핸들러 함수의 실행 빈도를 조절해 주는 기법일 뿐
 근본적으로 메인 스레드의 부담을 해결해 주는 방법은 아니었습니다.
 또한 핸들러 내부에서도 스크롤 높이를 기반으로 조건을 계산하기 위해
-reflow를 발생시키는 `window.scrollY` 속성값을 이용한다는 점에 부담이 있었어요.
+reflow를 발생시키는 `window.scrollY` 속성값을 이용한다는 점에 부담이 있었습니다.
 
 따라서 스크롤 높이를 이용한 기존 방식과 아예 다른 새로운 방법을 활용하기로 했습니다.
 바로 **Intersection Observer API**입니다.
 
-![Intersection Observer behaviors](/blog/posts/designing-a-blog-microfeature-for-better-immersion/intersection-observer-behaviors.webp?width=500)
+![Intersection Observer behaviors](/posts/designing-a-blog-microfeature-for-better-immersion/intersection-observer-behaviors.webp?width=500)
 
 > 🔗 출처: https://www.bram.us/2017/08/03/using-intersection-observers/
 
@@ -532,15 +532,15 @@ reflow를 발생시키는 `window.scrollY` 속성값을 이용한다는 점에 �
 중요한 점은 Intersection Observer API가
 관찰 대상으로 등록한 요소의 교차점을 <u>비동기적</u>으로 관찰한다는 것입니다.
 따라서 스크롤 이벤트 방식으로 계속 지켜보지 않아도
-특정 요소가 교차하거나 교차하지 않게 된 시점에 비동기적으로 콜백 함수를 실행할 수 있어요.
+특정 요소가 교차하거나 교차하지 않게 된 시점에 비동기적으로 콜백 함수를 실행할 수 있습니다.
 간단하게 교차하는지의 여부와 더불어 `threshold`와 같은 옵션을 활용해
-대상이 특정 비율만큼 교차하는지에 따른 리스닝도 가능합니다.
+대상이 특정 비율만큼 교차하는지에 따른 감지도 가능합니다.
 
-![Spotlight effect using Intersection Observer API](/blog/posts/designing-a-blog-microfeature-for-better-immersion/spotlight-using-intersection-observer.webp)
+![Spotlight effect using Intersection Observer API](/posts/designing-a-blog-microfeature-for-better-immersion/spotlight-using-intersection-observer.webp)
 
 기존에 스포트라이트 효과를 적용하는 구간은 전체 스크롤 높이 중
-맨 위와 맨 아래에서 뷰포트 높이만큼을 제외한 구간으로 설정했는데요,
-만약 모바일 환경에서 포스트 페이지를 접속한 경우 뷰포트의 비율이 데스크탑과 달라
+맨 위와 맨 아래에서 뷰포트 높이만큼을 제외한 구간으로 설정했습니다.
+하지만 만약 모바일 환경에서 포스트 페이지를 접속한 경우라면, 뷰포트의 비율이 데스크탑과 달라
 의도된 구간과 살짝 달라질 수 있다는 단점이 있었습니다.
 
 Intersection Observer API를 이용할 경우 헤더와 푸터가 화면에서 제외된 경우를 콘텐츠 진입 구간으로 볼 수 있으며
@@ -590,7 +590,7 @@ export default function useSpotlight() {
 ```
 
 스포트라이트 효과의 적용 기준을 판단하는 로직을 위와 같이 수정했습니다.
-헤더와 푸터 영역을 선택하기 위해 두 개의 `ref`를 정의했고 이를 `observer`의 대상으로 등록했어요.
+헤더와 푸터 영역을 선택하기 위해 두 개의 `ref`를 정의했고 이를 `observer`의 대상으로 등록했습니다.
 각 관찰 대상이 뷰포트에 등장하는지의 여부는 `entry.isIntersecting` 속성을 통해 접근했으며,
 모든 요소가 화면 밖으로 벗어나는 경우에 스포트라이트 효과의 적용 여부를 나타내는 `spotlighted` 상태를 `true`로 설정했습니다.
 
@@ -659,8 +659,8 @@ export default async function Page({ params }) {
 헤더와 푸터 요소까지 클라이언트 컴포넌트에 포함할 필요가 있었습니다.
 이 과정에서 포스트 내용을 표시하는 `Article` 컴포넌트를 분리하는 것이 자연스럽다고 생각했습니다.
 
-![Function calls by Scroll Events](/blog/posts/designing-a-blog-microfeature-for-better-immersion/function-calls-by-scroll-events.webp?width=600)
-![Function calls by Intersection Observer API](/blog/posts/designing-a-blog-microfeature-for-better-immersion/function-calls-by-intersection-observer.webp?width=600)
+![Function calls by Scroll Events](/posts/designing-a-blog-microfeature-for-better-immersion/function-calls-by-scroll-events.webp?width=600)
+![Function calls by Intersection Observer API](/posts/designing-a-blog-microfeature-for-better-immersion/function-calls-by-intersection-observer.webp?width=600)
 
 결과적으로 기존의 스크롤 이벤트를 이용한 핸들러에서
 Intersection Observer API를 이용하는 방식으로 `useSpotlight()` 훅을 리팩토링했습니다.
@@ -668,13 +668,13 @@ Intersection Observer API를 이용하는 방식으로 `useSpotlight()` 훅을 �
 위는 같은 포스트 페이지를 맨 위에서부터 아래까지 한 번 스크롤했을 때
 적용 조건을 판단하는 함수의 호출 횟수를 카운팅해 본 결과입니다.
 스크롤을 내림에 따라 여러 번 호출되었던 개선 전에 비해
-헤더와 푸터가 화면에 등장하고 사라지는 순간에만 호출되도록 변경되었으므로 호출 횟수가 확연히 줄어들었습니다.
+헤더와 푸터가 화면에 등장하고 사라지는 순간에만 호출되도록 변경되었으므로, 호출 횟수가 확연히 줄어들었습니다.
 
 ## 마치며
 
 [Gatsby](https://www.gatsbyjs.com/), [Next.js](https://nextjs.org/) 등의 도구를 이용해
 정적 사이트를 생성하거나 검색 엔진 최적화를 이전보다 쉽게 다룰 수 있게 되면서,
-개발자들이 자신의 블로그를 직접 만들고 배포하는 분위기가 엄청나게 활발해졌다고 느꼈습니다.
+개발자들이 자신의 블로그를 직접 만들고 배포하려는 분위기가 더욱 활발해졌다고 느꼈습니다.
 저도 앞서 블로그를 처음부터 구축한 다른 개발자들의 사례를 많이 참고하며 도움을 많이 받았기도 하고요.
 
 블로그를 처음부터 쌓아 올리는 것은 템플릿을 사용하는 것에 비해 많은 수고가 필요하다는 점은 분명합니다.
@@ -684,7 +684,7 @@ Intersection Observer API를 이용하는 방식으로 `useSpotlight()` 훅을 �
 
 글에서 소개한 내용이 블로그를 만들어 가는 개발자들에게 작게나마 영감을 줄 수 있었으면 좋겠습니다. 😉
 
-> 🔦 스포트라이트 효과의 성능 개선 작업을 진행한 PR은 [여기](https://github.com/poodlepoodle/poodle-blog-nextjs/pull/12)서 확인하실 수 있습니다!
+> 🔦 스포트라이트 효과의 성능 개선 작업을 진행한 PR은 [여기](https://github.com/poodlepoodle/poodle-blog-nextjs/pull/12)서 확인하실 수 있습니다.
 
 ## 참고
 
