@@ -2,6 +2,15 @@ import styles from './article-header.module.css';
 import Chip from '@components/chip';
 import ResponsiveImage from '@components/responsive-image';
 
+type ArticleHeaderProps = {
+  observerRef: React.RefObject<HTMLDivElement>;
+  title: string;
+  description: string;
+  slug: string;
+  tags: string[];
+  publishedAt: string;
+};
+
 export default function ArticleHeader({
   observerRef,
   title,
@@ -9,14 +18,7 @@ export default function ArticleHeader({
   slug,
   tags,
   publishedAt,
-}: {
-  observerRef: React.RefObject<HTMLDivElement>;
-  title: string;
-  description: string;
-  slug: string;
-  tags: string[];
-  publishedAt: string;
-}) {
+}: ArticleHeaderProps) {
   return (
     <div className={styles.layout} ref={observerRef}>
       <section className={styles.info__container}>
@@ -32,7 +34,7 @@ export default function ArticleHeader({
 
       <section className={styles.thumbnail__container}>
         <ResponsiveImage
-          src={`/blog/posts/${slug}/thumbnail-large.jpg`}
+          src={`/posts/${slug}/thumbnail-large.jpg`}
           alt="post thumbnail"
           style={{ overflow: 'hidden', borderRadius: '2rem' }}
         />

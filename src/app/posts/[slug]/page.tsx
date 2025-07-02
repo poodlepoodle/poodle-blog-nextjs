@@ -22,7 +22,7 @@ export async function generateMetadata(
     title: `${post.title} ••• poodlepoodle`,
     description: `${post.description}`,
     openGraph: {
-      images: [`/blog/posts/${slug}/thumbnail-large.jpg`, ...previousImages],
+      images: [`/posts/${slug}/thumbnail-large.jpg`, ...previousImages],
     },
   };
 }

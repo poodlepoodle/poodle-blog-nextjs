@@ -70,7 +70,7 @@ export default function PostGridItem({ post, className }) {
       <div className={styles.container}>
         <div className={styles.thumbnail__container} ref={containerRef}>
           <ResponsiveImage
-            src={`/blog/posts/${slug}/thumbnail-large.jpg`}
+            src={`/posts/${slug}/thumbnail-large.jpg`}
             alt="post thumbnail"
           />
         </div>

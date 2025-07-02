@@ -3,7 +3,18 @@ import ResponsiveImage from '@components/responsive-image';
 import Link from 'next/link';
 import Chip from '@components/chip';
 
-export default function PostListItem({ post }) {
+type PostListItemProps = {
+  post: {
+    title: string;
+    description: string;
+    slug: string;
+    tags: string[];
+    publishedAt: string;
+    updated: boolean;
+  };
+};
+
+export default function PostListItem({ post }: PostListItemProps) {
   const { title, description, slug, tags, publishedAt, updated } = post;
   return (
     <Link className={styles.layout} href={`/posts/${slug}`}>
@@ -36,7 +47,7 @@ export default function PostListItem({ post }) {
 
       <div className={styles.thumbnail__container}>
         <ResponsiveImage
-          src={`/blog/posts/${slug}/thumbnail.jpg`}
+          src={`/posts/${slug}/thumbnail.jpg`}
           alt="post thumbnail"
         />
       </div>
