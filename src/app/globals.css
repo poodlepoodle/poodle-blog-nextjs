@@ -2,6 +2,11 @@
 @plugin "@tailwindcss/typography";
 @config "../../tailwind.config.mjs";
 
+::selection {
+  background-color: var(--color-skyblue);
+  color: var(--color-black);
+}
+
 :root {
   --color-white: #ffffff;
   --color-background: #f9fbfc;
