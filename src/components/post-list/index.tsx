@@ -7,6 +7,7 @@ import Chip from '@components/chip';
 import PostListItem from '@components/post-list-item';
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { filterPostsByTags } from '@utils/filter-posts';
 
 export default function PostList({
   posts,
@@ -98,17 +99,9 @@ export default function PostList({
       </div>
 
       <div className={styles.result_container}>
-        {posts
-          .filter(post =>
-            selectedTag.some(tag => tag.isSelected)
-              ? post.tags.some(
-                  tag => selectedTag.find(t => t.name === tag)?.isSelected
-                )
-              : true
-          )
-          .map(post => (
-            <PostListItem key={post.slug} post={post} />
-          ))}
+        {filterPostsByTags(selectedTag, posts).map(post => (
+          <PostListItem key={post.slug} post={post} />
+        ))}
       </div>
     </div>
   );

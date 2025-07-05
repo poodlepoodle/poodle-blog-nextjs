@@ -1,9 +1,13 @@
-import type { Post } from './types';
+import type { Post, TagCount } from './types';
+
+interface TagCountWithSelected extends TagCount {
+  isSelected: boolean;
+}
 
 /**
  * 키워드를 포함하는 포스트를 필터링합니다.
  */
-export const filterPosts = (keyword: string, posts: Post[]) => {
+export const filterPostsByKeyword = (keyword: string, posts: Post[]) => {
   const word = keyword.toLowerCase().trim();
   if (word === '') return posts;
 
@@ -21,4 +25,18 @@ export const filterPosts = (keyword: string, posts: Post[]) => {
         tags.some(tag => tag.toLowerCase().includes(word))
     );
   });
+};
+
+/**
+ * 태그를 포함하는 포스트를 필터링합니다.
+ */
+export const filterPostsByTags = (
+  tags: TagCountWithSelected[],
+  posts: Post[]
+) => {
+  return posts.filter(post =>
+    tags.some(tag => tag.isSelected)
+      ? post.tags.some(tag => tags.find(t => t.name === tag)?.isSelected)
+      : true
+  );
 };
