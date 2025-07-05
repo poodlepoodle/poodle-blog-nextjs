@@ -4,6 +4,13 @@ import styles from './styles.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Icon from '@components/icon';
+import { generateCommonMetadata } from '@utils/generate-metadata';
+
+export const metadata: Metadata = generateCommonMetadata({
+  title: '소개 ••• 푸들 블로그',
+  description:
+    '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+});
 
 const linkItems = [
   {
@@ -43,20 +50,14 @@ const ArrowIcon = () => {
   );
 };
 
-export const metadata: Metadata = {
-  title: 'About ••• poodlepoodle',
-  description:
-    '새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을 남깁니다.',
-};
-
 export default async function Page() {
   return (
     <section className={styles.layout}>
       <div className={styles.container}>
         <section className={styles.title}>
-          <h1>안녕하세요,</h1>
+          <h1>안녕하세요.</h1>
           <h2>
-            애정을 갖고 사용자와 인터랙션하고 싶은
+            애정을 담아 사용자와 인터랙션하고 싶은
             <br />
             프론트엔드 개발자 최어진입니다.
           </h2>

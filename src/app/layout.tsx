@@ -6,12 +6,13 @@ import Header from '@components/header';
 import Footer from '@components/footer';
 import { Analytics } from '@vercel/analytics/react';
 import { BlogContextProvider } from '@contexts/BlogContext';
+import { generateCommonMetadata } from '@utils/generate-metadata';
 
-export const metadata: Metadata = {
-  title: 'Home ••• poodlepoodle',
+export const metadata: Metadata = generateCommonMetadata({
+  title: '푸들 블로그',
   description:
-    '새로운 기술이 파도처럼 몰려와도 지워지지 않을 개발자국을 남깁니다.',
-};
+    '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+});
 
 interface RootLayoutProps {
   children: React.ReactNode;
