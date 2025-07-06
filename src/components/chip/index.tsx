@@ -1,5 +1,8 @@
+'use client';
+
 import styles from './chip.module.css';
 import Icon from '@components/icon';
+import { useRouter } from 'next/navigation';
 
 const UnselectIcon = () => {
   return (
@@ -20,21 +23,35 @@ const UnselectIcon = () => {
   );
 };
 
+interface ChipProps {
+  name: string;
+  count?: number;
+  isSelected?: boolean;
+  url?: string;
+  customClickAction?: () => void;
+}
+
 export default function Chip({
   name,
   count,
   isSelected,
-  onClick,
-}: {
-  name: string;
-  count?: number;
-  isSelected?: boolean;
-  onClick?: () => void;
-}) {
+  url,
+  customClickAction = () => {},
+}: ChipProps) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (url) {
+      router.push(url);
+    } else {
+      customClickAction();
+    }
+  };
+
   return (
     <div
       className={isSelected ? styles.layout_selected : styles.layout_default}
-      onClick={onClick}
+      onClick={handleClick}
     >
       <div className={styles.content}>
         <span className={styles.name}>{name}</span>

@@ -9,13 +9,12 @@ import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { filterPostsByTags } from '@utils/filter-posts';
 
-export default function PostList({
-  posts,
-  tags,
-}: {
+interface PostListProps {
   posts: Post[];
   tags: TagCount[];
-}) {
+}
+
+export default function PostList({ posts, tags }: PostListProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedTag, setSelectedTag] = useState(
@@ -93,7 +92,7 @@ export default function PostList({
             name={name}
             count={count}
             isSelected={selectedTag.find(tag => tag.name === name)?.isSelected}
-            onClick={() => toggleTag(name)}
+            customClickAction={() => toggleTag(name)}
           />
         ))}
       </div>

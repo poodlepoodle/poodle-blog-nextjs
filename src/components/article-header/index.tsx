@@ -2,14 +2,14 @@ import styles from './article-header.module.css';
 import Chip from '@components/chip';
 import ResponsiveImage from '@components/responsive-image';
 
-type ArticleHeaderProps = {
+interface ArticleHeaderProps {
   observerRef: React.RefObject<HTMLDivElement>;
   title: string;
   description: string;
   slug: string;
   tags: string[];
   publishedAt: string;
-};
+}
 
 export default function ArticleHeader({
   observerRef,
@@ -27,7 +27,7 @@ export default function ArticleHeader({
         <span className={styles.description}>{description}</span>
         <div className={styles.tags__container}>
           {tags.map(tag => (
-            <Chip key={tag} name={tag} />
+            <Chip key={tag} name={tag} url={`/posts?tags=${tag}`} />
           ))}
         </div>
       </section>
