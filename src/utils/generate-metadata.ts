@@ -73,6 +73,9 @@ export function generateCommonMetadata({
         { url: `/og/og-large.jpg`, alt: 'poodle blog opengraph twitter image' },
       ],
     },
+    verification: {
+      google: 'VCbUAJ2UDsWls7Vx-L5EvgHo9KG4dnVlgGurUZRaqRA',
+    },
   };
 }
 
