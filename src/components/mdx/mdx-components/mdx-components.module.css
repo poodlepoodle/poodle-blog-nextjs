@@ -8,11 +8,13 @@
 }
 
 .mdx__link {
-  color: #131926;
-  font-weight: 500;
-  text-decoration: underline;
-  text-underline-offset: 0.1rem;
-  text-decoration-thickness: 0.1rem;
+  color: var(--color-blue);
+}
+
+.mdx__link[target='_blank']::after {
+  content: '↗';
+  font-size: 90%;
+  padding-left: 0.1rem;
 }
 
 .mdx__code {
