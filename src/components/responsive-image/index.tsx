@@ -1,10 +1,10 @@
 import Image from 'next/image';
 
-type ResponsiveImageProps = {
+interface ResponsiveImageProps {
   src: string;
   alt: string;
   style?: React.CSSProperties;
-};
+}
 
 export default function ResponsiveImage({
   src,

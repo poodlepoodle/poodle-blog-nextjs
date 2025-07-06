@@ -12,9 +12,9 @@ import {
   generatePostJsonLd,
 } from '@utils/generate-metadata';
 
-type PageProps = {
+interface PageProps {
   params: Promise<{ slug: string }>;
-};
+}
 
 export async function generateMetadata({
   params,

@@ -1,5 +1,8 @@
 'use client';
 
+import type { Post } from '@utils/types';
+import type { BlogContextType } from '@contexts/BlogContext';
+
 import styles from './article.module.css';
 import ArticleHeader from '@components/article-header';
 import ArticleFooter from '@components/article-footer';
@@ -9,9 +12,16 @@ import useSpotlight from '@hooks/useSpotlight';
 import { useBlogContext } from '@contexts/BlogContext';
 import { useEffect } from 'react';
 
-export default function Article({ slug, post, children }) {
+interface ArticleProps {
+  slug: string;
+  post: Post;
+  children: React.ReactNode;
+}
+
+export default function Article({ slug, post, children }: ArticleProps) {
   const { headerRef, footerRef } = useSpotlight();
-  const { isSpotlighted, setIsSpotlighted, setHeaderText } = useBlogContext();
+  const { isSpotlighted, setIsSpotlighted, setHeaderText } =
+    useBlogContext() as BlogContextType;
 
   useEffect(() => {
     // 초기 마운트 시 명시적으로 false로 설정

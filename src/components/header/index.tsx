@@ -1,5 +1,7 @@
 'use client';
 
+import type { BlogContextType } from '@contexts/BlogContext';
+
 import styles from './header.module.css';
 import Icon from '@components/icon';
 import Image from 'next/image';
@@ -42,7 +44,9 @@ const SpotlightedIcon = () => {
 };
 
 export default function Header() {
-  const { isFloating, isSpotlighted, headerText } = useBlogContext();
+  const { isFloating, isSpotlighted, headerText } =
+    useBlogContext() as BlogContextType;
+
   return (
     <header
       className={`${styles.layout} ${isFloating ? styles.floating : ''} ${

@@ -3,7 +3,11 @@ import { Post } from '@utils/types';
 import styles from './post-grid.module.css';
 import PostGridItem from '@components/post-grid-item';
 
-export default function PostGrid({ posts }: { posts: Post[] }) {
+interface PostGridProps {
+  posts: Post[];
+}
+
+export default function PostGrid({ posts }: PostGridProps) {
   return (
     <div className={styles.grid}>
       {posts.map((post, index) => (

@@ -22,7 +22,7 @@ const BANNER_DATA: BannerData[] = [
 ];
 
 export default function Banner() {
-  const containerRef = useRef<HTMLAnchorElement>(null);
+  const containerRef = useRef<HTMLAnchorElement | null>(null);
   const isHovered = useRef<boolean>(false);
   const frameRef = useRef<number | null>(null);
 

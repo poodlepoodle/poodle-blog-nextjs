@@ -1,8 +1,9 @@
+import type { Post, Metadata } from './types';
+
 import fs from 'fs/promises';
 import matter from 'gray-matter';
 import { cache } from 'react';
 import { getMDXFiles } from './get-mdx-files';
-import type { Post, Metadata } from './types';
 
 /**
  * 모든 블로그 포스트를 가져와 날짜순으로 정렬합니다.

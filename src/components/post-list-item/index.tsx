@@ -1,3 +1,5 @@
+import type { Post } from '@utils/types';
+
 import styles from './post-list-item.module.css';
 import Chip from '@components/chip';
 import Icon from '@components/icon';
@@ -14,16 +16,9 @@ const UpdatedIcon = () => {
   );
 };
 
-type PostListItemProps = {
-  post: {
-    title: string;
-    description: string;
-    slug: string;
-    tags: string[];
-    publishedAt: string;
-    updated: boolean;
-  };
-};
+interface PostListItemProps {
+  post: Post;
+}
 
 export default function PostListItem({ post }: PostListItemProps) {
   const { title, description, slug, tags, publishedAt, updated } = post;

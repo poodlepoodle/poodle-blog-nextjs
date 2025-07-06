@@ -1,7 +1,12 @@
-import styles from './search.module.css';
+import styles from './search-bar.module.css';
 
-export default function Search({ keyword, setKeyword }) {
-  const handleChange = (e) => {
+interface SearchBarProps {
+  keyword: string;
+  setKeyword: (keyword: string) => void;
+}
+
+export default function SearchBar({ keyword, setKeyword }: SearchBarProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
 

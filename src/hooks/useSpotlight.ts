@@ -8,5 +8,8 @@ export default function useSpotlight() {
     setState: setIsSpotlighted,
   });
 
-  return { headerRef, footerRef };
+  return {
+    headerRef: headerRef as React.RefObject<HTMLDivElement>,
+    footerRef: footerRef as React.RefObject<HTMLDivElement>,
+  };
 }

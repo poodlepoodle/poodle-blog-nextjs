@@ -12,7 +12,7 @@ export interface Post extends Metadata {
   content: string;
 }
 
-export type TagCount = {
+export interface TagCount {
   name: string;
   count: number;
-};
+}

@@ -1,15 +1,17 @@
 import styles from './article-footer.module.css';
 import Image from 'next/image';
 
+interface ArticleFooterProps {
+  observerRef: React.RefObject<HTMLDivElement>;
+  children: React.ReactNode;
+}
+
 export default function ArticleFooter({
   observerRef,
   children,
-}: {
-  observerRef: React.RefObject<HTMLDivElement>;
-  children: React.ReactNode;
-}) {
+}: ArticleFooterProps) {
   return (
-    <section ref={observerRef} className={styles.layout}>
+    <div ref={observerRef} className={styles.layout}>
       <div className={styles.profile__container}>
         <div className={styles.profile__info}>
           <span>published by</span>
@@ -25,6 +27,6 @@ export default function ArticleFooter({
         </div>
       </div>
       {children}
-    </section>
+    </div>
   );
 }

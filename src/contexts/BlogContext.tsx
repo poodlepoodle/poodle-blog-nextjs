@@ -10,16 +10,16 @@ export type BlogContextType = {
   setHeaderText: (headerText: string) => void;
 };
 
-type BlogContextProviderProps = {
-  children: React.ReactNode;
-};
-
 const BlogContext = createContext<BlogContextType | null>(null);
 
+interface BlogContextProviderProps {
+  children: React.ReactNode;
+}
+
 export function BlogContextProvider({ children }: BlogContextProviderProps) {
-  const [isFloating, setIsFloating] = useState(false);
-  const [isSpotlighted, setIsSpotlighted] = useState(false);
-  const [headerText, setHeaderText] = useState('');
+  const [isFloating, setIsFloating] = useState<boolean>(false);
+  const [isSpotlighted, setIsSpotlighted] = useState<boolean>(false);
+  const [headerText, setHeaderText] = useState<string>('');
 
   return (
     <BlogContext.Provider

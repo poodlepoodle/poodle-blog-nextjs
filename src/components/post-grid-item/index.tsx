@@ -1,5 +1,7 @@
 'use client';
 
+import type { Post } from '@utils/types';
+
 import styles from './post-grid-item.module.css';
 import Link from 'next/link';
 import Icon from '@components/icon';
@@ -16,14 +18,19 @@ const UpdatedIcon = () => {
   );
 };
 
-export default function PostGridItem({ post, className }) {
+interface PostGridItemProps {
+  post: Post;
+  className: string;
+}
+
+export default function PostGridItem({ post, className }: PostGridItemProps) {
   const { title, slug, publishedAt, updated } = post;
 
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const isHovered = useRef(false);
-  const frameRef = useRef(null);
+  const frameRef = useRef<number | null>(null);
 
-  const handleMouseMove = e => {
+  const handleMouseMove = (e: MouseEvent) => {
     if (!isHovered.current) return;
 
     if (frameRef.current) {
