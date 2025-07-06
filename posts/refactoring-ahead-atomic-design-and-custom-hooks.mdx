@@ -97,11 +97,11 @@ JSX 코드상으로도 DOM을 구성하는 각 부분의 역할이 명확하게 
 
 /* 스타일링 */
 const Layout = styled.div`
-	...
+  ...
 `;
 
 const ImagesContainer = styled.div`
-	...
+  ...
 `;
 
 const DotsContainer = styled.div`
@@ -257,7 +257,7 @@ const IconWrapper = styled.div`
 
 ## 2. 아토믹 디자인에 기반한 재사용 가능한 컴포넌트 구조
 
-![Atomic design concept by Brad Frost](/posts/refactoring-ahead-atomic-design-and-custom-hooks/atomic-design-brad-frost.webp?width=550)
+![Atomic design concept by Brad Frost](/posts/refactoring-ahead-atomic-design-and-custom-hooks/atomic-design-brad-frost.webp?width=500)
 
 > 출처: https://atomicdesign.bradfrost.com/chapter-2/#the-part-and-the-whole
 
@@ -309,7 +309,7 @@ const IconWrapper = styled.div`
 
 ### Atom
 
-![Atom examples](/posts/refactoring-ahead-atomic-design-and-custom-hooks/atom-example.webp?width=500)
+![Atom examples](/posts/refactoring-ahead-atomic-design-and-custom-hooks/atom-example.webp?width=450)
 
 - 컴포넌트를 구성하는 가장 작은 단위
 - 혼자서는 기능을 수행하기 어려움
@@ -451,7 +451,7 @@ JSX 상에서 다른 컴포넌트와 `S` prefix가 붙은 스타일 요소를 �
 
 ### Molecule
 
-![Molecule examples](/posts/refactoring-ahead-atomic-design-and-custom-hooks/molecule-example.webp?width=700)
+![Molecule examples](/posts/refactoring-ahead-atomic-design-and-custom-hooks/molecule-example.webp?width=650)
 
 - 고유한 특성을 가지기 시작하는 단위
 - _(고유한 실행 컨텍스트 내에서)_ 하나의 기능을 수행하는 컴포넌트
@@ -673,7 +673,7 @@ React 16.8 버전과 함께 Hooks가 등장하며 React에서 컴포넌트를 �
 왜 로직을 분리하는 것이 좋을까요?
 이는 컴퓨터 과학의 소프트웨어 설계 원칙 중 하나인 **관심사의 분리**_(Separation of Concerns)_ 에 기반합니다.
 
-![Separation of concerns example by higher order components](/posts/refactoring-ahead-atomic-design-and-custom-hooks/separation-of-concerns-example-hoc.webp?width=600)
+![Separation of concerns example by higher order components](/posts/refactoring-ahead-atomic-design-and-custom-hooks/separation-of-concerns-example-hoc.webp?width=550)
 
 위의 회원 가입 폼을 예시로 들어 보면, 유저가 입력하는 정보는 닉네임 · 이메일 · 비밀번호가 있으며
 React에서는 각 값에 대응하는 `<input />` 필드의 이벤트를 핸들링하는 함수가 필요합니다.
@@ -894,7 +894,7 @@ template으로 내려 주는 props로 fetch한 공지사항 데이터를 전달�
 복잡한 상태를 포함하는 페이지일수록 많은 비즈니스 로직에 의존하며 context 파일의 코드가 길어지는 경향이 있었습니다.
 프로필 수정 페이지나 게시글 작성 및 수정 페이지처럼 폼 데이터를 활용하는 페이지가 가장 대표적인 예시였습니다.
 
-![Examples for pages handling FormData](/posts/refactoring-ahead-atomic-design-and-custom-hooks/use-article-and-profile-form-custom-hook.webp?width=650)
+![Examples for pages handling FormData](/posts/refactoring-ahead-atomic-design-and-custom-hooks/use-article-and-profile-form-custom-hook.webp?width=600)
 
 해당 페이지들의 로직을 살펴보면 `useState()`로 입력 필드의 값을 상태로 관리하거나
 `useEffect()`로 전체 폼의 유효성을 검사하는 등 기본 훅을 활용하고 있었기 때문에, 커스텀 훅으로 분리하기에 적절했습니다.
