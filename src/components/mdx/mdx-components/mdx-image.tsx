@@ -12,11 +12,13 @@ export default function MDXImage({ src, alt, width, height }: MDXImageProps) {
   const url = new URL(src, 'https://poodlepoodle.me');
   const widthParam = url.searchParams.get('width');
   const imageWidth = widthParam ? parseInt(widthParam) : width;
+  const isGif = url.pathname.toLowerCase().endsWith('.gif');
 
   const baseProps = {
     src,
     alt,
     className: styles.mdx__image,
+    ...(isGif && { unoptimized: true }),
   } as const;
 
   if (imageWidth) {
