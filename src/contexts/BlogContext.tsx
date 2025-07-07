@@ -1,25 +1,38 @@
 'use client';
+
+import type {
+  ImageModal,
+  ImageModalData,
+  BlogContextProviderProps,
+  BlogContextType,
+} from './types';
+
 import { createContext, useState, useContext } from 'react';
 
-export type BlogContextType = {
-  isFloating: boolean;
-  setIsFloating: (isFloating: boolean) => void;
-  isSpotlighted: boolean;
-  setIsSpotlighted: (isSpotlighted: boolean) => void;
-  headerText: string;
-  setHeaderText: (headerText: string) => void;
-};
-
 const BlogContext = createContext<BlogContextType | null>(null);
-
-interface BlogContextProviderProps {
-  children: React.ReactNode;
-}
 
 export function BlogContextProvider({ children }: BlogContextProviderProps) {
   const [isFloating, setIsFloating] = useState<boolean>(false);
   const [isSpotlighted, setIsSpotlighted] = useState<boolean>(false);
   const [headerText, setHeaderText] = useState<string>('');
+  const [imageModal, setImageModal] = useState<ImageModal>({
+    isOpen: false,
+    data: null,
+  });
+
+  const openImageModal = (data: ImageModalData) => {
+    setImageModal({
+      isOpen: true,
+      data,
+    });
+  };
+
+  const closeImageModal = () => {
+    setImageModal({
+      isOpen: false,
+      data: null,
+    });
+  };
 
   return (
     <BlogContext.Provider
@@ -30,6 +43,9 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
         setIsSpotlighted,
         headerText,
         setHeaderText,
+        imageModal,
+        openImageModal,
+        closeImageModal,
       }}
     >
       {children}
