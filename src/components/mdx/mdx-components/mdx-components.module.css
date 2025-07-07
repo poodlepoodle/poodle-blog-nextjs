@@ -5,6 +5,8 @@
 
   border: 0.5px solid var(--color-gray-2);
   border-radius: 0.5rem;
+
+  cursor: pointer;
 }
 
 .mdx__link {
