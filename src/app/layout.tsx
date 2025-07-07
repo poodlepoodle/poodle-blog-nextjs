@@ -4,6 +4,7 @@ import './globals.css';
 import HeaderAnchor from '@components/header-anchor';
 import Header from '@components/header';
 import Footer from '@components/footer';
+import ImageModal from '@components/image-modal';
 import { Analytics } from '@vercel/analytics/react';
 import { BlogContextProvider } from '@contexts/BlogContext';
 import { generateCommonMetadata } from '@utils/generate-metadata';
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <HeaderAnchor /> {/* for Responsive Header */}
           <Header />
           <main className="content__wrapper">{children}</main>
+          <ImageModal />
         </BlogContextProvider>
         <Footer />
         <Analytics /> {/* for Vercel Analytics */}
