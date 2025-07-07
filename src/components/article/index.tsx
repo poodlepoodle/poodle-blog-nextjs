@@ -1,7 +1,7 @@
 'use client';
 
 import type { Post } from '@utils/types';
-import type { BlogContextType } from '@contexts/BlogContext';
+import type { BlogContextType } from '@contexts/types';
 
 import styles from './article.module.css';
 import ArticleHeader from '@components/article-header';

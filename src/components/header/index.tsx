@@ -1,6 +1,6 @@
 'use client';
 
-import type { BlogContextType } from '@contexts/BlogContext';
+import type { BlogContextType } from '@contexts/types';
 
 import styles from './header.module.css';
 import Icon from '@components/icon';

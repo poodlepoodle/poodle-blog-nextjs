@@ -1,4 +1,6 @@
-import { BlogContextType, useBlogContext } from '@contexts/BlogContext';
+import type { BlogContextType } from '@contexts/types';
+
+import { useBlogContext } from '@contexts/BlogContext';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
 
 export default function useSpotlight() {
