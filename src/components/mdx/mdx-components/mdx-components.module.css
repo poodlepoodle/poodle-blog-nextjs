@@ -13,7 +13,7 @@
   color: var(--color-blue);
 }
 
-.mdx__link[target='_blank']::after {
+.mdx__link::after {
   content: '↗';
   font-size: 90%;
   padding-left: 0.1rem;
