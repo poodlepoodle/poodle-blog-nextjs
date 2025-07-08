@@ -10,6 +10,7 @@
 }
 
 .mdx__link {
+  font-weight: 600;
   color: var(--color-black);
   transition: color 0.25s ease-in-out;
 }

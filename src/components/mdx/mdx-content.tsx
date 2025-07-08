@@ -7,11 +7,12 @@ import MDXLink from './mdx-components/mdx-link';
 import MDXBlockquote from './mdx-components/mdx-blockquote';
 import { MDXOrderedList, MDXUnorderedList } from './mdx-components/mdx-list';
 import { MDXRemote } from 'next-mdx-remote-client/rsc';
+import rehypeSlug from 'rehype-slug';
 
 const options = {
   mdxOptions: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [],
+    rehypePlugins: [rehypeSlug],
   },
 };
 
