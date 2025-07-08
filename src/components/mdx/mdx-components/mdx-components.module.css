@@ -10,7 +10,12 @@
 }
 
 .mdx__link {
-  color: var(--color-blue);
+  color: var(--color-black);
+  transition: color 0.25s ease-in-out;
+}
+
+.mdx__link:hover {
+  color: var(--color-skyblue);
 }
 
 .mdx__link::after {
