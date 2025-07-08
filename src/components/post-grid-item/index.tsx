@@ -6,7 +6,7 @@ import styles from './post-grid-item.module.css';
 import Link from 'next/link';
 import Icon from '@components/icon';
 import ResponsiveImage from '@components/responsive-image';
-import { useEffect, useRef } from 'react';
+import useGrayscaleReveal from '@hooks/useGrayscaleReveal';
 
 const UpdatedIcon = () => {
   return (
@@ -25,60 +25,7 @@ interface PostGridItemProps {
 
 export default function PostGridItem({ post, className }: PostGridItemProps) {
   const { title, slug, publishedAt, updated } = post;
-
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const isHovered = useRef(false);
-  const frameRef = useRef<number | null>(null);
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!isHovered.current) return;
-
-    if (frameRef.current) {
-      cancelAnimationFrame(frameRef.current);
-    }
-
-    frameRef.current = requestAnimationFrame(() => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      container.style.setProperty('--mouse-x', `${x}px`);
-      container.style.setProperty('--mouse-y', `${y}px`);
-    });
-  };
-
-  const handleMouseEnter = () => {
-    isHovered.current = true;
-  };
-
-  const handleMouseLeave = () => {
-    isHovered.current = false;
-    if (frameRef.current) {
-      cancelAnimationFrame(frameRef.current);
-      frameRef.current = null;
-    }
-  };
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseenter', handleMouseEnter);
-    container.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseenter', handleMouseEnter);
-      container.removeEventListener('mouseleave', handleMouseLeave);
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
-      }
-    };
-  }, []);
+  const { containerRef } = useGrayscaleReveal<HTMLDivElement>();
 
   return (
     <Link
