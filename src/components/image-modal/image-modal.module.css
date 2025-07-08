@@ -24,9 +24,6 @@
   position: relative;
   width: auto;
   height: auto;
-
-  transform: scale(0.9);
-  animation: scale__in 0.2s ease-out forwards;
 }
 
 .image__container {
@@ -57,15 +54,6 @@
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes scale__in {
-  from {
-    transform: scale(0.9);
-  }
-  to {
-    transform: scale(1);
   }
 }
 
