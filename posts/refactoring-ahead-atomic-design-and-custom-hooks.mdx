@@ -12,7 +12,7 @@ updated: false
 
 ![Seasoning thumbnail](/posts/refactoring-ahead-atomic-design-and-custom-hooks/seasoning-thumbnail.webp?width=450)
 
-> 🌸 24개의 절기를 나의 입맛에 맞게, [시즈닝(Seasoning)](https://seasoning.today)
+> 24개의 절기를 나의 입맛에 맞게, [시즈닝(Seasoning)](https://seasoning.today)
 
 3월 한 달 동안 감사하게도 100명이 넘는 사용자가 서비스를 찾아 주었고, 이에 따라 팀에서는 기존의 기능을 수정하거나 새로운 화면을 추가하는 작업이 빈번했습니다.
 감사하게도 인스타그램 홍보와 더불어 외부 홍보 부스를 마련할 기회가 주어졌기 때문에,
@@ -65,7 +65,7 @@ src
 
 ![Need more things](/posts/refactoring-ahead-atomic-design-and-custom-hooks/need-more-things.webp?width=320)
 
-> 🥲 하지만 사실 수정해야 하는 페이지는 저게 전부가 아니었습니다…
+> 하지만 사실 수정해야 하는 페이지는 저게 전부가 아니었습니다…
 
 백엔드 팀에서 업로드된 이미지를 자체적으로 리사이징해 최적화하는 파이프라인을 구축한 후, 프로필 이미지에 대해서만 먼저 테스트 배포를 올리기로 한 적이 있었습니다.
 프론트엔드 팀에서 이에 대응해 최적화된 이미지 로딩 시도가 실패하면 원본 이미지를 로딩해야 하는 기능 추가 작업이 주어졌습니다.
@@ -147,7 +147,7 @@ const ImageSlider = ({
 export default ImageSlider;
 ```
 
-> 😧 예시로, 간단한 캐러셀 기능을 제공하는 `ImageSlider` 컴포넌트의 경우 185줄의 코드 중 절반에 이르는 75줄이 스타일링에 관한 부분이었습니다.
+> 예시로, 간단한 캐러셀 기능을 제공하는 `ImageSlider` 컴포넌트의 경우 185줄의 코드 중 절반에 이르는 75줄이 스타일링에 관한 부분이었습니다.
 
 더욱 문제를 느꼈던 부분은 어떤 컴포넌트의 스타일과 기능을 두 명의 프론트엔드 개발자가 다른 작업에서 동시에 접근해야 하는 경우였습니다.
 기능과 뷰를 부분적으로 나누어 관리할 수 있다면 충돌에 대한 염려를 줄일 수 있는 부분이라고 생각했어요.
@@ -261,7 +261,7 @@ const IconWrapper = styled.div`
 
 > 출처: https://atomicdesign.bradfrost.com/chapter-2/#the-part-and-the-whole
 
->  🦠 “(번역) 아토믹 디자인이 제공하는 큰 이점 중 하나는 추상적인 것과
+> “(번역) 아토믹 디자인이 제공하는 큰 이점 중 하나는 추상적인 것과
 구체적인 것 사이를 빠르게 전환할 수 있는 능력입니다.” *- Brad Frost의 원문 중*
 
 아토믹 디자인은 컴포넌트의 결합을 `atom` → `molecule` → `organism` → `template` → `page` 단위로 나누며,
@@ -473,8 +473,8 @@ atom과 molecule 중 어떤 것으로 분류할지 헷갈릴 수 있지만, 클�
 
 아토믹 디자인을 통해 컴포넌트 구조를 다시 정리해 나가며,
 역할이 뚜렷한 컴포넌트들은 **HTML Semantic Elements** _(이하 semantic tag)_ 를 이용해 명시했습니다.
-예시로 `-Carousel`이나 `-List` 등의 컴포넌트는 **ul**로, `-ListItem`은 **li**로 명시해 리스트 성격을 갖고 있음을 나타냈습니다.
-마찬가지로 `NavigationHeader`나 `ArticleHeader` 등은 **header** 요소로 명시했습니다.
+예시로 `-Carousel`이나 `-List` 등의 컴포넌트는 ul로, `-ListItem`은 li로 명시해 리스트 성격을 갖고 있음을 나타냈습니다.
+마찬가지로 `NavigationHeader`나 `ArticleHeader` 등은 header 요소로 명시했습니다.
 
 Semantic tag는 SEO _(검색 엔진 최적화)_ 를 위해 활용할 수 있는 방법으로 가장 잘 알려졌지만,
 모바일 기기의 브라우저에서 읽기 도구 등이 웹 페이지를 더 잘 표시할 수 있도록 돕는 좋은 방법이기도 합니다.
@@ -748,7 +748,7 @@ export default withFormHandler(SignUpForm);
 
 하지만 이러한 방법들은 컴포넌트 단위로 로직을 분리하는 방식이었으므로 반드시 다른 컴포넌트를 감싸는 형태로 사용되었습니다.
 따라서 어떤 클래스형 컴포넌트가 여러 공통 로직을 동시에 사용하고자 한다면 그만큼 여러 Wrapper 컴포넌트가 쌓이는 구조,
-즉 **Wrapper Hell**를 자연스레 유발하게 됩니다. 이는 보기에도 좋지 않지만 props를 다루는 방식에서 더욱 복잡했습니다.
+즉 **'Wrapper Hell'** 을 자연스레 유발하게 됩니다. 이는 보기에도 좋지 않지만 props를 다루는 방식에서 더욱 복잡했습니다.
 
 ### Custom Hooks
 
@@ -799,7 +799,7 @@ export default SignUpForm;
 ![Separation of concerns example by custom hooks](/posts/refactoring-ahead-atomic-design-and-custom-hooks/separation-of-concerns-example-custom-hooks.webp)
 
 [React Documentation의 번역본](https://ko.legacy.reactjs.org/docs/hooks-custom.html)을 인용하면,
-커스텀 훅은 **‘복잡한 로직을 단순한 인터페이스 속에 숨길 수 있도록 하거나 복잡하게 뒤엉킨 컴포넌트를 풀어내도록‘** 하는 과정을 돕습니다.
+커스텀 훅은 **"복잡한 로직을 단순한 인터페이스 속에 숨길 수 있도록 하거나 복잡하게 뒤엉킨 컴포넌트를 풀어내도록"** 하는 과정을 돕습니다.
 앞선 리팩토링에서 컴포넌트의 뷰와 기능을 나누고 뷰를 재사용하는 과정에 아토믹 디자인을 활용했다면,
 로직을 재사용하는 과정에 커스텀 훅을 적극적으로 활용하기로 판단한 이유입니다.
 
@@ -1159,8 +1159,8 @@ src
 
 ### Context API를 통한 전역 상태 관리의 문제점
 
-React에서 전역 상태를 다룰 수 있는 도구인 Context API를 제공하지만 Redux, Recoil 등 **상태 관리 라이브러리**가 더 널리 사용되는 하나의 큰 이유는
-**위에서 내려오는 props의 변경에 의해 형제 이하 요소의 Re-rendering이 발생**하는 현상을 핸들링하기 까다롭다는 점입니다.
+React 자체적으로 전역 상태를 다룰 수 있는 도구인 Context API를 제공함에도 Redux · Recoil 등 **상태 관리 라이브러리**가 더 널리 사용되는 하나의 큰 이유는,
+props의 변경에 의해 발생하는 Re-rendering을 보다 제어하기 쉽게 만들기 위함이기도 합니다.
 
 시즈닝에서 페이지의 전역 상태를 Context API로 제공하도록 한 부분은 필요한 러닝 커브가 거의 없다는 점도 있었지만,
 사실 가장 큰 이유는 상태 관리 라이브러리를 사용해야 하는 상황을 실제로 마주해 보고 싶었기 때문이었습니다.
