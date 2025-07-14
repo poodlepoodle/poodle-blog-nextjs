@@ -14,11 +14,11 @@ export const metadata: Metadata = generateCommonMetadata({
 
 const linkItems = [
   {
-    href: 'https://nolink.com/resume',
+    href: 'https://drive.google.com/drive/folders/1-kvEUsQjFOCqs6GD7B32Q9hbo2BwqM0C?usp=sharing',
     label: 'resume',
   },
   {
-    href: 'https://nolink.com/portfolio',
+    href: 'https://drive.google.com/drive/folders/1-kvEUsQjFOCqs6GD7B32Q9hbo2BwqM0C?usp=sharing',
     label: 'portfolio',
   },
   {
@@ -73,7 +73,7 @@ export default async function Page() {
         <div className={styles.links}>
           {linkItems.map(({ href, label }) => (
             <Link
-              key={href}
+              key={`${href}-${label}`}
               className={styles.link__item}
               href={href}
               target="_blank"
