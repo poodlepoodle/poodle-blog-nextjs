@@ -2,6 +2,10 @@
 @plugin "@tailwindcss/typography";
 @config "../../tailwind.config.mjs";
 
+@theme inline {
+  --font-prtd: var(--font-pretendard);
+}
+
 ::selection {
   background-color: var(--color-skyblue);
   color: var(--color-black);
@@ -33,7 +37,6 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 
-  font-family: 'Pretendard', 'Noto Sans', sans-serif;
   background-color: var(--color-background);
 }
 
