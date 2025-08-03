@@ -38,8 +38,11 @@ export default function ImageModal() {
   }
 
   return createPortal(
-    <div className={styles.background} onClick={handleBackgroundClick}>
-      <div className={styles.modal}>
+    <div
+      className={`${styles.background} animate-fade-in`}
+      onClick={handleBackgroundClick}
+    >
+      <div className={`${styles.modal} animate-fade-in-up`}>
         <div className={styles.image__container}>
           <img
             src={imageModal.data.src}
