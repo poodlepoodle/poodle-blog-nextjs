@@ -1,4 +1,4 @@
-import type { Post } from '@utils/types';
+import type { BlogPost } from '@/types';
 
 import styles from './post-list-item.module.css';
 import Chip from '@components/chip';
@@ -17,11 +17,11 @@ const UpdatedIcon = () => {
 };
 
 interface PostListItemProps {
-  post: Post;
+  post: BlogPost;
 }
 
 export default function PostListItem({ post }: PostListItemProps) {
-  const { title, description, slug, tags, publishedAt, updated } = post;
+  const { title, slug, tags, publishedAt, updated } = post;
   return (
     <Link className={styles.layout} href={`/posts/${slug}`}>
       <div className={styles.content__container}>
@@ -37,7 +37,6 @@ export default function PostListItem({ post }: PostListItemProps) {
             {updated && <UpdatedIcon />}
             <span>{title}</span>
           </div>
-          <span className={styles.description}>{description}</span>
         </div>
       </div>
 
