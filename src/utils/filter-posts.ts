@@ -1,4 +1,4 @@
-import type { Post, TagCountWithSelected } from './types';
+import type { Post, TagCountWithSelected } from '@/types';
 
 /**
  * 키워드를 포함하는 포스트를 필터링합니다.

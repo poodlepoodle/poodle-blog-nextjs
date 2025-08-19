@@ -1,4 +1,9 @@
-import type { Post, Metadata } from './types';
+import type {
+  Post,
+  PostMetadata,
+  PlaygroundPost,
+  PlaygroundPostMetadata,
+} from '@/types';
 
 import fs from 'fs/promises';
 import matter from 'gray-matter';
@@ -26,11 +31,42 @@ export const getPosts = cache(async () => {
           data.tags.sort();
         }
 
-        return { ...(data as Metadata), content: content } as Post;
+        return { ...(data as PostMetadata), content: content } as Post;
       })
     )
   )
     .filter((post): post is Post => post !== null)
+    .sort((a, b) =>
+      new Date(a.publishedAt) > new Date(b.publishedAt) ? -1 : 1
+    );
+});
+
+/**
+ * 모든 플레이그라운드 포스트를 가져와 날짜순으로 정렬합니다.
+ */
+
+export const getPlaygroundPosts = cache(async () => {
+  const mdxFiles = await getMDXFiles('./playground-posts');
+
+  return (
+    await Promise.all(
+      mdxFiles.map(async (file: string) => {
+        const filePath = `./playground-posts/${file}`;
+        const postContent = await fs.readFile(filePath, 'utf8');
+        const { data, content } = matter(postContent);
+
+        if (data.published === false) {
+          return null;
+        }
+
+        return {
+          ...(data as PlaygroundPostMetadata),
+          content: content,
+        } as PlaygroundPost;
+      })
+    )
+  )
+    .filter((post): post is PlaygroundPost => post !== null)
     .sort((a, b) =>
       new Date(a.publishedAt) > new Date(b.publishedAt) ? -1 : 1
     );

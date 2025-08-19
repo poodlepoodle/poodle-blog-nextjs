@@ -1,6 +1,7 @@
+import type { TagCount } from '@/types';
+
 import { cache } from 'react';
-import { getPosts } from './get-posts';
-import type { TagCount } from './types';
+import { getPosts } from '@utils/get-posts';
 
 /**
  * 모든 포스트에서 사용된 태그 목록과 각 태그의 사용 횟수를 가져옵니다.
