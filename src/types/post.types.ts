@@ -1,4 +1,4 @@
-export interface PostMetadata {
+interface CommonPostMetadata {
   title: string;
   description: string;
   publishedAt: string;
@@ -8,13 +8,17 @@ export interface PostMetadata {
   published?: boolean;
 }
 
-export interface Post extends PostMetadata {
-  content: string;
-}
+export interface BlogPostMetadata extends CommonPostMetadata {}
 
 export interface PlaygroundPostMetadata
-  extends Omit<PostMetadata, 'description' | 'tags'> {}
+  extends Omit<CommonPostMetadata, 'description' | 'tags'> {}
+
+export interface BlogPost extends BlogPostMetadata {
+  content: string;
+}
 
 export interface PlaygroundPost extends PlaygroundPostMetadata {
   content: string;
 }
+
+export type Post = BlogPost | PlaygroundPost;
