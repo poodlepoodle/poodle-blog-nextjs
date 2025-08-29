@@ -1,6 +1,6 @@
 'use client';
 
-import type { Post } from '@utils/types';
+import type { Post } from '@/types';
 import type { BlogContextType } from '@contexts/types';
 
 import styles from './article.module.css';
@@ -24,7 +24,6 @@ export default function Article({ slug, post, children }: ArticleProps) {
     useBlogContext() as BlogContextType;
 
   useEffect(() => {
-    // 초기 마운트 시 명시적으로 false로 설정
     setIsSpotlighted(false);
     setHeaderText(post.title);
 
@@ -44,9 +43,9 @@ export default function Article({ slug, post, children }: ArticleProps) {
         <ArticleHeader
           observerRef={headerRef}
           title={post.title}
-          description={post.description}
+          description={'description' in post ? post.description : undefined}
           slug={slug}
-          tags={post.tags}
+          tags={'tags' in post ? post.tags : undefined}
           publishedAt={post.publishedAt}
         />
         {children}

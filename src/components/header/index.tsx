@@ -19,8 +19,7 @@ const NAV_ITEMS = [
   },
   {
     label: '플레이그라운드',
-    href: '/playgrounds',
-    disabled: true,
+    href: '/playground',
   },
 ];
 
@@ -76,14 +75,11 @@ export default function Header() {
 
         {!(isSpotlighted && !!headerText) && (
           <nav className={styles.nav}>
-            {NAV_ITEMS.map(
-              ({ label, href, disabled }) =>
-                !disabled && (
-                  <Link key={href} href={href}>
-                    {label}
-                  </Link>
-                )
-            )}
+            {NAV_ITEMS.map(({ label, href }) => (
+              <Link key={href} href={href}>
+                {label}
+              </Link>
+            ))}
           </nav>
         )}
       </div>

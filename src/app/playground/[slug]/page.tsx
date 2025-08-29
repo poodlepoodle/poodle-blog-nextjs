@@ -62,11 +62,11 @@ export default async function Page({ params }: PageProps) {
   return (
     <>
       <JsonLd structuredData={jsonLd} />
-      {/* <Article slug={slug} post={post}>
+      <Article slug={slug} post={post}>
         <Suspense>
           <MDXContent source={post.content} />
         </Suspense>
-      </Article> */}
+      </Article>
     </>
   );
 }

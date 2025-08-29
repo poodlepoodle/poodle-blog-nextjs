@@ -1,4 +1,4 @@
-import { Post } from '@utils/types';
+import { Post } from '@/types';
 
 import styles from './post-grid.module.css';
 import PostGridItem from '@components/post-grid-item';

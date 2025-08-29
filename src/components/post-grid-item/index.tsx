@@ -1,6 +1,6 @@
 'use client';
 
-import type { Post } from '@utils/types';
+import type { Post } from '@/types';
 
 import styles from './post-grid-item.module.css';
 import Link from 'next/link';
@@ -27,15 +27,18 @@ export default function PostGridItem({ post, className }: PostGridItemProps) {
   const { title, slug, publishedAt, updated } = post;
   const { containerRef } = useGrayscaleReveal<HTMLDivElement>();
 
+  const isPlaygroundPost = !('description' in post);
+  const postPath = isPlaygroundPost ? 'playground' : 'posts';
+
   return (
     <Link
-      href={`/posts/${slug}`}
+      href={`/${postPath}/${slug}`}
       className={`${styles.layout} ${className || ''}`}
     >
       <div className={styles.container}>
         <div className={styles.thumbnail__container} ref={containerRef}>
           <ResponsiveImage
-            src={`/posts/${slug}/thumbnail-large.jpg`}
+            src={`/${postPath}/${slug}/thumbnail-large.jpg`}
             alt="post thumbnail"
           />
         </div>

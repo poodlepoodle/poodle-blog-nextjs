@@ -1,6 +1,6 @@
 'use client';
 
-import type { Post, TagCount } from '@utils/types';
+import type { BlogPost, TagCount } from '@/types';
 
 import styles from './post-list.module.css';
 import Chip from '@components/chip';
@@ -9,7 +9,7 @@ import { filterPostsByTags } from '@utils/filter-posts';
 import { useTagFilter } from '@hooks/useTagFilter';
 
 interface PostListProps {
-  posts: Post[];
+  posts: BlogPost[];
   tags: TagCount[];
 }
 

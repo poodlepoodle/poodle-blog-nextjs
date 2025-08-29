@@ -1,4 +1,4 @@
-import type { TagCount, TagCountWithSelected } from '@utils/types';
+import type { TagCount, TagCountWithSelected } from '@/types';
 
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
