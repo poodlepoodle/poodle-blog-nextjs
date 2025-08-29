@@ -1,13 +1,13 @@
 import type { TagCount } from '@/types';
 
 import { cache } from 'react';
-import { getPosts } from '@utils/get-posts';
+import { getBlogPosts } from '@utils/get-posts';
 
 /**
- * 모든 포스트에서 사용된 태그 목록과 각 태그의 사용 횟수를 가져옵니다.
+ * 모든 블로그 포스트에서 사용된 태그 목록과 각 태그의 사용 횟수를 가져옵니다.
  */
 export const getTags = cache(async (): Promise<TagCount[]> => {
-  const posts = await getPosts();
+  const posts = await getBlogPosts();
   const tags = posts.map(post => post.tags).flat();
 
   const tagCounts = tags.reduce<Record<string, number>>((acc, tag) => {

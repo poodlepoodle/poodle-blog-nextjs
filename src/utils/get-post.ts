@@ -1,11 +1,11 @@
-import type { Post, PlaygroundPost } from '@/types';
-import { getPosts, getPlaygroundPosts } from '@utils/get-posts';
+import type { BlogPost, PlaygroundPost } from '@/types';
+import { getBlogPosts, getPlaygroundPosts } from '@utils/get-posts';
 
 /**
  * 주어진 slug에 해당하는 단일 포스트를 찾아 반환합니다.
  */
-export async function getPost(slug: string): Promise<Post | undefined> {
-  const posts = await getPosts();
+export async function getBlogPost(slug: string): Promise<BlogPost | undefined> {
+  const posts = await getBlogPosts();
   return posts.find(post => post.slug === slug);
 }
 
