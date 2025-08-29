@@ -4,13 +4,28 @@ import styles from './styles.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Icon from '@components/icon';
-import { generateCommonMetadata } from '@utils/generate-metadata';
+import {
+  METADATA_PRESET,
+  METADATA_OG_WEBSITE_PRESET,
+} from '@constants/metadata';
 
-export const metadata: Metadata = generateCommonMetadata({
+export const metadata: Metadata = {
+  ...METADATA_PRESET,
   title: '소개 ••• 푸들 블로그',
-  description:
-    '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
-});
+  alternates: {
+    canonical: '/about',
+  },
+  openGraph: {
+    ...METADATA_OG_WEBSITE_PRESET,
+    url: '/about',
+    images: [
+      {
+        url: '/about/introduction-1.jpg',
+        alt: 'poodle blog profile large image',
+      },
+    ],
+  },
+};
 
 const linkItems = [
   {

@@ -8,7 +8,7 @@ import Footer from '@components/footer';
 import ImageModal from '@components/image-modal';
 import { Analytics } from '@vercel/analytics/react';
 import { BlogContextProvider } from '@contexts/BlogContext';
-import { generateCommonMetadata } from '@utils/generate-metadata';
+import { BASE_URL, METADATA_PRESET } from '@constants/metadata';
 
 const pretendard = localFont({
   src: './../../public/fonts/PretendardVariable.woff2',
@@ -17,11 +17,13 @@ const pretendard = localFont({
   variable: '--font-pretendard',
 });
 
-export const metadata: Metadata = generateCommonMetadata({
-  title: '푸들 블로그',
-  description:
-    '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
-});
+export const metadata: Metadata = {
+  ...METADATA_PRESET,
+  metadataBase: new URL(BASE_URL),
+  verification: {
+    google: 'VCbUAJ2UDsWls7Vx-L5EvgHo9KG4dnVlgGurUZRaqRA',
+  },
+};
 
 interface RootLayoutProps {
   children: React.ReactNode;
