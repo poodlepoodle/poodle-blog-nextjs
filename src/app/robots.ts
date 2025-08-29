@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-import { BASE_URL } from '@app/sitemap';
+import { BASE_URL } from '@constants/metadata';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -10,18 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         crawlDelay: 1,
       },
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
-        crawlDelay: 0,
-      },
-      {
-        userAgent: 'Bingbot',
-        allow: '/',
-        crawlDelay: 1,
-      },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
-    host: BASE_URL,
   };
 }

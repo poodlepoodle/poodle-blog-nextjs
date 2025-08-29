@@ -1,13 +1,18 @@
 import type { MetadataRoute } from 'next';
 
-import { getPosts } from '@utils/get-posts';
+import { getBlogPosts, getPlaygroundPosts } from '@utils/get-posts';
 import { convertToISODate } from '@utils/format-date';
-
-export const BASE_URL = 'https://poodlepoodle.me';
+import { BASE_URL } from '@constants/metadata';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const postRoutes = (await getPosts()).map(post => ({
+  const blogPostRoutes = (await getBlogPosts()).map(post => ({
     url: `${BASE_URL}/posts/${post.slug}`,
+    lastModified: convertToISODate(post.publishedAt),
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }));
+  const playgroundPostRoutes = (await getPlaygroundPosts()).map(post => ({
+    url: `${BASE_URL}/playground/${post.slug}`,
     lastModified: convertToISODate(post.publishedAt),
     changeFrequency: 'weekly' as const,
     priority: 0.9,
@@ -32,6 +37,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
-    ...postRoutes,
+    ...blogPostRoutes,
+    {
+      url: `${BASE_URL}/playground`,
+      lastModified: new Date().toISOString().split('T')[0],
+      changeFrequency: 'weekly' as const,
+      priority: 0.5,
+    },
+    ...playgroundPostRoutes,
   ];
 }
