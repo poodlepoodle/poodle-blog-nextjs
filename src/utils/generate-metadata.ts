@@ -1,84 +1,21 @@
-import type { Post } from '@utils/types';
+import type { BlogPost, PlaygroundPost } from '@/types';
 
-import { BASE_URL } from '@app/sitemap';
+import { BASE_URL } from '@constants/metadata';
 import { convertToISODate } from '@utils/format-date';
-
-interface MetadataImage {
-  url: string;
-  alt: string;
-}
-
-interface GenerateCommonMetadataProps {
-  title: string;
-  description: string;
-  slug?: string | undefined;
-  keywords?: string[] | undefined;
-  images?: MetadataImage[] | undefined;
-  twitterImage?: MetadataImage[] | undefined;
-  publishedDate?: string | undefined;
-}
 
 interface GenerateBlogJsonLdProps {
   title: string;
   subUrl: string;
-  posts: Post[];
+  posts: BlogPost[];
 }
 
 interface GeneratePostJsonLdProps {
-  post: Post;
+  post: BlogPost | PlaygroundPost;
 }
 
-export function generateCommonMetadata({
-  title,
-  description,
-  slug,
-  keywords,
-  images,
-  twitterImage,
-  publishedDate,
-}: GenerateCommonMetadataProps) {
-  return {
-    metadataBase: new URL(BASE_URL),
-    title: title,
-    description: description,
-    keywords: keywords || ['프론트엔드', '개발자', '최어진', '기술 블로그'],
-    formatDetection: {
-      email: false,
-      address: false,
-      telephone: false,
-    },
-    openGraph: {
-      title: title,
-      description: description,
-      url: slug ? `${BASE_URL}/posts/${slug}` : BASE_URL,
-      siteName: '푸들 블로그',
-      locale: 'ko_KR',
-      type: slug ? 'article' : 'website',
-      tags: keywords || ['프론트엔드', '개발자', '최어진', '기술 블로그'],
-      ...(slug && {
-        authors: ['최어진'],
-        section: 'Technology',
-        publishedTime: publishedDate,
-        modifiedTime: publishedDate,
-      }),
-      images: images || [
-        { url: `/og/og-large.jpg`, alt: 'poodle blog opengraph image' },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: title,
-      description: description,
-      images: twitterImage || [
-        { url: `/og/og-large.jpg`, alt: 'poodle blog opengraph twitter image' },
-      ],
-    },
-    verification: {
-      google: 'VCbUAJ2UDsWls7Vx-L5EvgHo9KG4dnVlgGurUZRaqRA',
-    },
-  };
-}
-
+/**
+ * 블로그 메타데이터를 생성합니다.
+ */
 export function generateBlogJsonLd({
   title,
   subUrl,
@@ -117,7 +54,8 @@ export function generateBlogJsonLd({
         '@type': 'Person',
         name: '최어진',
       },
-      keywords: post.tags.join(', '),
+      // keywords: post.tags.join(', '),
+      keywords: [],
       image: {
         '@type': 'ImageObject',
         url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.jpg`,
@@ -126,13 +64,20 @@ export function generateBlogJsonLd({
   };
 }
 
+/**
+ * 포스트 메타데이터를 생성합니다.
+ */
 export function generatePostJsonLd({ post }: GeneratePostJsonLdProps) {
   const publishedDate = convertToISODate(post.publishedAt);
+  const isPlaygroundPost = !('description' in post);
+  const postPath = isPlaygroundPost ? 'playground' : 'posts';
+
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
-    description: post.description,
+    description:
+      'description' in post ? post.description : '플레이그라운드 포스트입니다.',
     author: {
       '@type': 'Person',
       name: '최어진',
@@ -151,14 +96,14 @@ export function generatePostJsonLd({ post }: GeneratePostJsonLdProps) {
     dateModified: publishedDate,
     image: {
       '@type': 'ImageObject',
-      url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.jpg`,
+      url: `${BASE_URL}/${postPath}/${post.slug}/thumbnail-large.jpg`,
     },
-    url: `${BASE_URL}/posts/${post.slug}`,
+    url: `${BASE_URL}/${postPath}/${post.slug}`,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${BASE_URL}/posts/${post.slug}`,
+      '@id': `${BASE_URL}/${postPath}/${post.slug}`,
     },
-    keywords: post.tags.join(', '),
+    keywords: 'tags' in post ? post.tags.join(', ') : '플레이그라운드',
     articleSection: 'Technology',
     inLanguage: 'ko-KR',
   };
