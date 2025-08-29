@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import styles from './styles.module.css';
 import PostList from '@components/post-list';
+import JsonLd from '@components/json-ld';
 import { getBlogPosts } from '@utils/get-posts';
 import { getTags } from '@utils/get-tags';
 import { Suspense } from 'react';
@@ -9,7 +10,7 @@ import {
   METADATA_PRESET,
   METADATA_OG_WEBSITE_PRESET,
 } from '@constants/metadata';
-// import { generateBlogJsonLd } from '@utils/generate-metadata';
+import { blogStructuredData } from '@constants/json-ld';
 
 export const metadata: Metadata = {
   ...METADATA_PRESET,
@@ -26,20 +27,11 @@ export const metadata: Metadata = {
 export default async function Page() {
   const posts = await getBlogPosts();
   const tags = await getTags();
-  // const jsonLd = generateBlogJsonLd({
-  //   title: '포스트 ••• 푸들 블로그',
-  //   subUrl: `/posts`,
-  //   posts,
-  // });
+  const jsonLd = blogStructuredData(posts);
 
   return (
     <>
-      {/* <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
-        }}
-      /> */}
+      <JsonLd structuredData={jsonLd} />
       <section className={styles.layout}>
         <Suspense>
           <PostList posts={posts} tags={tags} />

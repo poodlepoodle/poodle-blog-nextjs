@@ -2,13 +2,14 @@ import type { Metadata } from 'next';
 import type { MetadataOpenGraph } from '@/types';
 
 import Article from '@components/article';
+import JsonLd from '@components/json-ld';
 import { notFound } from 'next/navigation';
 import { getBlogPost } from '@utils/get-post';
 import { getBlogPosts } from '@utils/get-posts';
 import { convertToISODate } from '@utils/format-date';
 import { MDXContent } from '@components/mdx/mdx-content';
 import { Suspense } from 'react';
-// import { generatePostJsonLd } from '@utils/generate-metadata';
+import { blogPostStructuredData } from '@constants/json-ld';
 import {
   METADATA_PRESET,
   METADATA_OG_ARTICLE_PRESET,
@@ -60,15 +61,10 @@ export default async function Page({ params }: PageProps) {
   const post = await getBlogPost(slug);
   if (!post) return notFound();
 
-  // const jsonLd = generatePostJsonLd({ post });
+  const jsonLd = blogPostStructuredData(post);
   return (
     <>
-      {/* <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
-        }}
-      /> */}
+      <JsonLd structuredData={jsonLd} />
       <Article slug={slug} post={post}>
         <Suspense>
           <MDXContent source={post.content} />

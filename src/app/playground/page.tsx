@@ -22,7 +22,6 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const posts = await getPlaygroundPosts();
-
   return (
     <div className={styles.layout}>
       <div className={styles.container}>

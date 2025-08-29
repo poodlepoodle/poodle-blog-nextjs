@@ -4,8 +4,9 @@ import styles from './styles.module.css';
 import PostGrid from '@components/post-grid';
 import Banner from '@components/banner';
 import Button from '@components/button';
-import { getAllPosts } from '@utils/get-posts';
-// import { generateBlogJsonLd } from '@utils/generate-metadata';
+import JsonLd from '@components/json-ld';
+import { getAllPosts, getBlogPosts } from '@utils/get-posts';
+import { blogStructuredData } from '@constants/json-ld';
 import { METADATA_PRESET } from '@constants/metadata';
 
 export const metadata: Metadata = {
@@ -15,20 +16,12 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const posts = await getAllPosts();
-  // const jsonLd = generateBlogJsonLd({
-  //   title: '홈 ••• 푸들 블로그',
-  //   subUrl: `/`,
-  //   posts,
-  // });
+  const blogPosts = await getBlogPosts();
+  const jsonLd = blogStructuredData(blogPosts);
 
   return (
     <>
-      {/* <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
-        }}
-      /> */}
+      <JsonLd structuredData={jsonLd} />
       <div className={styles.layout}>
         <div className={styles.container}>
           <Banner />

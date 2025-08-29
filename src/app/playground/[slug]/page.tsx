@@ -2,13 +2,14 @@ import type { Metadata } from 'next';
 import type { MetadataOpenGraph } from '@/types';
 
 import Article from '@components/article';
+import JsonLd from '@components/json-ld';
 import { notFound } from 'next/navigation';
 import { getPlaygroundPost } from '@utils/get-post';
 import { getPlaygroundPosts } from '@utils/get-posts';
 import { convertToISODate } from '@utils/format-date';
 import { MDXContent } from '@components/mdx/mdx-content';
 import { Suspense } from 'react';
-// import { generatePostJsonLd } from '@utils/generate-metadata';
+import { playgroundPostStructuredData } from '@constants/json-ld';
 import {
   METADATA_PRESET,
   METADATA_OG_ARTICLE_PRESET,
@@ -19,7 +20,6 @@ export const generateStaticParams = async () => {
   return posts.map(post => ({ slug: post.slug }));
 };
 
-// correct
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
@@ -57,16 +57,11 @@ export default async function Page({ params }: PageProps) {
   const { slug } = await params;
   const post = await getPlaygroundPost(slug);
   if (!post) return notFound();
+  const jsonLd = playgroundPostStructuredData(post);
 
-  // const jsonLd = generatePostJsonLd({ post });
   return (
     <>
-      {/* <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
-        }}
-      /> */}
+      <JsonLd structuredData={jsonLd} />
       {/* <Article slug={slug} post={post}>
         <Suspense>
           <MDXContent source={post.content} />
