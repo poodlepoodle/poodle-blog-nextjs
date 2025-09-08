@@ -156,6 +156,7 @@ export default ImageSlider;
 
 ```jsx
 // @pages/feed/FeedPage.jsx
+
 const FeedPage = () => {
   const { initialFeedData } = useLoaderData();
   const [feedData, setFeedData] = useState(initialFeedData);
@@ -335,6 +336,7 @@ Atom을 적용한 여러 사례를 참고하며 컴포넌트의 형태를 결정
 
 ```jsx
 // atoms/Text/index.jsx
+
 export default function Text({
   notoserif,
   size = 1,
@@ -359,8 +361,9 @@ export default function Text({
 
 ```jsx
 // molecules/MyFeedItem/index.jsx
-import Text from '@components/atoms/Text';
 // ...
+
+import Text from '@components/atoms/Text';
 
 export default function MyFeedItem({ articleId, term, year, image, preview }) {
   return (
@@ -411,6 +414,7 @@ props로 주입하는 방식이 효과적이라고 느꼈습니다.
 
 ```jsx
 // SomeComponent/style.js
+
 import styled from 'styled-components';
 
 export const Layout = styled.div` ... `;
@@ -420,6 +424,7 @@ export const Header = styled.header` ... `;
 
 ```jsx
 // SomeComponent/index.jsx
+
 import * as S from './style.js';
 import OtherComponent from '...';
 
@@ -564,8 +569,8 @@ Template과 page는 특정 페이지에 해당하는 내용만을 표현하기 �
 
 ```jsx
 // hoc/withNavigation/index.jsx
-import * as S from './style';
 
+import * as S from './style';
 import NavigationHeader from '@components/molecules/NavigationHeader';
 
 export default function withNavigation(
@@ -591,6 +596,7 @@ export default function withNavigation(
 ```jsx
 // templates/NoticeTemplate/index.jsx
 // ...
+
 import withNavigation from '@components/hoc/withNavigation';
 
 function NoticeTemplate({ noticeData }) {
@@ -693,7 +699,8 @@ React에서는 각 값에 대응하는 `<input />` 필드의 이벤트를 핸들
 컴포넌트 사이에서 공유하는 로직을 사용하기 위해서는 컴포넌트를 입력받아 다른 컴포넌트를 반환하는 HoC 패턴 등을 강제적으로 사용해야 했습니다.
 
 ```jsx
-// withFormHandler.js
+// withFormHandler.jsx
+
 function withFormHandler(WrappedComponent) {
   return class extends Component {
     state = {
@@ -719,7 +726,8 @@ function withFormHandler(WrappedComponent) {
 ```
 
 ```jsx
-// SignUpForm.js
+// SignUpForm.jsx
+
 import withFormHandler from '...';
 
 class SignUpForm extends React.Component {
@@ -753,7 +761,8 @@ export default withFormHandler(SignUpForm);
 ### Custom Hooks
 
 ```jsx
-// useForm.js
+// useForm.jsx
+
 import { useState } from 'react';
 
 function useForm(initialValues) {
@@ -815,6 +824,7 @@ Context를 provide하는 부분은 문맥상 page 안에 위치하는 게 적절
 
 ```jsx
 // pages/NotificationPage.jsx
+
 import { useLoaderData } from 'react-router-dom';
 import {
   NotificationContext,
@@ -838,6 +848,7 @@ export default function NotificationPage() {
 ```jsx
 // contexts/NotificationContext.js
 // ...
+
 import { useState, useEffect, createContext, useContext } from 'react';
 
 export const NotificationContext = createContext();
@@ -873,6 +884,7 @@ page와 template에서 사용하도록 했습니다.
 
 ```jsx
 // pages/NoticePage.jsx
+
 import { useLoaderData } from 'react-router-dom';
 
 import NoticeTemplate from '@components/templates/NoticeTemplate';
@@ -903,6 +915,7 @@ template으로 내려 주는 props로 fetch한 공지사항 데이터를 전달�
 ```jsx
 // hooks/useProfileForm.jsx
 // ...
+
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -965,6 +978,7 @@ export default function useProfileForm(initialUserData) {
 ```jsx
 // contexts/EditProfileContext.js
 // ...
+
 import useProfileForm from '@utils/hooks/useProfileForm';
 
 export function createEditProfileContext(loaderData) {
@@ -1002,6 +1016,7 @@ export function createEditProfileContext(loaderData) {
 ```jsx
 // hooks/useImageForm.jsx
 // ...
+
 import { useState, useRef } from 'react';
 
 export default function useImageForm(initialImages, MAX_IMAGES) {
@@ -1049,6 +1064,7 @@ export default function useImageForm(initialImages, MAX_IMAGES) {
 ```jsx
 // hooks/useProfileForm.jsx
 // ...
+
 import useImageForm from '@utils/hooks/useImageForm';
 
 export default function useProfileForm(initialUserData) {

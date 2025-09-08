@@ -155,6 +155,7 @@ const isContentScrolled = // 컨텐츠 영역을 스크롤 중인지의 여부
 
 ```jsx
 // @components/spotlight/index.jsx
+
 import { useState, useEffect } from 'react';
 
 export default function Spotlight() {
@@ -208,6 +209,7 @@ export default function Spotlight() {
 
 ```jsx
 // @hooks/useSpotlight.js
+
 import { useState, useEffect } from 'react';
 
 export default function useSpotlight() {
@@ -242,6 +244,7 @@ export default function useSpotlight() {
 
 ```jsx
 // @components/spotlight/index.jsx
+
 'use client';
 
 import { useEffect } from 'react';
@@ -381,6 +384,7 @@ _하지만…_
 
 ```css
 /* article-background.module.css */
+
 .layout {
   /* ... */
   
@@ -396,9 +400,10 @@ _하지만…_
 
 ```jsx
 // @components/article-background/index.jsx
-'use client';
-import styles from './article-background.module.css';
 
+'use client';
+
+import styles from './article-background.module.css';
 import useSpotlight from '@hooks/useSpotlight';
 
 export default function ArticleBackground({ children }) {
@@ -471,8 +476,10 @@ export default function ArticleBackground({ children }) {
 // @hooks/useSpotlight.js
 // ...
 
-/* debounce(func, delay) */
-/* : 마지막 debounce() 실행 시점에서 delay 이후 func()를 호출하도록 타이머를 매번 갱신 */
+/**
+  debounce(func, delay)
+  : 마지막 debounce() 실행 시점에서 delay 이후 func()를 호출하도록 타이머를 매번 갱신
+*/
 function debounce(func, delay) {
   // 타이머 ID를 저장하기 위한 변수 선언
   let timer;
@@ -550,6 +557,7 @@ Intersection Observer API를 이용해 `useSpotlight()` 훅의 기능을 리팩�
 
 ```jsx
 // @hooks/useSpotlight.js
+
 import { useEffect, useState, useRef } from 'react';
 
 export default function useSpotlight() {
@@ -596,9 +604,10 @@ export default function useSpotlight() {
 
 ```jsx
 // @components/article/index.jsx
-'use client';
-import styles from './article.module.css';
 
+'use client';
+
+import styles from './article.module.css';
 import ArticleHeader from '@components/article-header';
 import ArticleFooter from '@components/article-footer';
 import Giscus from '@components/giscus';
@@ -633,9 +642,9 @@ export default function Article({ slug, post, children }) {
 ```jsx
 // @app/blog/[slug]/index.jsx
 // ...
+
 import { getPost, getPosts } from '@lib/get-posts';
 import { PostBody } from '@/mdx/post-body';
-
 import Article from '@components/article';
 
 export async function generateMetadata({ params }, parent) { ... }
