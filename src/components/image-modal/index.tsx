@@ -1,14 +1,13 @@
 'use client';
 
-import type { BlogContextType } from '@contexts/types';
-
 import styles from './image-modal.module.css';
 import { createPortal } from 'react-dom';
-import { useBlogContext } from '@contexts/BlogContext';
+import { usePostStore } from '@stores/post-store';
 import { useEffect, useState } from 'react';
 
 export default function ImageModal() {
-  const { imageModal, closeImageModal } = useBlogContext() as BlogContextType;
+  const imageModal = usePostStore(state => state.imageModal);
+  const closeImageModal = usePostStore(state => state.closeImageModal);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

@@ -1,7 +1,6 @@
 'use client';
 
 import type { Post } from '@/types';
-import type { BlogContextType } from '@contexts/types';
 
 import styles from './article.module.css';
 import ArticleHeader from '@components/article-header';
@@ -9,7 +8,7 @@ import ArticleFooter from '@components/article-footer';
 import GiscusComments from '@components/giscus-comments';
 
 import useSpotlight from '@hooks/useSpotlight';
-import { useBlogContext } from '@contexts/BlogContext';
+import { useUIStore } from '@stores/ui-store';
 import { useEffect } from 'react';
 
 interface ArticleProps {
@@ -20,8 +19,9 @@ interface ArticleProps {
 
 export default function Article({ slug, post, children }: ArticleProps) {
   const { headerRef, footerRef } = useSpotlight();
-  const { isSpotlighted, setIsSpotlighted, setHeaderText } =
-    useBlogContext() as BlogContextType;
+  const isSpotlighted = useUIStore(state => state.isSpotlighted);
+  const setIsSpotlighted = useUIStore(state => state.setIsSpotlighted);
+  const setHeaderText = useUIStore(state => state.setHeaderText);
 
   useEffect(() => {
     setIsSpotlighted(false);

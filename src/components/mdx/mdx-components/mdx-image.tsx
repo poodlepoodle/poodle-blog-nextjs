@@ -1,10 +1,8 @@
 'use client';
 
-import type { BlogContextType } from '@contexts/types';
-
 import styles from './mdx-components.module.css';
 import Image from 'next/image';
-import { useBlogContext } from '@contexts/BlogContext';
+import { usePostStore } from '@stores/post-store';
 
 interface MDXImageProps {
   src: string;
@@ -14,7 +12,7 @@ interface MDXImageProps {
 }
 
 export default function MDXImage({ src, alt, width, height }: MDXImageProps) {
-  const { openImageModal } = useBlogContext() as BlogContextType;
+  const openImageModal = usePostStore(state => state.openImageModal);
 
   const url = new URL(src, 'https://poodlepoodle.me');
   const widthParam = url.searchParams.get('width');

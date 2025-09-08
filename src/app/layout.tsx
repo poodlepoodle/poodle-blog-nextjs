@@ -7,7 +7,6 @@ import Header from '@components/header';
 import Footer from '@components/footer';
 import ImageModal from '@components/image-modal';
 import { Analytics } from '@vercel/analytics/react';
-import { BlogContextProvider } from '@contexts/BlogContext';
 import { BASE_URL, METADATA_PRESET } from '@constants/metadata';
 
 const pretendard = localFont({
@@ -33,12 +32,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ko" className={`${pretendard.variable}`}>
       <body className="font-prtd">
-        <BlogContextProvider>
-          <HeaderAnchor /> {/* for Responsive Header */}
-          <Header />
-          <main className="content__wrapper">{children}</main>
-          <ImageModal />
-        </BlogContextProvider>
+        <HeaderAnchor /> {/* for Responsive Header */}
+        <Header />
+        <main className="content__wrapper">{children}</main>
+        <ImageModal />
         <Footer />
         <Analytics /> {/* for Vercel Analytics */}
       </body>

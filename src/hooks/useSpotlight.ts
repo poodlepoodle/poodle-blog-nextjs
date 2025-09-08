@@ -1,10 +1,8 @@
-import type { BlogContextType } from '@contexts/types';
-
-import { useBlogContext } from '@contexts/BlogContext';
+import { useUIStore } from '@stores/ui-store';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
 
 export default function useSpotlight() {
-  const { setIsSpotlighted } = useBlogContext() as BlogContextType;
+  const setIsSpotlighted = useUIStore(state => state.setIsSpotlighted);
   const [headerRef, footerRef] = useIntersectionObserver({
     numRefs: 2,
     setState: setIsSpotlighted,

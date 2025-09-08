@@ -1,12 +1,10 @@
 'use client';
 
-import type { BlogContextType } from '@contexts/types';
-
 import styles from './header.module.css';
 import Icon from '@components/icon';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useBlogContext } from '@contexts/BlogContext';
+import { useUIStore } from '@stores/ui-store';
 
 const NAV_ITEMS = [
   {
@@ -43,8 +41,9 @@ const SpotlightedIcon = () => {
 };
 
 export default function Header() {
-  const { isFloating, isSpotlighted, headerText } =
-    useBlogContext() as BlogContextType;
+  const isFloating = useUIStore(state => state.isFloating);
+  const isSpotlighted = useUIStore(state => state.isSpotlighted);
+  const headerText = useUIStore(state => state.headerText);
 
   return (
     <header

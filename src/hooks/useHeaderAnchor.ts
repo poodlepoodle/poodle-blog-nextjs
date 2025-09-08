@@ -1,10 +1,8 @@
-import type { BlogContextType } from '@contexts/types';
-
-import { useBlogContext } from '@contexts/BlogContext';
+import { useUIStore } from '@stores/ui-store';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
 
 export default function useHeaderAnchor() {
-  const { setIsFloating } = useBlogContext() as BlogContextType;
+  const setIsFloating = useUIStore(state => state.setIsFloating);
   const [headerAnchorRef] = useIntersectionObserver({
     numRefs: 1,
     setState: setIsFloating,
