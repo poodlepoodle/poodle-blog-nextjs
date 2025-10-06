@@ -43,7 +43,7 @@ export default function ArticleHeader({
         <ResponsiveImage
           src={`/${postPath}/${slug}/thumbnail-large.jpg`}
           alt="post thumbnail"
-          style={{ overflow: 'hidden', borderRadius: '2rem' }}
+          style={{ overflow: 'hidden', borderRadius: '1rem' }}
         />
       </section>
     </div>

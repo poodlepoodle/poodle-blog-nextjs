@@ -63,6 +63,7 @@
   height: 100%;
   min-height: 24rem;
   border-radius: 2rem;
+  border-radius: 1rem;
 
   box-shadow:
     0px 20px 25px -5px rgba(0, 0, 0, 0.1),
