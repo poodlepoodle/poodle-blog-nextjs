@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 
-import styles from './styles.module.css';
 import PostGrid from '@components/post-grid';
 import Banner from '@components/banner';
 import Button from '@components/button';
@@ -22,11 +21,11 @@ export default async function Page() {
   return (
     <>
       <JsonLd structuredData={jsonLd} />
-      <div className={styles.layout}>
-        <div className={styles.container}>
+      <div className="flex w-full flex-col items-center">
+        <div className="flex h-full w-full max-w-container flex-col gap-items pt-container-top pb-container-bottom">
           <Banner />
           <PostGrid posts={posts} />
-          <div className={styles.row}>
+          <div className="flex w-full justify-center">
             <Button href={`/posts`} label="더 보기" />
           </div>
         </div>

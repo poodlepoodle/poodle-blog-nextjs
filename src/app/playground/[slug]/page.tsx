@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import type { MetadataOpenGraph } from '@/types';
 
-import Article from '@components/article';
+import { Article } from '@components/article';
 import JsonLd from '@components/json-ld';
 import { notFound } from 'next/navigation';
 import { getPlaygroundPost } from '@utils/get-post';

@@ -2,9 +2,8 @@
 
 import type { BlogPost, TagCount } from '@/types';
 
-import styles from './post-list.module.css';
-import Chip from '@components/chip';
-import PostListItem from '@components/post-list-item';
+import { Chip } from '@components/common/chip';
+import { PostListItem } from './PostListItem';
 import { filterPostsByTags } from '@utils/filter-posts';
 import { useTagFilter } from '@hooks/useTagFilter';
 
@@ -13,12 +12,13 @@ interface PostListProps {
   tags: TagCount[];
 }
 
-export default function PostList({ posts, tags }: PostListProps) {
+export const PostList = ({ posts, tags }: PostListProps) => {
   const { tags: sortedTags, toggleTag } = useTagFilter(tags);
+  const filteredPosts = filterPostsByTags(sortedTags, posts);
 
   return (
-    <div className={styles.layout}>
-      <div className={styles.chip_container}>
+    <div className="flex w-full flex-col items-center gap-items">
+      <div className="flex w-full max-w-[45rem] shrink-0 flex-wrap items-center justify-center gap-[0.75rem] px-[4rem]">
         {sortedTags.map(({ name, count, isSelected }) => (
           <Chip
             key={name}
@@ -30,11 +30,11 @@ export default function PostList({ posts, tags }: PostListProps) {
         ))}
       </div>
 
-      <div className={styles.result_container}>
-        {filterPostsByTags(sortedTags, posts).map(post => (
+      <div className="flex w-full flex-col items-center gap-[1rem]">
+        {filteredPosts.map(post => (
           <PostListItem key={post.slug} post={post} />
         ))}
       </div>
     </div>
   );
-}
+};

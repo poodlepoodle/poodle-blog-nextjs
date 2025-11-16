@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 
-import styles from './styles.module.css';
-import PostList from '@components/post-list';
+import { PostList } from '@components/post-list';
 import JsonLd from '@components/json-ld';
 import { getBlogPosts } from '@utils/get-posts';
 import { getTags } from '@utils/get-tags';
@@ -32,7 +31,7 @@ export default async function Page() {
   return (
     <>
       <JsonLd structuredData={jsonLd} />
-      <section className={styles.layout}>
+      <section className="flex w-full max-w-container flex-col items-center pt-container-top pb-container-bottom">
         <Suspense>
           <PostList posts={posts} tags={tags} />
         </Suspense>

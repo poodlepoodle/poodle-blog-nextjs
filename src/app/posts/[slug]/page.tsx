@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import type { MetadataOpenGraph } from '@/types';
 
-import Article from '@components/article';
+import { Article } from '@components/article';
 import JsonLd from '@components/json-ld';
 import { notFound } from 'next/navigation';
 import { getBlogPost } from '@utils/get-post';
@@ -14,6 +14,7 @@ import {
   METADATA_PRESET,
   METADATA_OG_ARTICLE_PRESET,
 } from '@constants/metadata';
+import ImageModal from '@components/image-modal';
 
 export const generateStaticParams = async () => {
   const posts = await getBlogPosts();
@@ -70,6 +71,7 @@ export default async function Page({ params }: PageProps) {
           <MDXContent source={post.content} />
         </Suspense>
       </Article>
+      <ImageModal />
     </>
   );
 }

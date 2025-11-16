@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 
-import styles from './styles.module.css';
 import PostGrid from '@components/post-grid';
 import { getPlaygroundPosts } from '@utils/get-posts';
 import {
@@ -22,9 +21,10 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const posts = await getPlaygroundPosts();
+
   return (
-    <div className={styles.layout}>
-      <div className={styles.container}>
+    <div className="flex w-full flex-col items-center">
+      <div className="flex w-full max-w-container flex-col pt-container-top pb-container-bottom">
         <PostGrid posts={posts} />
       </div>
     </div>

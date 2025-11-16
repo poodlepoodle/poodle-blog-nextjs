@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
-export default function GiscusComments() {
+export const GiscusComments = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const theme = 'noborder_light';
 
@@ -40,4 +40,4 @@ export default function GiscusComments() {
   }, [theme]);
 
   return <section ref={ref} />;
-}
+};

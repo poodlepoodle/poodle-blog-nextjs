@@ -5,7 +5,6 @@ import localFont from 'next/font/local';
 import HeaderAnchor from '@components/header-anchor';
 import Header from '@components/header';
 import Footer from '@components/footer';
-import ImageModal from '@components/image-modal';
 import { Analytics } from '@vercel/analytics/react';
 import { BASE_URL, METADATA_PRESET } from '@constants/metadata';
 
@@ -24,20 +23,21 @@ export const metadata: Metadata = {
   },
 };
 
-interface RootLayoutProps {
+export default function RootLayout({
+  children,
+}: {
   children: React.ReactNode;
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+}) {
   return (
     <html lang="ko" className={`${pretendard.variable}`}>
-      <body className="font-prtd">
-        <HeaderAnchor /> {/* for Responsive Header */}
+      <body className="bg-background font-prtd">
+        <HeaderAnchor />
         <Header />
-        <main className="content__wrapper">{children}</main>
-        <ImageModal />
+        <main className="relative flex min-h-page w-full flex-col items-center pt-header">
+          {children}
+        </main>
         <Footer />
-        <Analytics /> {/* for Vercel Analytics */}
+        <Analytics />
       </body>
     </html>
   );

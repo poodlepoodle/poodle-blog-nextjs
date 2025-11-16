@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 
-import styles from './styles.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Icon from '@components/icon';
+import { Paper } from '@components/common/paper';
 import {
   METADATA_PRESET,
   METADATA_OG_WEBSITE_PRESET,
 } from '@constants/metadata';
+import { ABOUT_LINK_ITEMS } from '@/constants';
 
 export const metadata: Metadata = {
   ...METADATA_PRESET,
@@ -27,28 +28,9 @@ export const metadata: Metadata = {
   },
 };
 
-const linkItems = [
-  {
-    href: 'https://drive.google.com/drive/folders/1-kvEUsQjFOCqs6GD7B32Q9hbo2BwqM0C?usp=sharing',
-    label: 'resume',
-  },
-  {
-    href: 'https://drive.google.com/drive/folders/1-kvEUsQjFOCqs6GD7B32Q9hbo2BwqM0C?usp=sharing',
-    label: 'portfolio',
-  },
-  {
-    href: 'mailto: chammal97@naver.com',
-    label: 'email',
-  },
-  {
-    href: 'https://github.com/poodlepoodle',
-    label: 'github',
-  },
-];
-
 const ArrowIcon = () => {
   return (
-    <Icon width={6} height={6} color="#131926">
+    <Icon width={6} height={6} color="var(--color-black)">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="6"
@@ -58,7 +40,7 @@ const ArrowIcon = () => {
       >
         <path
           d="M0.718686 6L0 5.28131L4.25767 1.02364H0.476837V0H6V5.52316H4.97636V1.74233L0.718686 6Z"
-          fill="#131926"
+          fill="var(--color-black)"
         />
       </svg>
     </Icon>
@@ -67,38 +49,40 @@ const ArrowIcon = () => {
 
 export default async function Page() {
   return (
-    <section className={styles.layout}>
-      <div className={styles.container}>
-        <section className={styles.title}>
-          <h1>안녕하세요.</h1>
-          <h2>
+    <section className="flex w-full flex-col items-center">
+      <Paper className="mt-container-top mb-container-bottom flex h-full w-full flex-col gap-items py-[3.75rem]">
+        <section className="flex w-full flex-col gap-[2rem] px-[3.75rem]">
+          <h1 className="font-regular text-right text-xl tracking-tight break-all text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
+            안녕하세요.
+          </h1>
+          <h2 className="font-regular text-right text-xl tracking-tight break-all text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
             애정을 담아 사용자와 인터랙션하고 싶은
             <br />
             프론트엔드 개발자 최어진입니다.
           </h2>
         </section>
-        <div className={styles.picture}>
+        <div className="relative h-[20rem] w-full overflow-hidden rounded-2xl mix-blend-luminosity shadow-card">
           <Image
             src="/about/introduction-1.jpg"
             alt="introduction image 1"
             fill
-            style={{ objectFit: 'cover' }}
+            className="object-cover"
           />
         </div>
-        <div className={styles.links}>
-          {linkItems.map(({ href, label }) => (
+        <div className="flex w-full justify-end gap-items px-[3.75rem]">
+          {ABOUT_LINK_ITEMS.map(({ href, label }) => (
             <Link
               key={`${href}-${label}`}
-              className={styles.link__item}
+              className="flex items-center gap-[0.35rem] transition-opacity duration-300 ease-in-out hover:opacity-50"
               href={href}
               target="_blank"
             >
-              <span>{label}</span>
+              <span className="font-regular text-sm text-black">{label}</span>
               <ArrowIcon />
             </Link>
           ))}
         </div>
-      </div>
+      </Paper>
     </section>
   );
 }

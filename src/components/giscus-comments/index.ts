@@ -1,0 +1,1 @@
+export { GiscusComments } from './GiscusComments';
