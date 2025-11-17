@@ -1,0 +1,34 @@
+@layer base {
+  ::selection {
+    background-color: var(--color-skyblue);
+    color: var(--color-black);
+  }
+
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  img {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+}

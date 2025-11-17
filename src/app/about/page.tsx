@@ -52,16 +52,16 @@ export default async function Page() {
     <section className="flex w-full flex-col items-center">
       <Paper className="mt-container-top mb-container-bottom flex h-full w-full flex-col gap-items py-[3.75rem]">
         <section className="flex w-full flex-col gap-[2rem] px-[3.75rem]">
-          <h1 className="font-regular text-right text-xl tracking-tight break-all text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
+          <h1 className="text-right text-xl font-normal break-keep text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
             안녕하세요.
           </h1>
-          <h2 className="font-regular text-right text-xl tracking-tight break-all text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
+          <h2 className="text-right text-xl font-normal break-keep text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
             애정을 담아 사용자와 인터랙션하고 싶은
             <br />
             프론트엔드 개발자 최어진입니다.
           </h2>
         </section>
-        <div className="relative h-[20rem] w-full overflow-hidden rounded-2xl mix-blend-luminosity shadow-card">
+        <div className="relative h-[20rem] w-full overflow-hidden rounded-2xl mix-blend-luminosity shadow-natural">
           <Image
             src="/about/introduction-1.jpg"
             alt="introduction image 1"
@@ -73,11 +73,11 @@ export default async function Page() {
           {ABOUT_LINK_ITEMS.map(({ href, label }) => (
             <Link
               key={`${href}-${label}`}
-              className="flex items-center gap-[0.35rem] transition-opacity duration-300 ease-in-out hover:opacity-50"
+              className="flex items-center gap-[0.35rem] text-black transition-colors duration-300 hover:text-skyblue"
               href={href}
               target="_blank"
             >
-              <span className="font-regular text-sm text-black">{label}</span>
+              <span className="text-sm font-normal">{label}</span>
               <ArrowIcon />
             </Link>
           ))}

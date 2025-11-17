@@ -7,14 +7,14 @@ import { notFound } from 'next/navigation';
 import { getBlogPost } from '@utils/get-post';
 import { getBlogPosts } from '@utils/get-posts';
 import { convertToISODate } from '@utils/format-date';
-import { MDXContent } from '@components/mdx/mdx-content';
+import { MDXContent } from '@components/mdx';
 import { Suspense } from 'react';
 import { blogPostStructuredData } from '@constants/json-ld';
 import {
   METADATA_PRESET,
   METADATA_OG_ARTICLE_PRESET,
 } from '@constants/metadata';
-import ImageModal from '@components/image-modal';
+import { PostImageModal } from '@components/post-image-modal';
 
 export const generateStaticParams = async () => {
   const posts = await getBlogPosts();
@@ -53,9 +53,9 @@ export async function generateMetadata({
   } as Metadata;
 }
 
-interface PageProps {
+type PageProps = {
   params: Promise<{ slug: string }>;
-}
+};
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
@@ -71,7 +71,7 @@ export default async function Page({ params }: PageProps) {
           <MDXContent source={post.content} />
         </Suspense>
       </Article>
-      <ImageModal />
+      <PostImageModal />
     </>
   );
 }

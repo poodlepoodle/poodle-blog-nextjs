@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import PostGrid from '@components/post-grid';
-import Banner from '@components/banner';
-import Button from '@components/button';
+import { PostGrid } from '@components/post-grid';
+import { Banner } from '@components/banner';
+import { Button } from '@components/common/button';
 import JsonLd from '@components/json-ld';
 import { getAllPosts, getBlogPosts } from '@utils/get-posts';
 import { blogStructuredData } from '@constants/json-ld';

@@ -2,7 +2,7 @@ import type { BlogPost } from '@/types';
 
 import { Chip } from '@components/common/chip';
 import Icon from '@components/icon';
-import ResponsiveImage from '@components/responsive-image';
+import { ResponsiveImage } from '@components/common/responsive-image';
 import Link from 'next/link';
 
 const UpdatedIcon = () => {

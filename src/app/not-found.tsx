@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import Button from '@components/button';
+import { Button } from '@components/common/button';
 import { METADATA_PRESET } from '@constants/metadata';
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default async function Page() {
         <h1 className="text-center text-2xl font-medium text-black">
           404 NOT FOUND
         </h1>
-        <span className="font-regular mt-[0.5rem] text-sm text-gray-3">
+        <span className="mt-[0.5rem] text-sm font-normal text-gray-3">
           페이지를 찾을 수 없습니다.
         </span>
 

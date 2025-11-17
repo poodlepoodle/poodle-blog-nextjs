@@ -30,19 +30,19 @@ export const Footer = () => {
 
         <nav className="flex h-full items-center gap-items">
           <Link
-            className="flex items-center gap-[0.35rem] opacity-100 transition-opacity duration-300 hover:opacity-50"
+            className="flex h-full items-center gap-[0.35rem] text-black transition-colors duration-300 hover:text-skyblue"
             href={`mailto: chammal97@naver.com`}
             target="_blank"
           >
-            <span className="text-sm font-normal text-black">email</span>
+            <span className="text-sm font-normal">email</span>
             <ArrowIcon />
           </Link>
           <Link
-            className="flex items-center gap-[0.35rem] opacity-100 transition-opacity duration-300 hover:opacity-50"
+            className="flex h-full items-center gap-[0.35rem] text-black transition-colors duration-300 hover:text-skyblue"
             href={`https://github.com/poodlepoodle`}
             target="_blank"
           >
-            <span className="text-sm font-normal text-black">github</span>
+            <span className="text-sm font-normal">github</span>
             <ArrowIcon />
           </Link>
         </nav>

@@ -1,0 +1,27 @@
+@theme {
+  /* header */
+  --spacing-header: 5rem;
+  --spacing-header-spotlighted: 3rem;
+
+  /* footer */
+  --spacing-footer: 5rem;
+
+  /* container */
+  --spacing-container: 60rem;
+  --spacing-container-top: 3rem;
+  --spacing-container-bottom: 6rem;
+
+  /* items */
+  --spacing-items: 3rem;
+
+  /* thumbnail */
+  --spacing-thumbnail: 19rem;
+
+  /* post */
+  --spacing-post-paragraph: 3.5rem;
+  --spacing-post-h2: 7rem;
+}
+
+@theme inline {
+  --spacing-page: calc(100dvh - var(--spacing-footer));
+}

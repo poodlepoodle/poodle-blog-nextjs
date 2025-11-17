@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 
 import './globals.css';
 import localFont from 'next/font/local';
-import HeaderAnchor from '@components/header-anchor';
-import Header from '@components/header';
-import Footer from '@components/footer';
+import { HeaderAnchor } from '@components/header-anchor';
+import { Header } from '@components/header';
+import { Footer } from '@components/footer';
 import { Analytics } from '@vercel/analytics/react';
 import { BASE_URL, METADATA_PRESET } from '@constants/metadata';
 

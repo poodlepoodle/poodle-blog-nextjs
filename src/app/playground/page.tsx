@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import PostGrid from '@components/post-grid';
+import { PostGrid } from '@components/post-grid';
 import { getPlaygroundPosts } from '@utils/get-posts';
 import {
   METADATA_PRESET,
