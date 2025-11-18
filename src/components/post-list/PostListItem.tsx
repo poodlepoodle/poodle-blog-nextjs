@@ -33,7 +33,7 @@ export const PostListItem = ({ post }: { post: BlogPost }) => {
           <span className="text-xs font-normal text-black">{publishedAt}</span>
           <div className="mt-[0.5rem] flex items-center gap-[0.5rem]">
             {updated && <UpdatedIcon />}
-            <span className="text-lg font-semibold break-keep text-black tablet:text-xl">
+            <span className="text-lg font-semibold break-keep text-black underline decoration-transparent decoration-2 underline-offset-[3px] transition-all duration-300 group-hover:decoration-black tablet:text-xl">
               {title}
             </span>
           </div>
