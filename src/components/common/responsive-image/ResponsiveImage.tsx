@@ -1,13 +1,16 @@
+import type { ImageProps } from 'next/image';
 import Image from 'next/image';
 
 type ResponsiveImageProps = {
   src: string;
   alt: string;
-  style?: React.CSSProperties;
-};
+} & Omit<ImageProps, 'src' | 'alt' | 'fill'>;
 
-export const ResponsiveImage = ({ src, alt, style }: ResponsiveImageProps) => {
-  return (
-    <Image src={src} alt={alt} fill className="object-cover" style={style} />
-  );
+export const ResponsiveImage = ({
+  src,
+  alt,
+  className = 'object-cover',
+  ...props
+}: ResponsiveImageProps) => {
+  return <Image src={src} alt={alt} fill className={className} {...props} />;
 };
