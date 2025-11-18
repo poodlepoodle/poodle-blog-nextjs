@@ -18,6 +18,8 @@ export default async function Page() {
   const blogPosts = await getBlogPosts();
   const jsonLd = blogStructuredData(blogPosts);
 
+  const hasFiveMorePosts = posts && posts.length >= 5;
+
   return (
     <>
       <JsonLd structuredData={jsonLd} />
@@ -25,9 +27,11 @@ export default async function Page() {
         <div className="flex h-full w-full max-w-container flex-col gap-items pt-container-top pb-container-bottom">
           <Banner />
           <PostGrid posts={posts} />
-          <div className="flex w-full justify-center">
-            <Button href={`/posts`} label="더 보기" />
-          </div>
+          {hasFiveMorePosts && (
+            <div className="flex w-full justify-center">
+              <Button href={`/posts`} label="더 보기" />
+            </div>
+          )}
         </div>
       </div>
     </>
