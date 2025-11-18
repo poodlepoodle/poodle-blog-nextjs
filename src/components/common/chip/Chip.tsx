@@ -52,7 +52,7 @@ export const Chip = ({
       className={`flex h-[1.75rem] min-w-fit cursor-pointer items-center justify-center gap-[0.75rem] rounded-full border-[0.5px] px-[0.8rem] whitespace-nowrap transition-all duration-300 ${
         isSelected
           ? 'border-black bg-black text-white'
-          : 'border-gray-2 bg-transparent text-black'
+          : 'border-gray-2 bg-transparent text-black hover:border-black hover:bg-black hover:text-white'
       }`}
       onClick={handleClick}
     >
