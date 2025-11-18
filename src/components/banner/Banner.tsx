@@ -2,8 +2,8 @@
 
 import styles from './banner.module.css';
 import Link from 'next/link';
-import { ResponsiveImage } from '@components/common/responsive-image';
 import useGrayscaleReveal from '@hooks/useGrayscaleReveal';
+import { ImageWithSkeleton } from '@components/image-with-skeleton';
 
 export const Banner = () => {
   const { containerRef } = useGrayscaleReveal<HTMLAnchorElement>();
@@ -16,7 +16,7 @@ export const Banner = () => {
         styles.container
       }`}
     >
-      <ResponsiveImage
+      <ImageWithSkeleton
         src={`/components/banner/banner-background.jpg`}
         alt="blog home banner image"
       />

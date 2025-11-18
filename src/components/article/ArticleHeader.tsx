@@ -1,5 +1,5 @@
 import { Chip } from '@components/common/chip';
-import { ResponsiveImage } from '@components/common/responsive-image';
+import { ImageWithSkeleton } from '@components/image-with-skeleton';
 
 type ArticleHeaderProps = {
   observerRef: React.RefObject<HTMLDivElement>;
@@ -47,8 +47,8 @@ export const ArticleHeader = ({
         )}
       </section>
 
-      <section className="relative h-full min-h-[16rem] w-full overflow-hidden rounded-2xl shadow-natural tablet:min-h-[24rem]">
-        <ResponsiveImage
+      <section className="relative h-[16rem] w-full overflow-hidden rounded-2xl tablet:h-[24rem]">
+        <ImageWithSkeleton
           src={`/${postPath}/${slug}/thumbnail-large.jpg`}
           alt="post thumbnail"
         />
