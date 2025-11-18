@@ -39,8 +39,7 @@ export const Article = ({ slug, post, children }: ArticleProps) => {
         !!isSpotlighted ? 'bg-black' : 'bg-background'
       }`}
     >
-      {/* <div className="bg-yellow-100"> */}
-      <Paper className="flex flex-col gap-[7.5rem] py-[4rem]">
+      <Paper className="flex flex-col gap-items py-[4rem]">
         <ArticleHeader
           observerRef={headerRef}
           title={post.title}
