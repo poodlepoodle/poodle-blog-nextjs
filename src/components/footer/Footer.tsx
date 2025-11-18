@@ -1,22 +1,19 @@
 import Link from 'next/link';
-import Icon from '@components/icon';
 
 const ArrowIcon = () => {
   return (
-    <Icon width={6} height={6} color="#131926">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="6"
-        height="6"
-        viewBox="0 0 6 6"
-        fill="none"
-      >
-        <path
-          d="M0.718686 6L0 5.28131L4.25767 1.02364H0.476837V0H6V5.52316H4.97636V1.74233L0.718686 6Z"
-          fill="#131926"
-        />
-      </svg>
-    </Icon>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="6"
+      height="6"
+      viewBox="0 0 6 6"
+      fill="none"
+    >
+      <path
+        d="M0.718686 6L0 5.28131L4.25767 1.02364H0.476837V0H6V5.52316H4.97636V1.74233L0.718686 6Z"
+        className="fill-black"
+      />
+    </svg>
   );
 };
 

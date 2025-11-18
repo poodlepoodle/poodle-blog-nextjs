@@ -4,17 +4,20 @@ import type { Post } from '@/types';
 
 import styles from './post-grid-item.module.css';
 import Link from 'next/link';
-import Icon from '@components/icon';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
 import useGrayscaleReveal from '@hooks/useGrayscaleReveal';
 
 const UpdatedIcon = () => {
   return (
-    <Icon width={5} height={5} color="var(--color-skyblue)">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 6" fill="none">
-        <circle cx="3" cy="3" r="3" fill="#5FD0FF" />
-      </svg>
-    </Icon>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="5"
+      height="5"
+      viewBox="0 0 6 6"
+      fill="none"
+    >
+      <circle cx="3" cy="3" r="3" className="fill-skyblue" />
+    </svg>
   );
 };
 
