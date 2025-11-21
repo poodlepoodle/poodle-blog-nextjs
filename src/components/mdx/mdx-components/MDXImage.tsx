@@ -14,6 +14,7 @@ type MDXImageProps = {
 
 export const MDXImage = ({ src, alt, width, height }: MDXImageProps) => {
   const openImageModal = usePostStore(state => state.openImageModal);
+  const setImageModalData = usePostStore(state => state.setImageModalData);
 
   const url = new URL(src, 'https://poodlepoodle.me');
   const widthParam = url.searchParams.get('width');
@@ -21,7 +22,8 @@ export const MDXImage = ({ src, alt, width, height }: MDXImageProps) => {
   const isGif = url.pathname.toLowerCase().endsWith('.gif');
 
   const handleImageClick = () => {
-    openImageModal({ src, alt });
+    setImageModalData({ src, alt });
+    openImageModal();
   };
 
   const baseProps = {
