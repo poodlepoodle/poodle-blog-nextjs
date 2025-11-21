@@ -1,4 +1,4 @@
-import type { PostImage } from '@/types';
+import type { PostImage } from '@stores/post-store';
 import type { Image } from 'mdast';
 
 import { unified } from 'unified';
@@ -6,11 +6,15 @@ import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
 import { visit } from 'unist-util-visit';
 
+type PostImageWithIndex = PostImage & {
+  index: number;
+};
+
 /**
  * 포스트 내용에서 Markdown AST를 파싱하여 이미지 노드를 찾아 반환합니다.
  */
-export const extractPostImages = (content: string): PostImage[] => {
-  const images: PostImage[] = [];
+export const extractPostImages = (content: string): PostImageWithIndex[] => {
+  const images: PostImageWithIndex[] = [];
   const seen = new Set<string>();
   let index = 0;
 

@@ -5,7 +5,7 @@ import { create } from 'zustand';
  * imageModalData: 모달에 표시할 이미지 데이터
  */
 
-type PostImage = {
+export type PostImage = {
   src: string;
   alt: string;
 };
