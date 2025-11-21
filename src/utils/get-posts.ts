@@ -32,7 +32,10 @@ export const getBlogPosts = cache(async () => {
           data.tags.sort();
         }
 
-        return { ...(data as BlogPostMetadata), content: content } as BlogPost;
+        return {
+          ...(data as BlogPostMetadata),
+          content: content,
+        } satisfies BlogPost;
       })
     )
   )
@@ -63,7 +66,7 @@ export const getPlaygroundPosts = cache(async () => {
         return {
           ...(data as PlaygroundPostMetadata),
           content: content,
-        } as PlaygroundPost;
+        } satisfies PlaygroundPost;
       })
     )
   )
