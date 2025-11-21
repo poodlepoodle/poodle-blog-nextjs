@@ -6,17 +6,17 @@ import { create } from 'zustand';
  * isSpotlighted: 포스트 내 Spotlight 효과 적용 여부
  */
 
-interface UIState {
+type UIState = {
   isFloating: boolean;
   headerText: string;
   isSpotlighted: boolean;
-}
+};
 
-interface UIActions {
+type UIActions = {
   setIsFloating: (isFloating: boolean) => void;
   setHeaderText: (headerText: string) => void;
   setIsSpotlighted: (isSpotlighted: boolean) => void;
-}
+};
 
 export type UIStore = UIState & UIActions;
 
