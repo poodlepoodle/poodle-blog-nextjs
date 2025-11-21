@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export default function useGrayscaleReveal<T extends HTMLElement>() {
+export const useGrayscaleReveal = <T extends HTMLElement>() => {
   const containerRef = useRef<T | null>(null);
   const isHovered = useRef<boolean>(false);
   const frameRef = useRef<number | null>(null);
@@ -58,4 +58,4 @@ export default function useGrayscaleReveal<T extends HTMLElement>() {
   return {
     containerRef,
   };
-}
+};

@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
 
-interface UseIntersectionObserverProps {
+type UseIntersectionObserverProps = {
   numRefs: number;
   setState: (state: boolean) => void;
-}
+};
 
-export default function useIntersectionObserver({
+export const useIntersectionObserver = ({
   numRefs,
   setState,
-}: UseIntersectionObserverProps) {
+}: UseIntersectionObserverProps) => {
   const refsArray = useRef<Array<React.RefObject<HTMLElement | null>>>([]);
   const intersectionStatesRef = useRef(new Map());
   const isInitialMountRef = useRef(true);
@@ -69,4 +69,4 @@ export default function useIntersectionObserver({
   }, [numRefs, setState]);
 
   return refsArray.current || [];
-}
+};

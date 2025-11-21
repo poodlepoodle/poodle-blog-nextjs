@@ -1,7 +1,7 @@
 import { useUIStore } from '@stores/ui-store';
-import useIntersectionObserver from '@hooks/useIntersectionObserver';
+import { useIntersectionObserver } from '@hooks/useIntersectionObserver';
 
-export default function useSpotlight() {
+export const useSpotlight = () => {
   const setIsSpotlighted = useUIStore(state => state.setIsSpotlighted);
   const [headerRef, footerRef] = useIntersectionObserver({
     numRefs: 2,
@@ -12,4 +12,4 @@ export default function useSpotlight() {
     headerRef: headerRef as React.RefObject<HTMLDivElement>,
     footerRef: footerRef as React.RefObject<HTMLDivElement>,
   };
-}
+};

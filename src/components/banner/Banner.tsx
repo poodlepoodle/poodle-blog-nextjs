@@ -2,7 +2,7 @@
 
 import styles from './banner.module.css';
 import Link from 'next/link';
-import useGrayscaleReveal from '@hooks/useGrayscaleReveal';
+import { useGrayscaleReveal } from '@hooks/useGrayscaleReveal';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
 
 export const Banner = () => {

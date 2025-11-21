@@ -5,10 +5,10 @@ interface UseDebouncedStateProps {
   delay?: number;
 }
 
-export function useDebouncedState({
+export const useDebouncedState = ({
   value,
   delay = 500,
-}: UseDebouncedStateProps) {
+}: UseDebouncedStateProps) => {
   const [debouncedValue, setDebouncedValue] = useState<unknown>(value);
 
   useEffect(() => {
@@ -17,4 +17,4 @@ export function useDebouncedState({
   }, [value, delay]);
 
   return debouncedValue;
-}
+};

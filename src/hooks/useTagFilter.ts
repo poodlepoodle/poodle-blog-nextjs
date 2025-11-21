@@ -12,7 +12,7 @@ const combineTagParams = (selectedTag: TagCountWithSelected[]) =>
     .map(tag => tag.name)
     .join(';');
 
-export function useTagFilter(totalTags: TagCount[]) {
+export const useTagFilter = (totalTags: TagCount[]) => {
   const [tags, setTags] = useState<TagCountWithSelected[]>(
     totalTags.map(tag => ({ ...tag, isSelected: false }))
   );
@@ -73,4 +73,4 @@ export function useTagFilter(totalTags: TagCount[]) {
     tags,
     toggleTag,
   };
-}
+};

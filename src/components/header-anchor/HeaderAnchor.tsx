@@ -1,6 +1,6 @@
 'use client';
 
-import useHeaderAnchor from '@hooks/useHeaderAnchor';
+import { useHeaderAnchor } from '@hooks/useHeaderAnchor';
 
 export const HeaderAnchor = () => {
   const { headerAnchorRef } = useHeaderAnchor();

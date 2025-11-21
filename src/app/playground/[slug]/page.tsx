@@ -14,7 +14,6 @@ import {
   METADATA_PRESET,
   METADATA_OG_ARTICLE_PRESET,
 } from '@constants/metadata';
-import { PostImageModal } from '@components/post-image-modal';
 
 export const generateStaticParams = async () => {
   const posts = await getPlaygroundPosts();
@@ -68,7 +67,6 @@ export default async function Page({ params }: PageProps) {
           <MDXContent source={post.content} />
         </Suspense>
       </Article>
-      <PostImageModal />
     </>
   );
 }

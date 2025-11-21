@@ -14,7 +14,6 @@ import {
   METADATA_PRESET,
   METADATA_OG_ARTICLE_PRESET,
 } from '@constants/metadata';
-import { PostImageModal } from '@components/post-image-modal';
 
 export const generateStaticParams = async () => {
   const posts = await getBlogPosts();
@@ -61,8 +60,8 @@ export default async function Page({ params }: PageProps) {
   const { slug } = await params;
   const post = await getBlogPost(slug);
   if (!post) return notFound();
-
   const jsonLd = blogPostStructuredData(post);
+
   return (
     <>
       <JsonLd structuredData={jsonLd} />
@@ -71,7 +70,6 @@ export default async function Page({ params }: PageProps) {
           <MDXContent source={post.content} />
         </Suspense>
       </Article>
-      <PostImageModal />
     </>
   );
 }

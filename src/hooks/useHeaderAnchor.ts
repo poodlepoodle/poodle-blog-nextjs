@@ -1,7 +1,7 @@
 import { useUIStore } from '@stores/ui-store';
-import useIntersectionObserver from '@hooks/useIntersectionObserver';
+import { useIntersectionObserver } from '@hooks/useIntersectionObserver';
 
-export default function useHeaderAnchor() {
+export const useHeaderAnchor = () => {
   const setIsFloating = useUIStore(state => state.setIsFloating);
   const [headerAnchorRef] = useIntersectionObserver({
     numRefs: 1,
@@ -9,4 +9,4 @@ export default function useHeaderAnchor() {
   });
 
   return { headerAnchorRef };
-}
+};

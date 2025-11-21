@@ -5,7 +5,7 @@ import type { Post } from '@/types';
 import styles from './post-grid-item.module.css';
 import Link from 'next/link';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
-import useGrayscaleReveal from '@hooks/useGrayscaleReveal';
+import { useGrayscaleReveal } from '@hooks/useGrayscaleReveal';
 
 const UpdatedIcon = () => {
   return (
