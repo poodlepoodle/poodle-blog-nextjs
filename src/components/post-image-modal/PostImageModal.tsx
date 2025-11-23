@@ -74,14 +74,14 @@ export const PostImageModal = () => {
 
   return createPortal(
     <div
-      className="fixed inset-0 z-1000 flex h-full w-full animate-fade-in cursor-pointer items-center justify-center bg-[rgba(0,0,0,0.7)] p-[2.5rem] backdrop-blur-sm tablet:p-[4rem] desktop:p-[5rem]"
+      className="fixed inset-0 z-1000 flex h-full w-full animate-fade-in cursor-pointer items-center justify-center bg-[rgba(0,0,0,0.7)] px-[2rem] py-[2rem] backdrop-blur-sm tablet:px-[5rem] tablet:py-[4rem]"
       onClick={handleClickModalBackground}
     >
       <button className="absolute top-[1rem] right-[1rem] cursor-pointer p-[1rem]">
         <CloseIcon />
       </button>
 
-      <div className="relative flex h-full w-full animate-fade-in-up items-center">
+      <div className="relative flex h-full w-full max-w-[80rem] animate-fade-in-up items-center shadow-natural">
         <div className="relative h-full w-full flex-1">
           <Image
             src={imageModalData.src}
