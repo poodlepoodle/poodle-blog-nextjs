@@ -1,7 +1,7 @@
 import type { BlogPost } from '@/types';
 
 import { Chip } from '@components/common/chip';
-import { ResponsiveImage } from '@components/common/responsive-image';
+import { ImageWithSkeleton } from '@components/image-with-skeleton';
 import Link from 'next/link';
 
 const UpdatedIcon = () => {
@@ -49,7 +49,7 @@ export const PostListItem = ({ post }: { post: BlogPost }) => {
           borderRadius: '35% 65% 69% 31% / 58% 49% 51% 42%',
         }}
       >
-        <ResponsiveImage
+        <ImageWithSkeleton
           src={`/posts/${slug}/thumbnail.jpg`}
           alt="post thumbnail"
         />
