@@ -44,7 +44,7 @@ export const PostListItem = ({ post }: { post: BlogPost }) => {
       </div>
 
       <div
-        className="m-[1.5rem] hidden h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden shadow-tiny grayscale transition-all duration-600 group-hover:grayscale-0 tablet:block"
+        className="m-[1.5rem] hidden h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden opacity-80 shadow-tiny grayscale transition-all duration-600 group-hover:opacity-100 group-hover:grayscale-0 tablet:block"
         style={{
           borderRadius: '35% 65% 69% 31% / 58% 49% 51% 42%',
         }}
