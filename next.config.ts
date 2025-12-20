@@ -3,6 +3,14 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   reactStrictMode: true,
+  images: {
+    localPatterns: [
+      {
+        pathname: '/**',
+        search: '',
+      },
+    ],
+  },
   async redirects() {
     return [
       {
