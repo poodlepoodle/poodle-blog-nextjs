@@ -45,7 +45,7 @@ export const PostGridItem = ({ post, className }: PostGridItemProps) => {
         ref={containerRef}
       >
         <ImageWithSkeleton
-          src={`/${postPath}/${slug}/thumbnail-large.jpg`}
+          src={`/${postPath}/${slug}/thumbnail-large.webp`}
           alt="post thumbnail"
         />
       </div>

@@ -49,7 +49,7 @@ export const ArticleHeader = ({
 
       <section className="relative h-[16rem] w-full overflow-hidden rounded-2xl tablet:h-[24rem]">
         <ImageWithSkeleton
-          src={`/${postPath}/${slug}/thumbnail-large.jpg`}
+          src={`/${postPath}/${slug}/thumbnail-large.webp`}
           alt="post thumbnail"
         />
       </section>

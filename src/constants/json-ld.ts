@@ -53,7 +53,7 @@ export const blogStructuredData = (posts: BlogPost[]) => ({
       },
       image: {
         '@type': 'ImageObject',
-        url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.jpg`,
+        url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.webp`,
       },
     },
   })),
@@ -86,7 +86,7 @@ export const blogPostStructuredData = (post: BlogPost) => ({
   dateModified: convertToISODate(post.publishedAt),
   image: {
     '@type': 'ImageObject',
-    url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.jpg`,
+    url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.webp`,
   },
   url: `${BASE_URL}/posts/${post.slug}`,
   about: post.tags.map(tag => ({
@@ -126,7 +126,7 @@ export const playgroundPostStructuredData = (post: PlaygroundPost) => ({
   dateModified: convertToISODate(post.publishedAt),
   image: {
     '@type': 'ImageObject',
-    url: `${BASE_URL}/playground/${post.slug}/thumbnail-large.jpg`,
+    url: `${BASE_URL}/playground/${post.slug}/thumbnail-large.webp`,
   },
   url: `${BASE_URL}/playground/${post.slug}`,
   about: [
