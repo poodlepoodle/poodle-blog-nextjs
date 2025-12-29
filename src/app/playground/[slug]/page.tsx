@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 import { getPlaygroundPost } from '@utils/get-post';
 import { getPlaygroundPosts } from '@utils/get-posts';
 import { convertToISODate } from '@utils/format-date';
-import { MDXContent } from '@components/mdx';
+import { MDXContent, MDXSkeleton } from '@components/mdx';
 import { Suspense } from 'react';
 import { playgroundPostStructuredData } from '@constants/json-ld';
 import {
@@ -63,7 +63,7 @@ export default async function Page({ params }: PageProps) {
     <>
       <JsonLd structuredData={jsonLd} />
       <Article slug={slug} post={post}>
-        <Suspense>
+        <Suspense fallback={<MDXSkeleton />}>
           <MDXContent source={post.content} />
         </Suspense>
       </Article>
