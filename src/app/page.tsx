@@ -14,11 +14,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const posts = await getAllPosts();
-  const blogPosts = await getBlogPosts();
-  const jsonLd = blogStructuredData(blogPosts);
+  // const posts = await getAllPosts();
+  const posts = await getBlogPosts(); // todo: 상단의 getAllPosts로 변경
+  const jsonLd = blogStructuredData(posts);
 
-  const hasFiveMorePosts = posts && posts.length >= 5;
+  const hasMoreThanFivePosts = posts && posts.length >= 5;
 
   return (
     <>
@@ -27,7 +27,7 @@ export default async function Page() {
         <div className="flex h-full w-full max-w-container flex-col gap-items pt-container-top pb-container-bottom">
           <Banner />
           <PostGrid posts={posts} />
-          {hasFiveMorePosts && (
+          {hasMoreThanFivePosts && (
             <div className="flex w-full justify-center">
               <Button href={`/posts`} label="더 보기" />
             </div>
