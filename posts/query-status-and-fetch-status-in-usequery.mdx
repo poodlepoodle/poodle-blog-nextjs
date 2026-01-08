@@ -277,22 +277,22 @@ useQuery는 요청이 실패한 경우 기본적으로 3번의 재시도를 수�
 
 이미 화면에 데이터가 표시되고 있는데, 브라우저 포커싱 혹은 캐시를 사용하는 다른 컴포넌트의 마운트 등
 TanStack Query 자체 메커니즘에 의해 백그라운드에서 새로운 데이터 요청을 시도할 수 있습니다.
-이때 데이터가 존재하므로 Query Status는 `pending`이지만, Query Status는 `fetching`이 됩니다.
+이때 데이터가 존재하므로 Query Status는 `pending`이지만, Fetch Status는 `fetching`이 됩니다.
 
 이 상태에서는 기존에 요청에 성공한 데이터가 존재하므로, 데이터를 가리지 않는 별도의 영역에서 로딩 인디케이터를 표시하는 것이 적절합니다.
 재요청에 실패하더라도, 기존의 'Stale'한 데이터를 지속적으로 표시해 사용자 경험에 도움을 줄 수 있습니다.
 
 ## 추가: useQuery 내부 상태 머신과 파생 플래그
 
-> (번역) React Query의 장점 중 하나는 쿼리의 상태 필드에 쉽게 접근할 수 있다는 것입니다.
+> "(번역) React Query의 장점 중 하나는 쿼리의 상태 필드에 쉽게 접근할 수 있다는 것입니다.
 이를 통해 쿼리가 로딩 중인지, 아니면 에러가 발생했는지를 즉각적으로 알 수 있습니다.
 라이브러리는 이를 위해 **내부 상태 머신**에서 파생된 여러 Boolean 플래그들을 노출합니다.  
 …  
 여기서 주의할 점은 **`isFetching` 플래그는 내부 상태 머신의 일부가 아니라는 것**입니다.
 이 플래그는 요청이 진행 중(’in-flight’)일 때마다 `true`가 되는 추가적인 상태입니다.
 따라서 'fetching이면서 success'일 수 있고, 'fetching이면서 error'일 수도 있습니다.
-하지만 **'loading(pending)이면서 동시에 success'일 수는 없습니다.** 상태 머신이 이를 확실히 보장하기 때문입니다.  
-_- TkDodo의 "Status Checks in React Query" 포스트 원문 중_
+하지만 **'loading(pending)이면서 동시에 success'일 수는 없습니다.** 상태 머신이 이를 확실히 보장하기 때문입니다."<br />  
+― TkDodo, 「Status Checks in React Query」
 
 공식 문서는 `status`와 같은 값은 내부 상태 머신에 의해 제어되고 있다고 언급하며,
 `isSuccess`와 같은 플래그는 상태 머신의 일부가 아니라고 설명하고 있습니다.
@@ -314,21 +314,21 @@ import type {
   // ...
   FetchStatus,
   QueryStatus,
-} from './types'
+} from './types';
 
 export interface QueryState<TData = unknown, TError = DefaultError> {
-  data: TData | undefined
-  dataUpdateCount: number
-  dataUpdatedAt: number
-  error: TError | null
-  errorUpdateCount: number
-  errorUpdatedAt: number
-  fetchFailureCount: number
-  fetchFailureReason: TError | null
-  fetchMeta: FetchMeta | null
-  isInvalidated: boolean
-  status: QueryStatus
-  fetchStatus: FetchStatus
+  data: TData | undefined;
+  dataUpdateCount: number;
+  dataUpdatedAt: number;
+  error: TError | null;
+  errorUpdateCount: number;
+  errorUpdatedAt: number;
+  fetchFailureCount: number;
+  fetchFailureReason: TError | null;
+  fetchMeta: FetchMeta | null;
+  isInvalidated: boolean;
+  status: QueryStatus;
+  fetchStatus: FetchStatus;
 }
 ```
 
@@ -343,18 +343,18 @@ useQuery 내부의 `QueryState`를 살펴보면, `status`와 `fetchStatus`는 �
 // @tanstack/query-core/src/queryObserver.ts
 
 export class QueryObserver<
-	TQueryFnData = unknown,
+  TQueryFnData = unknown,
   TError = DefaultError,
   TData = TQueryFnData,
   TQueryData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey,
 > extends Subscribable<QueryObserverListener<TData, TError>> {
-	// ...
+  // ...
 	
-	protected createResult(
-		//...
-		
-		const isFetching = newState.fetchStatus === 'fetching'
+  protected createResult(
+    //...
+
+    const isFetching = newState.fetchStatus === 'fetching'
     const isPending = status === 'pending'
     const isError = status === 'error'
 
@@ -449,11 +449,11 @@ v5로 넘어오며 TanStack Query 개발팀은 ‘loading’ 상태가 가지는
 
 ## 결론
 
-- useQuery의 응답에서 Query Status는 ‘데이터의 존재 유무’에,
+- useQuery의 상태 필드가 헷갈리는 이유는, 버전업 과정에서 실제로 많은 부분이 변경되었기 때문입니다.
+- 여러 모호한 시나리오(네트워크 중단, 백그라운드 요청 등)를 명확히 분리해 표현하기 위해 Query Status는 ‘데이터의 존재 유무’에,
 Fetch Status는 ‘요청 수행 상태’에 초점을 맞추고 있으며 두 상태 필드는 독립적인 관계를 가집니다.
-이러한 구조는 여러 모호한 시나리오(네트워크 중단, 백그라운드 요청 등)를 명확히 분리해 표현하기 위한 최적화된 형태입니다.
 - 과거에는 타입스크립트 사용 시, 파생 플래그(ex: `isFetching`) 대신 상태를 나타내는 Union 값(ex: `fetchStatus`)을 활용하는 편이 권유되었으나,
-최신 버전의 타입스크립트에서는 파생 플래그에 대한 타입 지원이 매우 잘 이루어지고 있어 코드를 작성하는 개발자의 선택의 자유도가 높아졌습니다.
+최신 버전의 타입스크립트에서는 파생 플래그에 대한 타입 지원이 매우 잘 이루어지고 있습니다.
 - TanStack Query가 v5에 이르기까지 상태 필드에 대해 어떤 메이저한 변경 사항들이 있었는지를 인지한다면,
 다양한 버전을 배경으로 작성된 문서들을 참고하며 혼동이 오는 것을 방지할 수 있을 것이라고 생각합니다.
 
@@ -461,3 +461,4 @@ Fetch Status는 ‘요청 수행 상태’에 초점을 맞추고 있으며 두 
 
 - [useQuery | TanStack Query React Docs](https://tanstack.com/query/latest/docs/framework/react/reference/useQuery)
 - [Status Checks in React Query | TkDodo's blog](https://tkdodo.eu/blog/status-checks-in-react-query)
+- [React Query의 구조와 useQuery 실행 흐름 살펴보기 | 함성준님@Kakao ENT. 테크 블로그](https://tech.kakaoent.com/front-end/2023/230720-react-query/)
