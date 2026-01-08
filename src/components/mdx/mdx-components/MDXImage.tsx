@@ -4,6 +4,7 @@ import type { ImageProps } from 'next/image';
 
 import Image from 'next/image';
 import { usePostStore } from '@stores/post-store';
+import { BASE_URL } from '@constants/metadata';
 
 type MDXImageProps = {
   src: string;
@@ -16,7 +17,7 @@ export const MDXImage = ({ src, alt, width, height }: MDXImageProps) => {
   const openImageModal = usePostStore(state => state.openImageModal);
   const setImageModalData = usePostStore(state => state.setImageModalData);
 
-  const url = new URL(src, 'https://poodlepoodle.me');
+  const url = new URL(src, BASE_URL);
   const widthParam = url.searchParams.get('width');
   const imageWidth = widthParam ? parseInt(widthParam) : width;
   const isGif = url.pathname.toLowerCase().endsWith('.gif');

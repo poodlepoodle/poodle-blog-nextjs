@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import type { MetadataOpenGraph, MetadataTwitter } from '@/types';
 
-export const BASE_URL = 'https://poodlepoodle.me';
+export const BASE_URL = 'https://www.poodlepoodle.me';
 
 export const METADATA_OG_WEBSITE_PRESET: MetadataOpenGraph = {
   url: '/',
