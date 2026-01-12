@@ -1,7 +1,13 @@
 import type { MDXComponents } from 'next-mdx-remote-client/rsc';
 
 import remarkGfm from 'remark-gfm';
-import { MDXCode, MDXImage, MDXLink, MDXBlockquote } from './mdx-components';
+import {
+  MDXCode,
+  MDXImage,
+  MDXLink,
+  MDXBlockquote,
+  MDXInlineCode,
+} from './mdx-components';
 import { MDXRemote } from 'next-mdx-remote-client/rsc';
 import rehypeSlug from 'rehype-slug';
 
@@ -16,6 +22,7 @@ const mdxComponents: MDXComponents = {
   a: MDXLink,
   img: MDXImage,
   pre: MDXCode,
+  code: MDXInlineCode,
   blockquote: MDXBlockquote,
 };
 
