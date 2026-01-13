@@ -1,4 +1,5 @@
 import { Code } from 'bright';
+import { isValidElement } from 'react';
 
 Code.theme = 'min-light';
 Code.lineNumbers = true;
@@ -12,12 +13,7 @@ export const MDXCode = ({ children, ...props }: MDXCodeProps) => {
   let codeContent = children;
   let lang: string | undefined = undefined;
 
-  if (
-    children &&
-    typeof children === 'object' &&
-    'props' in children &&
-    children.props
-  ) {
+  if (isValidElement(children)) {
     const childProps = children.props as {
       children?: React.ReactNode;
       className?: string;
