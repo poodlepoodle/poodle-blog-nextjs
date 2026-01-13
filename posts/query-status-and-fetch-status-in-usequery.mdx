@@ -327,6 +327,7 @@ export interface QueryState<TData = unknown, TError = DefaultError> {
   fetchFailureReason: TError | null;
   fetchMeta: FetchMeta | null;
   isInvalidated: boolean;
+  // focus(1:2)
   status: QueryStatus;
   fetchStatus: FetchStatus;
 }

@@ -158,12 +158,12 @@ export default ImageSlider;
 // @pages/feed/FeedPage.jsx
 
 const FeedPage = () => {
+  // focus(1:21)
   const { initialFeedData } = useLoaderData();
   const [feedData, setFeedData] = useState(initialFeedData);
   const [lastFeedItemId, setLastFeedItemId] = useState(
     initialFeedData.length > 0 ? initialFeedData.at(-1).article.id : null
   );
-	// ...
 
   const fetchFeedData = async () => {
 	  // 마지막에 호출한 아이템의 id를 받아 Infinite Scroll 방식의 Pagination 수행
@@ -606,6 +606,7 @@ function NoticeTemplate({ noticeData }) {
   );
 }
 
+// focus(1:1)
 export default withNavigation('공지사항', NoticeTemplate); // 함께 감싸서 export
 ```
 
