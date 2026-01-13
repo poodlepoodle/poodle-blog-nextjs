@@ -3,6 +3,38 @@ import { isValidElement } from 'react';
 
 Code.theme = 'min-light';
 Code.lineNumbers = true;
+Code.extensions = [
+  {
+    name: 'focus',
+    MultilineAnnotation: ({ children }) => (
+      <div className="bg-[#EFF9FFCC]">{children}</div>
+    ),
+    beforeHighlight: (props: any, focusAnnotations: any[]) => {
+      if (focusAnnotations.length === 0) return props;
+
+      const lines = props.code.split('\n');
+      const linesToFocus = new Set();
+
+      focusAnnotations.forEach((a: any) => {
+        for (let i = a.fromLineNumber; i <= a.toLineNumber; i++) {
+          linesToFocus.add(i);
+        }
+      });
+
+      const filteredLines = lines.filter((line: string) => {
+        const trimmed = line.trim();
+        return !(
+          trimmed.startsWith('// focus') || trimmed.startsWith('//focus')
+        );
+      });
+
+      return {
+        ...props,
+        code: filteredLines.join('\n'),
+      };
+    },
+  },
+];
 
 type MDXCodeProps = {
   children: React.ReactNode;
