@@ -366,6 +366,9 @@ import Text from '@components/atoms/Text';
 
 export default function MyFeedItem({ articleId, term, year, image, preview }) {
   return (
+    // focus(4:4)
+    // focus(8:11)
+    // focus(18:21)
     <S.Layout to={`/article/${articleId}`}>
       <S.InfoContainer>
         <section>
@@ -445,7 +448,7 @@ export default function SomeComponent() {
 - `style.js`: 컴포넌트의 스타일 요소
 - `index.jsx`: 컴포넌트의 몸체
 
-위 방법처럼 스타일 요소를 별개의 파일로 분리한 후 import해 사용함으로써
+위 방법처럼 스타일 요소를 별개의 파일로 분리한 후 named export해 사용함으로써
 길이가 긴 스타일 요소들을 떼어내 한 컴포넌트의 코드 길이가 지나치게 길어지는 것을 방지할 수 있었습니다.
 JSX 상에서 다른 컴포넌트와 `S` prefix가 붙은 스타일 요소를 구분하기 쉬운 것은 또 하나의 장점이었고요.
 
@@ -596,6 +599,7 @@ export default function withNavigation(
 // templates/NoticeTemplate/index.jsx
 // ...
 
+// focus(1:1)
 import withNavigation from '@components/hoc/withNavigation';
 
 function NoticeTemplate({ noticeData }) {
@@ -632,12 +636,14 @@ src
 ├── index.css
 ├── assets
 ├── ...
+// focus(1:6)
 ├── components  // 컴포넌트: 아토믹 디자인에 기반해 atom, molecule, organism, template을 분류
 │   ├── atoms
 │   ├── molecules
 │   ├── organisms
 │   ├── templates
 │   └── hoc
+// focus(1:4)
 ├── pages       // 페이지 컴포넌트: 아토믹 디자인 기반 page를 분류
 │   ├── feed
 │   ├── home
@@ -775,6 +781,7 @@ function useForm(initialValues) {
 }
 
 // SignUpForm.js
+
 import useForm from '...';
 
 function SignUpForm() {
@@ -1095,8 +1102,6 @@ export default function useProfileForm(initialUserData) {
 외부에는 꼭 필요한 인터페이스만을 제공하도록 숨길 수 있었다는 점입니다.
 덕분에 꼭 전달해야 할 데이터만을 전달함으로써 **props drilling** 문제를 부분적으로 개선했습니다.
 
-## 4. 리팩토링을 마치며
-
 ### 커스텀 훅 적용 후 개선된 프로젝트 구조
 
 ```js
@@ -1118,9 +1123,11 @@ src
 │   ├── feed
 │   ├── home
 │   └── ...
+// focus(1:1)
 ├── contexts    // 페이지 컨텍스트: 페이지 단위로 분류
 └── utils       // 공통 비즈니스 로직 (API, Routing, ...)
     ├── api
+// focus(1:5)
     ├── hooks   // 커스텀 훅: 재사용성을 고려해 분류
     │   ├── useArticleForm
     │   ├── useImageForm
@@ -1129,6 +1136,8 @@ src
     ├── router
     └── ...
 ```
+
+## 4. 리팩토링을 마치며
 
 아토믹 디자인에 이어 다시 한 달 반 정도가 지난 끝에 비즈니스 로직의 재사용성을 고려한 리팩토링 작업을 마쳤습니다.
 
