@@ -64,7 +64,7 @@ export default async function Page({ params }: PageProps) {
       <JsonLd structuredData={jsonLd} />
       <Article slug={slug} post={post}>
         <Suspense fallback={<MDXSkeleton />}>
-          <MDXContent source={post.content} />
+          <MDXContent source={post.content} isPlayground />
         </Suspense>
       </Article>
     </>
