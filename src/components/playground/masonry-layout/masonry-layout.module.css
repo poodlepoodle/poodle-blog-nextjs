@@ -1,0 +1,39 @@
+.container {
+  width: 100%;
+  max-width: 65rem;
+  padding: 4rem 2.5rem;
+
+  /* Flexbox 레이아웃 사용 */
+  display: flex;
+  align-items: flex-start;
+  /* Column 사이의 간격 */
+  column-gap: 1.25rem;
+
+  background-color: white;
+}
+
+.column {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  /* Column 안에서 아이템 사이의 세로 간격 */
+  row-gap: 1.25rem;
+}
+
+.item {
+  width: 100%;
+  border: 0.5px solid var(--color-gray-2);
+  border-radius: 0.5rem;
+  background-color: var(--color-sky-100);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-title {
+  color: var(--color-black);
+  font-size: 1rem;
+  font-weight: 500;
+}
