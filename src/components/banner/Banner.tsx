@@ -4,6 +4,7 @@ import styles from './banner.module.css';
 import Link from 'next/link';
 import { useGrayscaleReveal } from '@hooks/useGrayscaleReveal';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
+import { cn } from '@/utils/cn';
 
 export const Banner = () => {
   const { containerRef } = useGrayscaleReveal<HTMLAnchorElement>();
@@ -12,9 +13,10 @@ export const Banner = () => {
     <Link
       href={`/about`}
       ref={containerRef}
-      className={`group relative h-[6.25rem] w-full shrink-0 overflow-hidden rounded-lg grayscale-100 transition-all duration-300 hover:grayscale-0 ${
+      className={cn(
+        'group relative h-[6.25rem] w-full shrink-0 overflow-hidden rounded-lg grayscale-100 transition-all duration-300 hover:grayscale-0',
         styles.container
-      }`}
+      )}
     >
       <ImageWithSkeleton
         src={`/components/banner/banner-background.jpg`}

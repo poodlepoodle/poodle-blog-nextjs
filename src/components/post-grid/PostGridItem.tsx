@@ -6,6 +6,7 @@ import styles from './post-grid-item.module.css';
 import Link from 'next/link';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
 import { useGrayscaleReveal } from '@hooks/useGrayscaleReveal';
+import { cn } from '@/utils/cn';
 
 const UpdatedIcon = () => {
   return (
@@ -36,12 +37,13 @@ export const PostGridItem = ({ post, className }: PostGridItemProps) => {
   return (
     <Link
       href={`/${postPath}/${slug}`}
-      className={`group flex w-full flex-col ${className ?? ''}`}
+      className={cn('group flex w-full flex-col', className)}
     >
       <div
-        className={`relative h-thumbnail w-full min-w-thumbnail grayscale-100 transition-all duration-600 group-hover:grayscale-0 ${
+        className={cn(
+          'relative h-thumbnail w-full min-w-thumbnail grayscale-100 transition-all duration-600 group-hover:grayscale-0',
           styles.thumbnail__container
-        }`}
+        )}
         ref={containerRef}
       >
         <ImageWithSkeleton

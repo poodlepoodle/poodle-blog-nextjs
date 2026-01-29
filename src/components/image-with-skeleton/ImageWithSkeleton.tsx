@@ -3,6 +3,7 @@
 import { Skeleton } from '@components/common/skeleton';
 import { useState } from 'react';
 import { ResponsiveImage } from '@components/common/responsive-image';
+import { cn } from '@/utils/cn';
 
 type ImageWithSkeletonProps = {
   src: string;
@@ -24,7 +25,11 @@ export const ImageWithSkeleton = ({
         src={src}
         alt={alt}
         onLoad={() => setLoaded(true)}
-        className={`overflow-hidden rounded-lg object-cover transition-opacity duration-500 ease-in-out ${loaded ? 'opacity-100' : 'opacity-0'} ${noShadow ? '' : 'shadow-natural'}`}
+        className={cn(
+          'overflow-hidden rounded-lg object-cover transition-opacity duration-500 ease-in-out',
+          loaded ? 'opacity-100' : 'opacity-0',
+          !noShadow && 'shadow-natural'
+        )}
       />
     </>
   );

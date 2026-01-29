@@ -1,6 +1,7 @@
 import type { ImageProps } from 'next/image';
 
 import Image from 'next/image';
+import { cn } from '@/utils/cn';
 
 const isGif = (imageUrl: string) => imageUrl?.toLowerCase().endsWith('.gif');
 
@@ -20,7 +21,7 @@ export const ResponsiveImage = ({
       src={src}
       alt={alt}
       fill
-      className={className}
+      className={cn(className)}
       {...props}
       unoptimized={isGif(src)}
     />

@@ -1,3 +1,5 @@
+import { cn } from '@/utils/cn';
+
 type SkeletonBorderRadius = 0 | 4 | 8 | 16;
 
 type SkeletonProps = {
@@ -22,7 +24,10 @@ export const Skeleton = ({
 }: SkeletonProps) => {
   return (
     <div
-      className={`relative overflow-hidden bg-gray-1 before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-gray-1 before:via-white before:to-gray-1 ${borderRadiusToTailwind[borderRadius]}`}
+      className={cn(
+        'relative overflow-hidden bg-gray-1 before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-gray-1 before:via-white before:to-gray-1',
+        borderRadiusToTailwind[borderRadius]
+      )}
       style={
         fill
           ? {

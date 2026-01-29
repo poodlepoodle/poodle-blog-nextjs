@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useUIStore } from '@stores/ui-store';
 import { HEADER_MENU_ITEMS } from '@/constants';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/utils/cn';
 
 const SpotlightedIcon = () => {
   return (
@@ -31,13 +32,15 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 z-10 flex w-full items-center justify-center border-b-[0.5px] bg-[rgba(255,255,255,0.1)] backdrop-blur-[0.5rem] backdrop-saturate-200 transition-all duration-300 ${
+      className={cn(
+        'fixed top-0 z-10 flex w-full items-center justify-center border-b-[0.5px] bg-[rgba(255,255,255,0.1)] backdrop-blur-[0.5rem] backdrop-saturate-200 transition-all duration-300',
         isFloating
           ? 'border-gray-2'
           : isSpotlighted
             ? 'border-gray-3'
-            : 'border-transparent'
-      } ${isSpotlighted && !!headerText ? 'h-header-spotlighted' : 'h-header'}`}
+            : 'border-transparent',
+        isSpotlighted && !!headerText ? 'h-header-spotlighted' : 'h-header'
+      )}
     >
       <div className="flex h-full w-full max-w-container items-center justify-between gap-[1.5rem] px-[2.5rem] desktop:px-0">
         {isSpotlighted && !!headerText ? (
@@ -70,9 +73,10 @@ export const Header = () => {
                 className="group flex h-full items-center"
               >
                 <span
-                  className={`text-sm font-medium transition-colors duration-300 group-hover:text-skyblue ${
+                  className={cn(
+                    'text-sm font-medium transition-colors duration-300 group-hover:text-skyblue',
                     pathname.startsWith(href) ? 'text-skyblue' : 'text-black'
-                  }`}
+                  )}
                 >
                   {label}
                 </span>

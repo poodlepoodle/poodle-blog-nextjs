@@ -12,6 +12,7 @@ import { useSpotlight } from '@hooks/useSpotlight';
 import { useUIStore } from '@stores/ui-store';
 import { usePostStore } from '@stores/post-store';
 import { useEffect } from 'react';
+import { cn } from '@/utils/cn';
 
 type ArticleProps = {
   slug: string;
@@ -40,9 +41,10 @@ export const Article = ({ slug, post, children }: ArticleProps) => {
   return (
     <>
       <div
-        className={`relative mt-container-top mb-container-bottom flex w-full flex-col items-center transition-colors duration-350 ${
-          !!isSpotlighted ? 'bg-black' : 'bg-background'
-        }`}
+        className={cn(
+          'relative mt-container-top mb-container-bottom flex w-full flex-col items-center transition-colors duration-350',
+          isSpotlighted ? 'bg-black' : 'bg-background'
+        )}
       >
         <Paper className="flex flex-col gap-items py-[4rem]">
           <ArticleHeader

@@ -1,5 +1,6 @@
 import styles from './image-marquee.module.css';
 import Image from 'next/image';
+import { cn } from '@/utils/cn';
 
 const images = [
   { src: '/playground/image-marquee/puppy/1.jpg', alt: 'image 1' },
@@ -27,7 +28,7 @@ export const ImageMarquee = () => {
   const repeatedImages = [...images, ...images];
   return (
     <div className="relative max-w-[100rem] overflow-hidden">
-      <div className={`${styles.animate_scroll} flex w-max`}>
+      <div className={cn(styles.animate_scroll, 'flex w-max')}>
         {repeatedImages.map((image, idx) => (
           <div
             key={idx}
@@ -51,7 +52,7 @@ export const LogoMarquee = () => {
 
   return (
     <div className="relative max-w-[100rem] overflow-hidden">
-      <div className={`${styles.animate_scroll} flex w-max`}>
+      <div className={cn(styles.animate_scroll, 'flex w-max')}>
         {repeatedImages.map((image, idx) => (
           <div
             key={idx}
