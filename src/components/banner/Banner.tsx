@@ -21,6 +21,7 @@ export const Banner = () => {
       <ImageWithSkeleton
         src={`/components/banner/banner-background.jpg`}
         alt="blog home banner image"
+        className="border-none"
       />
       <div className="absolute inset-0 z-2 flex items-center justify-center px-[2.5rem]">
         <span className="text-center text-sm font-medium break-keep text-gray-3 transition-colors duration-300 group-hover:text-skyblue">

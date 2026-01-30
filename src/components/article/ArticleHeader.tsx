@@ -51,6 +51,7 @@ export const ArticleHeader = ({
         <ImageWithSkeleton
           src={`/${postPath}/${slug}/thumbnail-large.webp`}
           alt="post thumbnail"
+          className="border-none"
         />
       </section>
     </div>

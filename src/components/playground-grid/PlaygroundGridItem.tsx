@@ -28,15 +28,14 @@ export const PlaygroundGridItem = ({
       <div
         ref={containerRef}
         className={cn(
-          'relative w-full min-w-thumbnail rounded-lg grayscale-100 transition-all duration-600 group-hover:grayscale-0',
+          'relative w-full min-w-thumbnail rounded-lg grayscale-100 transition-all duration-600 group-hover:grayscale-0 aspect-square',
           styles.thumbnail__container
         )}
-        style={{ aspectRatio: '1' }}
       >
         <ImageWithSkeleton
           src={`/playground/${slug}/thumbnail-large.webp`}
           alt="post thumbnail"
-          noShadow
+          className="border-none"
         />
       </div>
     </Link>

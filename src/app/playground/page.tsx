@@ -31,7 +31,7 @@ export default async function Page() {
             <ImageWithSkeleton
               src="/playground/profile.png"
               alt="profile image"
-              noShadow
+              className="border-none"
             />
           </div>
           <p className="text-lg font-medium tracking-[-0.025rem] break-keep text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
