@@ -8,12 +8,13 @@ const isGif = (imageUrl: string) => imageUrl?.toLowerCase().endsWith('.gif');
 type ResponsiveImageProps = {
   src: string;
   alt: string;
-} & Omit<ImageProps, 'src' | 'alt' | 'fill'>;
+  className?: string;
+} & Omit<ImageProps, 'src' | 'alt' | 'className' | 'fill'>;
 
 export const ResponsiveImage = ({
   src,
   alt,
-  className = 'object-cover',
+  className = '',
   ...props
 }: ResponsiveImageProps) => {
   return (
@@ -21,7 +22,8 @@ export const ResponsiveImage = ({
       src={src}
       alt={alt}
       fill
-      className={cn(className)}
+      className={cn('object-cover',
+        className)}
       {...props}
       unoptimized={isGif(src)}
     />

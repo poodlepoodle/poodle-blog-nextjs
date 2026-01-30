@@ -8,15 +8,15 @@ import { cn } from '@/utils/cn';
 type ImageWithSkeletonProps = {
   src: string;
   alt: string;
-  noShadow?: boolean;
+  className?: string;
 };
 
 export const ImageWithSkeleton = ({
   src,
   alt,
-  noShadow = false,
+  className = '',
 }: ImageWithSkeletonProps) => {
-  const [loaded, setLoaded] = useState<boolean>(false);
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <>
@@ -26,9 +26,9 @@ export const ImageWithSkeleton = ({
         alt={alt}
         onLoad={() => setLoaded(true)}
         className={cn(
-          'overflow-hidden rounded-lg object-cover transition-opacity duration-500 ease-in-out',
+          'overflow-hidden rounded-lg object-cover transition-opacity duration-500 ease-in-out border-[0.5px] border-gray-2',
           loaded ? 'opacity-100' : 'opacity-0',
-          !noShadow && 'shadow-natural'
+          className
         )}
       />
     </>
