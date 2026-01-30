@@ -4,7 +4,7 @@ publishedAt: 2026. 01. 07
 description: 'TanStack Query v5 기준 useQuery 응답에서 Query Status와 Fetch Status를 구분하는 핵심 원리를 정리했습니다.'
 slug: 'query-status-and-fetch-status-in-usequery'
 tags: ['tanstack query', 'react']
-updated: true
+updated: false
 ---
 
 TanStack Query에서 제공하는 **useQuery()** 훅을 사용해 비동기 데이터를 요청하면,
@@ -288,6 +288,27 @@ TanStack Query 자체 메커니즘에 의해 백그라운드에서 새로운 데
 
 이 상태에서는 기존의 요청에 성공한 데이터가 존재하므로, 데이터를 가리지 않는 별도의 영역에서 로딩 인디케이터를 표시하는 것이 적절합니다.
 재요청에 실패하더라도, 기존의 'Stale'한 데이터를 지속적으로 표시해 사용자 경험에 도움을 줄 수 있습니다.
+
+```tsx
+// focus(1:2)
+// 데이터가 없을 때만 전체 에러 화면을 표시
+if (isError && !data) {
+  return <div>요청 중 에러가 발생했습니다: {error.message}</div>;
+}
+
+return (
+  // focus(2:3)
+  <div>
+    {/* 백그라운드 요청 중 에러 발생 시, 데이터와 별개의 영역에서 표시 */}
+    {isError && <div>업데이트 중 에러가 발생했습니다...</div>}
+    <ul>
+      {data.map(todo => (
+        <li key={todo.id}>{todo.title}</li>
+      ))}
+    </ul>
+  </div>
+);
+```
 
 ## 추가: useQuery 내부 상태 머신과 파생 플래그
 
