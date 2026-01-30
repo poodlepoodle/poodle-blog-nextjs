@@ -28,7 +28,7 @@ export const PlaygroundGridItem = ({
       <div
         ref={containerRef}
         className={cn(
-          'relative w-full min-w-thumbnail rounded-lg grayscale-100 transition-all duration-600 group-hover:grayscale-0 aspect-square',
+          'relative aspect-square w-full min-w-thumbnail rounded-lg grayscale-100 transition-all duration-600 group-hover:grayscale-0',
           styles.thumbnail__container
         )}
       >

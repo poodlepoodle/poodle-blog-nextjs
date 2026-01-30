@@ -22,8 +22,7 @@ export const ResponsiveImage = ({
       src={src}
       alt={alt}
       fill
-      className={cn('object-cover',
-        className)}
+      className={cn('object-cover', className)}
       {...props}
       unoptimized={isGif(src)}
     />

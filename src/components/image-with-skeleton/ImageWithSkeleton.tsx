@@ -26,7 +26,7 @@ export const ImageWithSkeleton = ({
         alt={alt}
         onLoad={() => setLoaded(true)}
         className={cn(
-          'overflow-hidden rounded-lg object-cover transition-opacity duration-500 ease-in-out border-[0.5px] border-gray-2',
+          'overflow-hidden rounded-lg border-[0.5px] border-gray-2 object-cover transition-opacity duration-500 ease-in-out',
           loaded ? 'opacity-100' : 'opacity-0',
           className
         )}
