@@ -51,7 +51,7 @@ export const MDXContent = ({
     : baseMdxComponents;
 
   return (
-    <article className="prose prose-headings:font-bold prose-p:font-medium prose-li:font-medium max-w-none gap-[3rem] px-[2.5rem] text-base leading-8 break-keep tablet:prose-lg tablet:leading-9 desktop:px-[5.5rem] [&_li::marker]:text-gray-2 [&>*]:py-0 [&>*:not(h2)]:my-post-paragraph [&>h2]:mt-post-h2 [&>h2]:mb-post-paragraph">
+    <article className="prose max-w-none gap-[3rem] px-[2.5rem] text-base leading-8 break-keep tablet:prose-lg tablet:leading-9 desktop:px-[5.5rem] prose-headings:font-bold prose-p:font-medium prose-li:font-medium [&_li::marker]:text-gray-2 [&>*]:py-0 [&>*:not(h2)]:my-post-paragraph [&>h2]:mt-post-h2 [&>h2]:mb-post-paragraph">
       <MDXRemote source={source} options={options} components={mdxComponents} />
     </article>
   );
