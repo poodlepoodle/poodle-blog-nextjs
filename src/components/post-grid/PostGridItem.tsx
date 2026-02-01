@@ -41,15 +41,23 @@ export const PostGridItem = ({ post, className }: PostGridItemProps) => {
     >
       <div
         className={cn(
-          'relative h-thumbnail w-full min-w-thumbnail grayscale-100 transition-all duration-600 group-hover:grayscale-0',
+          'relative h-thumbnail w-full min-w-thumbnail overflow-hidden',
           styles.thumbnail__container
         )}
         ref={containerRef}
       >
-        <ImageWithSkeleton
-          src={`/${postPath}/${slug}/thumbnail-large.webp`}
-          alt="post thumbnail"
-        />
+        <div className={styles.grayscale__layer}>
+          <ImageWithSkeleton
+            src={`/${postPath}/${slug}/thumbnail-large.webp`}
+            alt="post thumbnail grayscale"
+          />
+        </div>
+        <div className={styles.color__layer}>
+          <ImageWithSkeleton
+            src={`/${postPath}/${slug}/thumbnail-large.webp`}
+            alt="post thumbnail"
+          />
+        </div>
       </div>
 
       <span className="mt-[1rem] text-xs font-medium text-black">
