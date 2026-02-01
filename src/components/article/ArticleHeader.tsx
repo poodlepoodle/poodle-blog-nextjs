@@ -27,10 +27,10 @@ export const ArticleHeader = ({
       ref={observerRef}
     >
       <section className="flex w-full flex-col items-center px-[2.5rem] desktop:px-[4rem]">
-        <span className="text-center text-lg font-semibold break-keep text-black tablet:text-xl">
+        <span className="text-center text-lg font-bold break-keep text-black tablet:text-xl">
           {title}
         </span>
-        <span className="mt-[1rem] text-xs font-normal text-black">
+        <span className="mt-[1rem] text-xs font-medium text-black">
           {publishedAt}
         </span>
         {description && (

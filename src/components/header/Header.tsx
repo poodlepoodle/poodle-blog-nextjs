@@ -74,7 +74,7 @@ export const Header = () => {
               >
                 <span
                   className={cn(
-                    'text-sm font-medium transition-colors duration-300 group-hover:text-skyblue',
+                    'text-sm font-semibold transition-colors duration-300 group-hover:text-skyblue',
                     pathname.startsWith(href) ? 'text-skyblue' : 'text-black'
                   )}
                 >

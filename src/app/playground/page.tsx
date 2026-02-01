@@ -34,7 +34,7 @@ export default async function Page() {
               className="border-none"
             />
           </div>
-          <p className="text-lg font-medium tracking-[-0.025rem] break-keep text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
+          <p className="text-lg font-semibold tracking-[-0.025rem] break-keep text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
             서비스를 구성하는 부분들 중, 사용자와 가장 가까이에서 소통하는
             인터페이스를 만든다는 점에서
             <br />

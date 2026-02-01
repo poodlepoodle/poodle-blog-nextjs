@@ -21,7 +21,7 @@ export const MDXInlineCode = (props: MDXInlineCodeProps) => {
 
   return (
     <code
-      className="vertical-middle mx-[0.1rem] inline-block translate-y-[-0.075rem] rounded-lg bg-[#EFF9FF] px-[0.35rem] py-[0.1rem] align-middle !font-mono !text-xs leading-[inherit] font-medium text-[#176997] before:content-[''] after:content-[''] tablet:py-[0.15rem] tablet:!text-sm"
+      className="subpixel-antialiased vertical-middle mx-[0.1rem] inline-block translate-y-[-0.075rem] rounded-lg bg-[#EFF9FF] px-[0.35rem] py-[0.1rem] align-middle !font-mono !text-xs leading-[inherit] !font-medium text-[#176997] before:content-[''] after:content-[''] tablet:py-[0.15rem] tablet:!text-sm"
       {...rest}
     >
       {children}

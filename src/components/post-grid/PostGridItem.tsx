@@ -52,12 +52,12 @@ export const PostGridItem = ({ post, className }: PostGridItemProps) => {
         />
       </div>
 
-      <span className="mt-[1rem] text-xs font-normal text-black">
+      <span className="mt-[1rem] text-xs font-medium text-black">
         {publishedAt}
       </span>
       <div className="mt-[0.25rem] flex items-center gap-[0.5rem]">
         {updated && <UpdatedIcon />}
-        <span className="line-clamp-1 text-lg font-semibold break-keep text-black tablet:text-xl">
+        <span className="line-clamp-1 text-lg font-bold break-keep text-black tablet:text-xl">
           {title}
         </span>
       </div>

@@ -65,7 +65,7 @@ export const MDXCode = ({ children, ...props }: MDXCodeProps) => {
     <Code
       {...props}
       lang={lang}
-      className="rounded-lg border-[0.5px] border-gray-2 text-base tablet:text-lg"
+      className="subpixel-antialiased rounded-lg border-[0.5px] border-gray-2 text-base tablet:text-lg"
     >
       {codeContent}
     </Code>
