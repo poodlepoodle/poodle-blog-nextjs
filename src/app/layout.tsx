@@ -7,6 +7,7 @@ import { Header } from '@components/header';
 import { Footer } from '@components/footer';
 import { Analytics } from '@vercel/analytics/react';
 import { BASE_URL, METADATA_PRESET } from '@constants/metadata';
+import { cn } from '@utils/cn';
 
 const pretendard = localFont({
   src: './../../public/fonts/PretendardVariable.woff2',
@@ -29,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" className={`${pretendard.variable}`}>
+    <html lang="ko" className={cn(pretendard.variable, 'antialiased')}>
       <body className="bg-background font-prtd">
         <HeaderAnchor />
         <Header />
