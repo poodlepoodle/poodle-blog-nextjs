@@ -20,14 +20,14 @@ export const Banner = () => {
       <div ref={containerRef} className={styles.image__container}>
         <div className={styles.grayscale__layer}>
           <ImageWithSkeleton
-            src={`/components/banner/banner-background.jpg`}
+            src={`/components/banner/banner-background.webp`}
             alt="blog home banner image grayscale"
             className="border-none"
           />
         </div>
         <div className={styles.color__layer}>
           <ImageWithSkeleton
-            src={`/components/banner/banner-background.jpg`}
+            src={`/components/banner/banner-background.webp`}
             alt="blog home banner image"
             className="border-none"
           />
