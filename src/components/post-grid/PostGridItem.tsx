@@ -2,7 +2,6 @@
 
 import type { Post } from '@/types';
 
-import styles from './post-grid-item.module.css';
 import Link from 'next/link';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
 import { useGrayscaleReveal } from '@hooks/useGrayscaleReveal';
@@ -29,7 +28,7 @@ type PostGridItemProps = {
 
 export const PostGridItem = ({ post, className }: PostGridItemProps) => {
   const { title, slug, publishedAt, updated } = post;
-  const { containerRef } = useGrayscaleReveal<HTMLDivElement>();
+  const { GrayscaleRevealWrapper } = useGrayscaleReveal();
 
   const isPlaygroundPost = !('description' in post);
   const postPath = isPlaygroundPost ? 'playground' : 'posts';
@@ -39,26 +38,12 @@ export const PostGridItem = ({ post, className }: PostGridItemProps) => {
       href={`/${postPath}/${slug}`}
       className={cn('group flex w-full flex-col', className)}
     >
-      <div
-        className={cn(
-          'relative h-thumbnail w-full min-w-thumbnail overflow-hidden',
-          styles.thumbnail__container
-        )}
-        ref={containerRef}
-      >
-        <div className={styles.grayscale__layer}>
-          <ImageWithSkeleton
-            src={`/${postPath}/${slug}/thumbnail-large.webp`}
-            alt="post thumbnail grayscale"
-          />
-        </div>
-        <div className={styles.color__layer}>
-          <ImageWithSkeleton
-            src={`/${postPath}/${slug}/thumbnail-large.webp`}
-            alt="post thumbnail"
-          />
-        </div>
-      </div>
+      <GrayscaleRevealWrapper className="h-thumbnail w-full min-w-thumbnail overflow-hidden">
+        <ImageWithSkeleton
+          src={`/${postPath}/${slug}/thumbnail-large.webp`}
+          alt="post thumbnail"
+        />
+      </GrayscaleRevealWrapper>
 
       <span className="mt-[1rem] text-xs font-medium text-black">
         {publishedAt}

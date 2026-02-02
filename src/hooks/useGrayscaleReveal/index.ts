@@ -1,0 +1,1 @@
+export { useGrayscaleReveal } from './useGrayscaleReveal';

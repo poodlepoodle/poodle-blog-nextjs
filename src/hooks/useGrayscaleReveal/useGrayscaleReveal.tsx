@@ -1,7 +1,20 @@
-import { useEffect, useRef } from 'react';
+'use client';
 
-export const useGrayscaleReveal = <T extends HTMLElement>() => {
-  const containerRef = useRef<T | null>(null);
+import React, { useEffect, useRef, type ReactNode } from 'react';
+import { cn } from '@/utils/cn';
+import styles from './useGrayscaleReveal.module.css';
+
+type UseGrayscaleRevealResult = {
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  GrayscaleRevealWrapper: (props: {
+    children: ReactNode;
+    grayscaleContent?: ReactNode;
+    className?: string;
+  }) => React.ReactElement;
+};
+
+export const useGrayscaleReveal = (): UseGrayscaleRevealResult => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const isHovered = useRef(false);
   const frameRef = useRef<number | null>(null);
 
@@ -62,7 +75,25 @@ export const useGrayscaleReveal = <T extends HTMLElement>() => {
     };
   }, []);
 
+  const GrayscaleRevealWrapper = ({
+    children,
+    grayscaleContent,
+    className,
+  }: {
+    children: ReactNode;
+    grayscaleContent?: ReactNode;
+    className?: string;
+  }) => (
+    <div className={cn(styles.container, className)} ref={containerRef}>
+      <div className={styles.grayscale__layer}>
+        {grayscaleContent ?? children}
+      </div>
+      <div className={styles.color__layer}>{children}</div>
+    </div>
+  );
+
   return {
     containerRef,
+    GrayscaleRevealWrapper,
   };
 };

@@ -1,4 +1,4 @@
-.thumbnail__container {
+.container {
   position: relative;
 }
 
@@ -33,6 +33,6 @@
   );
 }
 
-.thumbnail__container:hover .color__layer {
+.container:hover .color__layer {
   opacity: 1;
 }
