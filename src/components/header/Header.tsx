@@ -42,7 +42,7 @@ export const Header = () => {
         isSpotlighted && !!headerText ? 'h-header-spotlighted' : 'h-header'
       )}
     >
-      <div className="flex h-full w-full max-w-container items-center justify-between gap-[1.5rem] px-[2.5rem] desktop:px-0">
+      <div className="flex h-full w-full max-w-container items-center justify-between gap-[1.5rem] px-[2rem] tablet:px-[2.5rem] desktop:px-0">
         {isSpotlighted && !!headerText ? (
           <div className="flex flex-grow items-center gap-[0.5rem] pl-[0.75rem]">
             <SpotlightedIcon />
