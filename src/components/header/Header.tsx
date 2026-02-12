@@ -30,6 +30,8 @@ export const Header = () => {
   const headerText = useUIStore(state => state.headerText);
   const pathname = usePathname();
 
+  const isHeaderSpotlighted = isSpotlighted && !!headerText
+
   return (
     <header
       className={cn(
@@ -39,11 +41,11 @@ export const Header = () => {
           : isSpotlighted
             ? 'border-gray-3'
             : 'border-transparent',
-        isSpotlighted && !!headerText ? 'h-header-spotlighted' : 'h-header'
+        isHeaderSpotlighted ? 'h-header-spotlighted' : 'h-header'
       )}
     >
       <div className="flex h-full w-full max-w-container items-center justify-between gap-[1.5rem] px-[2rem] tablet:px-[2.5rem] desktop:px-0">
-        {isSpotlighted && !!headerText ? (
+        {isHeaderSpotlighted ? (
           <div className="flex flex-grow items-center gap-[0.5rem] pl-[0.75rem]">
             <SpotlightedIcon />
             <span className="line-clamp-1 text-sm font-semibold text-black">
@@ -64,7 +66,7 @@ export const Header = () => {
           </Link>
         )}
 
-        {!(isSpotlighted && !!headerText) && (
+        {!(isHeaderSpotlighted) && (
           <nav className="flex h-full shrink-0 items-center gap-items">
             {HEADER_MENU_ITEMS.map(({ label, href }) => (
               <Link
