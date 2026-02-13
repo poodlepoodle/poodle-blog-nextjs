@@ -7,6 +7,8 @@ import {
   MDXLink,
   MDXBlockquote,
   MDXInlineCode,
+  MDXH2,
+  MDXH3,
 } from './mdx-components';
 import { MDXRemote } from 'next-mdx-remote-client/rsc';
 import rehypeSlug from 'rehype-slug';
@@ -29,6 +31,8 @@ const baseMdxComponents: MDXComponents = {
   pre: MDXCode,
   code: MDXInlineCode,
   blockquote: MDXBlockquote,
+  h2: MDXH2,
+  h3: MDXH3,
 };
 
 const mdxPlaygroundComponents: MDXComponents = {
