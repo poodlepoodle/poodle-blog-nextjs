@@ -68,7 +68,7 @@ export const Header = () => {
             <SpotlightedIcon />
             <div className="min-w-0 flex-1 overflow-hidden">
               {activeHeading.length > 0 ? (
-                <div className="line-clamp-1 text-sm font-semibold text-black [&_span]:align-middle [&_svg]:inline-block [&_svg]:shrink-0 [&_svg]:align-middle">
+                <div className="line-clamp-1 text-sm leading-none font-semibold text-black [&_span]:align-middle [&_svg]:inline-block [&_svg]:shrink-0 [&_svg]:align-middle">
                   <span>{activeHeading[0]}</span>
                   {activeHeading.length > 1 && (
                     <>
@@ -78,7 +78,7 @@ export const Header = () => {
                   )}
                 </div>
               ) : postTitle ? (
-                <div className="line-clamp-1 text-sm font-semibold text-black">
+                <div className="line-clamp-1 text-sm leading-none font-semibold text-black">
                   {postTitle}
                 </div>
               ) : null}
