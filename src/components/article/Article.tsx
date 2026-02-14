@@ -27,7 +27,8 @@ const ArticleInner = ({ slug, post, children }: ArticleProps) => {
   const { headerRef, footerRef } = useSpotlight();
   const isSpotlighted = useUIStore(state => state.isSpotlighted);
   const setIsSpotlighted = useUIStore(state => state.setIsSpotlighted);
-  const setHeaderText = useUIStore(state => state.setHeaderText);
+  const setPostTitle = usePostStore(state => state.setPostTitle);
+  const setActiveHeading = usePostStore(state => state.setActiveHeading);
   const closeImageModal = usePostStore(state => state.closeImageModal);
   const activeHeading = useActiveHeading();
 
@@ -36,14 +37,16 @@ const ArticleInner = ({ slug, post, children }: ArticleProps) => {
 
     return () => {
       setIsSpotlighted(false);
-      setHeaderText('');
+      setPostTitle('');
+      setActiveHeading([]);
       closeImageModal();
     };
-  }, [setIsSpotlighted, setHeaderText, closeImageModal]);
+  }, [setIsSpotlighted, setPostTitle, setActiveHeading, closeImageModal]);
 
   useEffect(() => {
-    setHeaderText(activeHeading || post.title);
-  }, [activeHeading, post.title, setHeaderText]);
+    setPostTitle(post.title);
+    setActiveHeading(activeHeading);
+  }, [activeHeading, post.title, setPostTitle, setActiveHeading]);
 
   return (
     <>

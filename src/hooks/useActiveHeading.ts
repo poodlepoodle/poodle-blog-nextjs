@@ -44,19 +44,19 @@ const findParentH2Text = (
 const formatActiveHeading = (
   heading: HeadingInfo,
   parentH2Text: string | null
-): string => {
-  if (heading.level === 'h2') return heading.text;
-  return parentH2Text ? `${parentH2Text} > ${heading.text}` : heading.text;
+): string[] => {
+  if (heading.level === 'h2') return [heading.text];
+  return parentH2Text ? [parentH2Text, heading.text] : [heading.text];
 };
 
 /**
  * Hook to track the currently active heading (h2/h3) based on scroll position.
  * Uses TOCContext - must be used within TOCProvider.
- * Returns formatted text: "h2 title" or "h2 title > h3 title"
+ * Returns array: ["h2 title"] or ["h2 title", "h3 title"]
  */
-export const useActiveHeading = (): string => {
+export const useActiveHeading = (): string[] => {
   const registry = useTOCContext();
-  const [activeHeading, setActiveHeading] = useState<string>('');
+  const [activeHeading, setActiveHeading] = useState<string[]>([]);
 
   useEffect(() => {
     if (!registry || registry.headings.length === 0) {
@@ -94,12 +94,12 @@ export const useActiveHeading = (): string => {
         const lastPassed = getLastPassedHeading();
 
         if (!lastPassed) {
-          setActiveHeading('');
+          setActiveHeading([]);
           return;
         }
 
         if (lastPassed.level === 'h2') {
-          setActiveHeading(lastPassed.text);
+          setActiveHeading([lastPassed.text]);
         } else {
           handleH3Activation(lastPassed);
         }
@@ -109,7 +109,7 @@ export const useActiveHeading = (): string => {
       const topHeading = visible[0];
 
       if (!topHeading) {
-        setActiveHeading('');
+        setActiveHeading([]);
         return;
       }
 
@@ -117,9 +117,9 @@ export const useActiveHeading = (): string => {
         const visibleH3 = visible.find((h, idx) => idx > 0 && h.level === 'h3');
 
         if (visibleH3) {
-          setActiveHeading(`${topHeading.text} > ${visibleH3.text}`);
+          setActiveHeading([topHeading.text, visibleH3.text]);
         } else {
-          setActiveHeading(topHeading.text);
+          setActiveHeading([topHeading.text]);
         }
       } else {
         handleH3Activation(topHeading);
