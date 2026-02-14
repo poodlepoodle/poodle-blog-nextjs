@@ -2,6 +2,8 @@
 
 import type { Post } from '@/types';
 
+import { TOCProvider } from '@/contexts/toc-context';
+
 import { ArticleHeader } from './ArticleHeader';
 import { ArticleFooter } from './ArticleFooter';
 import { Paper } from '@components/common/paper';
@@ -9,6 +11,7 @@ import { GiscusComments } from '@components/giscus-comments';
 import { PostImageModal } from '@components/post-image-modal';
 
 import { useSpotlight } from '@hooks/useSpotlight';
+import { useActiveHeading } from '@hooks/useActiveHeading';
 import { useUIStore } from '@stores/ui-store';
 import { usePostStore } from '@stores/post-store';
 import { useEffect } from 'react';
@@ -20,23 +23,27 @@ type ArticleProps = {
   children: React.ReactNode;
 };
 
-export const Article = ({ slug, post, children }: ArticleProps) => {
+const ArticleInner = ({ slug, post, children }: ArticleProps) => {
   const { headerRef, footerRef } = useSpotlight();
   const isSpotlighted = useUIStore(state => state.isSpotlighted);
   const setIsSpotlighted = useUIStore(state => state.setIsSpotlighted);
   const setHeaderText = useUIStore(state => state.setHeaderText);
   const closeImageModal = usePostStore(state => state.closeImageModal);
+  const activeHeading = useActiveHeading();
 
   useEffect(() => {
     setIsSpotlighted(false);
-    setHeaderText(post.title);
 
     return () => {
       setIsSpotlighted(false);
       setHeaderText('');
       closeImageModal();
     };
-  }, []);
+  }, [setIsSpotlighted, setHeaderText, closeImageModal]);
+
+  useEffect(() => {
+    setHeaderText(activeHeading || post.title);
+  }, [activeHeading, post.title, setHeaderText]);
 
   return (
     <>
@@ -63,5 +70,13 @@ export const Article = ({ slug, post, children }: ArticleProps) => {
       </div>
       <PostImageModal />
     </>
+  );
+};
+
+export const Article = (props: ArticleProps) => {
+  return (
+    <TOCProvider>
+      <ArticleInner {...props} />
+    </TOCProvider>
   );
 };

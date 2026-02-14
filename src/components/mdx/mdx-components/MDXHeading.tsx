@@ -1,4 +1,14 @@
-import { type ReactNode, type PropsWithChildren, isValidElement } from 'react';
+'use client';
+
+import {
+  type ReactNode,
+  type PropsWithChildren,
+  isValidElement,
+  useCallback,
+  useRef,
+} from 'react';
+
+import { useTOCContext } from '@/contexts/toc-context';
 
 type MDXHeadingProps = {
   children: ReactNode;
@@ -21,11 +31,39 @@ const extractText = (children: ReactNode): string => {
   return '';
 };
 
+const useHeadingRef = (
+  level: 'h2' | 'h3',
+  text: string
+): React.RefCallback<HTMLHeadingElement> => {
+  const registry = useTOCContext();
+  const registryRef = useRef(registry);
+  const elementRef = useRef<HTMLElement | null>(null);
+
+  registryRef.current = registry;
+
+  return useCallback(
+    (element: HTMLHeadingElement | null) => {
+      if (elementRef.current && registryRef.current) {
+        registryRef.current.unregisterHeading(elementRef.current);
+      }
+
+      if (element && registryRef.current) {
+        elementRef.current = element;
+        registryRef.current.registerHeading({ element, level, text });
+      } else {
+        elementRef.current = null;
+      }
+    },
+    [level, text]
+  );
+};
+
 export const MDXH2 = ({ children, id }: MDXHeadingProps) => {
   const text = extractText(children);
+  const ref = useHeadingRef('h2', text);
 
   return (
-    <h2 id={id} data-heading-level="h2" data-heading-text={text}>
+    <h2 ref={ref} id={id} data-heading-level="h2" data-heading-text={text}>
       {children}
     </h2>
   );
@@ -33,9 +71,10 @@ export const MDXH2 = ({ children, id }: MDXHeadingProps) => {
 
 export const MDXH3 = ({ children, id }: MDXHeadingProps) => {
   const text = extractText(children);
+  const ref = useHeadingRef('h3', text);
 
   return (
-    <h3 id={id} data-heading-level="h3" data-heading-text={text}>
+    <h3 ref={ref} id={id} data-heading-level="h3" data-heading-text={text}>
       {children}
     </h3>
   );
