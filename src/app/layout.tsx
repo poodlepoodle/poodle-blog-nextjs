@@ -4,6 +4,7 @@ import './globals.css';
 import localFont from 'next/font/local';
 import { HeaderAnchor } from '@components/header-anchor';
 import { Header } from '@components/header';
+import { Drawer } from '@components/drawer';
 import { Footer } from '@components/footer';
 import { Analytics } from '@vercel/analytics/react';
 import { BASE_URL, METADATA_PRESET } from '@constants/metadata';
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className="bg-background font-prtd">
         <HeaderAnchor />
         <Header />
+        <Drawer />
         <main className="relative flex min-h-page w-full flex-col items-center pt-header">
           {children}
         </main>

@@ -2,12 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { cn } from '@/utils/cn';
 import { memo } from 'react';
+import { HeaderNavigation } from './HeaderNavigation';
 import { useUIStore } from '@stores/ui-store';
 import { usePostStore } from '@stores/post-store';
-
-import { cn } from '@/utils/cn';
-import { HeaderNavigation } from './HeaderNavigation';
 
 const SpotlightedIcon = memo(() => (
   <svg
@@ -53,7 +52,7 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        'fixed top-0 z-10 flex w-full items-center justify-center border-b-[0.5px] bg-[rgba(255,255,255,0.1)] backdrop-blur-[0.5rem] backdrop-saturate-200 transition-all duration-300',
+        'fixed top-0 z-19 flex w-full items-center justify-center border-b-[0.5px] bg-[rgba(255,255,255,0.1)] backdrop-blur-[0.5rem] backdrop-saturate-200 transition-all duration-300',
         isFloating
           ? 'border-gray-2'
           : isSpotlighted

@@ -1,14 +1,15 @@
+'use client';
+
 import { HEADER_MENU_ITEMS } from '@/constants';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/utils/cn';
-
 import Link from 'next/link';
 
 export const HeaderNavigation = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="flex h-full shrink-0 items-center gap-items">
+    <nav className="hidden h-full shrink-0 items-center gap-items desktop:flex">
       {HEADER_MENU_ITEMS.map(({ label, href }) => (
         <Link key={href} href={href} className="group flex h-full items-center">
           <span
