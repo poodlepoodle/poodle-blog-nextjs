@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={cn(pretendard.variable, 'antialiased')}>
-      <body className="bg-background font-prtd">
+      <body className="relative z-base bg-background font-prtd">
         <HeaderAnchor />
         <Header />
         <Drawer />

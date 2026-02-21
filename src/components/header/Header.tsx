@@ -52,7 +52,7 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        'fixed top-0 z-19 flex w-full items-center justify-center border-b-[0.5px] bg-[rgba(255,255,255,0.1)] backdrop-blur-[0.5rem] backdrop-saturate-200 transition-all duration-300',
+        'fixed top-0 z-header flex w-full items-center justify-center border-b-[0.5px] bg-[rgba(255,255,255,0.1)] backdrop-blur-[0.5rem] backdrop-saturate-200 transition-all duration-300',
         isFloating
           ? 'border-gray-2'
           : isSpotlighted

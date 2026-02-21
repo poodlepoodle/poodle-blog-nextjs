@@ -66,22 +66,12 @@ export const Drawer = () => {
 
   return (
     <>
-      {!isSpotlighted && (
-        <div className="fixed top-0 right-0 z-23 flex h-header items-center desktop:hidden">
-          <button
-            className="mr-[1.5rem] animate-fade-in p-[0.5rem] tablet:mr-[1rem]"
-            onClick={isDrawerOpen ? closeDrawer : openDrawer}
-          >
-            {isDrawerOpen ? <CloseIcon /> : <MenuIcon />}
-          </button>
-        </div>
-      )}
       {!isSpotlighted && isDrawerOpen && (
         <div
-          className="fixed top-0 right-0 z-21 flex h-full w-full animate-fade-in bg-black/50 desktop:hidden"
+          className="fixed top-0 right-0 z-dimmed flex h-full w-full animate-fade-in bg-black/50 desktop:hidden"
           onClick={closeDrawer}
         >
-          <div className="fixed top-0 right-0 z-22 h-full w-full max-w-[15rem] min-w-[10rem] animate-fade-in-left rounded-l-xl bg-white pt-header">
+          <div className="fixed top-0 right-0 z-drawer h-full w-full max-w-[15rem] min-w-[10rem] animate-fade-in-left rounded-l-xl bg-white pt-header">
             <nav
               className="flex h-full shrink-0 flex-col items-center gap-[2rem] p-[2.5rem]"
               onClick={e => {
@@ -107,6 +97,16 @@ export const Drawer = () => {
               ))}
             </nav>
           </div>
+        </div>
+      )}
+      {!isSpotlighted && (
+        <div className="fixed top-0 right-0 z-drawer flex h-header items-center desktop:hidden">
+          <button
+            className="mr-[1.5rem] animate-fade-in p-[0.5rem] tablet:mr-[1rem]"
+            onClick={isDrawerOpen ? closeDrawer : openDrawer}
+          >
+            {isDrawerOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
         </div>
       )}
     </>
