@@ -81,7 +81,7 @@ export const PostImageModal = () => {
         <CloseIcon />
       </button>
 
-      <div className="relative z-modal flex h-full w-full max-w-[80rem] animate-fade-in-up items-center shadow-natural">
+      <div className="relative z-modal flex h-full w-full max-w-[80rem] animate-fade-in-up items-center">
         <div className="relative h-full w-full flex-1">
           <Image
             src={imageModalData.src}
