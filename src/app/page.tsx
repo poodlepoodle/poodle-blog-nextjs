@@ -4,7 +4,7 @@ import { PostGrid } from '@components/post-grid';
 import { Banner } from '@components/banner';
 import { Button } from '@components/common/button';
 import JsonLd from '@components/json-ld';
-import { getAllPosts, getBlogPosts } from '@utils/get-posts';
+import { getBlogPosts } from '@utils/get-posts';
 import { blogStructuredData } from '@constants/json-ld';
 import { METADATA_PRESET } from '@constants/metadata';
 
@@ -14,8 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  // const posts = await getAllPosts();
-  const posts = await getBlogPosts(); // todo: 상단의 getAllPosts로 변경
+  const posts = await getBlogPosts();
   const jsonLd = blogStructuredData(posts);
 
   const hasMoreThanFivePosts = posts && posts.length >= 5;
