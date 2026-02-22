@@ -1,3 +1,7 @@
+/**
+ * Common Post Metadata
+ * @description 포스트 공통 메타데이터
+ */
 interface CommonPostMetadata {
   title: string;
   description: string;
@@ -8,17 +12,32 @@ interface CommonPostMetadata {
   published?: boolean;
 }
 
+/**
+ * Blog Post Metadata
+ * @description 블로그 포스트 메타데이터
+ */
 export interface BlogPostMetadata extends CommonPostMetadata {}
-
-export interface PlaygroundPostMetadata
-  extends Omit<CommonPostMetadata, 'description' | 'tags'> {}
-
 export interface BlogPost extends BlogPostMetadata {
   content: string;
 }
 
+/**
+ * Playground Post Metadata
+ * @description 플레이그라운드 포스트 메타데이터
+ */
+export interface PlaygroundPostMetadata
+  extends Omit<CommonPostMetadata, 'description' | 'tags'> {}
 export interface PlaygroundPost extends PlaygroundPostMetadata {
   content: string;
 }
 
-export type Post = BlogPost | PlaygroundPost;
+/**
+ * Log Post Metadata
+ * @description 로그 포스트 메타데이터
+ */
+export interface LogPostMetadata extends Omit<CommonPostMetadata, 'tags'> {}
+export interface LogPost extends LogPostMetadata {
+  content: string;
+}
+
+export type Post = BlogPost | PlaygroundPost | LogPost;
