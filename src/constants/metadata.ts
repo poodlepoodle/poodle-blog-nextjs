@@ -3,6 +3,16 @@ import type { MetadataOpenGraph, MetadataTwitter } from '@/types';
 
 export const BASE_URL = 'https://www.poodlepoodle.me';
 
+export const BRAND_KEYWORDS = [
+  '프론트엔드',
+  '개발자',
+  '최어진',
+  '기술 블로그',
+  '사용자',
+  '인터페이스',
+  '인터랙션',
+] as const;
+
 export const METADATA_OG_WEBSITE_PRESET: MetadataOpenGraph = {
   url: '/',
   siteName: '푸들 블로그',
@@ -21,15 +31,7 @@ export const METADATA_OG_ARTICLE_PRESET: MetadataOpenGraph = {
   siteName: '푸들 블로그',
   locale: 'ko_KR',
   type: 'article',
-  tags: [
-    '프론트엔드',
-    '개발자',
-    '최어진',
-    '기술 블로그',
-    '사용자',
-    '인터페이스',
-    '인터랙션',
-  ],
+  tags: [...BRAND_KEYWORDS],
   authors: ['최어진'],
   section: 'Technology',
   publishedTime: '2025-01-01T00:00:00.000Z',
@@ -54,15 +56,7 @@ export const METADATA_PRESET: Metadata = {
   title: '푸들 블로그',
   description:
     '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
-  keywords: [
-    '프론트엔드',
-    '개발자',
-    '최어진',
-    '기술 블로그',
-    '사용자',
-    '인터페이스',
-    '인터랙션',
-  ],
+  keywords: [...BRAND_KEYWORDS],
   openGraph: METADATA_OG_WEBSITE_PRESET,
   twitter: METADATA_TWITTER_PRESET,
 

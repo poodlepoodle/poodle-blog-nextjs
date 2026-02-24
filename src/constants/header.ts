@@ -8,6 +8,10 @@ export const HEADER_MENU_ITEMS = [
     href: '/posts',
   },
   {
+    label: '로그',
+    href: '/logs',
+  },
+  {
     label: '플레이그라운드',
     href: '/playground',
   },
