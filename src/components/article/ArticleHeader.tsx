@@ -3,11 +3,6 @@ import { type Post } from '@/types';
 import { Chip } from '@components/common/chip';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
 
-const postPathMap: Record<'blog' | 'playground', string> = {
-  blog: 'posts',
-  playground: 'playground',
-};
-
 type ArticleHeaderProps = {
   observerRef: React.RefObject<HTMLDivElement>;
   postType: Post['type'];
@@ -27,8 +22,7 @@ export const ArticleHeader = ({
   tags,
   publishedAt,
 }: ArticleHeaderProps) => {
-  const isLogPost = postType === 'log';
-  const postPath = !isLogPost ? postPathMap[postType] : undefined;
+  const isBlogPost = postType === 'blog';
 
   return (
     <div
@@ -42,7 +36,7 @@ export const ArticleHeader = ({
         <span className="mt-[1rem] text-xs font-medium text-black">
           {publishedAt}
         </span>
-        {!isLogPost && description && (
+        {isBlogPost && description && (
           <span className="mt-[0.75rem] text-center text-sm font-normal break-keep text-gray-3">
             {description}
           </span>
@@ -56,10 +50,10 @@ export const ArticleHeader = ({
         )}
       </section>
 
-      {postPath && (
+      {isBlogPost && (
         <section className="relative h-[16rem] w-full overflow-hidden rounded-2xl tablet:h-[24rem]">
           <ImageWithSkeleton
-            src={`/${postPath}/${slug}/thumbnail-large.webp`}
+            src={`/posts/${slug}/thumbnail-large.webp`}
             alt="post thumbnail"
             className="border-none"
           />
