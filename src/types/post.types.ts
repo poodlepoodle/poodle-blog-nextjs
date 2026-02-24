@@ -18,6 +18,7 @@ interface CommonPostMetadata {
  */
 export interface BlogPostMetadata extends CommonPostMetadata {}
 export interface BlogPost extends BlogPostMetadata {
+  type: 'blog';
   content: string;
 }
 
@@ -28,6 +29,7 @@ export interface BlogPost extends BlogPostMetadata {
 export interface PlaygroundPostMetadata
   extends Omit<CommonPostMetadata, 'description' | 'tags'> {}
 export interface PlaygroundPost extends PlaygroundPostMetadata {
+  type: 'playground';
   content: string;
 }
 
@@ -37,6 +39,7 @@ export interface PlaygroundPost extends PlaygroundPostMetadata {
  */
 export interface LogPostMetadata extends Omit<CommonPostMetadata, 'tags'> {}
 export interface LogPost extends LogPostMetadata {
+  type: 'log';
   content: string;
 }
 

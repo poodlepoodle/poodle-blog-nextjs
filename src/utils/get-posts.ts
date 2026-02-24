@@ -45,6 +45,7 @@ async function loadMdxPosts<T extends { publishedAt: string }>(
 export const getBlogPosts = unstable_cache(
   () =>
     loadMdxPosts<BlogPost>(POST_PATHS.blog, (data, content) => ({
+      type: 'blog',
       ...(data as unknown as BlogPostMetadata),
       tags: Array.isArray(data.tags) ? [...(data.tags as string[])].sort() : [],
       content,
@@ -59,6 +60,7 @@ export const getBlogPosts = unstable_cache(
 export const getPlaygroundPosts = unstable_cache(
   () =>
     loadMdxPosts<PlaygroundPost>(POST_PATHS.playground, (data, content) => ({
+      type: 'playground',
       ...(data as unknown as PlaygroundPostMetadata),
       content,
     })),
@@ -72,6 +74,7 @@ export const getPlaygroundPosts = unstable_cache(
 export const getLogPosts = unstable_cache(
   () =>
     loadMdxPosts<LogPost>(POST_PATHS.log, (data, content) => ({
+      type: 'log',
       ...(data as unknown as LogPostMetadata),
       content,
     })),
