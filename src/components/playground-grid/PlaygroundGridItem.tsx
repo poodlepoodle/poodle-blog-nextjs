@@ -21,7 +21,7 @@ export const PlaygroundGridItem = ({
 
   return (
     <Link
-      href={`/playground/${slug}`}
+      href={`/playgrounds/${slug}`}
       className={cn('group flex w-full flex-col', className)}
     >
       <GrayscaleRevealWrapper className="aspect-square w-full min-w-thumbnail overflow-hidden rounded-lg">

@@ -144,7 +144,7 @@ export const playgroundListStructuredData = (posts: PlaygroundPost[]) => ({
   name: '플레이그라운드 ••• 푸들 블로그',
   description:
     '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
-  url: `${BASE_URL}/playground`,
+  url: `${BASE_URL}/playgrounds`,
   author: {
     '@type': 'Person',
     name: '최어진',
@@ -166,8 +166,8 @@ export const playgroundListStructuredData = (posts: PlaygroundPost[]) => ({
     position: index + 1,
     item: {
       '@type': 'BlogPosting',
-      mainEntityOfPage: `${BASE_URL}/playground/${post.slug}`,
-      url: `${BASE_URL}/playground/${post.slug}`,
+      mainEntityOfPage: `${BASE_URL}/playgrounds/${post.slug}`,
+      url: `${BASE_URL}/playgrounds/${post.slug}`,
       headline: post.title,
       datePublished: convertToISODate(post.publishedAt),
       dateModified: convertToISODate(post.publishedAt),
@@ -192,7 +192,7 @@ export const playgroundPostStructuredData = (post: PlaygroundPost) => ({
     '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': `${BASE_URL}/playground/${post.slug}`,
+    '@id': `${BASE_URL}/playgrounds/${post.slug}`,
   },
   author: {
     '@type': 'Person',
@@ -214,7 +214,7 @@ export const playgroundPostStructuredData = (post: PlaygroundPost) => ({
     '@type': 'ImageObject',
     url: `${BASE_URL}/playground/${post.slug}/thumbnail-large.webp`,
   },
-  url: `${BASE_URL}/playground/${post.slug}`,
+  url: `${BASE_URL}/playgrounds/${post.slug}`,
   about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
   articleSection: 'Technology',
   inLanguage: 'ko-KR',

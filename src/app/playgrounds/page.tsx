@@ -14,11 +14,11 @@ export const metadata: Metadata = {
   ...METADATA_PRESET,
   title: '플레이그라운드 ••• 푸들 블로그',
   alternates: {
-    canonical: '/playground',
+    canonical: '/playgrounds',
   },
   openGraph: {
     ...METADATA_OG_WEBSITE_PRESET,
-    url: '/playground',
+    url: '/playgrounds',
   },
 };
 

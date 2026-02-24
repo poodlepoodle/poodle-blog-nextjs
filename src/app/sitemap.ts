@@ -1,6 +1,10 @@
 import type { MetadataRoute } from 'next';
 
-import { getBlogPosts, getPlaygroundPosts } from '@utils/get-posts';
+import {
+  getBlogPosts,
+  getLogPosts,
+  getPlaygroundPosts,
+} from '@utils/get-posts';
 import { convertToISODate } from '@utils/format-date';
 import { BASE_URL } from '@constants/metadata';
 
@@ -11,11 +15,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }));
-  const playgroundPostRoutes = (await getPlaygroundPosts()).map(post => ({
-    url: `${BASE_URL}/playground/${post.slug}`,
+  const logPostRoutes = (await getLogPosts()).map(post => ({
+    url: `${BASE_URL}/logs/${post.slug}`,
     lastModified: convertToISODate(post.publishedAt),
     changeFrequency: 'weekly' as const,
-    priority: 0.9,
+    priority: 0.8,
+  }));
+  const playgroundPostRoutes = (await getPlaygroundPosts()).map(post => ({
+    url: `${BASE_URL}/playgrounds/${post.slug}`,
+    lastModified: convertToISODate(post.publishedAt),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
   }));
 
   return [
@@ -39,7 +49,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...blogPostRoutes,
     {
-      url: `${BASE_URL}/playground`,
+      url: `${BASE_URL}/logs`,
+      lastModified: new Date().toISOString().split('T')[0],
+      changeFrequency: 'weekly' as const,
+      priority: 0.5,
+    },
+    ...logPostRoutes,
+    {
+      url: `${BASE_URL}/playgrounds`,
       lastModified: new Date().toISOString().split('T')[0],
       changeFrequency: 'weekly' as const,
       priority: 0.5,

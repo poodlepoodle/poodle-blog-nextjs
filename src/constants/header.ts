@@ -13,6 +13,6 @@ export const HEADER_MENU_ITEMS = [
   },
   {
     label: '플레이그라운드',
-    href: '/playground',
+    href: '/playgrounds',
   },
 ];

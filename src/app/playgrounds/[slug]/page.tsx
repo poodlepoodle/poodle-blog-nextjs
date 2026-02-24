@@ -30,13 +30,13 @@ export async function generateMetadata({
   return {
     ...METADATA_PRESET,
     alternates: {
-      canonical: `/playground/${slug}`,
+      canonical: `/playgrounds/${slug}`,
     },
     title: `${post.title} ••• 푸들 블로그`,
 
     openGraph: {
       ...METADATA_OG_ARTICLE_PRESET,
-      url: `/playground/${slug}`,
+      url: `/playgrounds/${slug}`,
       publishedTime: convertToISODate(post.publishedAt),
       modifiedTime: convertToISODate(post.publishedAt),
       images: [
