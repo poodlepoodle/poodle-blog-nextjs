@@ -1,8 +1,16 @@
+import { type Post } from '@/types';
+
 import { Chip } from '@components/common/chip';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
 
+const postPathMap: Record<'blog' | 'playground', string> = {
+  blog: 'posts',
+  playground: 'playground',
+};
+
 type ArticleHeaderProps = {
   observerRef: React.RefObject<HTMLDivElement>;
+  postType: Post['type'];
   title: string;
   description?: string;
   slug: string;
@@ -12,14 +20,14 @@ type ArticleHeaderProps = {
 
 export const ArticleHeader = ({
   observerRef,
+  postType,
   title,
   description,
   slug,
   tags,
   publishedAt,
 }: ArticleHeaderProps) => {
-  const isBlogPost = !!description;
-  const postPath = isBlogPost ? 'posts' : 'playground';
+  const postPath = postType !== 'log' ? postPathMap[postType] : undefined;
 
   return (
     <div
@@ -47,13 +55,15 @@ export const ArticleHeader = ({
         )}
       </section>
 
-      <section className="relative h-[16rem] w-full overflow-hidden rounded-2xl tablet:h-[24rem]">
-        <ImageWithSkeleton
-          src={`/${postPath}/${slug}/thumbnail-large.webp`}
-          alt="post thumbnail"
-          className="border-none"
-        />
-      </section>
+      {postPath && (
+        <section className="relative h-[16rem] w-full overflow-hidden rounded-2xl tablet:h-[24rem]">
+          <ImageWithSkeleton
+            src={`/${postPath}/${slug}/thumbnail-large.webp`}
+            alt="post thumbnail"
+            className="border-none"
+          />
+        </section>
+      )}
     </div>
   );
 };

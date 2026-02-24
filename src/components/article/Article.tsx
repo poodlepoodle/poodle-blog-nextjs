@@ -59,10 +59,13 @@ const ArticleInner = ({ slug, post, children }: ArticleProps) => {
         <Paper className="flex flex-col gap-items py-[4rem]">
           <ArticleHeader
             observerRef={headerRef}
+            postType={post.type}
             title={post.title}
-            description={'description' in post ? post.description : undefined}
+            description={
+              post.type !== 'playground' ? post.description : undefined
+            }
             slug={slug}
-            tags={'tags' in post ? post.tags : undefined}
+            tags={post.type === 'blog' ? post.tags : undefined}
             publishedAt={post.publishedAt}
           />
           {children}
