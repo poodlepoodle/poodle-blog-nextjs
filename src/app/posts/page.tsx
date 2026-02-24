@@ -9,7 +9,7 @@ import {
   METADATA_PRESET,
   METADATA_OG_WEBSITE_PRESET,
 } from '@constants/metadata';
-import { blogStructuredData } from '@constants/json-ld';
+import { blogListStructuredData } from '@constants/json-ld';
 
 export const metadata: Metadata = {
   ...METADATA_PRESET,
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   const posts = await getBlogPosts();
   const tags = await getTags();
-  const jsonLd = blogStructuredData(posts);
+  const jsonLd = blogListStructuredData(posts, tags);
 
   return (
     <>
