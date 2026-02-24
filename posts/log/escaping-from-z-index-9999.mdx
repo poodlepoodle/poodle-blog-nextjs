@@ -1,0 +1,126 @@
+---
+title: '‘z-index: 9999’에서 벗어나세요'
+publishedAt: 2026. 02. 24
+description: 'Tailwind CSS v4의 @theme 기능을 활용해 z-index 속성을 디자인 시스템으로 관리하는 방법을 소개합니다.'
+slug: 'escaping-from-z-index-9999'
+updated: true
+---
+
+내비게이션 바와 같은 요소들은 특별히 화면상에서 다른 요소보다 앞쪽에 표시되어야 합니다.
+일반적으로 나중에 선언된 엘리먼트가 앞쪽에 표시되지만,
+CSS의 `z-index` 속성값을 활용하면 선언 순서에서 벗어나 시각적 계층 구조를 정리할 수 있습니다.
+
+다만, `z-index`를 ’땜질용 속성’처럼 사용해 ‘Magic Number’를 남발하다 보면
+코드베이스가 복잡해질수록 “어떤 수치를 적용해야 할지”에 대해 혼돈이 일어나기 쉽습니다.
+
+- 페이지 콘텐츠 앞쪽에 모달 컴포넌트를 표시해야 할 때, `z-index: 100`이 적절할까요? `1000`이나 `2000`은요?
+- 내비게이션이 화면상의 어떤 요소보다도 위에 표시되어야만 한다면,
+이를 보장하기 위해 `z-index: 9999`가 적절할까요? 충분하지 않다면, `99999`는요?
+
+```tsx
+import styled from 'styled-components';
+
+// focus(3:3)
+const ModalOverlay = styled.div`
+  position: fixed;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+`;
+
+// focus(3:3)
+const ModalContent = styled.div`
+  position: absolute;
+  z-index: 1100;
+`;
+
+// focus(3:3)
+const HeaderNav = styled.nav`
+  position: fixed;
+  z-index: 99999;
+`;
+
+// ...
+```
+
+다시 생각해 보면, 우리는 이미 모서리의 곡률이나 폰트 크기와 같이
+재사용하는 임의의 시각적 수치를 디자인 시스템으로 견고하게 관리하곤 합니다.
+`z-index`를 통한 시각적 계층 구조 또한 디자인 시스템의 일부로 포함할 수 있습니다.
+
+특히 Tailwind CSS v4 이후 버전을 사용한다면 아래와 같이
+CSS Variable 기반 규칙을 정의하는 것만으로 유틸리티 클래스가 자동으로 생성됩니다.
+실제 적용하기까지 특별히 신경 쓸 부분이 거의 없을 뿐만 아니라,
+이후 새로운 `z-index` 규칙이 추가되어야 하는 경우에 더욱 유용합니다.
+
+```scss
+/* theme/depth.css */
+
+@theme {
+  --z-index-below: -1;
+  --z-index-base: 0;
+  --z-index-header: 500;
+  --z-index-dropdown: 600;
+  --z-index-popover: 700;
+  --z-index-dimmed: 999;
+  --z-index-modal: 1000;
+  --z-index-drawer: 1100; /* 나중에 새로운 규칙이 추가될 경우를 대비해, 100단위 간격을 지정합니다. */
+  --z-index-toast: 2000;
+}
+```
+
+```tsx
+// components/Modal.tsx
+
+export const Modal = () => {
+	// ...
+
+  // focus(3:3)
+  // focus(6:6)
+  return createPortal(
+    <div
+      className="fixed inset-0 z-dimmed flex h-full ..."
+      onClick={handleClickModalBackground}
+    >
+      <div className="relative z-modal flex h-full w-full ...">
+        {/* ... */}
+      </div>
+    </div>,
+    document.body
+  );
+};
+```
+
+> (조금 더 자세하게는) 저는 `globals.css`에서 직접 `theme/*.css`를 모두 import하는 대신
+JavaScript의 Barrel File과 비슷한 역할을 수행하는 `theme.css`를 만들어 사용합니다.
+`globals.css`가 너무 자주 커밋되지 않도록 하기 위함입니다.
+
+```scss
+/* theme.css */
+
+@import './base.css';
+@import './animation.css';
+@import './breakpoint.css';
+@import './font.css';
+@import './palette.css';
+@import './spacing.css';
+@import './shadow.css';
+@import './depth.css';
+```
+
+다만, `z-index` 속성이 같은 Stacking Context 내부에서만 작동한다는 점을 간과하지 않도록 주의해야 합니다.
+이 때문에 전역에서 표시되는 모달이나 토스트와 같은 컴포넌트는 `z-index`보다도
+React의 `createPortal()`과 같은 기능을 활용해 `body` 바로 아래에 렌더링하는 패턴을 권장합니다.
+
+```html
+<header class="sticky top-0 z-header bg-white">
+  <h1>헤더 내비게이션</h1>
+</header>
+
+<main>
+  <section style="opacity: 0.9;"> 
+    <div class="fixed z-modal bg-white">
+      이 모달은 z-index가 1000이지만, 
+      부모의 Stacking Context에 갇혀 'z-index: 500'인 헤더보다 뒤에 표시됩니다.
+    </div>
+  </section>
+</main>
+```
