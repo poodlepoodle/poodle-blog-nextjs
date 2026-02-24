@@ -64,19 +64,24 @@ export const Drawer = () => {
     };
   }, [isDrawerOpen]);
 
+  const handleClickDrawerBackground = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      closeDrawer();
+    }
+  };
+
   return (
     <>
       {!isSpotlighted && isDrawerOpen && (
         <div
           className="fixed top-0 right-0 z-dimmed flex h-full w-full animate-fade-in bg-black/50 desktop:hidden"
-          onClick={closeDrawer}
+          onClick={handleClickDrawerBackground}
         >
           <div className="fixed top-0 right-0 z-drawer h-full w-full max-w-[15rem] min-w-[10rem] animate-fade-in-left rounded-l-xl bg-white pt-header">
             <nav
               className="flex h-full shrink-0 flex-col items-center gap-[2rem] p-[2.5rem]"
               onClick={e => {
                 e.stopPropagation();
-                closeDrawer();
               }}
             >
               {HEADER_MENU_ITEMS.map(({ label, href }) => (
@@ -84,6 +89,7 @@ export const Drawer = () => {
                   key={href}
                   href={href}
                   className="group flex w-full items-center py-[0.5rem]"
+                  onClick={closeDrawer}
                 >
                   <span
                     className={cn(

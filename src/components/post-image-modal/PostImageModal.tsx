@@ -65,7 +65,9 @@ export const PostImageModal = () => {
   }, [isImageModalOpen]);
 
   const handleClickModalBackground = (e: React.MouseEvent) => {
-    closeImageModal();
+    if (e.target === e.currentTarget) {
+      closeImageModal();
+    }
   };
 
   if (!mounted || !isImageModalOpen || !imageModalData) {
@@ -81,7 +83,10 @@ export const PostImageModal = () => {
         <CloseIcon />
       </button>
 
-      <div className="relative z-modal flex h-full w-full max-w-[80rem] animate-fade-in-up items-center">
+      <div
+        className="relative z-modal flex h-full w-full max-w-[80rem] animate-fade-in-up items-center"
+        onClick={e => e.stopPropagation()}
+      >
         <div className="relative h-full w-full flex-1">
           <Image
             src={imageModalData.src}
