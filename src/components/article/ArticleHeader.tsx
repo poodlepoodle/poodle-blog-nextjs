@@ -27,7 +27,8 @@ export const ArticleHeader = ({
   tags,
   publishedAt,
 }: ArticleHeaderProps) => {
-  const postPath = postType !== 'log' ? postPathMap[postType] : undefined;
+  const isLogPost = postType === 'log';
+  const postPath = !isLogPost ? postPathMap[postType] : undefined;
 
   return (
     <div
@@ -41,7 +42,7 @@ export const ArticleHeader = ({
         <span className="mt-[1rem] text-xs font-medium text-black">
           {publishedAt}
         </span>
-        {description && (
+        {!isLogPost && description && (
           <span className="mt-[0.75rem] text-center text-sm font-normal break-keep text-gray-3">
             {description}
           </span>
