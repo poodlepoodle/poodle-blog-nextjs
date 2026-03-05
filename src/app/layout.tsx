@@ -7,7 +7,8 @@ import { Header } from '@components/header';
 import { SpotlightedHeader } from '@components/header/SpotlightedHeader';
 import { Drawer } from '@components/drawer';
 import { Footer } from '@components/footer';
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { BASE_URL, METADATA_PRESET } from '@constants/metadata';
 import { cn } from '@utils/cn';
 
@@ -42,7 +43,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <Analytics />
+        <VercelAnalytics />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!} />
       </body>
     </html>
   );
