@@ -64,12 +64,6 @@ export const PostImageModal = () => {
     };
   }, [isImageModalOpen]);
 
-  const handleClickModalBackground = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      closeImageModal();
-    }
-  };
-
   if (!mounted || !isImageModalOpen || !imageModalData) {
     return null;
   }
@@ -77,9 +71,12 @@ export const PostImageModal = () => {
   return createPortal(
     <div
       className="fixed inset-0 z-dimmed flex h-full w-full animate-fade-in cursor-pointer items-center justify-center bg-[rgba(0,0,0,0.7)] px-[2rem] py-[2rem] backdrop-blur-sm tablet:px-[5rem] tablet:py-[4rem]"
-      onClick={handleClickModalBackground}
+      onClick={closeImageModal}
     >
-      <button className="absolute top-[1rem] right-[1rem] cursor-pointer p-[1rem]">
+      <button
+        className="absolute top-[1rem] right-[1rem] cursor-pointer p-[1rem]"
+        onClick={closeImageModal}
+      >
         <CloseIcon />
       </button>
 

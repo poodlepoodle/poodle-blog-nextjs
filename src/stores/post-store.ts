@@ -47,5 +47,5 @@ export const usePostStore = create<PostStore>(set => ({
 
   setImageModalData: imageModalData => set({ imageModalData }),
 
-  closeImageModal: () => set(initialState),
+  closeImageModal: () => set({ isImageModalOpen: false, imageModalData: null }),
 }));
