@@ -21,6 +21,30 @@
     }
   }
 
+  --animate-fade-in-down: fadeInDown 0.3s forwards;
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  --animate-fade-in-zoom: fadeInZoom 0.3s forwards;
+  @keyframes fadeInZoom {
+    0% {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
   --animate-fade-in-left: fadeInLeft 0.3s forwards;
   @keyframes fadeInLeft {
     0% {
