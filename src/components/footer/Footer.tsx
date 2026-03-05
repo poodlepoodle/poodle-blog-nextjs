@@ -19,7 +19,7 @@ const ArrowIcon = () => {
 
 export const Footer = () => {
   return (
-    <footer className="flex h-footer w-full shrink-0 justify-center border-t-[0.5px] border-gray-2 bg-gray-1">
+    <footer className="flex h-footer w-full shrink-0 justify-center border-t-[0.5px] border-gray-2">
       <div className="flex w-full max-w-container items-center justify-between px-[2rem] tablet:px-[1.5rem] desktop:px-0">
         <section className="text-sm font-normal text-gray-3">
           ⓒ Eojin Choi 2025
