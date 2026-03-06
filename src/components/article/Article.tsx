@@ -52,7 +52,7 @@ const ArticleInner = ({ slug, post, children }: ArticleProps) => {
     <>
       <div
         className={cn(
-          'relative mt-container-top mb-container-bottom flex w-full flex-col items-center transition-colors duration-350',
+          'relative mt-container-top mb-container-bottom flex w-full flex-col items-center overflow-hidden rounded-2xl transition-colors duration-350',
           isSpotlighted ? 'bg-black' : 'bg-background'
         )}
       >
