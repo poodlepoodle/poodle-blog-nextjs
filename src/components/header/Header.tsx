@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { cn } from '@/utils/cn';
 import { HeaderNavigation } from './HeaderNavigation';
 import { useUIStore } from '@stores/ui-store';

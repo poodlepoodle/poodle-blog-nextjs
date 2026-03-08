@@ -4,7 +4,7 @@ import { HEADER_MENU_ITEMS } from '@/constants';
 import { usePathname } from 'next/navigation';
 import { useUIStore } from '@stores/ui-store';
 import { memo, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { cn } from '@/utils/cn';
 import Link from 'next/link';
 

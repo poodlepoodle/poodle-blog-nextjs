@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { useUIStore } from '@stores/ui-store';
 import { usePostStore } from '@stores/post-store';
 
