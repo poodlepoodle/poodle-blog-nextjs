@@ -4,6 +4,7 @@ import { HEADER_MENU_ITEMS } from '@/constants';
 import { usePathname } from 'next/navigation';
 import { useUIStore } from '@stores/ui-store';
 import { memo, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/utils/cn';
 import Link from 'next/link';
 
@@ -72,49 +73,71 @@ export const Drawer = () => {
 
   return (
     <>
-      {!isSpotlighted && isDrawerOpen && (
-        <div
-          className="fixed top-0 right-0 z-dimmed flex h-full w-full animate-fade-in bg-black/50 desktop:hidden"
-          onClick={handleClickDrawerBackground}
-        >
-          <div className="fixed top-0 right-0 z-drawer h-full w-full max-w-[15rem] min-w-[10rem] animate-fade-in-left rounded-l-xl bg-white pt-header">
-            <nav
-              className="flex h-full shrink-0 flex-col items-center gap-[2rem] p-[2.5rem]"
-              onClick={e => {
-                e.stopPropagation();
-              }}
-            >
-              {HEADER_MENU_ITEMS.map(({ label, href }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="group flex w-full items-center py-[0.5rem]"
-                  onClick={closeDrawer}
-                >
-                  <span
-                    className={cn(
-                      'w-full text-right text-lg font-semibold transition-colors duration-300 group-hover:text-skyblue',
-                      pathname.startsWith(href) ? 'text-skyblue' : 'text-black'
-                    )}
-                  >
-                    {label}
-                  </span>
-                </Link>
-              ))}
-            </nav>
-          </div>
-        </div>
-      )}
-      {!isSpotlighted && (
-        <div className="fixed top-0 right-0 z-drawer flex h-header items-center desktop:hidden">
-          <button
-            className="mr-[1.5rem] animate-fade-in p-[0.5rem] tablet:mr-[1rem]"
-            onClick={isDrawerOpen ? closeDrawer : openDrawer}
+      <AnimatePresence initial={false}>
+        {!isSpotlighted && isDrawerOpen && (
+          <motion.div
+            key="drawer-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-0 right-0 z-dimmed h-full w-full bg-black/50 desktop:hidden"
+            onClick={handleClickDrawerBackground}
           >
-            {isDrawerOpen ? <CloseIcon /> : <MenuIcon />}
-          </button>
-        </div>
-      )}
+            <motion.div
+              initial={{ x: '80%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '80%' }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="fixed top-0 right-0 z-drawer h-full w-full max-w-[15rem] min-w-[10rem] rounded-l-xl bg-white pt-header"
+            >
+              <nav
+                className="flex h-full shrink-0 flex-col items-center gap-[2rem] p-[2.5rem]"
+                onClick={e => e.stopPropagation()}
+              >
+                {HEADER_MENU_ITEMS.map(({ label, href }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="group flex w-full items-center py-[0.5rem]"
+                    onClick={closeDrawer}
+                  >
+                    <span
+                      className={cn(
+                        'w-full text-right text-lg font-semibold transition-colors duration-300 group-hover:text-skyblue',
+                        pathname.startsWith(href)
+                          ? 'text-skyblue'
+                          : 'text-black'
+                      )}
+                    >
+                      {label}
+                    </span>
+                  </Link>
+                ))}
+              </nav>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence initial={false}>
+        {!isSpotlighted && (
+          <motion.div
+            key="drawer-button"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-0 right-0 z-drawer flex h-header items-center desktop:hidden"
+          >
+            <button
+              className="mr-[1.5rem] p-[0.5rem] tablet:mr-[1rem]"
+              onClick={isDrawerOpen ? closeDrawer : openDrawer}
+            >
+              {isDrawerOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

@@ -1,6 +1,7 @@
 'use client';
 
 import { memo } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useUIStore } from '@stores/ui-store';
 import { usePostStore } from '@stores/post-store';
 
@@ -44,41 +45,68 @@ export const SpotlightedHeader = () => {
   const hasActiveContent = activeHeading.length > 0 || !!postTitle;
   const isHeaderSpotlighted = isSpotlighted && hasActiveContent;
 
-  if (!isHeaderSpotlighted) {
-    return null;
-  }
-
   return (
-    <div
-      className="fixed top-[1rem] right-0 left-0 z-header-spotlighted mx-auto w-fit max-w-[calc(100dvw-3rem)] animate-fade-in-zoom cursor-pointer rounded-2xl border-[0.5px] border-gray-2 bg-[hsla(0,0%,100%,0)] backdrop-blur-[0.5rem] backdrop-saturate-200 transition-all duration-300 hover:translate-y-[0.5rem]"
-      style={{
-        userSelect: 'none',
-        WebkitUserSelect: 'none',
-        MozUserSelect: 'none',
-        msUserSelect: 'none',
-      }}
-      draggable={false}
-    >
-      <div className="flex w-fit items-center gap-[0.5rem] px-[1rem] py-[0.75rem]">
-        <SpotlightedIcon />
-        <div className="min-w-0 flex-1 overflow-hidden">
-          {activeHeading.length > 0 ? (
-            <div className="line-clamp-1 text-sm leading-none font-semibold text-black [&_span]:align-middle [&_svg]:inline-block [&_svg]:shrink-0 [&_svg]:align-middle">
-              <span>{activeHeading[0]}</span>
-              {activeHeading.length > 1 && (
-                <>
-                  <RightArrowIcon />
-                  <span>{activeHeading[1]}</span>
-                </>
-              )}
+    <AnimatePresence initial={false}>
+      {isHeaderSpotlighted && (
+        <motion.div
+          key="spotlighted-header"
+          variants={{
+            hidden: {
+              opacity: 0,
+              scale: 0.95,
+            },
+            visible: {
+              opacity: 1,
+              scale: 1,
+              transition: {
+                scale: { type: 'spring', stiffness: 300, damping: 10 },
+                opacity: { duration: 0.25, ease: 'easeOut' },
+              },
+            },
+            exit: {
+              opacity: 0,
+              scale: 0.96,
+              transition: {
+                default: { duration: 0.3, ease: 'easeOut' },
+              },
+            },
+          }}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          whileHover={{ y: '0.5rem' }}
+          transition={{ y: { duration: 0.2 } }}
+          className="fixed top-[1rem] right-0 left-0 z-header-spotlighted mx-auto w-fit max-w-[calc(100dvw-3rem)] cursor-pointer rounded-2xl border-[0.5px] border-gray-2 bg-[hsla(0,0%,100%,0)] backdrop-blur-[0.5rem] backdrop-saturate-200"
+          style={{
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
+            MozUserSelect: 'none',
+            msUserSelect: 'none',
+          }}
+          draggable={false}
+        >
+          <div className="flex w-fit items-center gap-[0.5rem] px-[1rem] py-[0.75rem]">
+            <SpotlightedIcon />
+            <div className="min-w-0 flex-1 overflow-hidden">
+              {activeHeading.length > 0 ? (
+                <div className="line-clamp-1 text-sm leading-none font-semibold text-black [&_span]:align-middle [&_svg]:inline-block [&_svg]:shrink-0 [&_svg]:align-middle">
+                  <span>{activeHeading[0]}</span>
+                  {activeHeading.length > 1 && (
+                    <>
+                      <RightArrowIcon />
+                      <span>{activeHeading[1]}</span>
+                    </>
+                  )}
+                </div>
+              ) : postTitle ? (
+                <div className="line-clamp-1 text-sm leading-none font-semibold text-black">
+                  {postTitle}
+                </div>
+              ) : null}
             </div>
-          ) : postTitle ? (
-            <div className="line-clamp-1 text-sm leading-none font-semibold text-black">
-              {postTitle}
-            </div>
-          ) : null}
-        </div>
-      </div>
-    </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
