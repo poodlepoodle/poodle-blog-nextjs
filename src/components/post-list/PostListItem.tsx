@@ -23,7 +23,7 @@ export const PostListItem = ({ post }: { post: BlogPost }) => {
   return (
     <Link
       href={`/posts/${slug}`}
-      className="group flex w-full justify-between rounded-2xl bg-white"
+      className="flex w-full justify-between rounded-2xl bg-white transition-all duration-300 group-hover:opacity-40 hover:opacity-100"
     >
       <div className="flex h-full w-full flex-col justify-between gap-items p-[2rem]">
         <div className="flex flex-wrap justify-start gap-[0.75rem]">
@@ -36,7 +36,7 @@ export const PostListItem = ({ post }: { post: BlogPost }) => {
           <span className="text-xs font-medium text-black">{publishedAt}</span>
           <div className="mt-[0.5rem] flex items-center gap-[0.5rem]">
             {updated && <UpdatedIcon />}
-            <span className="text-lg font-bold break-keep text-black underline decoration-transparent decoration-2 underline-offset-[2px] transition-all duration-300 group-hover:decoration-black tablet:text-xl">
+            <span className="text-lg font-bold break-keep text-black tablet:text-xl">
               {title}
             </span>
           </div>
@@ -44,7 +44,7 @@ export const PostListItem = ({ post }: { post: BlogPost }) => {
       </div>
 
       <div
-        className="m-[1.5rem] hidden h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden opacity-80 shadow-tiny grayscale transition-all duration-600 group-hover:opacity-100 group-hover:grayscale-0 tablet:block"
+        className="m-[1.5rem] hidden h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden opacity-80 shadow-tiny grayscale tablet:block"
         style={{
           borderRadius: '35% 65% 69% 31% / 58% 49% 51% 42%',
         }}

@@ -30,7 +30,7 @@ export const PostList = ({ posts, tags }: PostListProps) => {
         ))}
       </div>
 
-      <div className="flex w-full flex-col items-center gap-[1rem]">
+      <div className="group flex w-full flex-col items-center gap-[1rem]">
         {filteredPosts.map(post => (
           <PostListItem key={post.slug} post={post} />
         ))}

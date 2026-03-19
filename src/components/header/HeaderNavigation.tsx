@@ -9,15 +9,18 @@ export const HeaderNavigation = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="hidden h-full shrink-0 items-center gap-items desktop:flex">
+    <nav className="group hidden h-full shrink-0 items-center gap-items desktop:flex">
       {HEADER_MENU_ITEMS.map(({ label, href }) => (
-        <Link key={href} href={href} className="group flex h-full items-center">
-          <span
-            className={cn(
-              'text-sm font-semibold transition-colors duration-300 group-hover:text-skyblue',
-              pathname.startsWith(href) ? 'text-skyblue' : 'text-black'
-            )}
-          >
+        <Link
+          key={href}
+          href={href}
+          className={cn(
+            'flex h-full items-center text-black group-hover:text-gray-2 hover:text-black',
+            pathname.startsWith(href) &&
+              'text-skyblue group-hover:text-skyblue hover:text-skyblue'
+          )}
+        >
+          <span className="text-sm font-semibold transition-colors duration-300">
             {label}
           </span>
         </Link>

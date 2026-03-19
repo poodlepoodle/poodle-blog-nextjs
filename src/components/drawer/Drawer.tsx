@@ -92,22 +92,23 @@ export const Drawer = () => {
               className="fixed top-0 right-0 z-drawer h-full w-full max-w-[15rem] min-w-[10rem] rounded-l-xl bg-white pt-header"
             >
               <nav
-                className="flex h-full shrink-0 flex-col items-center gap-[2rem] p-[2.5rem]"
+                className="group flex shrink-0 flex-col items-center gap-[2rem] p-[2.5rem]"
                 onClick={e => e.stopPropagation()}
               >
                 {HEADER_MENU_ITEMS.map(({ label, href }) => (
                   <Link
                     key={href}
                     href={href}
-                    className="group flex w-full items-center py-[0.5rem]"
+                    className={cn(
+                      'flex w-full items-center py-[0.5rem] text-black group-hover:text-gray-2 hover:text-black',
+                      pathname.startsWith(href) &&
+                        'text-skyblue group-hover:text-skyblue hover:text-skyblue'
+                    )}
                     onClick={closeDrawer}
                   >
                     <span
                       className={cn(
-                        'w-full text-right text-lg font-semibold transition-colors duration-300 group-hover:text-skyblue',
-                        pathname.startsWith(href)
-                          ? 'text-skyblue'
-                          : 'text-black'
+                        'w-full text-right text-lg font-semibold transition-colors duration-300'
                       )}
                     >
                       {label}
