@@ -44,7 +44,9 @@ export default function RootLayout({
         </main>
         <Footer />
         <VercelAnalytics />
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!} />
+        {process.env.NODE_ENV === 'production' && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!} />
+        )}
       </body>
     </html>
   );
