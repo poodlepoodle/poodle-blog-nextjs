@@ -6,7 +6,7 @@ import JsonLd from '@components/json-ld';
 import { notFound } from 'next/navigation';
 import { getLogPost } from '@utils/get-post';
 import { getLogPosts } from '@utils/get-posts';
-import { convertToISODate } from '@utils/format-date';
+import { convertToISODate, getPostLastModifiedIso } from '@utils/format-date';
 import { MDXContent, MDXSkeleton } from '@components/mdx';
 import { Suspense } from 'react';
 import { logPostStructuredData } from '@constants/json-ld';
@@ -39,7 +39,7 @@ export async function generateMetadata({
       ...METADATA_OG_ARTICLE_PRESET,
       url: `/logs/${slug}`,
       publishedTime: convertToISODate(post.publishedAt),
-      modifiedTime: convertToISODate(post.publishedAt),
+      modifiedTime: getPostLastModifiedIso(post),
       images: [
         {
           url: '/og/og-large.jpg',

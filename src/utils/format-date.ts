@@ -7,3 +7,12 @@ export const convertToISODate = (koreanDate: string): string => {
   const date = new Date(cleanDate);
   return date.toISOString();
 };
+
+/**
+ * 포스트의 실제 수정일을 ISO 8601 형식으로 반환합니다.
+ * `updatedAt`이 있으면 우선 사용하고, 없으면 `publishedAt`을 fallback 값으로 사용합니다.
+ */
+export const getPostLastModifiedIso = (post: {
+  publishedAt: string;
+  updatedAt?: string;
+}): string => convertToISODate(post.updatedAt ?? post.publishedAt);

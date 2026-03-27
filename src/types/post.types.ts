@@ -6,6 +6,7 @@ interface CommonPostMetadata {
   title: string;
   description: string;
   publishedAt: string;
+  updatedAt?: string; // 콘텐츠 수정일 (YYYY. MM. DD). 생략 시 publishedAt을 수정일로 사용합니다.
   slug: string;
   tags: string[];
   updated: boolean;

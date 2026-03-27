@@ -6,7 +6,7 @@ import JsonLd from '@components/json-ld';
 import { notFound } from 'next/navigation';
 import { getBlogPost } from '@utils/get-post';
 import { getBlogPosts } from '@utils/get-posts';
-import { convertToISODate } from '@utils/format-date';
+import { convertToISODate, getPostLastModifiedIso } from '@utils/format-date';
 import { MDXContent, MDXSkeleton } from '@components/mdx';
 import { Suspense } from 'react';
 import { blogPostStructuredData } from '@constants/json-ld';
@@ -41,7 +41,7 @@ export async function generateMetadata({
       url: `/posts/${slug}`,
       tags: post.tags,
       publishedTime: convertToISODate(post.publishedAt),
-      modifiedTime: convertToISODate(post.publishedAt),
+      modifiedTime: getPostLastModifiedIso(post),
       images: [
         {
           url: `/posts/${slug}/thumbnail-large.jpg`,

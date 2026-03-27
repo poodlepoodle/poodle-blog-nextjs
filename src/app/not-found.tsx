@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 
 import { Button } from '@components/common/button';
-import { METADATA_PRESET, METADATA_OG_WEBSITE_PRESET } from '@constants/metadata';
+import {
+  METADATA_PRESET,
+  METADATA_OG_WEBSITE_PRESET,
+} from '@constants/metadata';
 
 export const metadata: Metadata = {
   ...METADATA_PRESET,

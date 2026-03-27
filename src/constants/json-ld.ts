@@ -1,7 +1,7 @@
 import type { BlogPost, LogPost, PlaygroundPost, TagCount } from '@/types';
 
 import { BASE_URL, BRAND_KEYWORDS } from '@constants/metadata';
-import { convertToISODate } from '@utils/format-date';
+import { convertToISODate, getPostLastModifiedIso } from '@utils/format-date';
 
 const SITE_NAME = '푸들 블로그';
 
@@ -61,7 +61,7 @@ export const blogStructuredData = (posts: BlogPost[]) => ({
           description: post.description,
           keywords: post.tags.join(', '),
           datePublished: convertToISODate(post.publishedAt),
-          dateModified: convertToISODate(post.publishedAt),
+          dateModified: getPostLastModifiedIso(post),
           author: AUTHOR,
           image: {
             '@type': 'ImageObject',
@@ -104,7 +104,7 @@ export const blogListStructuredData = (
       description: post.description,
       keywords: post.tags.join(', '),
       datePublished: convertToISODate(post.publishedAt),
-      dateModified: convertToISODate(post.publishedAt),
+      dateModified: getPostLastModifiedIso(post),
       author: AUTHOR,
       image: {
         '@type': 'ImageObject',
@@ -147,7 +147,7 @@ export const blogPostStructuredData = (post: BlogPost) => ({
       author: AUTHOR,
       publisher: PUBLISHER,
       datePublished: convertToISODate(post.publishedAt),
-      dateModified: convertToISODate(post.publishedAt),
+      dateModified: getPostLastModifiedIso(post),
       image: {
         '@type': 'ImageObject',
         name: post.title,
@@ -187,7 +187,7 @@ export const playgroundListStructuredData = (posts: PlaygroundPost[]) => ({
       url: `${BASE_URL}/playgrounds/${post.slug}`,
       headline: post.title,
       datePublished: convertToISODate(post.publishedAt),
-      dateModified: convertToISODate(post.publishedAt),
+      dateModified: getPostLastModifiedIso(post),
       author: AUTHOR,
       image: {
         '@type': 'ImageObject',
@@ -232,7 +232,7 @@ export const playgroundPostStructuredData = (post: PlaygroundPost) => ({
       author: AUTHOR,
       publisher: PUBLISHER,
       datePublished: convertToISODate(post.publishedAt),
-      dateModified: convertToISODate(post.publishedAt),
+      dateModified: getPostLastModifiedIso(post),
       image: {
         '@type': 'ImageObject',
         name: post.title,
@@ -274,7 +274,7 @@ export const logListStructuredData = (posts: LogPost[]) => ({
       headline: post.title,
       description: post.description,
       datePublished: convertToISODate(post.publishedAt),
-      dateModified: convertToISODate(post.publishedAt),
+      dateModified: getPostLastModifiedIso(post),
       author: AUTHOR,
       image: {
         '@type': 'ImageObject',
@@ -317,7 +317,7 @@ export const logPostStructuredData = (post: LogPost) => ({
       author: AUTHOR,
       publisher: PUBLISHER,
       datePublished: convertToISODate(post.publishedAt),
-      dateModified: convertToISODate(post.publishedAt),
+      dateModified: getPostLastModifiedIso(post),
       image: {
         '@type': 'ImageObject',
         name: post.title,

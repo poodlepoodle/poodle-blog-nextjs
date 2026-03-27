@@ -5,25 +5,25 @@ import {
   getLogPosts,
   getPlaygroundPosts,
 } from '@utils/get-posts';
-import { convertToISODate } from '@utils/format-date';
+import { getPostLastModifiedIso } from '@utils/format-date';
 import { BASE_URL } from '@constants/metadata';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogPostRoutes = (await getBlogPosts()).map(post => ({
     url: `${BASE_URL}/posts/${post.slug}`,
-    lastModified: convertToISODate(post.publishedAt),
+    lastModified: getPostLastModifiedIso(post),
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }));
   const logPostRoutes = (await getLogPosts()).map(post => ({
     url: `${BASE_URL}/logs/${post.slug}`,
-    lastModified: convertToISODate(post.publishedAt),
+    lastModified: getPostLastModifiedIso(post),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }));
   const playgroundPostRoutes = (await getPlaygroundPosts()).map(post => ({
     url: `${BASE_URL}/playgrounds/${post.slug}`,
-    lastModified: convertToISODate(post.publishedAt),
+    lastModified: getPostLastModifiedIso(post),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }));
