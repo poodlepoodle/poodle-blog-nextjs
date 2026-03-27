@@ -10,6 +10,9 @@ import { METADATA_PRESET } from '@constants/metadata';
 
 export const metadata: Metadata = {
   ...METADATA_PRESET,
+  alternates: {
+    canonical: '/',
+  },
   title: '홈 ••• 푸들 블로그',
 };
 

@@ -49,10 +49,6 @@ export const METADATA_TWITTER_PRESET: MetadataTwitter = {
 };
 
 export const METADATA_PRESET: Metadata = {
-  /* 페이지마다 달라져야 하는 필드 */
-  alternates: {
-    canonical: '/',
-  },
   title: '푸들 블로그',
   description:
     '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
@@ -75,9 +71,14 @@ export const METADATA_PRESET: Metadata = {
     apple: '/apple-icon.png',
   },
 
+  /* 페이지마다 달라져야 하며 반드시 포함되어야 하는 필드 */
+  // alternates: {
+  //   canonical: '/',
+  // },
+
   /* 루트 레이아웃에서만 사용되어야 하는 필드 */
   //   metadataBase: new URL(BASE_URL),
   //   verification: {
-  //     google: 'VCbUAJ2UDsWls7Vx-L5EvgHo9KG4dnVlgGurUZRaqRA',
+  //     google: 'VCbUA...-...-...(GSC verification code)',
   //   },
 };
