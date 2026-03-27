@@ -1,11 +1,21 @@
 import type { Metadata } from 'next';
 
 import { Button } from '@components/common/button';
-import { METADATA_PRESET } from '@constants/metadata';
+import { METADATA_PRESET, METADATA_OG_WEBSITE_PRESET } from '@constants/metadata';
 
 export const metadata: Metadata = {
   ...METADATA_PRESET,
   title: '존재하지 않는 페이지 ••• 푸들 블로그',
+  description: '요청하신 페이지를 찾을 수 없습니다. 홈으로 이동하세요.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+  openGraph: {
+    ...METADATA_OG_WEBSITE_PRESET,
+    url: '/not-found',
+    images: undefined,
+  },
 };
 
 export default async function Page() {
