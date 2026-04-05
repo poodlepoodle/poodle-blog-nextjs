@@ -31,6 +31,9 @@ export async function generateMetadata({
     ...METADATA_PRESET,
     alternates: {
       canonical: `/posts/${slug}`,
+      types: {
+        'text/markdown': `/posts/${slug}.md`,
+      },
     },
     title: `${post.title} ••• 푸들 블로그`,
     description: `${post.description}`,
