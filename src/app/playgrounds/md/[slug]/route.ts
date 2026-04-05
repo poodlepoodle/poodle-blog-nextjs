@@ -1,5 +1,11 @@
 import { notFound } from 'next/navigation';
 import { getPlaygroundPost } from '@utils/get-post';
+import { getPlaygroundPosts } from '@utils/get-posts';
+
+export const generateStaticParams = async () => {
+  const posts = await getPlaygroundPosts();
+  return posts.map(post => ({ slug: post.slug }));
+};
 
 type RouteParams = {
   params: Promise<{ slug: string }>;
