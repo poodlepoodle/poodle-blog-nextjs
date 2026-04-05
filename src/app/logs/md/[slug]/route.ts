@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import { getLogPost } from '@utils/get-post';
 import { getLogPosts } from '@utils/get-posts';
 
+export const dynamicParams = false;
+
 export const generateStaticParams = async () => {
   const posts = await getLogPosts();
   return posts.map(post => ({ slug: post.slug }));
