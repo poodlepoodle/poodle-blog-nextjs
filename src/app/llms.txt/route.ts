@@ -5,6 +5,8 @@ import {
 } from '@utils/get-posts';
 import { BASE_URL, METADATA_PRESET } from '@constants/metadata';
 
+export const dynamic = 'force-static';
+
 export async function GET() {
   const [blogPosts, logPosts, playgroundPosts] = await Promise.all([
     getBlogPosts(),
