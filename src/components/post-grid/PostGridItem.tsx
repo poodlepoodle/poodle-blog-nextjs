@@ -15,6 +15,7 @@ const UpdatedIcon = () => {
       height="5"
       viewBox="0 0 6 6"
       fill="none"
+      className="shrink-0"
     >
       <circle cx="3" cy="3" r="3" className="fill-skyblue" />
     </svg>
