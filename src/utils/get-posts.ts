@@ -12,6 +12,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { unstable_cache } from 'next/cache';
 import { POST_PATHS } from '@constants/posts';
+import { isRecentlyUpdated } from '@utils/is-recently-updated';
 
 /**
  * 지정된 디렉토리의 MDX 파일을 읽어 파싱·필터·정렬된 포스트 배열을 반환합니다.
@@ -47,6 +48,7 @@ export const getBlogPosts = unstable_cache(
     loadMdxPosts<BlogPost>(POST_PATHS.blog, (data, content) => ({
       type: 'blog',
       ...(data as unknown as BlogPostMetadata),
+      updated: isRecentlyUpdated(data.updatedAt),
       tags: Array.isArray(data.tags) ? [...(data.tags as string[])].sort() : [],
       content,
     })),
@@ -62,6 +64,7 @@ export const getPlaygroundPosts = unstable_cache(
     loadMdxPosts<PlaygroundPost>(POST_PATHS.playground, (data, content) => ({
       type: 'playground',
       ...(data as unknown as PlaygroundPostMetadata),
+      updated: isRecentlyUpdated(data.updatedAt),
       content,
     })),
   ['playground-posts'],
@@ -76,6 +79,7 @@ export const getLogPosts = unstable_cache(
     loadMdxPosts<LogPost>(POST_PATHS.log, (data, content) => ({
       type: 'log',
       ...(data as unknown as LogPostMetadata),
+      updated: isRecentlyUpdated(data.updatedAt),
       content,
     })),
   ['log-posts'],

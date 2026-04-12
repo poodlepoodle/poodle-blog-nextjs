@@ -1,6 +1,6 @@
 /**
  * Common Post Metadata
- * @description 포스트 공통 메타데이터
+ * @description frontmatter에서 파싱되는 포스트 공통 메타데이터
  */
 interface CommonPostMetadata {
   title: string;
@@ -9,7 +9,6 @@ interface CommonPostMetadata {
   updatedAt?: string; // 콘텐츠 수정일 (YYYY. MM. DD). 생략 시 publishedAt을 수정일로 사용합니다.
   slug: string;
   tags: string[];
-  updated: boolean;
   published?: boolean;
 }
 
@@ -20,6 +19,7 @@ interface CommonPostMetadata {
 export interface BlogPostMetadata extends CommonPostMetadata {}
 export interface BlogPost extends BlogPostMetadata {
   type: 'blog';
+  updated: boolean;
   content: string;
 }
 
@@ -31,6 +31,7 @@ export interface PlaygroundPostMetadata
   extends Omit<CommonPostMetadata, 'description' | 'tags'> {}
 export interface PlaygroundPost extends PlaygroundPostMetadata {
   type: 'playground';
+  updated: boolean;
   content: string;
 }
 
@@ -41,6 +42,7 @@ export interface PlaygroundPost extends PlaygroundPostMetadata {
 export interface LogPostMetadata extends Omit<CommonPostMetadata, 'tags'> {}
 export interface LogPost extends LogPostMetadata {
   type: 'log';
+  updated: boolean;
   content: string;
 }
 
