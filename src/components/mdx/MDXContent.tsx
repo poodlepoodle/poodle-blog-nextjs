@@ -31,6 +31,7 @@ const baseMdxComponents: MDXComponents = {
   pre: MDXCode,
   code: MDXInlineCode,
   blockquote: MDXBlockquote,
+  h1: MDXH2,
   h2: MDXH2,
   h3: MDXH3,
 };
