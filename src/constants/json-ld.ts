@@ -130,7 +130,12 @@ export const blogPostStructuredData = (post: BlogPost) => ({
           name: '포스트',
           item: `${BASE_URL}/posts`,
         },
-        { '@type': 'ListItem', position: 3, name: post.title },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: post.title,
+          item: `${BASE_URL}/posts/${post.slug}`,
+        },
       ],
     },
     {
@@ -214,7 +219,12 @@ export const playgroundPostStructuredData = (post: PlaygroundPost) => ({
           name: '플레이그라운드',
           item: `${BASE_URL}/playgrounds`,
         },
-        { '@type': 'ListItem', position: 3, name: post.title },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: post.title,
+          item: `${BASE_URL}/playgrounds/${post.slug}`,
+        },
       ],
     },
     {
@@ -300,7 +310,12 @@ export const logPostStructuredData = (post: LogPost) => ({
           name: '로그',
           item: `${BASE_URL}/logs`,
         },
-        { '@type': 'ListItem', position: 3, name: post.title },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: post.title,
+          item: `${BASE_URL}/logs/${post.slug}`,
+        },
       ],
     },
     {
