@@ -28,6 +28,26 @@ const AUTHOR = {
   sameAs: ['https://github.com/poodlepoodle'],
 };
 
+export const aboutStructuredData = () => ({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfilePage',
+      '@id': `${BASE_URL}/about#profilepage`,
+      url: `${BASE_URL}/about`,
+      name: '소개 ••• 푸들 블로그',
+      mainEntity: {
+        '@type': 'Person',
+        '@id': `${BASE_URL}/about#person`,
+        name: '최어진',
+        jobTitle: 'Frontend Developer',
+        url: `${BASE_URL}/about`,
+        sameAs: ['https://github.com/poodlepoodle'],
+      },
+    },
+  ],
+});
+
 export const blogStructuredData = (posts: BlogPost[]) => ({
   '@context': 'https://schema.org',
   '@graph': [
