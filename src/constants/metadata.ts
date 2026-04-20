@@ -11,6 +11,11 @@ export const BRAND_KEYWORDS = [
   '사용자',
   '인터페이스',
   '인터랙션',
+  'Next.js',
+  'Tailwind CSS',
+  'React',
+  'TypeScript',
+  'JavaScript',
 ] as const;
 
 export const METADATA_OG_WEBSITE_PRESET: MetadataOpenGraph = {
@@ -47,6 +52,17 @@ export const METADATA_OG_ARTICLE_PRESET: MetadataOpenGraph = {
 export const METADATA_TWITTER_PRESET: MetadataTwitter = {
   card: 'summary_large_image',
 };
+
+export const PAGE_DESCRIPTIONS = {
+  default:
+    '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+  home: '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+  about:
+    '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+  posts: '프론트엔드를 중심으로 한 좁고 깊은 기술 포스트를 다룹니다.',
+  logs: '개발하면서 발견한 짧은 팁이나 회고 등 가벼운 기록을 다룹니다.',
+  playgrounds: '인터랙션과 UI를 실험하는 공간입니다.',
+} as const;
 
 export const METADATA_PRESET: Metadata = {
   title: '푸들 블로그',
