@@ -6,10 +6,11 @@ import { Button } from '@components/common/button';
 import JsonLd from '@components/json-ld';
 import { getBlogPosts } from '@utils/get-posts';
 import { blogStructuredData } from '@constants/json-ld';
-import { METADATA_PRESET } from '@constants/metadata';
+import { METADATA_PRESET, PAGE_DESCRIPTIONS } from '@constants/metadata';
 
 export const metadata: Metadata = {
   ...METADATA_PRESET,
+  description: PAGE_DESCRIPTIONS.home,
   alternates: {
     canonical: '/',
   },
