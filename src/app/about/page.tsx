@@ -54,14 +54,14 @@ export default async function Page() {
       <section className="flex w-full flex-col items-center">
         <Paper className="mt-container-top mb-container-bottom flex h-full w-full flex-col gap-[5rem] py-[3.75rem]">
           <section className="flex w-full flex-col items-end gap-[2rem] px-[3.75rem]">
-            <h1 className="w-fit text-right text-lg font-semibold break-keep text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
+            <span className="w-fit text-right text-lg font-semibold break-keep text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
               안녕하세요.
-            </h1>
-            <h2 className="w-fit text-right text-lg font-semibold break-keep text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
+            </span>
+            <h1 className="w-fit text-right text-lg font-semibold break-keep text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
               애정을 담아 사용자와 인터랙션하고 싶은
               <br />
               프론트엔드 개발자 최어진입니다.
-            </h2>
+            </h1>
           </section>
           <div className="flex w-full justify-end gap-items px-[3.75rem]">
             {ABOUT_LINK_ITEMS.map(({ href, label }) => (
