@@ -1,3 +1,4 @@
+import type { Graph, ImageObject, Organization, Person } from 'schema-dts';
 import type { BlogPost, LogPost, PlaygroundPost, TagCount } from '@/types';
 
 import { BASE_URL, BRAND_KEYWORDS } from '@constants/metadata';
@@ -5,30 +6,30 @@ import { convertToISODate, getPostLastModifiedIso } from '@utils/format-date';
 
 const SITE_NAME = '푸들 블로그';
 
-const LOGO = {
-  '@type': 'ImageObject' as const,
+const LOGO: ImageObject = {
+  '@type': 'ImageObject',
   name: `${SITE_NAME} 로고`,
   url: `${BASE_URL}/apple-icon.png`,
-  width: 512,
-  height: 512,
+  width: '512',
+  height: '512',
 };
 
-const PUBLISHER = {
-  '@type': 'Organization' as const,
+const PUBLISHER: Organization = {
+  '@type': 'Organization',
   name: SITE_NAME,
   url: BASE_URL,
   logo: LOGO,
 };
 
-const AUTHOR = {
-  '@type': 'Person' as const,
+const AUTHOR: Person = {
+  '@type': 'Person',
   '@id': `${BASE_URL}/about#person`,
   name: '최어진',
   url: `${BASE_URL}/about`,
   sameAs: ['https://github.com/poodlepoodle'],
 };
 
-export const aboutStructuredData = () => ({
+export const aboutStructuredData = (): Graph => ({
   '@context': 'https://schema.org',
   '@graph': [
     {
@@ -48,7 +49,7 @@ export const aboutStructuredData = () => ({
   ],
 });
 
-export const blogStructuredData = (posts: BlogPost[]) => ({
+export const blogStructuredData = (posts: BlogPost[]): Graph => ({
   '@context': 'https://schema.org',
   '@graph': [
     {
@@ -66,8 +67,6 @@ export const blogStructuredData = (posts: BlogPost[]) => ({
       name: SITE_NAME,
       url: BASE_URL,
       numberOfItems: posts.length,
-      inLanguage: 'ko-KR',
-      about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
       itemListElement: posts.map((post, index) => ({
         '@type': 'ListItem',
         position: index + 1,
@@ -99,45 +98,52 @@ export const blogStructuredData = (posts: BlogPost[]) => ({
 export const blogListStructuredData = (
   posts: BlogPost[],
   tags: TagCount[]
-) => ({
+): Graph => ({
   '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: '포스트 ••• 푸들 블로그',
-  description:
-    '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
-  url: `${BASE_URL}/posts`,
-  numberOfItems: posts.length,
-  author: AUTHOR,
-  publisher: PUBLISHER,
-  inLanguage: 'ko-KR',
-  about: tags.map(tag => ({ '@type': 'Thing' as const, name: tag.name })),
-  itemListElement: posts.map((post, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    item: {
-      '@type': 'BlogPosting',
-      '@id': `${BASE_URL}/posts/${post.slug}#article`,
-      name: post.title,
-      mainEntityOfPage: `${BASE_URL}/posts/${post.slug}`,
-      url: `${BASE_URL}/posts/${post.slug}`,
-      headline: post.title,
-      description: post.description,
-      keywords: post.tags.join(', '),
-      datePublished: convertToISODate(post.publishedAt),
-      dateModified: getPostLastModifiedIso(post),
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: '포스트 ••• 푸들 블로그',
+      description:
+        '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+      url: `${BASE_URL}/posts`,
       author: AUTHOR,
-      image: {
-        '@type': 'ImageObject',
-        name: post.title,
-        url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.webp`,
-        width: 1896,
-        height: 912,
-      },
+      publisher: PUBLISHER,
+      inLanguage: 'ko-KR',
+      about: tags.map(tag => ({ '@type': 'Thing' as const, name: tag.name })),
     },
-  })),
+    {
+      '@type': 'ItemList',
+      numberOfItems: posts.length,
+      itemListElement: posts.map((post, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'BlogPosting',
+          '@id': `${BASE_URL}/posts/${post.slug}#article`,
+          name: post.title,
+          mainEntityOfPage: `${BASE_URL}/posts/${post.slug}`,
+          url: `${BASE_URL}/posts/${post.slug}`,
+          headline: post.title,
+          description: post.description,
+          keywords: post.tags.join(', '),
+          datePublished: convertToISODate(post.publishedAt),
+          dateModified: getPostLastModifiedIso(post),
+          author: AUTHOR,
+          image: {
+            '@type': 'ImageObject',
+            name: post.title,
+            url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.webp`,
+            width: '1896',
+            height: '912',
+          },
+        },
+      })),
+    },
+  ],
 });
 
-export const blogPostStructuredData = (post: BlogPost) => ({
+export const blogPostStructuredData = (post: BlogPost): Graph => ({
   '@context': 'https://schema.org',
   '@graph': [
     {
@@ -177,8 +183,8 @@ export const blogPostStructuredData = (post: BlogPost) => ({
         '@type': 'ImageObject',
         name: post.title,
         url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.webp`,
-        width: 1896,
-        height: 912,
+        width: '1896',
+        height: '912',
       },
       url: `${BASE_URL}/posts/${post.slug}`,
       about: post.tags.map(tag => ({ '@type': 'Thing' as const, name: tag })),
@@ -189,44 +195,53 @@ export const blogPostStructuredData = (post: BlogPost) => ({
   ],
 });
 
-export const playgroundListStructuredData = (posts: PlaygroundPost[]) => ({
+export const playgroundListStructuredData = (
+  posts: PlaygroundPost[]
+): Graph => ({
   '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: '플레이그라운드 ••• 푸들 블로그',
-  description:
-    '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
-  url: `${BASE_URL}/playgrounds`,
-  numberOfItems: posts.length,
-  author: AUTHOR,
-  publisher: PUBLISHER,
-  inLanguage: 'ko-KR',
-  about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
-  itemListElement: posts.map((post, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    item: {
-      '@type': 'BlogPosting',
-      '@id': `${BASE_URL}/playgrounds/${post.slug}#article`,
-      name: post.title,
-      mainEntityOfPage: `${BASE_URL}/playgrounds/${post.slug}`,
-      url: `${BASE_URL}/playgrounds/${post.slug}`,
-      headline: post.title,
-      datePublished: convertToISODate(post.publishedAt),
-      dateModified: getPostLastModifiedIso(post),
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: '플레이그라운드 ••• 푸들 블로그',
+      description:
+        '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+      url: `${BASE_URL}/playgrounds`,
       author: AUTHOR,
-      image: {
-        '@type': 'ImageObject',
-        name: post.title,
-        // 이미지 파일은 public/playground/ (단수) 경로에 저장됨
-        url: `${BASE_URL}/playground/${post.slug}/thumbnail-large.webp`,
-        width: 1896,
-        height: 912,
-      },
+      publisher: PUBLISHER,
+      inLanguage: 'ko-KR',
+      about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
     },
-  })),
+    {
+      '@type': 'ItemList',
+      numberOfItems: posts.length,
+      itemListElement: posts.map((post, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'BlogPosting',
+          '@id': `${BASE_URL}/playgrounds/${post.slug}#article`,
+          name: post.title,
+          mainEntityOfPage: `${BASE_URL}/playgrounds/${post.slug}`,
+          url: `${BASE_URL}/playgrounds/${post.slug}`,
+          headline: post.title,
+          datePublished: convertToISODate(post.publishedAt),
+          dateModified: getPostLastModifiedIso(post),
+          author: AUTHOR,
+          image: {
+            '@type': 'ImageObject',
+            name: post.title,
+            // 이미지 파일은 public/playground/ (단수) 경로에 저장됨
+            url: `${BASE_URL}/playground/${post.slug}/thumbnail-large.webp`,
+            width: '1896',
+            height: '912',
+          },
+        },
+      })),
+    },
+  ],
 });
 
-export const playgroundPostStructuredData = (post: PlaygroundPost) => ({
+export const playgroundPostStructuredData = (post: PlaygroundPost): Graph => ({
   '@context': 'https://schema.org',
   '@graph': [
     {
@@ -268,8 +283,8 @@ export const playgroundPostStructuredData = (post: PlaygroundPost) => ({
         name: post.title,
         // 이미지 파일은 public/playground/ (단수) 경로에 저장됨
         url: `${BASE_URL}/playground/${post.slug}/thumbnail-large.webp`,
-        width: 1896,
-        height: 912,
+        width: '1896',
+        height: '912',
       },
       url: `${BASE_URL}/playgrounds/${post.slug}`,
       about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
@@ -280,44 +295,51 @@ export const playgroundPostStructuredData = (post: PlaygroundPost) => ({
   ],
 });
 
-export const logListStructuredData = (posts: LogPost[]) => ({
+export const logListStructuredData = (posts: LogPost[]): Graph => ({
   '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: '로그 ••• 푸들 블로그',
-  description:
-    '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
-  url: `${BASE_URL}/logs`,
-  numberOfItems: posts.length,
-  author: AUTHOR,
-  publisher: PUBLISHER,
-  inLanguage: 'ko-KR',
-  about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
-  itemListElement: posts.map((post, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    item: {
-      '@type': 'BlogPosting',
-      '@id': `${BASE_URL}/logs/${post.slug}#article`,
-      name: post.title,
-      mainEntityOfPage: `${BASE_URL}/logs/${post.slug}`,
-      url: `${BASE_URL}/logs/${post.slug}`,
-      headline: post.title,
-      description: post.description,
-      datePublished: convertToISODate(post.publishedAt),
-      dateModified: getPostLastModifiedIso(post),
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: '로그 ••• 푸들 블로그',
+      description:
+        '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+      url: `${BASE_URL}/logs`,
       author: AUTHOR,
-      image: {
-        '@type': 'ImageObject',
-        name: post.title,
-        url: `${BASE_URL}/og/og-large.jpg`,
-        width: 1896,
-        height: 912,
-      },
+      publisher: PUBLISHER,
+      inLanguage: 'ko-KR',
+      about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
     },
-  })),
+    {
+      '@type': 'ItemList',
+      numberOfItems: posts.length,
+      itemListElement: posts.map((post, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'BlogPosting',
+          '@id': `${BASE_URL}/logs/${post.slug}#article`,
+          name: post.title,
+          mainEntityOfPage: `${BASE_URL}/logs/${post.slug}`,
+          url: `${BASE_URL}/logs/${post.slug}`,
+          headline: post.title,
+          description: post.description,
+          datePublished: convertToISODate(post.publishedAt),
+          dateModified: getPostLastModifiedIso(post),
+          author: AUTHOR,
+          image: {
+            '@type': 'ImageObject',
+            name: post.title,
+            url: `${BASE_URL}/og/og-large.jpg`,
+            width: '1896',
+            height: '912',
+          },
+        },
+      })),
+    },
+  ],
 });
 
-export const logPostStructuredData = (post: LogPost) => ({
+export const logPostStructuredData = (post: LogPost): Graph => ({
   '@context': 'https://schema.org',
   '@graph': [
     {
@@ -357,8 +379,8 @@ export const logPostStructuredData = (post: LogPost) => ({
         '@type': 'ImageObject',
         name: post.title,
         url: `${BASE_URL}/og/og-large.jpg`,
-        width: 1896,
-        height: 912,
+        width: '1896',
+        height: '912',
       },
       url: `${BASE_URL}/logs/${post.slug}`,
       about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
