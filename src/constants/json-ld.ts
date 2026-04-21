@@ -29,9 +29,46 @@ const AUTHOR: Person = {
   sameAs: ['https://github.com/poodlepoodle'],
 };
 
+const postThumbnail = (slug: string, title: string): ImageObject => ({
+  '@type': 'ImageObject',
+  name: title,
+  url: `${BASE_URL}/posts/${slug}/thumbnail-large.webp`,
+  width: '1896',
+  height: '912',
+});
+
+const playgroundThumbnail = (slug: string, title: string): ImageObject => ({
+  '@type': 'ImageObject',
+  name: title,
+  // 이미지 파일은 public/playground/ (단수) 경로에 저장됨
+  url: `${BASE_URL}/playground/${slug}/thumbnail-large.webp`,
+  width: '1896',
+  height: '912',
+});
+
+const logThumbnail = (title: string): ImageObject => ({
+  '@type': 'ImageObject',
+  name: title,
+  url: `${BASE_URL}/og/og-large.jpg`,
+  width: '1896',
+  height: '912',
+});
+
 export const aboutStructuredData = (): Graph => ({
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '홈', item: BASE_URL },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: '소개',
+          item: `${BASE_URL}/about`,
+        },
+      ],
+    },
     {
       '@type': 'ProfilePage',
       '@id': `${BASE_URL}/about#profilepage`,
@@ -54,6 +91,7 @@ export const blogStructuredData = (posts: BlogPost[]): Graph => ({
   '@graph': [
     {
       '@type': 'WebSite',
+      '@id': `${BASE_URL}/#website`,
       name: SITE_NAME,
       description:
         '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
@@ -82,13 +120,7 @@ export const blogStructuredData = (posts: BlogPost[]): Graph => ({
           datePublished: convertToISODate(post.publishedAt),
           dateModified: getPostLastModifiedIso(post),
           author: AUTHOR,
-          image: {
-            '@type': 'ImageObject',
-            name: post.title,
-            url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.webp`,
-            width: 1896,
-            height: 912,
-          },
+          image: postThumbnail(post.slug, post.title),
         },
       })),
     },
@@ -101,6 +133,18 @@ export const blogListStructuredData = (
 ): Graph => ({
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '홈', item: BASE_URL },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: '포스트',
+          item: `${BASE_URL}/posts`,
+        },
+      ],
+    },
     {
       '@type': 'CollectionPage',
       name: '포스트 ••• 푸들 블로그',
@@ -130,13 +174,7 @@ export const blogListStructuredData = (
           datePublished: convertToISODate(post.publishedAt),
           dateModified: getPostLastModifiedIso(post),
           author: AUTHOR,
-          image: {
-            '@type': 'ImageObject',
-            name: post.title,
-            url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.webp`,
-            width: '1896',
-            height: '912',
-          },
+          image: postThumbnail(post.slug, post.title),
         },
       })),
     },
@@ -179,13 +217,7 @@ export const blogPostStructuredData = (post: BlogPost): Graph => ({
       publisher: PUBLISHER,
       datePublished: convertToISODate(post.publishedAt),
       dateModified: getPostLastModifiedIso(post),
-      image: {
-        '@type': 'ImageObject',
-        name: post.title,
-        url: `${BASE_URL}/posts/${post.slug}/thumbnail-large.webp`,
-        width: '1896',
-        height: '912',
-      },
+      image: postThumbnail(post.slug, post.title),
       url: `${BASE_URL}/posts/${post.slug}`,
       about: post.tags.map(tag => ({ '@type': 'Thing' as const, name: tag })),
       articleSection: 'Technology',
@@ -200,6 +232,18 @@ export const playgroundListStructuredData = (
 ): Graph => ({
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '홈', item: BASE_URL },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: '플레이그라운드',
+          item: `${BASE_URL}/playgrounds`,
+        },
+      ],
+    },
     {
       '@type': 'CollectionPage',
       name: '플레이그라운드 ••• 푸들 블로그',
@@ -227,14 +271,7 @@ export const playgroundListStructuredData = (
           datePublished: convertToISODate(post.publishedAt),
           dateModified: getPostLastModifiedIso(post),
           author: AUTHOR,
-          image: {
-            '@type': 'ImageObject',
-            name: post.title,
-            // 이미지 파일은 public/playground/ (단수) 경로에 저장됨
-            url: `${BASE_URL}/playground/${post.slug}/thumbnail-large.webp`,
-            width: '1896',
-            height: '912',
-          },
+          image: playgroundThumbnail(post.slug, post.title),
         },
       })),
     },
@@ -278,14 +315,7 @@ export const playgroundPostStructuredData = (post: PlaygroundPost): Graph => ({
       publisher: PUBLISHER,
       datePublished: convertToISODate(post.publishedAt),
       dateModified: getPostLastModifiedIso(post),
-      image: {
-        '@type': 'ImageObject',
-        name: post.title,
-        // 이미지 파일은 public/playground/ (단수) 경로에 저장됨
-        url: `${BASE_URL}/playground/${post.slug}/thumbnail-large.webp`,
-        width: '1896',
-        height: '912',
-      },
+      image: playgroundThumbnail(post.slug, post.title),
       url: `${BASE_URL}/playgrounds/${post.slug}`,
       about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
       articleSection: 'Technology',
@@ -298,6 +328,18 @@ export const playgroundPostStructuredData = (post: PlaygroundPost): Graph => ({
 export const logListStructuredData = (posts: LogPost[]): Graph => ({
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '홈', item: BASE_URL },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: '로그',
+          item: `${BASE_URL}/logs`,
+        },
+      ],
+    },
     {
       '@type': 'CollectionPage',
       name: '로그 ••• 푸들 블로그',
@@ -326,13 +368,7 @@ export const logListStructuredData = (posts: LogPost[]): Graph => ({
           datePublished: convertToISODate(post.publishedAt),
           dateModified: getPostLastModifiedIso(post),
           author: AUTHOR,
-          image: {
-            '@type': 'ImageObject',
-            name: post.title,
-            url: `${BASE_URL}/og/og-large.jpg`,
-            width: '1896',
-            height: '912',
-          },
+          image: logThumbnail(post.title),
         },
       })),
     },
@@ -375,13 +411,7 @@ export const logPostStructuredData = (post: LogPost): Graph => ({
       publisher: PUBLISHER,
       datePublished: convertToISODate(post.publishedAt),
       dateModified: getPostLastModifiedIso(post),
-      image: {
-        '@type': 'ImageObject',
-        name: post.title,
-        url: `${BASE_URL}/og/og-large.jpg`,
-        width: '1896',
-        height: '912',
-      },
+      image: logThumbnail(post.title),
       url: `${BASE_URL}/logs/${post.slug}`,
       about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
       articleSection: 'Technology',
