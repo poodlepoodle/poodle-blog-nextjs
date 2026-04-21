@@ -1,136 +1,167 @@
 # Structured Data Strategy
 
-이 문서는 푸들 블로그의 JSON-LD 구조화 데이터(Structured Data) 전략을 정의합니다.  
-모든 구조화 데이터는 `src/constants/json-ld.ts`에서 관리되며, Schema.org 표준 및 Google Rich Results 가이드라인을 따릅니다.
+이 문서는 푸들 블로그의 JSON-LD 구조화 데이터 전략을 정의한다.  
+Schema.org 표준 및 Google Rich Results 가이드라인을 따르며, `schema-dts` 패키지로 타입 안전성을 보장한다.
 
 ---
 
-## 📁 파일 위치
+## 파일 위치
 
 ```
-src/constants/json-ld.ts   ← 모든 구조화 데이터 함수 및 공통 상수
+src/constants/json-ld.ts         ← 구조화 데이터 생성 함수 및 공통 상수
+src/components/json-ld/index.tsx ← <script type="application/ld+json"> 주입 컴포넌트
 ```
+
+컴포넌트의 prop 타입은 `WithContext<Thing> | Graph`다. 모든 함수의 반환 타입은 `Graph`로 통일되어 있다.
 
 ---
 
-## 🧩 공통 상수
+## 공통 상수
 
-반복되는 엔티티를 파일 상단에 상수로 정의하여 모든 함수에서 재사용합니다.
-
-| 상수 | Schema.org 타입 | 설명 |
+| 상수 | schema-dts 타입 | 설명 |
 |------|----------------|------|
-| `LOGO` | `ImageObject` | 사이트 로고 (`/apple-icon.png`, 512×512) |
+| `LOGO` | `ImageObject` | 사이트 로고 (`/apple-icon.png`, `512×512`) |
 | `PUBLISHER` | `Organization` | 발행 주체 (푸들 블로그) |
-| `AUTHOR` | `Person` | 작성자 (최어진) |
+| `AUTHOR` | `Person` | 작성자 (최어진), `@id: /about#person`, `sameAs: [GitHub]` |
 
-### AUTHOR 상수 주요 필드
-
-- `@id`: `${BASE_URL}/about#person` — 작성자 엔티티의 고유 URI 식별자
-- `sameAs`: GitHub 프로필 URL — 검색 엔진의 E-E-A-T(신뢰도) 강화용
-
-> 소셜 프로필이 추가될 때 `AUTHOR.sameAs` 배열에 URL을 추가합니다.
+**`AUTHOR.@id`의 역할**: `BlogPosting.author`와 `ProfilePage.mainEntity` 양쪽에서 동일 URI(`/about#person`)를 참조함으로써 검색 엔진이 "동일 인물"로 인식한다. 소셜 프로필이 추가될 때 `AUTHOR.sameAs` 배열에 URL을 추가한다.
 
 ---
 
-## 📄 페이지별 함수 매핑
+## 페이지별 함수 매핑
 
-| 함수명 | 적용 페이지 | 최상위 `@type` | 구조 |
-|--------|-------------|---------------|------|
-| `blogStructuredData` | `/` (홈) | `@graph` | `WebSite` + `ItemList` |
-| `blogListStructuredData` | `/posts` | `ItemList` | 단일 객체 |
-| `blogPostStructuredData` | `/posts/[slug]` | `@graph` | `BreadcrumbList` + `BlogPosting` |
-| `playgroundListStructuredData` | `/playgrounds` | `ItemList` | 단일 객체 |
-| `playgroundPostStructuredData` | `/playgrounds/[slug]` | `@graph` | `BreadcrumbList` + `BlogPosting` |
-| `logListStructuredData` | `/logs` | `ItemList` | 단일 객체 |
-| `logPostStructuredData` | `/logs/[slug]` | `@graph` | `BreadcrumbList` + `BlogPosting` |
+| 함수명 | 적용 페이지 | @graph 노드 구성 |
+|--------|------------|-----------------|
+| `blogStructuredData` | `/` | `WebSite` + `ItemList` |
+| `aboutStructuredData` | `/about` | `BreadcrumbList` + `ProfilePage` (mainEntity: Person) |
+| `blogListStructuredData` | `/posts` | `BreadcrumbList` + `CollectionPage` + `ItemList` |
+| `blogPostStructuredData` | `/posts/[slug]` | `BreadcrumbList` + `BlogPosting` |
+| `playgroundListStructuredData` | `/playgrounds` | `BreadcrumbList` + `CollectionPage` + `ItemList` |
+| `playgroundPostStructuredData` | `/playgrounds/[slug]` | `BreadcrumbList` + `BlogPosting` |
+| `logListStructuredData` | `/logs` | `BreadcrumbList` + `CollectionPage` + `ItemList` |
+| `logPostStructuredData` | `/logs/[slug]` | `BreadcrumbList` + `BlogPosting` |
+
+홈(`/`)을 제외한 전 페이지에 `BreadcrumbList`가 포함된다.
 
 ---
 
-## 🏗️ 구조 설계 원칙
+## 구조 설계 원칙
 
-### 1. 상세 페이지: `@graph` + `BreadcrumbList`
+### 홈 페이지: `WebSite` + `ItemList`
 
-상세 페이지는 `@graph` 배열로 여러 엔티티를 병렬 선언합니다.
-
-```json
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    { "@type": "BreadcrumbList", ... },
-    { "@type": "BlogPosting", "@id": "...#article", ... }
-  ]
-}
+```
+@graph
+├── WebSite   @id: /#website, name, description, url, author, publisher, inLanguage
+└── ItemList  name, url, numberOfItems, itemListElement[BlogPosting]
 ```
 
-- `BreadcrumbList`는 Google 검색 결과에서 URL 대신 `홈 > 포스트 > 제목` 경로를 노출시킵니다.
-- `@graph`는 동일 페이지에 여러 엔티티가 공존할 때 각각을 명확히 분리합니다.
+`WebSite`는 `CreativeWork`를 상속하므로 `author`, `publisher`, `inLanguage`가 유효하다. `ItemList`(`Intangible` 상속)에는 이 필드들이 없으므로 `WebSite` 노드에 위임한다.
 
-### 2. 홈 페이지: `WebSite` + `ItemList` 분리
+### 목록 페이지: `BreadcrumbList` + `CollectionPage` + `ItemList`
 
-원래 `@type: ['WebSite', 'ItemList']` 배열 타입 방식은 검색 엔진이 페이지 성격을 모호하게 해석할 수 있어, `@graph`로 두 엔티티를 명확히 분리합니다.
+```
+@graph
+├── BreadcrumbList  itemListElement[홈, 섹션명]
+├── CollectionPage  name, description, url, author, publisher, inLanguage, about
+└── ItemList        numberOfItems, itemListElement[BlogPosting]
+```
 
-### 3. 목록 페이지: 단일 `ItemList`
+`CollectionPage`(`WebPage > CreativeWork` 상속)에 페이지 메타데이터를 위임하고, `ItemList`에 목록 구조를 분리한다. `/posts`는 `tags` 파라미터를 `CollectionPage.about`에 `Thing` 배열로 삽입하며, `/playgrounds`·`/logs`는 `BRAND_KEYWORDS`를 사용한다.
 
-목록 페이지는 BreadcrumbList가 불필요하므로 단일 `ItemList` 객체로 유지합니다.  
-`numberOfItems: posts.length`를 반드시 포함합니다.
+### 상세 페이지: `BreadcrumbList` + `BlogPosting`
+
+```
+@graph
+├── BreadcrumbList  itemListElement[홈, 섹션, 글 제목]
+└── BlogPosting     @id: /…#article, mainEntityOfPage: WebPage(@id: /…)
+```
+
+`BlogPosting`에 `articleBody`(전문), `articleSection`, `inLanguage`, `about`(태그), `keywords`를 포함해 콘텐츠 맥락을 전달한다. `mainEntityOfPage`에 `WebPage` 노드를 내포하고 `@id`를 선언해 페이지와 글 엔티티를 구분한다.
+
+### 소개 페이지: `BreadcrumbList` + `ProfilePage`
+
+```
+@graph
+├── BreadcrumbList  itemListElement[홈, 소개]
+└── ProfilePage     @id: /about#profilepage, mainEntity: Person(@id: /about#person)
+```
+
+`ProfilePage`는 Google 공식 지원 타입이다. `mainEntity.@id`가 `AUTHOR.@id`와 일치해 `BlogPosting.author`와 그래프 연결이 이루어진다.
 
 ---
 
-## 🔑 `@id` 사용 규칙
+## @id 사용 규칙
 
-`@id`는 실제 탐색 가능한 URL이 아닌 **링크드 데이터 그래프 내의 엔티티 고유 URI 식별자**입니다.
+`@id`는 탐색 가능한 URL이 아닌 **링크드 데이터 그래프 내의 엔티티 고유 URI 식별자**다.
 
 | 엔티티 | `@id` 패턴 | 비고 |
 |--------|-----------|------|
+| `WebSite` | `${BASE_URL}/#website` | 사이트 엔티티 |
 | `BlogPosting` | `${BASE_URL}/{section}/{slug}#article` | 글 콘텐츠 엔티티 |
 | `WebPage` (mainEntityOfPage) | `${BASE_URL}/{section}/{slug}` | 실제 페이지 URL |
 | `Person` (AUTHOR) | `${BASE_URL}/about#person` | 작성자 엔티티 |
+| `ProfilePage` | `${BASE_URL}/about#profilepage` | 소개 페이지 엔티티 |
 
-`#article`, `#person` 등의 fragment는 HTML 앵커가 아니라 동일 URL에 연결된 서로 다른 엔티티(`WebPage` vs `BlogPosting`)를 구분하는 식별자입니다. 실제 페이지에 해당 `id` 속성이 없어도 됩니다.
-
----
-
-## 🖼️ ImageObject 규격
-
-| 대상 | width | height | 비고 |
-|------|-------|--------|------|
-| 포스트 썸네일 (`thumbnail-large.webp`) | 1200 | 630 | Google 권장 최소 1200px |
-| 사이트 로고 (`apple-icon.png`) | 512 | 512 | |
-
-모든 `ImageObject`에 `name` 필드를 반드시 포함합니다.
+`#article`, `#person` 등의 fragment는 HTML 앵커가 아니라 동일 URL에 연결된 서로 다른 엔티티를 구분하는 식별자다. 실제 페이지에 해당 `id` 속성이 없어도 된다.
 
 ---
 
-## ⚠️ 주의 사항
+## ImageObject 규격
+
+`width`/`height`는 schema-dts가 `string | QuantitativeValue`를 요구하므로 숫자가 아닌 문자열로 선언한다. 모든 `ImageObject`에 `name` 필드를 포함한다.
+
+반복되는 이미지 패턴은 `ImageObject` 반환 타입의 팩토리 함수로 관리한다. `@graph` 내부의 깊은 중첩에서도 타입 검사가 보장된다.
+
+| 팩토리 / 상수 | 대상 | 이미지 경로 | 크기 |
+|--------------|------|------------|------|
+| `postThumbnail(slug, title)` | 포스트 썸네일 | `/posts/{slug}/thumbnail-large.webp` | 1896×912 |
+| `playgroundThumbnail(slug, title)` | 플레이그라운드 썸네일 | `/playground/{slug}/thumbnail-large.webp` | 1896×912 |
+| `logThumbnail(title)` | 로그 공용 이미지 | `/og/og-large.jpg` | 1896×912 |
+| `LOGO` | 사이트 로고 | `/apple-icon.png` | 512×512 |
+
+---
+
+## 주의 사항
 
 ### playground 이미지 경로
 
-페이지 URL과 이미지 파일 경로의 단복수가 다릅니다. 이는 의도된 설계입니다.
+페이지 URL과 이미지 파일 경로의 단복수가 다르다. 이는 의도된 설계다.
 
 ```
-페이지 URL:    /playgrounds/{slug}          ← 복수
-이미지 파일:   /public/playground/{slug}/   ← 단수 (실제 디렉터리 구조)
+페이지 URL:  /playgrounds/{slug}         ← 복수
+이미지 경로: /public/playground/{slug}/  ← 단수 (실제 디렉터리 구조)
 ```
 
-`playgroundListStructuredData`, `playgroundPostStructuredData`의 `ImageObject.url`은 `/playground/` (단수)를 사용합니다.
+`playgroundThumbnail` 팩토리 내부에서 `/playground/` (단수)를 사용한다.
 
 ### PlaygroundPost 타입 제약
 
-`PlaygroundPost` 타입에는 `description`과 `tags` 필드가 없습니다 (`src/types/post.types.ts` 참고).  
-따라서 playground 관련 함수에서는 `description`을 하드코딩된 기본 문구로 대체하며, `keywords`는 `BRAND_KEYWORDS` 상수를 사용합니다.
+`PlaygroundPost`에는 `description`과 `tags` 필드가 없다 (`src/types/post.types.ts` 참고). playground 관련 함수에서 `description`은 하드코딩된 기본 문구로 대체하며, `about`는 `BRAND_KEYWORDS` 상수를 사용한다.
 
 ### dateModified
 
-현재 `dateModified`는 `publishedAt`과 동일한 값을 사용합니다.  
-추후 포스트에 `updatedAt` 필드가 추가되면 해당 값으로 교체해야 합니다.
+현재 `dateModified`는 `publishedAt`과 동일한 값을 사용한다. 포스트에 `updatedAt` 필드가 추가되면 해당 값으로 교체해야 한다.
 
 ---
 
-## 🔮 확장 시 고려 사항
+## Rich Results 지원 가능성
+
+| 스키마 타입 | 적용 페이지 | Google Rich Results 지원 | 비고 |
+|-------------|------------|--------------------------|------|
+| `BreadcrumbList` | 홈(`/`) 제외 전 페이지 (7개) | ✅ 공식 지원 | 검색 결과 URL에 경로 노출 |
+| `BlogPosting` | 상세 페이지 3종 | ✅ Article로 인식 | 이미지, 날짜, 작성자 노출 가능 |
+| `ProfilePage` | `/about` | ✅ 공식 지원 (2023~) | 작성자 정보 패널 연계 |
+| `CollectionPage` | 목록 페이지 3종 | ⚠️ 간접 지원 | 독립 Rich Result 없으나 크롤링 컨텍스트 개선 |
+| `WebSite` | `/` | ✅ Sitelinks 검색창 연계 가능 | `potentialAction: SearchAction` 추가 시 활성화 |
+
+---
+
+## 확장 시 고려 사항
 
 | 상황 | 조치 |
 |------|------|
-| 소셜 프로필 추가 (LinkedIn 등) | `AUTHOR.sameAs` 배열에 URL 추가 |
-| 포스트에 `updatedAt` 필드 추가 | 모든 함수의 `dateModified` 값을 `updatedAt`으로 교체 |
-| 새로운 섹션 페이지 추가 | 목록/상세 각각 `blogListStructuredData`, `blogPostStructuredData` 패턴을 참고하여 새 함수 작성 |
-| `PlaygroundPost`에 `description` 추가 | `playgroundListStructuredData`와 `playgroundPostStructuredData`의 하드코딩 문구를 `post.description`으로 교체 |
+| 소셜 프로필 추가 | `AUTHOR.sameAs` 배열에 URL 추가 |
+| 포스트에 `updatedAt` 추가 | 모든 함수의 `dateModified`를 `updatedAt`으로 교체 |
+| 새 섹션 추가 | `blogListStructuredData`, `blogPostStructuredData` 패턴을 참고하여 새 함수 작성 |
+| `PlaygroundPost`에 `description` 추가 | `playgroundListStructuredData`, `playgroundPostStructuredData`의 하드코딩 문구를 `post.description`으로 교체 |
+| Sitelinks 검색창 활성화 | `blogStructuredData`의 `WebSite`에 `potentialAction: SearchAction` 추가 |
