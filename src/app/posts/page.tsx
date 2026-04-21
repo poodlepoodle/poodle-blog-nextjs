@@ -8,11 +8,13 @@ import { Suspense } from 'react';
 import {
   METADATA_PRESET,
   METADATA_OG_WEBSITE_PRESET,
+  PAGE_DESCRIPTIONS,
 } from '@constants/metadata';
 import { blogListStructuredData } from '@constants/json-ld';
 
 export const metadata: Metadata = {
   ...METADATA_PRESET,
+  description: PAGE_DESCRIPTIONS.posts,
   title: '포스트 ••• 푸들 블로그',
   alternates: {
     canonical: '/posts',

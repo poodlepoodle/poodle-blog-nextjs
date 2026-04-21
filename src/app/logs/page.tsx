@@ -6,11 +6,13 @@ import Link from 'next/link';
 import {
   METADATA_PRESET,
   METADATA_OG_WEBSITE_PRESET,
+  PAGE_DESCRIPTIONS,
 } from '@constants/metadata';
 import { logListStructuredData } from '@constants/json-ld';
 
 export const metadata: Metadata = {
   ...METADATA_PRESET,
+  description: PAGE_DESCRIPTIONS.logs,
   title: '로그 ••• 푸들 블로그',
   alternates: {
     canonical: '/logs',
