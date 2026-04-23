@@ -8,58 +8,56 @@ import {
 import { getPostLastModifiedIso } from '@utils/format-date';
 import { BASE_URL } from '@constants/metadata';
 
+const PRIORITY = {
+  high: 1,
+  medium: 0.8,
+  low: 0.5,
+};
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogPostRoutes = (await getBlogPosts()).map(post => ({
     url: `${BASE_URL}/posts/${post.slug}`,
-    lastModified: getPostLastModifiedIso(post),
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
+    lastModified: getPostLastModifiedIso(post).split('T')[0],
   }));
   const logPostRoutes = (await getLogPosts()).map(post => ({
     url: `${BASE_URL}/logs/${post.slug}`,
-    lastModified: getPostLastModifiedIso(post),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
+    lastModified: getPostLastModifiedIso(post).split('T')[0],
   }));
   const playgroundPostRoutes = (await getPlaygroundPosts()).map(post => ({
     url: `${BASE_URL}/playgrounds/${post.slug}`,
-    lastModified: getPostLastModifiedIso(post),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
+    lastModified: getPostLastModifiedIso(post).split('T')[0],
   }));
+
+  const latestBlogDate =
+    blogPostRoutes[0]?.lastModified || new Date().toISOString().split('T')[0];
+  const latestLogDate =
+    logPostRoutes[0]?.lastModified || new Date().toISOString().split('T')[0];
+  const latestPlaygroundDate =
+    playgroundPostRoutes[0]?.lastModified ||
+    new Date().toISOString().split('T')[0];
 
   return [
     {
       url: `${BASE_URL}`,
-      lastModified: new Date().toISOString().split('T')[0],
-      changeFrequency: 'yearly' as const,
-      priority: 1,
+      lastModified: latestBlogDate,
     },
     {
       url: `${BASE_URL}/about`,
-      lastModified: new Date().toISOString().split('T')[0],
-      changeFrequency: 'monthly' as const,
-      priority: 0.5,
+      lastModified: '2026-04-23',
     },
     {
       url: `${BASE_URL}/posts`,
-      lastModified: new Date().toISOString().split('T')[0],
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
+      lastModified: latestBlogDate,
     },
     ...blogPostRoutes,
     {
       url: `${BASE_URL}/logs`,
-      lastModified: new Date().toISOString().split('T')[0],
-      changeFrequency: 'weekly' as const,
-      priority: 0.5,
+      lastModified: latestLogDate,
     },
     ...logPostRoutes,
     {
       url: `${BASE_URL}/playgrounds`,
-      lastModified: new Date().toISOString().split('T')[0],
-      changeFrequency: 'weekly' as const,
-      priority: 0.5,
+      lastModified: latestPlaygroundDate,
     },
     ...playgroundPostRoutes,
   ];
