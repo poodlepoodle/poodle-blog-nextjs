@@ -73,7 +73,6 @@ export const METADATA_PRESET: Metadata = {
   /* 고정 필드 */
   authors: [{ name: '최어진', url: 'https://github.com/poodlepoodle' }],
   creator: '최어진',
-  generator: 'Next.js',
   formatDetection: {
     email: false,
     address: false,
