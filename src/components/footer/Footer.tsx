@@ -28,7 +28,7 @@ export const Footer = () => {
         <nav className="flex h-full items-center gap-items">
           <Link
             className="flex h-full items-center gap-[0.35rem] text-black transition-colors duration-300 hover:text-skyblue"
-            href={`mailto: chammal97@naver.com`}
+            href='mailto:chammal97@naver.com'
             target="_blank"
           >
             <span className="text-sm font-normal">email</span>
@@ -36,7 +36,7 @@ export const Footer = () => {
           </Link>
           <Link
             className="flex h-full items-center gap-[0.35rem] text-black transition-colors duration-300 hover:text-skyblue"
-            href={`https://github.com/poodlepoodle`}
+            href='https://github.com/poodlepoodle'
             target="_blank"
           >
             <span className="text-sm font-normal">github</span>

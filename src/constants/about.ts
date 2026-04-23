@@ -8,7 +8,7 @@ export const ABOUT_LINK_ITEMS = [
     label: 'portfolio',
   },
   {
-    href: 'mailto: chammal97@naver.com',
+    href: 'mailto:chammal97@naver.com',
     label: 'email',
   },
   {
