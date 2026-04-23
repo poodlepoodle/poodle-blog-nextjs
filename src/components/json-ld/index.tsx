@@ -1,5 +1,7 @@
+import type { Graph, Thing, WithContext } from 'schema-dts';
+
 type JsonLdProps = {
-  structuredData: object;
+  structuredData: WithContext<Thing> | Graph;
 };
 
 export default function JsonLd({ structuredData }: JsonLdProps) {
