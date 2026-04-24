@@ -14,26 +14,34 @@ export async function GET() {
     getPlaygroundPosts(),
   ]);
 
+  const formatDate = (dateStr: string) => dateStr.replace(/\s/g, '');
+
   const blogSection = blogPosts
     .map(post => {
-      const url = `${BASE_URL}/posts/${post.slug}`;
+      const url = `${BASE_URL}/posts/${post.slug}.md`;
+      const date = formatDate(post.publishedAt);
+      const tags = post.tags.length > 0 ? ` [${post.tags.join(', ')}]` : '';
       return post.description
-        ? `- [${post.title}](${url}): ${post.description}`
-        : `- [${post.title}](${url})`;
+        ? `- [${post.title}](${url}) (${date}): ${post.description}${tags}`
+        : `- [${post.title}](${url}) (${date})${tags}`;
     })
     .join('\n');
 
   const logSection = logPosts
     .map(post => {
-      const url = `${BASE_URL}/logs/${post.slug}`;
+      const url = `${BASE_URL}/logs/${post.slug}.md`;
+      const date = formatDate(post.publishedAt);
       return post.description
-        ? `- [${post.title}](${url}): ${post.description}`
-        : `- [${post.title}](${url})`;
+        ? `- [${post.title}](${url}) (${date}): ${post.description}`
+        : `- [${post.title}](${url}) (${date})`;
     })
     .join('\n');
 
   const playgroundSection = playgroundPosts
-    .map(post => `- [${post.title}](${BASE_URL}/playgrounds/${post.slug})`)
+    .map(post => {
+      const date = formatDate(post.publishedAt);
+      return `- [${post.title}](${BASE_URL}/playgrounds/${post.slug}.md) (${date})`;
+    })
     .join('\n');
 
   const content = `# ${METADATA_PRESET.title}
