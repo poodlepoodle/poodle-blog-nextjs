@@ -1,7 +1,7 @@
 import type { Graph, ImageObject, Organization, Person } from 'schema-dts';
 import type { BlogPost, LogPost, PlaygroundPost, TagCount } from '@/types';
 
-import { BASE_URL, BRAND_KEYWORDS } from '@constants/metadata';
+import { BASE_URL, BRAND_KEYWORDS, PAGE_DESCRIPTIONS } from '@constants/metadata';
 import { convertToISODate, getPostLastModifiedIso } from '@utils/format-date';
 
 const SITE_NAME = '푸들 블로그';
@@ -93,8 +93,7 @@ export const blogStructuredData = (posts: BlogPost[]): Graph => ({
       '@type': 'WebSite',
       '@id': `${BASE_URL}/#website`,
       name: SITE_NAME,
-      description:
-        '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+      description: PAGE_DESCRIPTIONS.home,
       url: BASE_URL,
       author: AUTHOR,
       publisher: PUBLISHER,
@@ -148,8 +147,7 @@ export const blogListStructuredData = (
     {
       '@type': 'CollectionPage',
       name: '포스트 ••• 푸들 블로그',
-      description:
-        '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+      description: PAGE_DESCRIPTIONS.posts,
       url: `${BASE_URL}/posts`,
       author: AUTHOR,
       publisher: PUBLISHER,
@@ -246,8 +244,7 @@ export const playgroundListStructuredData = (
     {
       '@type': 'CollectionPage',
       name: '플레이그라운드 ••• 푸들 블로그',
-      description:
-        '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+      description: PAGE_DESCRIPTIONS.playgrounds,
       url: `${BASE_URL}/playgrounds`,
       author: AUTHOR,
       publisher: PUBLISHER,
@@ -303,8 +300,7 @@ export const playgroundPostStructuredData = (post: PlaygroundPost): Graph => ({
       '@id': `${BASE_URL}/playgrounds/${post.slug}#article`,
       name: post.title,
       headline: post.title,
-      description:
-        '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+      description: PAGE_DESCRIPTIONS.playgrounds,
       mainEntityOfPage: {
         '@type': 'WebPage',
         '@id': `${BASE_URL}/playgrounds/${post.slug}`,
@@ -341,8 +337,7 @@ export const logListStructuredData = (posts: LogPost[]): Graph => ({
     {
       '@type': 'CollectionPage',
       name: '로그 ••• 푸들 블로그',
-      description:
-        '애정을 담아 사용자와 인터랙션하고 싶은 프론트엔드 개발자 최어진입니다.',
+      description: PAGE_DESCRIPTIONS.logs,
       url: `${BASE_URL}/logs`,
       author: AUTHOR,
       publisher: PUBLISHER,
