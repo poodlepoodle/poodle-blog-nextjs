@@ -15,7 +15,7 @@ import { cn } from '@utils/cn';
 const pretendard = localFont({
   src: './../../public/fonts/PretendardVariable.woff2',
   display: 'swap',
-  weight: '45 920',
+  weight: '300 700',
   variable: '--font-pretendard',
 });
 
