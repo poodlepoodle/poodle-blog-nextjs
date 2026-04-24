@@ -101,8 +101,7 @@ export const Drawer = () => {
                     href={href}
                     className={cn(
                       'flex w-full items-center py-[0.5rem] text-black group-hover:text-gray-2 hover:text-black',
-                      pathname.startsWith(href) &&
-                        'text-skyblue group-hover:text-skyblue hover:text-skyblue'
+                      pathname.startsWith(href) && 'text-skyblue'
                     )}
                     onClick={closeDrawer}
                   >
