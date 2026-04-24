@@ -22,13 +22,13 @@ export const Footer = () => {
     <footer className="flex h-footer w-full shrink-0 justify-center border-t-[0.5px] border-gray-2">
       <div className="flex w-full max-w-container items-center justify-between px-[2rem] tablet:px-[1.5rem] desktop:px-0">
         <section className="text-sm font-normal text-gray-3">
-          ⓒ Eojin Choi 2025
+          ⓒ Eojin Choi 2026
         </section>
 
         <nav className="flex h-full items-center gap-items">
           <Link
             className="flex h-full items-center gap-[0.35rem] text-black transition-colors duration-300 hover:text-skyblue"
-            href='mailto:chammal97@naver.com'
+            href="mailto:chammal97@naver.com"
             target="_blank"
           >
             <span className="text-sm font-normal">email</span>
@@ -36,7 +36,7 @@ export const Footer = () => {
           </Link>
           <Link
             className="flex h-full items-center gap-[0.35rem] text-black transition-colors duration-300 hover:text-skyblue"
-            href='https://github.com/poodlepoodle'
+            href="https://github.com/poodlepoodle"
             target="_blank"
           >
             <span className="text-sm font-normal">github</span>
