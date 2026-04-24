@@ -222,7 +222,6 @@ export const blogPostStructuredData = (post: BlogPost): Graph => ({
       about: post.tags.map(tag => ({ '@type': 'Thing' as const, name: tag })),
       articleSection: 'Technology',
       inLanguage: 'ko-KR',
-      articleBody: post.content,
     },
   ],
 });
@@ -320,7 +319,6 @@ export const playgroundPostStructuredData = (post: PlaygroundPost): Graph => ({
       about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
       articleSection: 'Technology',
       inLanguage: 'ko-KR',
-      articleBody: post.content,
     },
   ],
 });
@@ -416,7 +414,6 @@ export const logPostStructuredData = (post: LogPost): Graph => ({
       about: BRAND_KEYWORDS.map(name => ({ '@type': 'Thing' as const, name })),
       articleSection: 'Technology',
       inLanguage: 'ko-KR',
-      articleBody: post.content,
     },
   ],
 });
