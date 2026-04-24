@@ -42,7 +42,7 @@ export const PostGridItem = ({ post, className }: PostGridItemProps) => {
       <GrayscaleRevealWrapper className="h-thumbnail w-full min-w-thumbnail overflow-hidden">
         <ImageWithSkeleton
           src={`/${postPath}/${slug}/thumbnail-large.webp`}
-          alt="post thumbnail"
+          alt={`${title} thumbnail image`}
         />
       </GrayscaleRevealWrapper>
 

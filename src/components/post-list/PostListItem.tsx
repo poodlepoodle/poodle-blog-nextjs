@@ -52,7 +52,7 @@ export const PostListItem = ({ post }: { post: BlogPost }) => {
       >
         <ImageWithSkeleton
           src={`/posts/${slug}/thumbnail.webp`}
-          alt="post thumbnail"
+          alt={`${title} thumbnail image`}
         />
       </div>
     </Link>

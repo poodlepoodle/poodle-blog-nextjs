@@ -16,7 +16,7 @@ export const PlaygroundGridItem = ({
   post,
   className = '',
 }: PlaygroundGridItemProps) => {
-  const { slug } = post;
+  const { title, slug } = post;
   const { GrayscaleRevealWrapper } = useGrayscaleReveal();
 
   return (
@@ -27,7 +27,7 @@ export const PlaygroundGridItem = ({
       <GrayscaleRevealWrapper className="aspect-square w-full min-w-thumbnail overflow-hidden rounded-lg">
         <ImageWithSkeleton
           src={`/playground/${slug}/thumbnail-large.webp`}
-          alt="post thumbnail"
+          alt={`${title} thumbnail image`}
           className="border-none"
         />
       </GrayscaleRevealWrapper>
