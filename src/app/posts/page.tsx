@@ -29,13 +29,14 @@ export default async function Page() {
   const posts = await getBlogPosts();
   const tags = await getTags();
   const jsonLd = blogListStructuredData(posts, tags);
+  const data = posts.map(({ content: _content, ...meta }) => meta);
 
   return (
     <>
       <JsonLd structuredData={jsonLd} />
       <section className="flex w-full max-w-container flex-col items-center pt-container-top pb-container-bottom">
         <Suspense>
-          <PostList posts={posts} tags={tags} />
+          <PostList data={data} tags={tags} />
         </Suspense>
       </section>
     </>

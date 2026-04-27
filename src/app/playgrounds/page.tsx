@@ -27,6 +27,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   const posts = await getPlaygroundPosts();
   const jsonLd = playgroundListStructuredData(posts);
+  const data = posts.map(({ content: _content, ...metadata }) => metadata);
 
   return (
     <>
@@ -49,7 +50,7 @@ export default async function Page() {
             </h1>
           </div>
 
-          <PlaygroundGrid posts={posts} />
+          <PlaygroundGrid data={data} />
         </div>
       </div>
     </>

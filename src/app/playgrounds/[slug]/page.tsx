@@ -61,13 +61,14 @@ export default async function Page({ params }: PageProps) {
   const post = await getPlaygroundPost(slug);
   if (!post) return notFound();
   const jsonLd = playgroundPostStructuredData(post);
+  const { content, ...metadata } = post;
 
   return (
     <>
       <JsonLd structuredData={jsonLd} />
-      <Article slug={slug} post={post}>
+      <Article slug={slug} post={metadata}>
         <Suspense fallback={<MDXSkeleton />}>
-          <MDXContent source={post.content} isPlayground />
+          <MDXContent source={content} isPlayground />
         </Suspense>
       </Article>
     </>

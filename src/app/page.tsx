@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   const posts = await getBlogPosts();
   const jsonLd = blogStructuredData(posts);
+  const postsMeta = posts.map(({ content: _content, ...meta }) => meta);
 
   const hasMoreThanFivePosts = posts && posts.length >= 5;
 
@@ -29,7 +30,7 @@ export default async function Page() {
       <div className="flex w-full flex-col items-center">
         <div className="flex h-full w-full max-w-container flex-col gap-items pt-container-top pb-container-bottom">
           <Banner />
-          <PostGrid posts={posts} />
+          <PostGrid posts={postsMeta} />
           {hasMoreThanFivePosts && (
             <div className="flex w-full justify-center">
               <Button href={`/posts`} label="더 보기" />

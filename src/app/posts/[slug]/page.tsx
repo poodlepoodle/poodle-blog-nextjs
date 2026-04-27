@@ -64,13 +64,14 @@ export default async function Page({ params }: PageProps) {
   const post = await getBlogPost(slug);
   if (!post) return notFound();
   const jsonLd = blogPostStructuredData(post);
+  const { content, ...metadata } = post;
 
   return (
     <>
       <JsonLd structuredData={jsonLd} />
-      <Article slug={slug} post={post}>
+      <Article slug={slug} post={metadata}>
         <Suspense fallback={<MDXSkeleton />}>
-          <MDXContent source={post.content} />
+          <MDXContent source={content} />
         </Suspense>
       </Article>
     </>

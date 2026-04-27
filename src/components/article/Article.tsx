@@ -1,6 +1,6 @@
 'use client';
 
-import type { Post } from '@/types';
+import type { Post, WithoutContent } from '@/types';
 
 import { TOCProvider } from '@/contexts/toc-context';
 
@@ -19,7 +19,7 @@ import { cn } from '@/utils/cn';
 
 type ArticleProps = {
   slug: string;
-  post: Post;
+  post: WithoutContent<Post>;
   children: React.ReactNode;
 };
 

@@ -1,6 +1,6 @@
 'use client';
 
-import type { Post } from '@/types';
+import type { Post, WithoutContent } from '@/types';
 
 import Link from 'next/link';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
@@ -23,7 +23,7 @@ const UpdatedIcon = () => {
 };
 
 type PostGridItemProps = {
-  post: Post;
+  post: WithoutContent<Post>;
   className: string;
 };
 

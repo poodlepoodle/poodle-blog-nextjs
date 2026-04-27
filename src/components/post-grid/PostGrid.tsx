@@ -1,8 +1,8 @@
-import { Post } from '@/types';
+import { type Post, type WithoutContent } from '@/types';
 
 import { PostGridItem } from './PostGridItem';
 
-export const PostGrid = ({ posts }: { posts: Post[] }) => {
+export const PostGrid = ({ posts }: { posts: WithoutContent<Post>[] }) => {
   return (
     <div className="grid w-full grid-cols-1 gap-x-[1.5rem] gap-y-items px-[2.5rem] tablet:grid-cols-2 desktop:grid-cols-3 desktop:px-0">
       {posts.map((post, index) => (

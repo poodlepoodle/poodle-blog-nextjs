@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types';
+import type { BlogPost, WithoutContent } from '@/types';
 
 import { Chip } from '@components/common/chip';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
@@ -19,7 +19,7 @@ const UpdatedIcon = () => {
   );
 };
 
-export const PostListItem = ({ post }: { post: BlogPost }) => {
+export const PostListItem = ({ post }: { post: WithoutContent<BlogPost> }) => {
   const { title, slug, tags, publishedAt, updated } = post;
   return (
     <Link

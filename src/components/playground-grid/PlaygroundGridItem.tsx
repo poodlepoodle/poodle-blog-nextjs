@@ -1,6 +1,6 @@
 'use client';
 
-import type { Post } from '@/types';
+import type { PlaygroundPost, WithoutContent } from '@/types';
 
 import Link from 'next/link';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
@@ -8,7 +8,7 @@ import { useGrayscaleReveal } from '@hooks/useGrayscaleReveal';
 import { cn } from '@/utils/cn';
 
 type PlaygroundGridItemProps = {
-  post: Post;
+  post: WithoutContent<PlaygroundPost>;
   className?: string;
 };
 

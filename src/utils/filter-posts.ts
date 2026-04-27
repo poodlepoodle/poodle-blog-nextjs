@@ -1,4 +1,4 @@
-import type { BlogPost, TagCountWithSelected } from '@/types';
+import type { BlogPost, WithoutContent, TagCountWithSelected } from '@/types';
 
 /**
  * 키워드를 포함하는 포스트를 필터링합니다.
@@ -28,7 +28,7 @@ export const filterPostsByKeyword = (keyword: string, posts: BlogPost[]) => {
  */
 export const filterPostsByTags = (
   tags: TagCountWithSelected[],
-  posts: BlogPost[]
+  posts: WithoutContent<BlogPost>[]
 ) => {
   return posts.filter(post =>
     tags.some(tag => tag.isSelected)

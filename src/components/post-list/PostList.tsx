@@ -1,6 +1,6 @@
 'use client';
 
-import type { BlogPost, TagCount } from '@/types';
+import type { BlogPost, WithoutContent, TagCount } from '@/types';
 
 import { Chip } from '@components/common/chip';
 import { PostListItem } from './PostListItem';
@@ -8,13 +8,13 @@ import { filterPostsByTags } from '@utils/filter-posts';
 import { useTagFilter } from '@hooks/useTagFilter';
 
 interface PostListProps {
-  posts: BlogPost[];
+  data: WithoutContent<BlogPost>[];
   tags: TagCount[];
 }
 
-export const PostList = ({ posts, tags }: PostListProps) => {
+export const PostList = ({ data, tags }: PostListProps) => {
   const { tags: sortedTags, toggleTag } = useTagFilter(tags);
-  const filteredPosts = filterPostsByTags(sortedTags, posts);
+  const filteredPosts = filterPostsByTags(sortedTags, data);
 
   return (
     <div className="flex w-full flex-col items-center gap-items">
