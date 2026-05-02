@@ -25,7 +25,7 @@ export const GiscusComments = () => {
     scriptElem.setAttribute('data-emit-metadata', '0');
     scriptElem.setAttribute('data-input-position', 'bottom');
     scriptElem.setAttribute('data-theme', theme);
-    scriptElem.setAttribute('data-lang', 'en');
+    scriptElem.setAttribute('data-lang', 'ko');
     ref.current.appendChild(scriptElem);
   }, []);
 
