@@ -73,6 +73,11 @@ const nextConfig: NextConfig = {
         destination: '/posts/:slug*',
         permanent: true,
       },
+      {
+        source: '/rss',
+        destination: '/rss.xml',
+        permanent: true,
+      },
     ];
   },
 };
