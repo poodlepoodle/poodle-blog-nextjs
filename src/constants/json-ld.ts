@@ -217,6 +217,7 @@ export const blogPostStructuredData = (post: BlogPost): Graph => ({
       dateModified: getPostLastModifiedIso(post),
       image: postThumbnail(post.slug, post.title),
       url: `${BASE_URL}/posts/${post.slug}`,
+      keywords: post.tags.join(', '),
       about: post.tags.map(tag => ({ '@type': 'Thing' as const, name: tag })),
       articleSection: 'Technology',
       inLanguage: 'ko-KR',
