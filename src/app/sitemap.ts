@@ -8,12 +8,6 @@ import {
 import { getPostLastModifiedIso } from '@utils/format-date';
 import { BASE_URL } from '@constants/metadata';
 
-const PRIORITY = {
-  high: 1,
-  medium: 0.8,
-  low: 0.5,
-};
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogPostRoutes = (await getBlogPosts()).map(post => ({
     url: `${BASE_URL}/posts/${post.slug}`,

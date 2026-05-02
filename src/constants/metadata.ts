@@ -39,8 +39,6 @@ export const METADATA_OG_ARTICLE_PRESET: MetadataOpenGraph = {
   tags: [...BRAND_KEYWORDS],
   authors: ['최어진'],
   section: 'Technology',
-  publishedTime: '2025-01-01T00:00:00.000Z',
-  modifiedTime: '2025-01-01T00:00:00.000Z',
   images: [
     {
       url: '/og/og-large.jpg',
