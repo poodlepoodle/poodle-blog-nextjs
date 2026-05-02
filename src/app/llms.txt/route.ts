@@ -79,6 +79,7 @@ ${playgroundSection}
 - [전체 로그 목록](${BASE_URL}/logs): 로그 전체 목록
 - [전체 플레이그라운드 목록](${BASE_URL}/playgrounds): 플레이그라운드 전체 목록
 - [사이트맵](${BASE_URL}/sitemap.xml): XML 사이트맵
+- [RSS 피드](${BASE_URL}/rss.xml): RSS 2.0 피드
 `;
 
   return new Response(content, {

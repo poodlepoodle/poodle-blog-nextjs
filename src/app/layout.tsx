@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   verification: {
     google: 'VCbUAJ2UDsWls7Vx-L5EvgHo9KG4dnVlgGurUZRaqRA',
   },
+  alternates: {
+    types: {
+      'application/rss+xml': `${BASE_URL}/rss.xml`,
+    },
+  },
 };
 
 export default function RootLayout({
