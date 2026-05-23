@@ -10,9 +10,9 @@ import type {
 import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
-import { unstable_cache } from 'next/cache';
 import { POST_PATHS } from '@constants/posts';
 import { isRecentlyUpdated } from '@utils/is-recently-updated';
+import { withProductionCache } from '@utils/with-production-cache';
 
 /**
  * 지정된 디렉토리의 MDX 파일을 읽어 파싱·필터·정렬된 포스트 배열을 반환합니다.
@@ -43,7 +43,7 @@ async function loadMdxPosts<T extends { publishedAt: string }>(
 /**
  * 모든 블로그 포스트를 가져와 날짜순으로 정렬해 반환합니다.
  */
-export const getBlogPosts = unstable_cache(
+export const getBlogPosts = withProductionCache(
   () =>
     loadMdxPosts<BlogPost>(POST_PATHS.blog, (data, content) => ({
       type: 'blog',
@@ -52,14 +52,13 @@ export const getBlogPosts = unstable_cache(
       tags: Array.isArray(data.tags) ? [...(data.tags as string[])].sort() : [],
       content,
     })),
-  ['blog-posts'],
-  { revalidate: false }
+  ['blog-posts']
 );
 
 /**
  * 모든 플레이그라운드 포스트를 가져와 날짜순으로 정렬해 반환합니다.
  */
-export const getPlaygroundPosts = unstable_cache(
+export const getPlaygroundPosts = withProductionCache(
   () =>
     loadMdxPosts<PlaygroundPost>(POST_PATHS.playground, (data, content) => ({
       type: 'playground',
@@ -67,14 +66,13 @@ export const getPlaygroundPosts = unstable_cache(
       updated: isRecentlyUpdated(data.updatedAt),
       content,
     })),
-  ['playground-posts'],
-  { revalidate: false }
+  ['playground-posts']
 );
 
 /**
  * 모든 로그 포스트를 가져와 날짜순으로 정렬해 반환합니다.
  */
-export const getLogPosts = unstable_cache(
+export const getLogPosts = withProductionCache(
   () =>
     loadMdxPosts<LogPost>(POST_PATHS.log, (data, content) => ({
       type: 'log',
@@ -82,6 +80,5 @@ export const getLogPosts = unstable_cache(
       updated: isRecentlyUpdated(data.updatedAt),
       content,
     })),
-  ['log-posts'],
-  { revalidate: false }
+  ['log-posts']
 );
