@@ -1,9 +1,38 @@
 'use client';
 
-import { memo } from 'react';
+import { memo, useId } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useUIStore } from '@stores/ui-store';
 import { usePostStore } from '@stores/post-store';
+
+const FrostedNoise = () => {
+  const filterId = useId();
+
+  return (
+    <svg
+      aria-hidden
+      className="pointer-events-none absolute inset-0 h-full w-full rounded-2xl opacity-80 mix-blend-soft-light"
+    >
+      <filter id={filterId} colorInterpolationFilters="sRGB">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.45 0.8"
+          numOctaves="3"
+          seed="7"
+          stitchTiles="stitch"
+        />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 1
+                  0 0 0 0 1
+                  0 0 0 0 1
+                  0 0 0 0.08 0"
+        />
+      </filter>
+      <rect width="100%" height="100%" filter={`url(#${filterId})`} />
+    </svg>
+  );
+};
 
 const SpotlightedIcon = memo(() => (
   <svg
@@ -85,7 +114,8 @@ export const SpotlightedHeader = () => {
           }}
           draggable={false}
         >
-          <div className="flex w-fit items-center gap-[0.5rem] px-[1rem] py-[0.75rem]">
+          <FrostedNoise />
+          <div className="relative flex w-fit items-center gap-[0.5rem] px-[1rem] py-[0.75rem]">
             <SpotlightedIcon />
             <div className="min-w-0 flex-1 overflow-hidden">
               {activeHeading.length > 0 ? (
