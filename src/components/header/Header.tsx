@@ -14,12 +14,12 @@ const FrostedNoise = () => {
   return (
     <svg
       aria-hidden
-      className="pointer-events-none absolute inset-0 h-full w-full opacity-80 mix-blend-soft-light"
+      className="pointer-events-none absolute inset-0 h-full w-full opacity-65 mix-blend-screen"
     >
       <filter id={filterId} colorInterpolationFilters="sRGB">
         <feTurbulence
           type="fractalNoise"
-          baseFrequency="0.45 0.8"
+          baseFrequency="0.6 0.65"
           numOctaves="3"
           seed="7"
           stitchTiles="stitch"
@@ -29,7 +29,7 @@ const FrostedNoise = () => {
           values="0 0 0 0 1
                   0 0 0 0 1
                   0 0 0 0 1
-                  0 0 0 0.08 0"
+                  0 0 0 0.12 0"
         />
       </filter>
       <rect width="100%" height="100%" filter={`url(#${filterId})`} />
