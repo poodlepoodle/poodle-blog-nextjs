@@ -27,7 +27,10 @@ export type BlogPost = BlogPostMetadata & {
  * Playground Post Metadata
  * @description 플레이그라운드 포스트 메타데이터
  */
-export type PlaygroundPostMetadata = Omit<CommonPostMetadata, 'description' | 'tags'>;
+export type PlaygroundPostMetadata = Omit<
+  CommonPostMetadata,
+  'description' | 'tags'
+>;
 export type PlaygroundPost = PlaygroundPostMetadata & {
   type: 'playground';
   updated: boolean;
@@ -47,4 +50,6 @@ export type LogPost = LogPostMetadata & {
 
 export type Post = BlogPost | PlaygroundPost | LogPost;
 
-export type WithoutContent<T> = T extends { content: string } ? Omit<T, 'content'> : T;
+export type WithoutContent<T> = T extends { content: string }
+  ? Omit<T, 'content'>
+  : T;

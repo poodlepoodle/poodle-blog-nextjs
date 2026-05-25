@@ -1,7 +1,11 @@
 import type { Graph, ImageObject, Organization, Person } from 'schema-dts';
 import type { BlogPost, LogPost, PlaygroundPost, TagCount } from '@/types';
 
-import { BASE_URL, BRAND_KEYWORDS, PAGE_DESCRIPTIONS } from '@constants/metadata';
+import {
+  BASE_URL,
+  BRAND_KEYWORDS,
+  PAGE_DESCRIPTIONS,
+} from '@constants/metadata';
 import { convertToISODate, getPostLastModifiedIso } from '@utils/format-date';
 
 const SITE_NAME = '푸들 블로그';
