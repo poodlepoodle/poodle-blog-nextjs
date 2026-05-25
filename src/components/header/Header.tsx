@@ -51,7 +51,7 @@ export const Header = () => {
           exit={{ opacity: 0, y: '-0.5rem' }}
           transition={{ duration: 0.3 }}
           className={cn(
-            'fixed top-0 z-header flex h-header w-full items-center justify-center border-b-[0.5px] bg-[rgba(255,255,255,0.05)] backdrop-blur-[0.65rem] backdrop-saturate-180 transition-colors duration-300',
+            'fixed top-0 z-header flex h-header w-full items-center justify-center border-b-[0.5px] bg-[rgba(255,255,255,0.05)] backdrop-blur-[0.65rem] backdrop-saturate-180 transition-colors duration-250',
             isFloating ? 'border-gray-2' : 'border-transparent'
           )}
         >
@@ -59,7 +59,7 @@ export const Header = () => {
           <div className="relative flex h-full w-full max-w-container items-center justify-between gap-[1.5rem] px-[2rem] tablet:px-[1.5rem] desktop:px-0">
             <Link
               href="/"
-              className="relative h-[2.5rem] w-[2.5rem] opacity-100 transition-opacity duration-300 hover:opacity-50"
+              className="relative h-[2.5rem] w-[2.5rem] opacity-100 transition-opacity duration-250 hover:opacity-50"
             >
               <Image
                 src={`/components/header/wave.png`}

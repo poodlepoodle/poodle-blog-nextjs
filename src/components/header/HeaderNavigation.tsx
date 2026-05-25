@@ -19,7 +19,7 @@ export const HeaderNavigation = () => {
             pathname.startsWith(href) && 'text-skyblue'
           )}
         >
-          <span className="text-sm font-semibold transition-colors duration-300">
+          <span className="text-sm font-semibold transition-colors duration-250">
             {label}
           </span>
         </Link>

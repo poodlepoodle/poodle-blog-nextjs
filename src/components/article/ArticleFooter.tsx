@@ -19,7 +19,7 @@ export const ArticleFooter = ({
           <span className="text-xs font-light text-gray-2">@poodlepoodle</span>
           <h6 className="text-sm font-normal text-black">Eojin Choi</h6>
         </div>
-        <div className="transition-grayscale relative h-[2.6rem] w-[2.6rem] grayscale-100 duration-300 hover:grayscale-0">
+        <div className="transition-grayscale relative h-[2.6rem] w-[2.6rem] grayscale-100 duration-250 hover:grayscale-0">
           <Image
             src={`/components/article-footer/profile.png`}
             alt="article profile"

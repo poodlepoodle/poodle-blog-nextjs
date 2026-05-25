@@ -27,7 +27,7 @@ export const Footer = () => {
 
         <nav className="flex h-full items-center gap-items">
           <Link
-            className="flex h-full items-center gap-[0.35rem] text-black transition-colors duration-300 hover:text-skyblue"
+            className="flex h-full items-center gap-[0.35rem] text-black transition-colors duration-250 hover:text-skyblue"
             href="mailto:chammal97@naver.com"
             target="_blank"
           >
@@ -35,7 +35,7 @@ export const Footer = () => {
             <ArrowIcon />
           </Link>
           <Link
-            className="flex h-full items-center gap-[0.35rem] text-black transition-colors duration-300 hover:text-skyblue"
+            className="flex h-full items-center gap-[0.35rem] text-black transition-colors duration-250 hover:text-skyblue"
             href="https://github.com/poodlepoodle"
             target="_blank"
           >

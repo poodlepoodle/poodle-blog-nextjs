@@ -24,7 +24,7 @@ export const PostListItem = ({ post }: { post: WithoutContent<BlogPost> }) => {
   return (
     <Link
       href={`/posts/${slug}`}
-      className="flex w-full justify-between rounded-2xl bg-white transition-all duration-300 group-hover:opacity-40 hover:opacity-100"
+      className="flex w-full justify-between rounded-2xl bg-white transition-all duration-250 group-hover:opacity-40 hover:opacity-100"
     >
       <div className="flex h-full w-full flex-col justify-between gap-items p-[2rem]">
         <div className="flex flex-wrap justify-start gap-[0.75rem]">

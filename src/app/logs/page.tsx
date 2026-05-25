@@ -50,7 +50,7 @@ export default async function Page() {
           <Link
             key={post.slug}
             href={`/logs/${post.slug}`}
-            className="flex w-full items-center justify-center gap-[1.5rem] rounded-lg px-[1rem] py-[0.8rem] transition-colors duration-300 hover:bg-sky-100 desktop:gap-items"
+            className="flex w-full items-center justify-center gap-[1.5rem] rounded-lg px-[1rem] py-[0.8rem] transition-colors duration-250 hover:bg-sky-100 desktop:gap-items"
           >
             <div className="flex min-w-[6rem] flex-col">
               <span className="text-sm font-medium text-black">

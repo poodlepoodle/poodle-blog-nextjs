@@ -9,6 +9,6 @@ export const MDXLink = (props: MDXLinkProps) => (
     target="_blank"
     rel="noopener noreferrer"
     {...props}
-    className="font-semibold text-black no-underline transition-colors duration-300 after:ml-[0.1rem] after:text-[90%] after:content-['↗'] hover:text-skyblue"
+    className="font-semibold text-black no-underline transition-colors duration-250 after:ml-[0.1rem] after:text-[90%] after:content-['↗'] hover:text-skyblue"
   />
 );

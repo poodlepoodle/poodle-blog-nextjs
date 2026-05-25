@@ -54,10 +54,10 @@ export default async function Page() {
       <section className="flex w-full flex-col items-center">
         <Paper className="mt-container-top mb-container-bottom flex h-full w-full flex-col gap-[5rem] py-[3.75rem]">
           <section className="flex w-full flex-col items-end gap-[2rem] px-[3.75rem]">
-            <span className="w-fit text-right text-lg font-semibold break-keep text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
+            <span className="w-fit text-right text-lg font-semibold break-keep text-black transition-transform duration-250 ease-in-out hover:-translate-y-2">
               안녕하세요.
             </span>
-            <h1 className="w-fit text-right text-lg font-semibold break-keep text-black transition-transform duration-350 ease-in-out hover:-translate-y-2">
+            <h1 className="w-fit text-right text-lg font-semibold break-keep text-black transition-transform duration-250 ease-in-out hover:-translate-y-2">
               애정을 담아 사용자와 인터랙션하고 싶은
               <br />
               프론트엔드 개발자 최어진입니다.
@@ -67,7 +67,7 @@ export default async function Page() {
             {ABOUT_LINK_ITEMS.map(({ href, label }) => (
               <Link
                 key={`${href}-${label}`}
-                className="flex items-center gap-[0.35rem] text-black transition-colors duration-300 hover:text-skyblue"
+                className="flex items-center gap-[0.35rem] text-black transition-colors duration-250 hover:text-skyblue"
                 href={href}
                 target="_blank"
               >

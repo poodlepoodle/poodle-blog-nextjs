@@ -107,7 +107,7 @@ export const Drawer = () => {
                   >
                     <span
                       className={cn(
-                        'w-full text-right text-lg font-semibold transition-colors duration-300'
+                        'w-full text-right text-lg font-semibold transition-colors duration-250'
                       )}
                     >
                       {label}
