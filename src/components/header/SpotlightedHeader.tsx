@@ -89,7 +89,7 @@ export const SpotlightedHeader = () => {
               scale: 1,
               transition: {
                 scale: { type: 'spring', stiffness: 300, damping: 10 },
-                opacity: { duration: 0.25, ease: 'easeOut' },
+                opacity: { duration: 0.3, ease: 'easeOut' },
               },
             },
             exit: {

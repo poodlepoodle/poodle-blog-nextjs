@@ -85,10 +85,10 @@ export const Drawer = () => {
             onClick={handleClickDrawerBackground}
           >
             <motion.div
-              initial={{ x: '80%' }}
+              initial={{ x: '100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '80%' }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 35 }}
               className="fixed top-0 right-0 z-drawer h-full w-full max-w-[15rem] min-w-[10rem] rounded-l-xl bg-white pt-header"
             >
               <nav
