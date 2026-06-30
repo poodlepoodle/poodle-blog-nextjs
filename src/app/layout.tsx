@@ -8,6 +8,7 @@ import { SpotlightedHeader } from '@components/header/SpotlightedHeader';
 import { Drawer } from '@components/drawer';
 import { Footer } from '@components/footer';
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
+import { SpeedInsights as VercelSpeedInsights } from '@vercel/speed-insights/next';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { BASE_URL, METADATA_PRESET } from '@constants/metadata';
 import { cn } from '@utils/cn';
@@ -49,6 +50,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <VercelAnalytics />
+        <VercelSpeedInsights />
         {process.env.NODE_ENV === 'production' && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!} />
         )}
