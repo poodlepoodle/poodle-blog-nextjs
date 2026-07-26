@@ -1,4 +1,10 @@
-import type { Graph, ImageObject, Organization, Person } from 'schema-dts';
+import type {
+  Graph,
+  ImageObject,
+  Organization,
+  Person,
+  WebPage,
+} from 'schema-dts';
 import type { BlogPost, LogPost, PlaygroundPost, TagCount } from '@/types';
 
 import {
@@ -58,6 +64,12 @@ const logThumbnail = (title: string): ImageObject => ({
   height: '912',
 });
 
+const mainEntityPage = (url: string, name: string): WebPage => ({
+  '@type': 'WebPage',
+  '@id': url,
+  name,
+});
+
 export const aboutStructuredData = (): Graph => ({
   '@context': 'https://schema.org',
   '@graph': [
@@ -115,7 +127,10 @@ export const blogStructuredData = (posts: BlogPost[]): Graph => ({
           '@type': 'BlogPosting',
           '@id': `${BASE_URL}/posts/${post.slug}#article`,
           name: post.title,
-          mainEntityOfPage: `${BASE_URL}/posts/${post.slug}`,
+          mainEntityOfPage: mainEntityPage(
+            `${BASE_URL}/posts/${post.slug}`,
+            post.title
+          ),
           url: `${BASE_URL}/posts/${post.slug}`,
           headline: post.title,
           description: post.description,
@@ -168,7 +183,10 @@ export const blogListStructuredData = (
           '@type': 'BlogPosting',
           '@id': `${BASE_URL}/posts/${post.slug}#article`,
           name: post.title,
-          mainEntityOfPage: `${BASE_URL}/posts/${post.slug}`,
+          mainEntityOfPage: mainEntityPage(
+            `${BASE_URL}/posts/${post.slug}`,
+            post.title
+          ),
           url: `${BASE_URL}/posts/${post.slug}`,
           headline: post.title,
           description: post.description,
@@ -210,11 +228,10 @@ export const blogPostStructuredData = (post: BlogPost): Graph => ({
       name: post.title,
       headline: post.title,
       description: post.description,
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': `${BASE_URL}/posts/${post.slug}`,
-        name: post.title,
-      },
+      mainEntityOfPage: mainEntityPage(
+        `${BASE_URL}/posts/${post.slug}`,
+        post.title
+      ),
       author: AUTHOR,
       publisher: PUBLISHER,
       datePublished: convertToISODate(post.publishedAt),
@@ -266,7 +283,10 @@ export const playgroundListStructuredData = (
           '@type': 'BlogPosting',
           '@id': `${BASE_URL}/playgrounds/${post.slug}#article`,
           name: post.title,
-          mainEntityOfPage: `${BASE_URL}/playgrounds/${post.slug}`,
+          mainEntityOfPage: mainEntityPage(
+            `${BASE_URL}/playgrounds/${post.slug}`,
+            post.title
+          ),
           url: `${BASE_URL}/playgrounds/${post.slug}`,
           headline: post.title,
           datePublished: convertToISODate(post.publishedAt),
@@ -306,11 +326,10 @@ export const playgroundPostStructuredData = (post: PlaygroundPost): Graph => ({
       name: post.title,
       headline: post.title,
       description: PAGE_DESCRIPTIONS.playgrounds,
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': `${BASE_URL}/playgrounds/${post.slug}`,
-        name: post.title,
-      },
+      mainEntityOfPage: mainEntityPage(
+        `${BASE_URL}/playgrounds/${post.slug}`,
+        post.title
+      ),
       author: AUTHOR,
       publisher: PUBLISHER,
       datePublished: convertToISODate(post.publishedAt),
@@ -359,7 +378,10 @@ export const logListStructuredData = (posts: LogPost[]): Graph => ({
           '@type': 'BlogPosting',
           '@id': `${BASE_URL}/logs/${post.slug}#article`,
           name: post.title,
-          mainEntityOfPage: `${BASE_URL}/logs/${post.slug}`,
+          mainEntityOfPage: mainEntityPage(
+            `${BASE_URL}/logs/${post.slug}`,
+            post.title
+          ),
           url: `${BASE_URL}/logs/${post.slug}`,
           headline: post.title,
           description: post.description,
@@ -400,11 +422,10 @@ export const logPostStructuredData = (post: LogPost): Graph => ({
       name: post.title,
       headline: post.title,
       description: post.description,
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': `${BASE_URL}/logs/${post.slug}`,
-        name: post.title,
-      },
+      mainEntityOfPage: mainEntityPage(
+        `${BASE_URL}/logs/${post.slug}`,
+        post.title
+      ),
       author: AUTHOR,
       publisher: PUBLISHER,
       datePublished: convertToISODate(post.publishedAt),
