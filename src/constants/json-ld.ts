@@ -165,6 +165,7 @@ export const blogListStructuredData = (
     },
     {
       '@type': 'CollectionPage',
+      '@id': `${BASE_URL}/posts`,
       name: '포스트 ••• 푸들 블로그',
       description: PAGE_DESCRIPTIONS.posts,
       url: `${BASE_URL}/posts`,
@@ -265,6 +266,7 @@ export const playgroundListStructuredData = (
     },
     {
       '@type': 'CollectionPage',
+      '@id': `${BASE_URL}/playgrounds`,
       name: '플레이그라운드 ••• 푸들 블로그',
       description: PAGE_DESCRIPTIONS.playgrounds,
       url: `${BASE_URL}/playgrounds`,
@@ -360,6 +362,7 @@ export const logListStructuredData = (posts: LogPost[]): Graph => ({
     },
     {
       '@type': 'CollectionPage',
+      '@id': `${BASE_URL}/logs`,
       name: '로그 ••• 푸들 블로그',
       description: PAGE_DESCRIPTIONS.logs,
       url: `${BASE_URL}/logs`,
