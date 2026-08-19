@@ -1,28 +1,10 @@
-type MDXInlineCodeProps = {
-  children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-} & React.HTMLAttributes<HTMLElement>;
+type MDXInlineCodeProps = React.HTMLAttributes<HTMLElement>;
 
-export const MDXInlineCode = (props: MDXInlineCodeProps) => {
-  if (!props) {
-    return <code />;
-  }
-
-  const { children, className, style, ...rest } = props;
-
-  if (style?.display === 'block') {
-    return (
-      <code className={className} style={style} {...rest}>
-        {children}
-      </code>
-    );
-  }
-
+export const MDXInlineCode = ({ children, ...rest }: MDXInlineCodeProps) => {
   return (
     <code
-      className="vertical-middle mx-[0.1rem] inline-block translate-y-[-0.07rem] rounded-md bg-[#EFF9FF] px-[5px] py-[1px] align-middle !font-mono !text-xs leading-[inherit] !font-medium text-[#176997] subpixel-antialiased before:content-[''] after:content-[''] tablet:translate-y-[-0.08rem] tablet:rounded-lg tablet:py-[1.5px] tablet:!text-sm"
       {...rest}
+      className="vertical-middle mx-[0.1rem] inline-block translate-y-[-0.07rem] rounded-md bg-[#EFF9FF] px-[5px] py-[1px] align-middle !font-mono !text-xs leading-[inherit] !font-medium text-[#176997] subpixel-antialiased before:content-[''] after:content-[''] tablet:translate-y-[-0.08rem] tablet:rounded-lg tablet:py-[1.5px] tablet:!text-sm"
     >
       {children}
     </code>

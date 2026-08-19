@@ -1,5 +1,4 @@
 import { Code } from 'bright';
-import { isValidElement } from 'react';
 
 Code.theme = 'min-light';
 Code.lineNumbers = true;
@@ -36,38 +35,17 @@ Code.extensions = [
   },
 ];
 
-type MDXCodeProps = {
-  children: React.ReactNode;
-  props: React.HTMLAttributes<HTMLElement>;
-};
+type MDXCodeProps = React.HTMLAttributes<HTMLElement>;
 
+// bright가 <code> 엘리먼트에서 코드 문자열·언어를 직접 추출하므로 children을 그대로 넘긴다.
+// 여기서 미리 벗겨내면 bright의 문자열 분기로 빠져 끝의 개행이 제거되지 않는다.
 export const MDXCode = ({ children, ...props }: MDXCodeProps) => {
-  let codeContent = children;
-  let lang: string | undefined = undefined;
-
-  if (isValidElement(children)) {
-    const childProps = children.props as {
-      children?: React.ReactNode;
-      className?: string;
-    };
-
-    codeContent = childProps.children;
-
-    if (childProps.className) {
-      const match = childProps.className.match(/language-(\w+)/);
-      if (match) {
-        lang = match[1];
-      }
-    }
-  }
-
   return (
     <Code
       {...props}
-      lang={lang}
       className="rounded-lg border-[0.5px] border-gray-2 text-base subpixel-antialiased tablet:text-lg"
     >
-      {codeContent}
+      {children}
     </Code>
   );
 };
