@@ -21,11 +21,11 @@ export async function GET(_req: Request, { params }: RouteParams) {
 
   const frontmatter = [
     '---',
-    `title: '${post.title}'`,
-    `publishedAt: '${post.publishedAt}'`,
-    post.updatedAt ? `updatedAt: '${post.updatedAt}'` : null,
-    `description: '${post.description}'`,
-    `tags: [${post.tags.map(t => `'${t}'`).join(', ')}]`,
+    `title: ${JSON.stringify(post.title)}`,
+    `publishedAt: ${JSON.stringify(post.publishedAt)}`,
+    post.updatedAt ? `updatedAt: ${JSON.stringify(post.updatedAt)}` : null,
+    `description: ${JSON.stringify(post.description)}`,
+    `tags: ${JSON.stringify(post.tags)}`,
     '---',
   ]
     .filter(Boolean)

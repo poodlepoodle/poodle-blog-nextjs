@@ -21,9 +21,9 @@ export async function GET(_req: Request, { params }: RouteParams) {
 
   const frontmatter = [
     '---',
-    `title: '${post.title}'`,
-    `publishedAt: '${post.publishedAt}'`,
-    post.updatedAt ? `updatedAt: '${post.updatedAt}'` : null,
+    `title: ${JSON.stringify(post.title)}`,
+    `publishedAt: ${JSON.stringify(post.publishedAt)}`,
+    post.updatedAt ? `updatedAt: ${JSON.stringify(post.updatedAt)}` : null,
     '---',
   ]
     .filter(Boolean)
