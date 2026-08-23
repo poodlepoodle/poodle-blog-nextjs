@@ -13,7 +13,9 @@ const nextConfig: NextConfig = {
   async rewrites() {
     function markdownRewrite(prefix: string) {
       return {
-        source: `${prefix}/:path*`,
+        // 공개 상세 URL의 단일 slug만 대상이다. `.md` 공개 URL과 내부
+        // `/md/:slug` destination을 다시 rewrite하지 않는다.
+        source: `${prefix}/:slug([^/.]+)`,
         has: [
           {
             type: 'header' as const,
@@ -21,7 +23,7 @@ const nextConfig: NextConfig = {
             value: '(.*)text/markdown(.*)',
           },
         ],
-        destination: `${prefix}/md/:path*`,
+        destination: `${prefix}/md/:slug`,
       };
     }
     function dotMdRewrite(prefix: string) {
