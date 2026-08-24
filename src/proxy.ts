@@ -1,7 +1,8 @@
 import { NextResponse, type NextRequest } from 'next/server';
 
 /**
- * 모든 서버 요청을 구조화 로그로 남기는 운영 관측 지점이다.
+ * `REQUEST_LOGGING_ENABLED=true`인 환경에서 모든 서버 요청을 구조화 로그로 남기는
+ * 운영 관측 지점이다. 로컬 개발 환경에서는 이 변수를 설정하지 않아 로그를 남기지 않는다.
  *
  * 특히 Agent 콘텐츠 협상은 User-Agent 목록이 아니라 `Accept: text/markdown`
  * 요청에만 반응한다. 이 로그는 실제 클라이언트가 보낸 Accept 값을 확인하고
@@ -15,6 +16,7 @@ import { NextResponse, type NextRequest } from 'next/server';
  */
 const markdownAcceptPattern = /(.*)text\/markdown(.*)/;
 const contentPaths = /^\/(posts|logs|playgrounds)\/[^/.]+$/;
+const shouldLogRequests = process.env.REQUEST_LOGGING_ENABLED === 'true';
 const sensitiveHeaders = new Set([
   'authorization',
   'cookie',
@@ -43,6 +45,10 @@ function serializeHeaders(headers: Headers) {
 }
 
 export function proxy(request: NextRequest) {
+  if (!shouldLogRequests) {
+    return NextResponse.next();
+  }
+
   const accept = request.headers.get('accept');
   const acceptsMarkdown = accept !== null && markdownAcceptPattern.test(accept);
   const isNegotiableContentPath = contentPaths.test(request.nextUrl.pathname);
