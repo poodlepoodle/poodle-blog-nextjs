@@ -19,6 +19,7 @@
   /* post */
   --spacing-post-paragraph: 3.5rem;
   --spacing-post-h2: 12rem;
+  --spacing-post-h3: 7rem;
 }
 
 @theme inline {
