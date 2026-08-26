@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { PageMetadata } from '@/types';
 
 import Link from 'next/link';
 import { Paper } from '@components/common/paper';
@@ -11,7 +11,7 @@ import {
 import { aboutStructuredData } from '@constants/json-ld';
 import { ABOUT_LINK_ITEMS } from '@/constants';
 
-export const metadata: Metadata = {
+export const metadata = {
   ...METADATA_PRESET,
   description: PAGE_DESCRIPTIONS.about,
   title: '소개 ••• 푸들 블로그',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-};
+} satisfies PageMetadata;
 
 const ArrowIcon = () => {
   return (

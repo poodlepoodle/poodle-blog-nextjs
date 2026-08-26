@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { PageMetadata } from '@/types';
 
 import { PostGrid } from '@components/post-grid';
 import { Banner } from '@components/banner';
@@ -8,14 +8,14 @@ import { getBlogPosts } from '@utils/get-posts';
 import { blogStructuredData } from '@constants/json-ld';
 import { METADATA_PRESET, PAGE_DESCRIPTIONS } from '@constants/metadata';
 
-export const metadata: Metadata = {
+export const metadata = {
   ...METADATA_PRESET,
   description: PAGE_DESCRIPTIONS.home,
   alternates: {
     canonical: '/',
   },
   title: '홈 ••• 푸들 블로그',
-};
+} satisfies PageMetadata;
 
 export default async function Page() {
   const posts = await getBlogPosts();

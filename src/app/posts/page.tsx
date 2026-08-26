@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { PageMetadata } from '@/types';
 
 import { PostList } from '@components/post-list';
 import JsonLd from '@components/json-ld';
@@ -12,7 +12,7 @@ import {
 } from '@constants/metadata';
 import { blogListStructuredData } from '@constants/json-ld';
 
-export const metadata: Metadata = {
+export const metadata = {
   ...METADATA_PRESET,
   description: PAGE_DESCRIPTIONS.posts,
   title: '포스트 ••• 푸들 블로그',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     ...METADATA_OG_WEBSITE_PRESET,
     url: '/posts',
   },
-};
+} satisfies PageMetadata;
 
 export default async function Page() {
   const posts = await getBlogPosts();

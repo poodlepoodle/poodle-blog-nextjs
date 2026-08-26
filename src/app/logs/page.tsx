@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { PageMetadata } from '@/types';
 
 import JsonLd from '@components/json-ld';
 import { getLogPosts } from '@utils/get-posts';
@@ -10,7 +10,7 @@ import {
 } from '@constants/metadata';
 import { logListStructuredData } from '@constants/json-ld';
 
-export const metadata: Metadata = {
+export const metadata = {
   ...METADATA_PRESET,
   description: PAGE_DESCRIPTIONS.logs,
   title: '로그 ••• 푸들 블로그',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     ...METADATA_OG_WEBSITE_PRESET,
     url: '/logs',
   },
-};
+} satisfies PageMetadata;
 
 const UpdatedIcon = () => {
   return (

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { PageMetadata } from '@/types';
 
 import { PlaygroundGrid } from '@components/playground-grid';
 import { ImageWithSkeleton } from '@components/image-with-skeleton';
@@ -11,7 +11,7 @@ import {
 import { playgroundListStructuredData } from '@constants/json-ld';
 import JsonLd from '@components/json-ld';
 
-export const metadata: Metadata = {
+export const metadata = {
   ...METADATA_PRESET,
   description: PAGE_DESCRIPTIONS.playgrounds,
   title: '플레이그라운드 ••• 푸들 블로그',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     ...METADATA_OG_WEBSITE_PRESET,
     url: '/playgrounds',
   },
-};
+} satisfies PageMetadata;
 
 export default async function Page() {
   const posts = await getPlaygroundPosts();

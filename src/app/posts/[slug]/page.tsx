@@ -1,5 +1,4 @@
-import type { Metadata } from 'next';
-import type { MetadataOpenGraph } from '@/types';
+import type { MetadataOpenGraph, PageMetadata } from '@/types';
 
 import { Article } from '@components/article';
 import JsonLd from '@components/json-ld';
@@ -22,7 +21,7 @@ export const generateStaticParams = async () => {
 
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
+}: PageProps): Promise<PageMetadata> {
   const { slug } = await params;
   const post = await getBlogPost(slug);
   if (!post) return notFound();
@@ -52,7 +51,7 @@ export async function generateMetadata({
         },
       ],
     } as MetadataOpenGraph,
-  } as Metadata;
+  };
 }
 
 type PageProps = {
