@@ -8,6 +8,24 @@ import {
 import { getPostLastModifiedIso } from '@utils/format-date';
 import { BASE_URL } from '@constants/metadata';
 
+/**
+ * 라우트 목록에서 가장 최근 수정일을 반환합니다.
+ * 포스트 배열은 `publishedAt` 기준으로 정렬되어 있어 첫 항목이
+ * 최신 수정본이라는 보장이 없으므로, `lastModified` 최댓값을 직접 구합니다.
+ * `YYYY-MM-DD`로 정규화된 날짜를 비교하므로 문자열 순서가 날짜 순서와 일치합니다.
+ */
+function getLatestLastModified(
+  routes: Array<{ lastModified?: string }>
+): string | undefined {
+  return routes.reduce<string | undefined>(
+    (latest, route) =>
+      !route.lastModified || (latest && latest >= route.lastModified)
+        ? latest
+        : route.lastModified,
+    undefined
+  );
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogPostRoutes = (await getBlogPosts()).map(post => ({
     url: `${BASE_URL}/posts/${post.slug}`,
@@ -22,13 +40,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: getPostLastModifiedIso(post).split('T')[0],
   }));
 
-  const latestBlogDate =
-    blogPostRoutes[0]?.lastModified || new Date().toISOString().split('T')[0];
-  const latestLogDate =
-    logPostRoutes[0]?.lastModified || new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0];
+  const latestBlogDate = getLatestLastModified(blogPostRoutes) ?? today;
+  const latestLogDate = getLatestLastModified(logPostRoutes) ?? today;
   const latestPlaygroundDate =
-    playgroundPostRoutes[0]?.lastModified ||
-    new Date().toISOString().split('T')[0];
+    getLatestLastModified(playgroundPostRoutes) ?? today;
 
   return [
     {
