@@ -40,16 +40,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: getPostLastModifiedIso(post).split('T')[0],
   }));
 
-  const today = new Date().toISOString().split('T')[0];
-  const latestBlogDate = getLatestLastModified(blogPostRoutes) ?? today;
-  const latestLogDate = getLatestLastModified(logPostRoutes) ?? today;
-  const latestPlaygroundDate =
-    getLatestLastModified(playgroundPostRoutes) ?? today;
+  const latestBlogDate = getLatestLastModified(blogPostRoutes);
+  const latestLogDate = getLatestLastModified(logPostRoutes);
+  const latestPlaygroundDate = getLatestLastModified(playgroundPostRoutes);
 
   return [
     {
       url: `${BASE_URL}`,
-      lastModified: latestBlogDate,
+      ...(latestBlogDate && { lastModified: latestBlogDate }),
     },
     {
       url: `${BASE_URL}/about`,
@@ -57,17 +55,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/posts`,
-      lastModified: latestBlogDate,
+      ...(latestBlogDate && { lastModified: latestBlogDate }),
     },
     ...blogPostRoutes,
     {
       url: `${BASE_URL}/logs`,
-      lastModified: latestLogDate,
+      ...(latestLogDate && { lastModified: latestLogDate }),
     },
     ...logPostRoutes,
     {
       url: `${BASE_URL}/playgrounds`,
-      lastModified: latestPlaygroundDate,
+      ...(latestPlaygroundDate && { lastModified: latestPlaygroundDate }),
     },
     ...playgroundPostRoutes,
   ];
