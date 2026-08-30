@@ -1,7 +1,7 @@
 ---
 title: '아토믹 디자인과 커스텀 훅을 활용해 컴포넌트 구조 리팩토링하기'
 publishedAt: 2024. 06. 17
-description: '사이드 프로젝트 ‘시즈닝’의 코드를 리팩토링하며 컴포넌트의 재사용성에 대해서 고민했습니다.'
+description: "사이드 프로젝트 '시즈닝'의 코드를 리팩토링하며 컴포넌트의 재사용성에 대해서 고민했습니다."
 slug: 'refactoring-ahead-atomic-design-and-custom-hooks'
 tags: ['atomic design', 'component', 'hooks', 'refactoring']
 updatedAt: 2026. 04. 12
@@ -266,13 +266,13 @@ const IconWrapper = styled.div`
 작은 단위의 결합을 통해 큰 단위를 만드는 계층적 모델을 표현하는 방식입니다.
 '아토믹' 디자인이라는 이름은 이를 제안한 Brad Frost가 컴포넌트가 결합하는 방식을 유기체의 화학적 결합 모델을 끌어와 설명하는 것에서 이름을 붙였다고 합니다.
 
-> "(번역) 아토믹 디자인이 제공하는 큰 이점 중 하나는 추상적인 것과 구체적인 것 사이를 빠르게 전환할 수 있는 능력입니다." ― Brad Frost, 「Atomic Design Methology」
+> "(번역) 아토믹 디자인이 제공하는 큰 이점 중 하나는 추상적인 것과 구체적인 것 사이를 빠르게 전환할 수 있는 능력입니다." ― Brad Frost, 「Atomic Design Methodology」
 
 아토믹 디자인은 여러 계층을 거치며 컴포넌트가 효율적인 형태로 결합되는 멘탈 모델을 제공하지만
 계층이 나뉘어 있다고 해서 반드시 선형적으로 수행되어야 하는 프로세스는 아닙니다.
 또한 저자가 웹 애플리케이션을 예시로 들고는 있지만 모바일 앱 등 어떤 형태의 디자인 시스템을 구성할 때도 얼마든지 활용할 수 있는 방법이고요.
 
-- 참고: [Atomic Design Methology (Brad Frost) (원문)](https://atomicdesign.bradfrost.com/chapter-2/#the-part-and-the-whole)
+- 참고: [Atomic Design Methodology (원문) | Brad Frost](https://atomicdesign.bradfrost.com/chapter-2/#the-part-and-the-whole)
 
 이 포스트에서는 아토믹 디자인을 너무 자세히 설명하는 대신, 원문을 직접 참고해 보시는 것을 추천드립니다.
 그리고 저는 이를 사용하기로 결정한 이유와 도입한 결과에 집중해 설명하려고 합니다.
@@ -331,7 +331,7 @@ const IconWrapper = styled.div`
 
 Atom을 적용한 여러 사례를 참고하며 컴포넌트의 형태를 결정하는 요소는 기본값으로 전달하고
 컴포넌트를 사용하는 시점에 필요한 스타일을 추가로 주입하도록 하는 패턴을 다수 접했습니다.
-이는 납득할 수 있는 좋은 방법이라고 느꼈으나, **"어디까지 주입하게 할 것인가?"** 에 대해서는 시즈닝의 상황에 집중해 고민할 필요가 있다고 생각했습니다.
+이는 납득할 수 있는 좋은 방법이라고 느꼈으나, "**어디까지 주입하게 할 것인가?**"에 대해서는 시즈닝의 상황에 집중해 고민할 필요가 있다고 생각했습니다.
 
 ```jsx
 // atoms/Text/index.jsx
@@ -468,7 +468,7 @@ JSX 상에서 다른 컴포넌트와 `S` prefix가 붙은 스타일 요소를 �
 
 앞선 아토믹 디자인 도입 사례들을 통해 molecule은 **Single Responsibility Principle** _(단일 책임 원칙)_ 에 의해
 '하나의 역할'을 수행하도록 해야 하며 이것이 atom과 molecule을 구분하는 이상적인 기준이라는 내용을 접할 수 있었는데요,
-저는 이러한 역할이 **'고유한 실행 컨텍스트'** 내에서 존재해야 설득력이 있다고 생각했습니다.
+저는 이러한 역할이 '**고유한 실행 컨텍스트**' 내에서 존재해야 설득력이 있다고 생각했습니다.
 
 예시로 `Button` 컴포넌트의 경우, 클릭 이벤트 발생 시 전달한 핸들러 함수가 실행되는 순간 고유의 기능을 수행한다고 본다면
 atom과 molecule 중 어떤 것으로 분류할지 헷갈릴 수 있지만, 클릭 이벤트 자체는 특정 컨텍스트와 결부해 수행된다고는 보기 어려웠습니다.
@@ -476,7 +476,7 @@ atom과 molecule 중 어떤 것으로 분류할지 헷갈릴 수 있지만, 클�
 
 ### 추가: Semantic Tags
 
-- 참고: [HTML Semantic Elements | W3Schools (영어 원문)](https://www.w3schools.com/html/html5_semantic_elements.asp)
+- 참고: [HTML Semantic Elements | W3Schools](https://www.w3schools.com/html/html5_semantic_elements.asp)
 
 아토믹 디자인을 통해 컴포넌트 구조를 다시 정리해 나가며,
 역할이 뚜렷한 컴포넌트들은 **HTML Semantic Elements** _(이하 semantic tag)_ 를 이용해 명시했습니다.
@@ -621,7 +621,7 @@ template 내에서 함께 export해서 사용했습니다. 모달의 경우도 �
 ### Page
 
 - 최종적으로 표현되는 UI를 완성하는 단위
-- 컨텐츠, 컨텍스트, 비즈니스 로직을 Template에 주입
+- 컨텐츠, 컨텍스트, 비즈니스 로직을 template에 주입
 
 하나의 페이지에 대응되는 인터페이스 조각들을 template에서 지정했다면,
 **page**에서는 해당 페이지에 필요한 실제 데이터, 상태 등을 관리하고 template에 주입하도록 했습니다.
@@ -762,7 +762,7 @@ export default withFormHandler(SignUpForm);
 
 하지만 이러한 방법들은 컴포넌트 단위로 로직을 분리하는 방식이었으므로 반드시 다른 컴포넌트를 감싸는 형태로 사용되었습니다.
 따라서 어떤 클래스형 컴포넌트가 여러 공통 로직을 동시에 사용하고자 한다면 그만큼 여러 Wrapper 컴포넌트가 쌓이는 구조,
-즉 **'Wrapper Hell'** 을 자연스레 유발하게 됩니다. 이는 보기에도 좋지 않지만 props를 다루는 방식에서 더욱 복잡했습니다.
+즉 '**Wrapper Hell**'을 자연스레 유발하게 됩니다. 이는 보기에도 좋지 않지만 props를 다루는 방식에서 더욱 복잡했습니다.
 
 ### Custom Hooks
 
@@ -815,7 +815,7 @@ export default SignUpForm;
 ![Separation of concerns example by custom hooks](/posts/refactoring-ahead-atomic-design-and-custom-hooks/separation-of-concerns-example-custom-hooks.webp)
 
 [React Documentation의 번역본](https://ko.legacy.reactjs.org/docs/hooks-custom.html)을 인용하면,
-커스텀 훅은 **"복잡한 로직을 단순한 인터페이스 속에 숨길 수 있도록 하거나 복잡하게 뒤엉킨 컴포넌트를 풀어내도록"** 하는 과정을 돕습니다.
+커스텀 훅은 "**복잡한 로직을 단순한 인터페이스 속에 숨길 수 있도록 하거나 복잡하게 뒤엉킨 컴포넌트를 풀어내도록**" 하는 과정을 돕습니다.
 앞선 리팩토링에서 컴포넌트의 뷰와 기능을 나누고 뷰를 재사용하는 과정에 아토믹 디자인을 활용했다면,
 로직을 재사용하는 과정에 커스텀 훅을 적극적으로 활용하기로 판단한 이유입니다.
 
@@ -904,7 +904,7 @@ export default function NoticePage() {
 ```
 
 모든 페이지가 전역 context로 데이터를 전달하도록 통일하지는 않았습니다.
-예시로 `NoticePage` 같은 경우 API loader로 전달된 데이터 이외에 상태 관리나 로직이 필요하지 않은 구조였기 때문에
+예시로 `NoticePage` 같은 경우 API Loader로 전달된 데이터 이외에 상태 관리나 로직이 필요하지 않은 구조였기 때문에
 template으로 내려 주는 props로 fetch한 공지사항 데이터를 전달했습니다.
 만약 이후에 기능 추가가 필요하다면 그때 context를 분리하고 기능 추가 요소를 구현해 주는 방식으로 확장이 가능할 것으로 생각했기 때문입니다.
 

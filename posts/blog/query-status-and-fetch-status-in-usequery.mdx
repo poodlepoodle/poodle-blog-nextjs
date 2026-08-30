@@ -48,7 +48,7 @@ const {
 ```
 
 이들 정보 중 다수가 `is~`와 같은 Boolean 형태를 가지며, 요청의 특정 상태를 나타내는 플래그처럼 보입니다.
-다만, 저의 경우 처음 봤을 때 이름만으로 필요한 플래그를 골라내기 어려웠습니다.
+다만, 저의 경우에는 처음 봤을 때 이름만으로 각 플래그의 역할을 구분하기 어려웠습니다.
 
 예시로 비동기 데이터를 가져오는 동안 스켈레톤 UI를 보여주려고 했을 때,
 `isPending` · `isPaused` · `isLoading` 중 어떤 필드를 사용해야 할지 확실치 않다고 생각했습니다.
@@ -61,7 +61,7 @@ const {
 
 ### 각 버전을 거치며 상태 정의가 꾸준히 변경되어 왔습니다.
 
-TanStack Query는 2025년 12월 기준 Latest인 *v5.90.16*까지 발전하며 ‘요청 상태’에 대한 메이저한 개선 사항을 지속적으로 포함해 왔습니다.
+TanStack Query는 2025년 12월 기준 Latest인 *v5.90.16*까지 발전하며 '요청 상태'에 대한 메이저한 개선 사항을 지속적으로 포함해 왔습니다.
 예를 들어 v5에서는 다음 사항들이 변경되었습니다:
 
 - v4의 `status: loading` 상태가 v5에서는 `status: pending`으로 이름이 변경되었습니다.
@@ -104,7 +104,7 @@ const {
 ```
 
 Query Status는 **데이터의 존재 여부**에 대한 상태입니다.
-“화면에 보여줄 데이터가 현재 캐시에 존재하는지 _(Do we have any or not?)_ ”에 대한 여부를 표현합니다.
+"화면에 보여줄 데이터가 현재 캐시에 존재하는지 _(Do we have any or not?)_ "에 대한 여부를 표현합니다.
 
 - `status === 'pending'`: 아직 데이터를 받아오지 못한 상태
 - `status === 'success'`: 데이터를 성공적으로 받아온 상태
@@ -133,7 +133,7 @@ const {
 ```
 
 Fetch Status는 **쿼리 함수(queryFn)의 현재 실행 중 여부**에 대한 상태입니다.
-“지금 데이터를 가져오기 위해 요청 중인지 _(Is it running or not?)_ ”에 초점을 맞추고 있습니다.
+"지금 데이터를 가져오기 위해 요청 중인지 _(Is it running or not?)_ "에 초점을 맞추고 있습니다.
 
 - `fetchStatus === 'fetching'`: 쿼리 함수가 실행 중인 상태
 - `fetchStatus === 'paused'`: 쿼리 함수가 네트워크 오프라인 등의 이유로 실행 중단된 상태
@@ -320,7 +320,7 @@ return (
 라이브러리는 이를 위해 **내부 상태 머신**에서 파생된 여러 Boolean 플래그를 노출합니다.  
 …  
 여기서 주의할 점은 **`isFetching` 플래그는 내부 상태 머신의 일부가 아니라는 것**입니다.
-이 플래그는 요청이 진행 중(’in-flight’)일 때마다 true가 되는 추가적인 상태입니다.
+이 플래그는 요청이 진행 중('in-flight')일 때마다 true가 되는 추가적인 상태입니다.
 따라서 'fetching이면서 success'일 수 있고, 'fetching이면서 error'일 수도 있습니다.
 하지만 **'loading(pending)이면서 동시에 success'일 수는 없습니다.** 상태 머신이 이를 확실히 보장하기 때문입니다."<br />  
 ― TkDodo, 「Status Checks in React Query」
@@ -441,7 +441,7 @@ export class QueryObserver<
 
 추가로, 타입스크립트 4.6버전 이후로 타입 추론 지원이 강화되어 `isFetching`과 같은 파생 플래그도
 타입 좁히기를 수행할 뿐만 아니라, `isLoading && isError`와 같은 논리적으로 가능하지 않은 구문 또한
-`never` 타입으로 분류해 *“Unreachable code detected”* 경고를 표시합니다.
+`never` 타입으로 분류해 *"Unreachable code detected"* 경고를 표시합니다.
 
 ```ts
 const { data, isSuccess, isError } = useQuery({
@@ -461,7 +461,7 @@ if (isSuccess && isError) {
 
 ## 버전 별 주요 변경사항
 
-![Comparison of useQuery Ststus Changes](/posts/query-status-and-fetch-status-in-usequery/comparison-of-usequery-status-changes.webp)
+![Comparison of useQuery Status Changes](/posts/query-status-and-fetch-status-in-usequery/comparison-of-usequery-status-changes.webp)
 
 ### v3 → v4
 
@@ -477,7 +477,7 @@ v4로 넘어오며 `status`에서 `idle`이 제거되고 `loading` · `error` ·
 
 ### v4 → v5
 
-v5로 넘어오며 TanStack Query 개발팀은 ‘loading’ 상태가 가지는 모호함을 해소하고자,
+v5로 넘어오며 TanStack Query 개발팀은 'loading' 상태가 가지는 모호함을 해소하고자,
 `status`의 `loading`을 `pending`으로 변경해 "데이터가 아직 준비되지 않은 대기 상태"라는 의미를 더 명확히 전달했습니다.
 
 이에 맞춰 파생 플래그들도 재정의되었는데, `isLoading`이 `isPending`으로 바뀌었고
@@ -486,8 +486,8 @@ v5로 넘어오며 TanStack Query 개발팀은 ‘loading’ 상태가 가지는
 ## 결론
 
 - useQuery의 상태 필드가 헷갈리는 이유는, 버전업 과정에서 실제로 많은 부분이 변경되었기 때문입니다.
-- 여러 모호한 시나리오(네트워크 중단, 백그라운드 요청 등)를 명확히 분리해 표현하기 위해 Query Status는 ‘데이터의 존재 여부’에,
-Fetch Status는 ‘요청 수행 상태’에 초점을 맞추고 있으며 두 상태 필드는 독립적인 관계를 가집니다.
+- 여러 모호한 시나리오(네트워크 중단, 백그라운드 요청 등)를 명확히 분리해 표현하기 위해 Query Status는 '데이터의 존재 여부'에,
+Fetch Status는 '요청 수행 상태'에 초점을 맞추고 있으며 두 상태 필드는 독립적인 관계를 가집니다.
 - 과거에는 타입스크립트 사용 시, 파생 플래그(ex: `isFetching`) 대신 상태를 나타내는 Union 값(ex: `fetchStatus`)을 활용하는 편이 권유되었으나,
 최신 버전의 타입스크립트에서는 파생 플래그에 대한 타입 추론 또한 잘 이루어지고 있습니다.
 - TanStack Query가 v5에 이르기까지 상태 필드에 대해 어떤 메이저한 변경 사항들이 있었는지를 인지한다면,
