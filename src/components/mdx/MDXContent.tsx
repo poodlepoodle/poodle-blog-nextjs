@@ -54,12 +54,20 @@ const POST_TYPOGRAPHY =
  * - 비대칭 간격을 주는 heading은 `:not()`으로 균일 규칙에서 제외해 적용 대상을 명확히 한다.
  */
 const POST_SPACING = [
+  // 모든 직계 자식의 prose 기본 세로 padding을 제거한다.
   '[&>*]:py-0',
+  // h2·h3을 제외한 직계 자식에는 본문 기본 상하 여백을 적용한다.
   '[&>*:not(h2):not(h3)]:my-post-paragraph',
+  // 직계 h2에는 새 섹션을 구분하는 큰 위 여백을 적용한다.
   '[&>h2]:mt-post-h2',
+  // 직계 h2 뒤에는 본문 기본 간격을 둔다.
   '[&>h2]:mb-post-paragraph',
+  // 직계 h3에는 h2보다 작은 섹션 구분용 위 여백을 적용한다.
   '[&>h3]:mt-post-h3',
+  // 직계 h3 뒤에는 본문 기본 간격을 둔다.
   '[&>h3]:mb-post-paragraph',
+  // h2 바로 뒤의 직계 h3는 본문 기본 간격만 두도록 h3의 위 여백을 덮어쓴다.
+  '[&>h2_+_h3]:mt-post-paragraph',
 ];
 
 type MDXContentProps = {
