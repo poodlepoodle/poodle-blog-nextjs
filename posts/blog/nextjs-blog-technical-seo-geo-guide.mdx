@@ -4,7 +4,7 @@ publishedAt: 2026. 08. 30
 description: 'Next.js v16 기준 기술 블로그를 구현하며 적용한 Technical SEO · GEO 기법을 항목별로 정리해 소개드립니다.'
 slug: 'nextjs-blog-technical-seo-geo-guide'
 tags: ['blog', 'next.js', 'seo', 'geo']
-updatedAt: 2026. 08. 30
+updatedAt: 2026. 09. 21
 ---
 
 '블로그'를 얘기하면서 SEO를 빼놓을 수는 없습니다.
@@ -53,7 +53,7 @@ Next.js가 자체적으로 제공하는 기능들만으로도 SEO를 구축하�
 `getBlogPosts()` 등의 유틸 함수로 포스트 목록 및 상세 정보를 파싱합니다.
 
 페이지를 구성하는 데 필요한 유틸 함수는 `unstable_cache()`,
-페이지 요청은 `generateStaticParams()`에 의해 빌드 시점에 정적으로 단 한 번만 생성되므로
+렌더링 요청은 `generateStaticParams()`에 의해 빌드 시점에 정적으로 단 한 번만 생성되므로
 가능한 모든 페이지 요청이 Next.js의 Data Cache와 Full Route Cache 레벨에서 캐싱됩니다.
 
 ```tsx
@@ -423,7 +423,7 @@ export default async function Page({ params }: PageProps) {
 ![Example for Google rich results](/posts/nextjs-blog-technical-seo-geo-guide/rich-results-example.webp?width=350)
 
 위와 같은 스니펫 형태의 검색 결과 항목을 '**리치 검색 결과**'라고 합니다.
-구조화 데이터는 Google이 검색 결과 페이지에서 리치 검색 결과를 표시하는 데에 강력한 신호를 전달합니다.
+구조화 데이터는 Google이 검색 결과 페이지에서 리치 검색 결과를 표시하는 데에 강한 신호를 전달합니다.
 다만 구조화된 데이터를 제공하더라도 스니펫이 반드시 표시되는 것은 아니며,
 대규모의 트래픽이 발생하는 웹사이트가 아닌 이상 반영되기까지 적지 않은 시간을 필요로 할 수 있습니다.
 
@@ -550,8 +550,6 @@ export const METADATA_OG_ARTICLE_PRESET: MetadataOpenGraph = {
   tags: [...BRAND_KEYWORDS],
   authors: ['최어진'],
   section: 'Technology',
-  publishedTime: '2025-01-01T00:00:00.000Z',
-  modifiedTime: '2025-01-01T00:00:00.000Z',
   images: [
     {
       url: '/og/og-large.jpg',
@@ -782,7 +780,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 각 유틸 함수가 비동기로 수행되므로 `Promise<MetadataRoute.Sitemap>`을 반환하도록 정의했습니다.
 또한 각 URL 엔트리 내에서 `changeFrequency`와 `priority` 값은 제외하고 `lastModified` 속성만을 포함했습니다.
 
-이때 주의해야 할 점은 `lastModified` 속성을 각 빌드 시점 시각으로 설정하지 않는 것입니다.
+이때 주의해야 할 점은 `lastModified` 속성을 각 빌드 시각으로 설정하지 않는 것입니다.
 Google은 페이지 콘텐츠가 실제로 변경되었을 경우에만 `lastmod` 값을 변경하도록 일관성을 지킬 것을 권고하고 있습니다.
 따라서 저는 포스트 메타데이터 내에 `updatedAt` 속성을 두어 이 값을 기본으로 사용하도록 하고,
 값이 존재하지 않는 경우에는 `lastModified` 속성 자체를 생략하는 방향으로 적용했습니다.
@@ -857,7 +855,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 Sitemap이 업데이트될 때마다 검색 엔진이 시간에 따라 자연스럽게 참고하도록 둘 수도 있지만,
 Google의 경우 검색 관련 대시보드인 Search Console을 제공하므로
-**색인 생성 > Sitemaps** 메뉴를 통해 더 빨리 반영되도록 요청할 수 있습니다.
+**색인 생성 > Sitemaps** 메뉴를 통해 더 빨리 발견하도록 요청할 수 있습니다.
 
 ![Sitemap Indexing Menu in Google Search Console](/posts/nextjs-blog-technical-seo-geo-guide/gsc-sitemaps-indexing-menu.webp)
 
@@ -1086,11 +1084,11 @@ export async function GET(_req: Request, { params }: RouteParams) {
 
   const frontmatter = [
     '---',
-    `title: '${post.title}'`,
-    `publishedAt: '${post.publishedAt}'`,
-    post.updatedAt ? `updatedAt: '${post.updatedAt}'` : null,
-    `description: '${post.description}'`,
-    `tags: [${post.tags.map(t => `'${t}'`).join(', ')}]`,
+    `title: ${JSON.stringify(post.title)}`,
+    `publishedAt: ${JSON.stringify(post.publishedAt)}`,
+    post.updatedAt ? `updatedAt: ${JSON.stringify(post.updatedAt)}` : null,
+    `description: ${JSON.stringify(post.description)}`,
+    `tags: ${JSON.stringify(post.tags)}`,
     '---',
   ]
     .filter(Boolean)
@@ -1203,7 +1201,7 @@ AI 입장에서 불필요한 마크업 리소스를 제외한 만큼 HTML 문서
 이는 AI의 토큰 및 컨텍스트 효율성과도 직결됩니다.
 
 > 제 블로그의 경우, Chrome DevTools의 'disabled cache' 환경에서 테스트 시에
-> 원래 문서 크기 대비 약 70% 수준의 압축 효과를 보였습니다.
+> 원래 문서 크기 대비 약 70% 절감 효과를 보였습니다.
 > 
 > ![Comparisons between Markdown Post and HTML Post](/posts/nextjs-blog-technical-seo-geo-guide/comparison-between-markdown-and-html-posts.webp)
 
@@ -1211,7 +1209,7 @@ AI 입장에서 불필요한 마크업 리소스를 제외한 만큼 HTML 문서
 [Making agent-friendly pages with content negotiation](https://vercel.com/blog/making-agent-friendly-pages-with-content-negotiation)
 포스트에서 제안한 구조를 그대로 참고했습니다.
 
-다만 이 예시를 정적 블로그에 그대로 적용하면, Route Handler 동작을 런타임에 Lambda 함수로 처리하므로
+다만 이 예시를 정적 블로그에 그대로 적용하면, Route Handler 동작이 런타임에 Lambda 함수로 처리되어
 유틸 함수의 파일 I/O가 배포 번들에 포함되지 않은 콘텐츠 디렉터리
 상대 경로(`./posts`)를 읽으려 하며 500 에러가 발생하는 문제가 있었습니다.
 
@@ -1418,7 +1416,7 @@ This store implements the Universal Commerce Protocol for agent-driven commerce.
 ...
 ```
 
-아쉽게도 llms.txt는 아직 Next.js에서 동적으로 생성할 수 있는 방법을 제공하지 않고 있습니다.
+아쉽게도 llms.txt는 아직 Next.js에서 동적으로 생성할 수 있는 전용 파일 컨벤션을 제공하지 않고 있습니다.
 따라서 Route Handler로 `/llms.txt` 라우팅 요청에 직접 본문을 응답하도록 구현했습니다.
 
 > 해당 라우트의 GET 응답은 `force-static` 옵션을 통해 생성되므로, 요청마다 핸들러를 실행하지 않고 캐시된 정적 응답으로 제공됩니다.
@@ -1512,7 +1510,7 @@ Googlebot은 크롤링한 페이지를 자체 렌더링 큐에 적재합니다.
 ## 추가: 사용자 유입 추적하기
 
 Next.js로 만든 블로그를 가장 간편하게 배포하는 방법은 Vercel입니다.
-Vercel은 무료 플랜 기준으로도 최근 30일까지는 Analytics 트래킹을 제공하며,
+Vercel은 무료 플랜 기준으로도 최근 30일까지는 Analytics 트래킹을 보관하며,
 Page Views · Bounce Rate · Referrers 등 최소한의 방문자 추이는 확인할 수 있습니다.
 
 ![Screenshot for Vercel Analytics](/posts/nextjs-blog-technical-seo-geo-guide/vercel-analytics.webp)
@@ -1580,7 +1578,7 @@ UTM(Urchin Tracking Module)은 방문자가 어떤 경로나 광고 등을 통�
 > UTM 파라미터 값은 미리 정해 두고 마케팅 채널별로 다르게 적용하는 것이 기본적이나,
 > 어떤 SNS들은 자체적으로 `utm_source`와 같은 파라미터를 부착해 외부 링크를 제공하는 경우도 있습니다.
 
-Vercel Analytics는 최소 Pro 플랜 이상부터 UTM 트래킹을 지원하며, 비용 정책이 조금 사악합니다.
+Vercel Analytics는 최소 Web Analytics Plus 플랜 이상부터 UTM 트래킹을 지원하며, 비용 정책이 조금 사악합니다.
 개인 기술 블로그를 만드는 경우라면 여기서부터는 [GA(Google Analytics)](https://analytics.google.com)를 사용하는 것이 좋습니다.
 
 GA도 Vercel Analytics와 비슷하게 `@next/third-parties` 패키지를 추가하고
@@ -1695,7 +1693,7 @@ SSG · SSR 등의 **페이지 생성 전략**과 **HTML Semantic**,
 ## 참고
 
 - 블로그 레포지토리
-  - [github.com/poodlepoodle/poodle-blog-nextjs](https://github.com/poodlepoodle/poodle-blog-nextjs)
+  - [poodle-blog-nextjs | Github](https://github.com/poodlepoodle/poodle-blog-nextjs)
 - 참고한 문서
   - [Google 검색에서 지원하는 구조화된 데이터 마크업 | Google Search Central](https://developers.google.com/search/docs/appearance/structured-data/search-gallery)
   - [Google에서 지원하는 meta 태그 및 속성 | Google Search Central](https://developers.google.com/search/docs/crawling-indexing/special-tags)
