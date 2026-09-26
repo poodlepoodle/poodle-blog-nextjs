@@ -62,7 +62,7 @@ src/components/json-ld/index.tsx ← <script type="application/ld+json"> 주입 
 ```
 @graph
 ├── BreadcrumbList  itemListElement[홈, 섹션명]
-├── CollectionPage  name, description, url, author, publisher, inLanguage, about
+├── CollectionPage  @id: /{section}, name, description, url, author, publisher, inLanguage, about
 └── ItemList        numberOfItems, itemListElement[BlogPosting]
 ```
 
@@ -76,7 +76,7 @@ src/components/json-ld/index.tsx ← <script type="application/ld+json"> 주입 
 └── BlogPosting     @id: /…#article, mainEntityOfPage: WebPage(@id: /…)
 ```
 
-`BlogPosting`에 `articleBody`(전문), `articleSection`, `inLanguage`, `about`(태그), `keywords`를 포함해 콘텐츠 맥락을 전달한다. `mainEntityOfPage`에 `WebPage` 노드를 내포하고 `@id`를 선언해 페이지와 글 엔티티를 구분한다.
+`BlogPosting`에 `articleSection`, `inLanguage`, `about`, `keywords`(`/posts/[slug]`만)를 포함해 콘텐츠 맥락을 전달한다. 본문 전문(`articleBody`)은 싣지 않는다 — 마크다운 원문은 `/{section}/{slug}.md` 라우트로 별도 제공된다. `mainEntityOfPage`에 `WebPage` 노드를 내포하고 `@id`를 선언해 페이지와 글 엔티티를 구분한다.
 
 ### 소개 페이지: `BreadcrumbList` + `ProfilePage`
 
@@ -98,6 +98,7 @@ src/components/json-ld/index.tsx ← <script type="application/ld+json"> 주입 
 |--------|-----------|------|
 | `WebSite` | `${BASE_URL}/#website` | 사이트 엔티티 |
 | `BlogPosting` | `${BASE_URL}/{section}/{slug}#article` | 글 콘텐츠 엔티티 |
+| `CollectionPage` | `${BASE_URL}/{section}` | 목록 페이지 엔티티 |
 | `WebPage` (mainEntityOfPage) | `${BASE_URL}/{section}/{slug}` | 실제 페이지 URL |
 | `Person` (AUTHOR) | `${BASE_URL}/about#person` | 작성자 엔티티 |
 | `ProfilePage` | `${BASE_URL}/about#profilepage` | 소개 페이지 엔티티 |
@@ -140,7 +141,7 @@ src/components/json-ld/index.tsx ← <script type="application/ld+json"> 주입 
 
 ### dateModified
 
-현재 `dateModified`는 `publishedAt`과 동일한 값을 사용한다. 포스트에 `updatedAt` 필드가 추가되면 해당 값으로 교체해야 한다.
+`dateModified`는 `getPostLastModifiedIso(post)`(`src/utils/format-date.ts`)로 계산한다. `updatedAt`이 있으면 그 값을, 없으면 `publishedAt`을 ISO 문자열로 변환한다. 프론트매터에 `updatedAt`을 추가하는 것만으로 반영되므로 JSON-LD 생성 함수는 수정할 필요가 없다.
 
 ---
 
@@ -161,7 +162,6 @@ src/components/json-ld/index.tsx ← <script type="application/ld+json"> 주입 
 | 상황 | 조치 |
 |------|------|
 | 소셜 프로필 추가 | `AUTHOR.sameAs` 배열에 URL 추가 |
-| 포스트에 `updatedAt` 추가 | 모든 함수의 `dateModified`를 `updatedAt`으로 교체 |
 | 새 섹션 추가 | `blogListStructuredData`, `blogPostStructuredData` 패턴을 참고하여 새 함수 작성 |
 | `PlaygroundPost`에 `description` 추가 | `playgroundListStructuredData`, `playgroundPostStructuredData`의 하드코딩 문구를 `post.description`으로 교체 |
 | Sitelinks 검색창 활성화 | `blogStructuredData`의 `WebSite`에 `potentialAction: SearchAction` 추가 |

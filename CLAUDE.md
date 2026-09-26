@@ -94,4 +94,6 @@ When a task touches these areas, read the corresponding doc first — they conta
 
 - `docs/structured-data-strategy.md` — JSON-LD architecture, `@graph` vs `ItemList` rationale, `@id` conventions
 - `docs/utm-tracking-rules.md` — UTM parameter specification for outbound links (GitHub profile, resume, job platforms). Includes a living table of currently-deployed UTM links — **update that table when adding or changing a UTM link**.
+- `docs/agent-content-negotiation.md` — why `Accept: text/markdown` / `.md` serving is wired the way it is. **Read before touching `*/md/[slug]/route.ts`, the `rewrites` in `next.config.ts`, or `alternates.types`.** Contains the hard rule that any route reading `posts/` must build as `●` (SSG), never `ƒ` — it 500s in production otherwise.
 - `docs/seo-audit-report-*.md` — dated SEO audit reports (working documents)
+- `docs/specs/posts/writing-rules.md` — post writing/proofreading style spec (bold/quote/frontmatter/separator rules, W-/Q-/F-/S- rule IDs). Read before writing or editing posts in `posts/`.
